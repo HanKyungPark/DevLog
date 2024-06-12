@@ -12,6 +12,10 @@ spring:
     url: ${MYSQL_HOST}
     username: ${MYSQL_USER}
     password: ${MYSQL_PASSWORD}
+  security:
+    user:
+      name: admin
+      password: admin
 
 mybatis:
   type-aliases-package: org.bitcamp.devlog.dto

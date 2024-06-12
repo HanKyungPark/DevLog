@@ -4,7 +4,7 @@ import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
 import io.minio.RemoveObjectArgs;
 import io.minio.errors.*;
-import org.example.blogproject.config.MinioConfig;
+import org.bitcamp.devlog.config.MinioConfig;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
