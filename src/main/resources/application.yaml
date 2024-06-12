@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: devlog
+
+  mvc:
+    view:
+      prefix: /WEB-INF/
+      suffix: .jsp
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${MYSQL_HOST}
+    username: ${MYSQL_USER}
+    password: ${MYSQL_PASSWORD}
+
+mybatis:
+  type-aliases-package: org.bitcamp.devlog.dto
+  mapper-locations: classpath:mapper/*.xml
