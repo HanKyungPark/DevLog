@@ -1,0 +1,6 @@
+FROM openjdk:17
+ARG JAR_FILE=app.war
+COPY ${JAR_FILE} app.war
+EXPOSE 9201
+ENTRYPOINT ["java","-jar","app.war"]
+
