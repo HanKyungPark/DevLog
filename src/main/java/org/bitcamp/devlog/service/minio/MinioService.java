@@ -51,4 +51,7 @@ public class MinioService implements ObjectStorage {
             throw new RuntimeException(e);
         }
     }
+    public void test(){
+
+    }
 }
