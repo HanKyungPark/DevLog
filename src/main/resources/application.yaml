@@ -17,6 +17,10 @@ spring:
       name: admin
       password: admin
 
+
 mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
   type-aliases-package: org.bitcamp.devlog.dto
   mapper-locations: classpath:mapper/*.xml

@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class YamlLoadFactory implements PropertySourceFactory {
-
     @Override
     public PropertySource<?> createPropertySource(String name, EncodedResource encodedResource)
             throws IOException {
