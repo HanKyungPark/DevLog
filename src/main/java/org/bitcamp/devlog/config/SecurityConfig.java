@@ -38,8 +38,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests((ahth) -> ahth
                         //경로설정 oauth2 모든 경로와 login으로 시작하는 모든 경로를 permitAll을 시켜서 아무나 접속 가능하게 하고
-                        .requestMatchers("*").permitAll()
-                        .requestMatchers("css/*","js/*").permitAll()
+                        .requestMatchers("/","/oauth2/**","/login/**").permitAll()
                         //그 외 나머지 경로는 로그인 한 사람만 접근 가능
                         .anyRequest().authenticated());
         http
