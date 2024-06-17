@@ -3,7 +3,8 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{layout/layout_main/layout1_hmenu}">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -11,10 +12,29 @@
     <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css}" rel="stylesheet">
     <!--부트스트랩 css-->
     <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="/css/mainPage.css">
 </head>
 <body>
-
-
+<div layout:fragment="content">
+    <div class="con">
+    <section class="bigcontainer">
+        <div class="container">
+            <div class="infotext">
+                <h1 class="title"><b>Welcome to our Platform</b></h1>
+                <p class="subtitle">
+                    Get started with our platform in just a few seconds.<br><br>
+                </p>
+            </div>
+            <div class="btncontainer" >
+                <button class="btn" id="btn_login" onclick="location.href='/oauth2/authorization/kakao'">
+                    <i class="bi bi-chat-fill"></i>&nbsp;
+                    <b>카카오톡으로 로그인</b>
+                </button>
+            </div>
+        </div>
+    </section>
+    </div>
+</div>
 </body>
 <!--부트스트랩-->
 <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js}"

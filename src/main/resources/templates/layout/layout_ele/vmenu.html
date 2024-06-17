@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-      layout:decorate="~{layout/layout_main/layout1_hmenu}">
-
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -13,19 +10,18 @@
     <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css}" rel="stylesheet">
     <!--부트스트랩 css-->
     <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}"/>
-    <!--해당 파일의 css 와 javascript 추가-->
-    <link rel="stylesheet" href="../css/feedPage.html">
-    <link rel="script" href="../js/feedPage.js">
 </head>
 <body>
-
-<div layout:fragment="content">
-
-
-
-
+<div th:fragment="vmenu" class="vmenu">
+    <nav class="vmenucontainer">
+        <ul style="text-align: center">
+            <li><a>menu1</a></li>
+            <li><a>menu2</a></li>
+            <li><a>menu3</a></li>
+            <li><a>menu4</a></li>
+        </ul>
+    </nav>
 </div>
-
 </body>
 <!--부트스트랩-->
 <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js}"

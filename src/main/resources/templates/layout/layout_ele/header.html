@@ -11,9 +11,31 @@
     <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css}" rel="stylesheet">
     <!--부트스트랩 css-->
     <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}"/>
+<!--    css, script-->
+
 </head>
 <body>
+<div th:fragment="header" class="header" >
+<div class="header_container">
 
+        <div class="header_frame">
+            <a class="logo" href="/">
+                My Blog
+            </a>
+                <div class="rightside">
+            <p class="userName" data-toggle="dropdown">John Doe</p>
+            <br>
+            <p class="userTag" style="float: right">@johndoe</p>
+                </div>
+            <div class="dropdown-menu hidden">
+                <a class="dropdown-item" href="#">My Profile</a>
+                <a class="dropdown-item" href="#">Settings</a>
+                <a class="dropdown-item" href="#">Logout</a>
+            </div>
+        </div>
+
+</div>
+</div>
 </body>
 <!--부트스트랩-->
 <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js}" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM}" crossorigin="anonymous"></script>

@@ -1,0 +1,45 @@
+.header_container {
+    background-color: #F3F4F6;
+    height: 70px;
+    display: flex;
+
+    /*padding: 1rem;*/
+    justify-content: space-around; /* Centers the .header_frame horizontally */
+    /*align-items: flex-end; !* Centers the .header_frame vertically *!*/
+}
+.rightside{
+    float: right;
+    margin-left: 1300px ;
+}
+.header_frame {
+    /*margin-top: 20px;*/
+    display: flex;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    align-items: center;
+    width: 100%; /* Ensures .header_frame takes full width */
+    height: 80px;
+}
+.logo{
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+
+
+}
+
+
+.userName {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 700;
+    margin-top: 4px;
+    float: right;
+}
+
+.userTag {
+    color: #6B7280;
+    margin-bottom: 30px;
+    float: right;
+}
