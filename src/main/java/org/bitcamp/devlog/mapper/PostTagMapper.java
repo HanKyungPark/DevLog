@@ -7,7 +7,12 @@ import java.util.List;
 
 @Mapper
 public interface PostTagMapper {
+    //태그추가
     void save(PostTag postTag);
+
+    //태그삭제
     void delete(Long postTagId);
+
+    //태그검색
     List<Long> findAllPostIdByTagId(Long tagId);
 }
