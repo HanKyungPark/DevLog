@@ -6,18 +6,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.ibatis.type.Alias;
 
-import java.util.List;
-
-@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 @Alias("Account")
 public class Account {
+
   private Long accountId;
   private Long providerType;
   private java.sql.Timestamp aCreatedAt;
-  private java.sql.Timestamp aUpdatedAt;
+  private java.sql.Timestamp aUpdateAt;
   private String biography;
   private String blogId;
   private String email;
@@ -26,5 +25,4 @@ public class Account {
   private String refreshToken;
   private String accessToken;
   private String file;
-  List<AccountRole> role;
 }

@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.bitcamp.devlog.dto.Account">
+<mapper namespace="org.bitcamp.devlog.mapper.Account">
+    <insert id="saveAccount" parameterType="Account">
+        insert into account (name,email,provider_type,account_id,a_created_at) values(#{name},#{email},#{provider_type},#{account_id},now())
+    </insert>
 
+
+    <update id="updateAccount" parameterType="Account">
+        update account set a_update_at=#{now()},biography=#{biography}, blog_id=#{blogId},
+                           homapage=#{homepage}, file=#{file}
+    </update>
 </mapper>

@@ -1,12 +1,16 @@
+
 package org.bitcamp.devlog.controller;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController ("/")
 public class HomeServCotroller {
-    @GetMapping("/")
-    public String home() {
-        return "layout/layout_ele/header";
+
+    @GetMapping("/login")
+    public String Home() {
+        return "index";
     }
+
 }
+
