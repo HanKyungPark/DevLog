@@ -10,16 +10,13 @@
     <!--부트스트랩 css-->
     <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}"/>
 <!--    해당 파일의 css와 script-->
-    <link rel="stylesheet" href="/css/layout1_hmenu.css">
-    <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/footer.css">
     <link rel="stylesheet" href="/css/hmenu.css">
 </head>
 <body>
-<div th:replace="layout/layout_ele/header :: header" class="header"></div>
+<div th:replace="layout/layout_ele/header.html" class="header"></div>
 <div th:replace="layout/layout_ele/hmenu :: hmenu" class="hmenu"></div>
 <div layout:fragment="content" class="contentcontainer"></div>
-<div th:replace="layout/layout_ele/footer :: footer" class="footer"></div>
+<div th:replace="layout/layout_ele/footer.html" class="footer"></div>
 
 
 

@@ -1,0 +1,89 @@
+.login {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.h1{
+        font-size: 2em;
+        color: #333;
+        margin-bottom: 20px;
+}
+.text_blogcreate {
+    font-size: 30px;
+}
+form {
+    margin-left: 30%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    height: 600px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+input[type="text"],
+input[type="file"],
+textarea {
+    width: calc(100% - 24px); /* Adjust for padding */
+    padding: 10px;
+    margin: 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.login_submit_btn {
+    border: 1px solid black;
+    color: gray;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    /*float: right;*/
+    /*margin-right: 45%;*/
+
+
+}
+.login_btn_container{
+    text-align: center;
+}
+button:hover {
+color: #111827;
+    border: 1px solid gray;
+}
+
+img {
+    display: block;
+    margin-top: 10px;
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
