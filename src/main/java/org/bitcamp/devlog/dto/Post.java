@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.ibatis.type.Alias;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -25,4 +27,5 @@ public class Post {
   private Long accountId;
   private String file;
   private Long postTagId;
+  private List<PostTagJoin> postTags;
 }
