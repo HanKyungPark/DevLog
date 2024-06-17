@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,8 +10,17 @@
     <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css}" rel="stylesheet">
     <!--부트스트랩 css-->
     <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}"/>
+<!--    해당 파일의 css와 script-->
+    <link rel="stylesheet" href="/css/layout1_hmenu.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/hmenu.css">
 </head>
 <body>
+<div th:replace="layout/layout_ele/header :: header" class="header"></div>
+<div th:replace="layout/layout_ele/hmenu :: hmenu" class="hmenu"></div>
+<div layout:fragment="content" class="contentcontainer"></div>
+<div th:replace="layout/layout_ele/footer :: footer" class="footer"></div>
 
 
 

@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeServCotroller {
     @GetMapping("/")
     public String home() {
-        return "layout/layout_ele/header";
+        return "contents/mainPage";
     }
 }
