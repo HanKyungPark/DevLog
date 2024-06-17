@@ -2,10 +2,6 @@ spring:
   application:
     name: devlog
 
-  mvc:
-    view:
-      prefix: /WEB-INF/
-      suffix: .jsp
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

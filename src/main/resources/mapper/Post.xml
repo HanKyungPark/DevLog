@@ -68,4 +68,5 @@
         where p.post_id = #{postId}
     </select>
 
+
 </mapper>
