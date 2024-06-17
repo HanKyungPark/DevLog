@@ -1,0 +1,26 @@
+.header{
+    height: 10%;
+    width: 100%;
+}
+.vmenu{
+    background-color: #111827;
+
+    color: #F3F4F6;
+    height: 5%;
+    width: 200px;
+}
+.content{
+    width: 100%;
+}
+.contentcontainer{
+    height: 80%;
+    width: 100%;
+}
+.footer{
+    height: 5%;
+    width: 100%;
+}
+.vmenu_align{
+    display: flex;
+    justify-content: stretch;
+}
