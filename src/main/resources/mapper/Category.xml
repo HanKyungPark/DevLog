@@ -13,4 +13,11 @@
     <delete id="deleteCategory" parameterType="long">
         delete from category where category_id=#{categoryId};
     </delete>
+    <select id="findByPostId" parameterType="post" resultType="Category">
+        select
+            category_type,
+            c.category_id as category_id
+        from category c Join post p on c.category_id = p.category_id
+        where p.post_id = #{postId}
+    </select>
 </mapper>

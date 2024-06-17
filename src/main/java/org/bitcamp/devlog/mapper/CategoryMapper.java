@@ -12,4 +12,6 @@ public interface CategoryMapper {
     List<Category> getCategoryList();
     void deleteCategory (int categoryId);
 
+    Category findByPostId(Long postId);
+
 }
