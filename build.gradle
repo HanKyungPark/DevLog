@@ -32,6 +32,7 @@ dependencies {
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
     implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+
     // mini.io client
     implementation 'io.minio:minio:8.5.10'
 
@@ -40,8 +41,8 @@ dependencies {
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-api:2.5.0'
     implementation('nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect')
     compileOnly 'org.projectlombok:lombok'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'com.mysql:mysql-connector-j'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
