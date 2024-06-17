@@ -9,6 +9,7 @@ public class HomeServCotroller {
     @GetMapping("/")
     public String home() {
         return "contents/mainPage";
+    }
 
     @GetMapping("/login")
     public String Home() {
