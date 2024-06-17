@@ -7,6 +7,7 @@
 
 
     <update id="updateAccount" parameterType="Account">
-        update account set a_update_at=now(), biography=#{biography}, blog_id=#{blogId}, homapage=#{homepage}, file=#{file}
+        update account set a_update_at=#{now()},biography=#{biography}, blog_id=#{blogId},
+                           homapage=#{homepage}, file=#{file}
     </update>
 </mapper>
