@@ -1,5 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.bitcamp.devlog.dto.Post">
+<mapper namespace="org.bitcamp.devlog.mapper.PostMapper">
+    <resultMap id="postMap" type="Post">
+        <id column="post_id" property="postId"/>
+        <result column="post_id" property="postId"/>
+        <result column="category_id" property="categoryId"/>
+        <result column="p_created_at" property="pCreatedAt"/>
+        <result column="p_updated_at" property="pUpdatedAt"/>
+        <result column="p_content" property="pContent"/>
+        <result column="hits" property="hits"/>
+        <result column="open_type" property="openType"/>
+        <result column="post_url" property="postUrl"/>
+        <result column="title" property="title"/>
+        <result column="account_id" property="accountId"/>
+        <result column="file" property="file"/>
+        
+        <collection property="postTags" resultMap="postTagMap" />
+    </resultMap>
+
+    <resultMap id="postTagMap" type="PostTagJoin">
+        <result column="post_id" property="postId"/>
+        <result column="tag_id" property="tagId"/>
+        <result column="tag_name" property="tagName"/>
+    </resultMap>
+
+    <insert id="save" parameterType="Post">
+        INSERT INTO post
+        (category_id,p_created_at,p_content,open_type,post_url,title,account_id,file,post_tag_id)
+        VALUES
+        (#{category_id},now(),#{p_content},#{open_type},#{post_url},#{title},#{account_id},#{file},#{post_tag_id})
+    </insert>
+
+    <update id="update" parameterType="Post">
+        UPDATE post
+        SET category_id = #{category_id},
+            p_updated_at = now(),
+            p_content = #{p_content},
+            open_type = #{open_type},
+            title = #{title},
+            file = #{file},
+            post_tag_id = #{post_tag_id}
+        WHERE post_id = #{post_id}
+    </update>
+
+    <delete id="delete" parameterType="Post">
+        DELETE FROM post
+        WHERE post_id = #{postId}
+    </delete>
+
+    <select id="findById" parameterType="Post" resultMap="postMap">
+        select
+            p.post_id as post_id,
+            category_id,
+            p_created_at,
+            p_updated_at,
+            p_content,
+            hits,
+            open_type,
+            post_url,
+            title,
+            account_id,
+            file,
+            post_tag_id,
+            tag_id,
+            tag_name
+        from post p LEFT OUTER JOIN post_tag_join ptj on p.post_id = ptj.post_id
+        where p.post_id = #{postId}
+    </select>
 
 </mapper>
