@@ -17,7 +17,7 @@ public interface PostMapper {
     void delete(Post post);
 
     //조회
-    Post findById(Long postId);
+    Post findById(Post post);
 
     //좋아용
     void CountByHeart(Long postId);
