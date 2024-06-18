@@ -54,7 +54,7 @@ public class Oauth2UserService extends DefaultOAuth2UserService {
             account.setEmail(AccountResponse.getEmail());
             account.setFile(AccountResponse.getFile());
 
-            accountMapper.saveAccount(account);
+            accountMapper.save(account);
         } else {
             return null;
         }
