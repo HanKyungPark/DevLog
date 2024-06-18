@@ -17,13 +17,13 @@
         delete from category where category_id=#{categoryId}
     </delete>
 
-    <select id="findAllByPostId" parameterType="long" resultType="Post">
+    <select id="findAllByPostId" parameterType="long" resultType="Category">
         select category_id,category_type
         from category
         where post_id = #{post_id}
     </select>
 
-    <select id="findByPostId" parameterType="post" resultType="Catego">
+    <select id="findByPostId" parameterType="post" resultType="Category">
         select
             category_type,
             c.category_id as category_id
