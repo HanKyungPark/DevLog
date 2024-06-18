@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 
+
 public class Oauth2User implements OAuth2User {
 
     private final AccountResponse AccountResponse;

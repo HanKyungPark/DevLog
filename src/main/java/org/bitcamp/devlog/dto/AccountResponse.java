@@ -5,9 +5,11 @@ import java.util.Map;
 public class AccountResponse extends Account {
 
     private final Map<String, Object> attribute;
+    private final Map<String, Object> profile;
 
     public AccountResponse(Map<String, Object> attribute) {
-        this.attribute = (Map<String, Object>) attribute.get("response");
+        this.attribute = (Map<String, Object>) attribute.get("kakao_account");
+        this.profile = (Map<String, Object>) attribute.get("properties");
     }
 
     @Override
@@ -22,13 +24,18 @@ public class AccountResponse extends Account {
 
     @Override
     public String getName() {
-        return attribute.get("name").toString();
+        return profile.get("nickname").toString();
     }
 
     @Override
     public Long getAccountId() {
         return (Long) attribute.get("id");
     }
+
+    public String getFile() {
+        return profile.get("profile_image").toString();
+    }
+
 }
 
 
