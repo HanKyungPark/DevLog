@@ -15,30 +15,33 @@
 <body>
 <div th:fragment="header" class="header" >
     <header id="header" class="header d-flex align-items-center sticky-top">
-        <img src="https://minio.bmops.kro.kr/devlog/logo/TitleLog.png" style="margin-left: 80px; width: 100px; height: 50px" href="/home"/><a href="/home"><h2 class="sitename" style="margin-left: 100px">DevLog</h2></a>
-        <div class="container position-relative d-flex align-items-center justify-content-between">
+        <div style="width: 100%; text-align: center">
+        <img src="https://minio.bmops.kro.kr/devlog/logo/TitleLog.png" style="width: 100px; height: 50px;margin: 0 auto 10px auto" href="/home"/>
+        </div>
+        <a href="/home"><h2 class="sitename" style="margin-left: 100px">DevLog</h2></a>
+            <div class="container position-relative d-flex align-items-center justify-content-between">
 
             <a href="/home" class="logo d-flex align-items-center me-auto me-xl-0">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <!-- <img src="assets/img/logo.png" alt=""> -->
 
             </a>
-
-            <nav id="navmenu" class="navmenu">
+            <div style="width: 100%; text-align: center">
+            <nav id="navmenu" class="navmenu"  >
                 <ul class="dropdown" style="float: right;"><a style="font-size: 17px"><span>login_id</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                     <ul>
                         <li><a href="/contents">My Blog</a></li>
                         <li><a href="/mypage">My Page</a></li>
                     </ul>
                 </ul>
-                <ul style="margin-left: 200px">
-                    <li><a href="/home" class="active" style="font-size: 20px">Home<br></a></li>
-                    <li><a href="/feed" style="font-size: 20px">Feed</a></li>
+                <ul style="text-align: center; margin-left: 300px">
+                    <li><a href="/home" class="active" style="font-size: 20px">Home<br></a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <li><a href="/feed" style="font-size: 20px">Feed</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <li><a href="/contents" style="font-size: 20px">My Blog</a></li>
                 </ul>
 
             </nav>
-
+            </div>
 
 
         </div>
