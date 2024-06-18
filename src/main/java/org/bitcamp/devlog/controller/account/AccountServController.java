@@ -28,4 +28,22 @@ public class AccountServController {
      * account객체를 이용해 db에저장한다.
      */
 
+    @GetMapping("/mypage")
+    public String mypage()
+    {
+        return "contents/myPage";
+    }
+
+    @GetMapping("/feed")
+    public String feed()
+    {
+        return "contents/feedPage";
+    }
+
+    @GetMapping("/home")
+    public String home()
+    {
+        return "contents/homePage";
+    }
+
 }
