@@ -25,10 +25,8 @@ public class CategoryService {
 
         categoryMapper.delete(category.getCategoryId());
     }
-    public List<Category> findAllByPostId(Post post){
-
-        List<Category> categories =categoryMapper.findAllByPostId(post.getPostId());
-        return categories;
+    public List<Category> findAllByPostId(Long categoryId){
+        return categoryMapper.findAllByPostId(categoryId);
     };
     public List<Category> findByPostId(Post post){
         List<Category> categories=categoryMapper.findAllByPostId(post.getPostId());
