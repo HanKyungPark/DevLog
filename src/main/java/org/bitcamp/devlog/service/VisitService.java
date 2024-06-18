@@ -26,11 +26,11 @@ public class VisitService {
 
         return list;
     };
-    public int findByAccountIdAndVisitDate(HttpSession session, String visitDate){
+    public Long findByAccountIdAndVisitDate(HttpSession session, String visitDate){
         Map<String,Object> map=new HashMap<>();
         map.put("accountId",session.getAttribute("accountId").toString());
         map.put("visitDate",visitDate);
-        int visits= visitMapper.findByAccountIdAndVisitDate(map);
+        long visits= visitMapper.findByAccountIdAndVisitDate(map);
 
         return visits;
     };
