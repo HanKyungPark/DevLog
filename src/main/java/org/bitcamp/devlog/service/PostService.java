@@ -13,7 +13,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class PostService {
     private final PostMapper postMapper;
-    private final CategoryMapper categoryMapper
+    private final CategoryMapper categoryMapper;
 
     public void save(Post post){
         postMapper.save(post);
