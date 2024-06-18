@@ -5,6 +5,5 @@ import org.bitcamp.devlog.dto.AccountRole;
 
 @Mapper
 public interface AccountRoleMapper {
-
-    void saveAccountRole(AccountRole accountRole);
+    void save(AccountRole accountRole);
 }

@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.bitcamp.devlog.mapper.Tag">
 
-    <!--태그저장-->
-    <insert id="save" parameterType="org.bitcamp.devlog.dto.Tag">
+    <!--태그추가-->
+    <insert id="save" parameterType="Tag">
         insert into tag (t_created_at, t_updated_at, tag_name)
         values(now(), null, #{tagName})
     </insert>
 
-    <!--태그id찾기-->
+    <!--태그검색-->
     <select id="findTagIdByTagName" parameterType="String" resultType="long">
         select tag_id
         from tag

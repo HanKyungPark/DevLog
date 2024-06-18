@@ -25,27 +25,27 @@
     </resultMap>
 
     <insert id="save" parameterType="Post">
-        INSERT INTO post
+        insert into post
         (category_id,p_created_at,p_content,open_type,post_url,title,account_id,file,post_tag_id)
-        VALUES
+        values
         (#{category_id},now(),#{p_content},#{open_type},#{post_url},#{title},#{account_id},#{file},#{post_tag_id})
     </insert>
 
     <update id="update" parameterType="Post">
-        UPDATE post
-        SET category_id = #{category_id},
+        update post
+        set category_id = #{category_id},
             p_updated_at = now(),
             p_content = #{p_content},
             open_type = #{open_type},
             title = #{title},
             file = #{file},
             post_tag_id = #{post_tag_id}
-        WHERE post_id = #{post_id}
+        where post_id = #{post_id}
     </update>
 
     <delete id="delete" parameterType="Post">
-        DELETE FROM post
-        WHERE post_id = #{postId}
+        delete from post
+        where post_id = #{postId}
     </delete>
 
     <select id="findById" parameterType="Post" resultMap="postMap">
@@ -64,9 +64,25 @@
             post_tag_id,
             tag_id,
             tag_name
-        from post p LEFT OUTER JOIN post_tag_join ptj on p.post_id = ptj.post_id
+        from post p left outer join post_tag_join ptj on p.post_id = ptj.post_id
         where p.post_id = #{postId}
     </select>
 
+    <!--태그검색-->
+    <select id="findByPostIdAndAccountId" parameterType="long" resultType="Post">
+        select *
+        from post
+        where post_id = #{postId}
+          and account_id = #{accountId}
+    </select>
+
+    <!--제목검색-->
+    <select id="findAllByTitleAndAccountId" parameterType="Post">
+        select *
+        from post
+        where title=#{title}
+          and account_id = #{accountId}
+    </select>
 
 </mapper>
+

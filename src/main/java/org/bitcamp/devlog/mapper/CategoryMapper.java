@@ -7,9 +7,16 @@ import java.util.List;
 
 @Mapper
 public interface CategoryMapper {
-    void insertCategory(Category dto);
-    void updateCategory(Category dto);
-    List<Category> getCategoryList();
-    void deleteCategory (int categoryId);
+    //카테고리 추가
+    void save(Category dto);
+
+    //카테고리 수정
+    void update(Category dto);
+
+    //카테고리 리스트
+    List<Category> findAllByPostId(Long postId);
+    void delete (Long categoryId);
+
+    Category findByPostId(Long postId);
 
 }

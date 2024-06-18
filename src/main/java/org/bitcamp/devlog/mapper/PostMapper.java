@@ -23,5 +23,11 @@ public interface PostMapper {
     void CountByHeart(Long postId);
 
     //게시글 리스트
-    List<Post> findAll(Long AccountId);
+    List<Post> findAllByAccountId(Long accountId);
+
+    //태그검색
+    Post findByPostIdAndAccountId(Long postId, Long accountId);
+
+    //제목검색
+    List<Post> findAllByTitleAndAccountId(String title, Long accountId);
 }
