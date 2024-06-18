@@ -23,8 +23,6 @@ public class SecurityConfig {
 
 
 
-
-
     //스프링 시큐리티 설정 메소드
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
