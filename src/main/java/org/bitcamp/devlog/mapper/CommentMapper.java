@@ -12,5 +12,4 @@ public interface CommentMapper {
     void update(Comment comment);
     void delete(Long commentId);
     List<Comment> findAllByPostId(Long postId);
-
 }
