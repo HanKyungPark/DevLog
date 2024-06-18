@@ -3,7 +3,7 @@
 <mapper namespace="org.bitcamp.devlog.mapper.Visit">
 
     <select id="findByAccountIdAndVisitDate" resultType="long" parameterType="Map">
-        select count from visit where account_id=#{accountId} and visit_date=#{visitDate}
+        select count(*) from visit where account_id=#{accountId} and visit_date=#{visitDate}
     </select>
     <select id="findByAccountId" resultType="Visit" parameterType="String">
         select * from visit where account_id=#{accountId}
