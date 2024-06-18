@@ -10,12 +10,12 @@ import java.util.Map;
 
 public class Oauth2User implements OAuth2User {
 
-    private final AccountResponse AccountResponse;
+    private final KaKaoResponse KaKaoResponse;
 
     private final String role;
 
-    public Oauth2User(AccountResponse AccountResponse, String role) {
-    this.AccountResponse = AccountResponse;
+    public Oauth2User(KaKaoResponse KaKaoResponse, String role) {
+    this.KaKaoResponse = KaKaoResponse;
     this.role = role;
     }
 
@@ -41,10 +41,10 @@ public class Oauth2User implements OAuth2User {
     @Override
     public String getName() {
 
-        return AccountResponse.getName();
+        return KaKaoResponse.getName();
     }
 
     public String getUserName() {
-        return AccountResponse.getProviderType()+""+AccountResponse.getAccountId();
+        return KaKaoResponse.getProviderType()+""+ KaKaoResponse.getAccountId();
     }
 }
