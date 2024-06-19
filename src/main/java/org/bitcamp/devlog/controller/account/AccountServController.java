@@ -21,9 +21,6 @@ public class AccountServController {
 
     @GetMapping("/save")
     public String saveUser(@ModelAttribute Account account) {
-
-
-
         return "templates/userlist";
     }
 
