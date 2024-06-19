@@ -43,7 +43,9 @@ public class SecurityConfig {
         http
                 .oauth2Login(login -> login
                         .loginPage("/login")
+                        .defaultSuccessUrl("/check")
                 );
+
 
         http
                 .logout(logout -> logout.logoutSuccessUrl("/")

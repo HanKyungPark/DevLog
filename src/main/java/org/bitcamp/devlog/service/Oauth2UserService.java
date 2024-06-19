@@ -4,6 +4,9 @@ import org.bitcamp.devlog.dto.Account;
 import org.bitcamp.devlog.dto.KaKaoResponse;
 import org.bitcamp.devlog.dto.Oauth2User;
 import org.bitcamp.devlog.mapper.AccountMapper;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -11,11 +14,14 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
+
 @Service
 @RequiredArgsConstructor
 public class Oauth2UserService extends DefaultOAuth2UserService {
 
     private final AccountMapper accountMapper;
+    private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
 
     //사용자 정보 데이터를 내부 인자로 받아오기
@@ -40,6 +46,7 @@ public class Oauth2UserService extends DefaultOAuth2UserService {
         String registrationId = userRequest.getClientRegistration().getRegistrationId();
 
         KaKaoResponse KaKaoResponse = null;
+        Account existAccount = null;
 
 
         if (registrationId.equals("kakao")) {
@@ -47,7 +54,7 @@ public class Oauth2UserService extends DefaultOAuth2UserService {
             KaKaoResponse = new KaKaoResponse(oAuth2User.getAttributes());
             System.out.println(KaKaoResponse.getEmail());
 
-            Account existAccount = accountMapper.findByEmail(KaKaoResponse.getEmail());
+            existAccount = accountMapper.findByEmail(KaKaoResponse.getEmail());
 
             if(existAccount == null) {
                 Account account = new Account().builder()
@@ -56,6 +63,7 @@ public class Oauth2UserService extends DefaultOAuth2UserService {
                         .file(KaKaoResponse.getFile())
                         .build();
                 accountMapper.save(account);
+                existAccount = account;
             } else {
                 existAccount.setFile(KaKaoResponse.getFile());
                 accountMapper.update(existAccount);
@@ -64,10 +72,7 @@ public class Oauth2UserService extends DefaultOAuth2UserService {
         else {
             return null;
         }
-
-
-
-        return new Oauth2User(KaKaoResponse, role);
+        return new Oauth2User(KaKaoResponse, role, existAccount.getAccountId());
     }
 
 }
