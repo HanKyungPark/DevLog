@@ -63,7 +63,7 @@ public class Oauth2UserService extends DefaultOAuth2UserService {
                         .file(KaKaoResponse.getFile())
                         .build();
                 accountMapper.save(account);
-                existAccount = account;
+                existAccount = accountMapper.findByEmail(account.getEmail());
             }
         }
         else {
