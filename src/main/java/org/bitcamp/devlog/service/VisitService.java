@@ -21,10 +21,9 @@ public class VisitService {
     public List<Visit> findAllByAccountId(String accountId, HttpSession session) {
 
         accountId= session.getId();
-        List<Visit> list=visitMapper.findByAccountId(accountId);
+        List<Visit> visits = visitMapper.findAllByAccountId(accountId);
 
-
-        return list;
+        return visits;
     };
     public Long findByAccountIdAndVisitDate(HttpSession session, String visitDate){
         Map<String,Object> map=new HashMap<>();

@@ -5,11 +5,11 @@ import org.apache.ibatis.annotations.Mapper;
 import org.bitcamp.devlog.dto.Account;
 
 import java.util.List;
+import org.checkerframework.checker.units.qual.A;
 
 
 @Mapper
 public interface AccountMapper {
-
 
     void save(Account account);
 
@@ -17,10 +17,12 @@ public interface AccountMapper {
 
     Account findByEmail(String email);
 
+
+    Account findByHompage(String hompage);
+
     //블로그 검색
     List<Account> findAllByBlogId(String blogId);
 
-    void saveBlog(Account account);
 }
 
 
