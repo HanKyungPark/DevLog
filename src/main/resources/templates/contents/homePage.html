@@ -1,56 +1,136 @@
-<!DOCTYPE html>
-<html lang="en"
+<!doctype html>
+<html lang="ko"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/layout_main/layout1_hmenu}">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Devlog</title>
+    <meta charset="utf-8">
+    <meta name="google-site-verification" content="Djy29naX64H0z8fGEOEOd-k40Sp65VRnz1sm_thWPhw" />
+    <meta property="og:url" content="https://www.tistory.com">
+    <meta property="og:site_name" content="Tistory">
+    <meta property="og:title" content="Tistory">
+    <link rel="alternate" media="only screen and (max-width: 1000px)" href="https://www.tistory.com/m">
+    <title>DevLog</title>
     <link rel="shortcut icon" th:href="@{/im/DL.png}"/>
-    <!--부트스트랩 아이콘-->
-    <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css}" rel="stylesheet">
-    <!--부트스트랩 css-->
-    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}"/>
-    <!--해당 파일의 css 와 javascript 추가-->
-    <link rel="stylesheet" href="../css/homePage.html">
-    <link rel="script" href="../js/homePage.js">
+    <link rel="apple-touch-icon" href="https://t1.daumcdn.net/tistory_admin/top_v2/tistory-apple-touch-favicon.png">		<link rel="stylesheet" type="text/css" href="//t1.daumcdn.net/tistory_admin/assets/tistory-web-top/1718669381/static/css/ext/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="//t1.daumcdn.net/tistory_admin/assets/tistory-web-top/1718669381/static/css/pc/font.css">
+    <link rel="stylesheet" type="text/css" href="//t1.daumcdn.net/tistory_admin/assets/tistory-gnb/3.3.6/gnb.min.css">
+    <link rel="stylesheet" type="text/css" href="//t1.daumcdn.net/tistory_admin/assets/tistory-web-top/1718669381/static/css/pc/top.css">
+    <script type="text/javascript" src="https://t1.kakaocdn.net/kakao_js_sdk/v1/kakao.min.js" ></script>
+    <!--[if lt IE 9]>
+    <script src="https://t1.daumcdn.net/tistory_admin/lib/jquery-1.12.4.min.js"></script>
+    <![endif]-->
+    <!--[if gte IE 9]><!-->
+    <script src="https://t1.daumcdn.net/tistory_admin/lib/jquery-3.1.0.min.js"></script>
+    <!--<![endif]-->
+    <script src="https://t1.daumcdn.net/tistory_admin/lib/fingerprint2-1.4.2.min.js"></script>
+    <script type="text/javascript" src="//m1.daumcdn.net/svc/original/U03/cssjs/jquery/plugin/jquery.cookie-1.4.0.min.js"></script>
+    <script type="text/javascript" src="//s1.daumcdn.net/svc/original/U03/cssjs/userAgent/userAgent-1.0.14.min.js"></script>
 </head>
 <body>
-
 <div layout:fragment="content">
-    <section id="hero" class="hero section">
-
-        <div class="container">
-            <div class="row gy-4 justify-content-center justify-content-lg-between">
-                <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center">
-                    <h1 data-aos="fade-up">Welcome to DevLog<br></h1>
-                    <p data-aos="fade-up" data-aos-delay="100">Please enjoy our website posting blogs</p>
-                    <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
-                        <a href="/post" class="btn-get-started">Make a new post</a>
-<!--                        <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>-->
+    <div id="mFeature" class="feture_main feture_top">
+        <h2 class="screen_out">PRPMOTION</h2>
+        <div class="swiper-container">
+            <div class="swiper-wrapper main_slide">
+                <div class="swiper-slide scene_slide  init_slide" style="background-image:url(https://minio.bmops.kro.kr/devlog/logo/blog.jpeg)" >
+                    <div class="dimm_g_type2"></div>
+                    <div class="scene_content">
+                        <div class="inner_scene">
+                            <div class="scene_tistory scene_tistory_type2">
+                                <strong class="tit_scene"><b>‘DevLog’</b>에<br>오신것을 환영합니다</strong>
+                                <p class="desc_scene" style="color: white">새로운 블로그 플랫폼의 시작 </p>
+                                <div class="wrap_btn"><a href="/post" class="btn_tistory btn_tistory_type5">새글쓰기</a></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
-                    <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
+                <div class="swiper-slide scene_slide  " style="background-image:url(https://img1.daumcdn.net/thumb/R1920x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fsection%2Foc%2Ffd708e84887d4dff9da3cf2a4374e50e)">
+                    <div class="dimm_g_type2"></div>
+                    <div class="scene_content">
+                        <div class="inner_scene">
+                            <div class="scene_tistory scene_tistory_type2">
+                                <strong class="tit_scene"><b>'당신의 글을 보여주세요'</b><br> 인기 피드 소개</strong>
+                                <p class="desc_scene">DevLog에서 여러분의 이야기를 들려주세요</p>
+                                <div class="wrap_btn"><a href="/feed" class="btn_tistory btn_tistory_type5">피드 구경가기</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide scene_slide white " style="background-image:url(https://minio.bmops.kro.kr/devlog/logo/comment.jpeg)">
+                    <div class="dimm_g_type2"></div>
+                    <div class="scene_content">
+                        <div class="inner_scene">
+                            <div class="scene_tistory scene_tistory_type2">
+                                <strong class="tit_scene">DevLog의 첫 이벤트<br>
+                                    <b>게시글 선플 달기</b></strong>
+                                <p class="desc_scene">선플달고 , 선물도 받아가세요</p>
+                                <div class="wrap_btn"><a href="https://notice.tistory.com/2572" class="btn_tistory ">자세히 보기</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide scene_slide white " style="background-image:url(https://minio.bmops.kro.kr/devlog/logo/naver2.png)">
+                    <div class="dimm_g_type2"></div>
+                    <div class="scene_content">
+                        <div class="inner_scene">
+                            <div class="scene_tistory scene_tistory_type2">
+                                <strong class="tit_scene">네이버 클라우드 비트캠프<br>
+                                    <b>데스옵스과정 15기 모집</b><br>
+                                    많은 지원 부탁드립니다</strong>
+                                <p class="desc_scene"> </p>
+                                <div class="wrap_btn"><a href="https://ncamp.kr/" class="btn_tistory ">자세히 보기</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide scene_slide white " style="background-image:url(https://minio.bmops.kro.kr/devlog/logo/flower.gif);background-size:600px;width: 600px;height: 600px;background-position: 70% 50%">
+                    <div class="dimm_g_type2"></div>
+                    <div class="scene_content">
+                        <div class="inner_scene">
+                            <div class="scene_tistory scene_tistory_type2">
+                                <strong class="tit_scene" style="color: black">
+                                    <b>데블로그 키우기</b></strong>
+                                <p class="desc_scene" style="color: black">매일매일 글작성을 통해<br>데블로그를 키워주세요</p>
+                                <div class="wrap_btn"><a href="https://notice.tistory.com/2523" class="btn_tistory ">내 블로그</a></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <button type="button" class="btn_scene btn_prev">
+                <span class="img_top ico_prev ico_prev_type1">이전</span>
+                <span class="img_top ico_prev ico_prev_type2"></span>
+            </button>
+            <button type="button" class="btn_scene btn_next">
+                <span class="img_top ico_next ico_next_type1">다음</span>
+                <span class="img_top ico_next ico_next_type2"></span>
+            </button>
         </div>
-
-    </section><!-- /Hero Section -->
-
-
+    </div>
+    <script type="text/javascript" src="//t1.daumcdn.net/tistory_admin/assets/tistory-web-top/1718669381/static/js/ext/underscore-1.9.0.min.js"></script>
+    <script src="//t1.daumcdn.net/tistory_admin/assets/tistory-web-top/1718669381/static/js/ext/swiper.min.js"></script>
+    <script src="//t1.daumcdn.net/tistory_admin/assets/tistory-web-top/1718669381/static/js/T.js"></script>
+    <script src="//t1.daumcdn.net/tistory_admin/assets/tistory-web-top/1718669381/static/js/T.util.js"></script>
+    <script src="//t1.daumcdn.net/tistory_admin/assets/tistory-web-top/1718669381/static/js/T.auth.js"></script>
+    <script src="//t1.daumcdn.net/tistory_admin/assets/tistory-web-top/1718669381/static/js/pc/T.p.top.js"></script>
+<!--    <script type="text/javascript" src="//t1.daumcdn.net/tiara/js/v1/tiara.min.js"></script>-->
+<!--    <script type="text/javascript">-->
+<!--        window.addEventListener('load', function (){-->
+<!--            TiaraTracker.getInstance()-->
+<!--                .setSvcDomain('user.tistory.com')-->
+<!--                .trackPage('user')-->
+<!--                .setSection('top')-->
+<!--                .setPage('user')-->
+<!--                .setKakaoAppKey('3e6ddd834b023f24221217e370daed18')-->
+<!--                .setAppUserId('3205532518')-->
+<!--                .setAutoClick(true)-->
+<!--                .setDisableSendLegacy(true)-->
+<!--                .track();-->
+<!--        });-->
+<!--    </script>-->
+    <script src="//t1.daumcdn.net/tistory_admin/assets/tistory-web-top/1718669381/static/js/pc/T.p.top.home.js"></script>
 
 </div>
-
 </body>
-<!--부트스트랩-->
-<script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js}"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-<!--제이쿼리-->
-<script th:src="@{https://code.jquery.com/jquery-3.7.1.js}"
-        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-<!--태일윈즈-->
-<script th:src="@{https://cdn.tailwindcss.com}"></script>
 </html>
