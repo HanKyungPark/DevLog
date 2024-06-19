@@ -15,4 +15,6 @@ public class PostServController {
     {
         return "contents/postingForm";
     }
+
+
 }

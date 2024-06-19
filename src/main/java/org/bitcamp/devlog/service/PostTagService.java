@@ -14,19 +14,18 @@ public class PostTagService {
     private final PostTagMapper postTagMapper;
 
     //태그추가
-    void save(PostTag postTag) {
+    public void save(PostTag postTag) {
         postTagMapper.save(postTag);
     }
 
     //태그삭제
-    void delete(Long postTagId) {
+    public void delete(Long postTagId) {
         postTagMapper.delete(postTagId);
     }
 
     //태그검색
-    List<Long> findAllPostIdByTagId(Long tagId) {
-        List<Long> postIds = postTagMapper.findAllPostIdByTagId(tagId);
-        return postIds;
+    public List<Long> findAllPostIdByTagId(Long tagId) {
+        return postTagMapper.findAllPostIdByTagId(tagId);
     }
 
 }

@@ -26,6 +26,5 @@ public class Post {
   private String title;
   private Long accountId;
   private String file;
-  private Long postTagId;
   private List<PostTagJoin> postTags;
 }
