@@ -46,6 +46,7 @@ public class Oauth2UserService extends DefaultOAuth2UserService {
         String registrationId = userRequest.getClientRegistration().getRegistrationId();
 
         KaKaoResponse KaKaoResponse = null;
+        Account existAccount = null;
 
 
         if (registrationId.equals("kakao")) {
@@ -53,7 +54,7 @@ public class Oauth2UserService extends DefaultOAuth2UserService {
             KaKaoResponse = new KaKaoResponse(oAuth2User.getAttributes());
             System.out.println(KaKaoResponse.getEmail());
 
-            Account existAccount = accountMapper.findByEmail(KaKaoResponse.getEmail());
+            existAccount = accountMapper.findByEmail(KaKaoResponse.getEmail());
 
             if(existAccount == null) {
                 Account account = new Account().builder()
@@ -62,6 +63,7 @@ public class Oauth2UserService extends DefaultOAuth2UserService {
                         .file(KaKaoResponse.getFile())
                         .build();
                 accountMapper.save(account);
+                existAccount = account;
             } else {
                 existAccount.setFile(KaKaoResponse.getFile());
                 accountMapper.update(existAccount);
@@ -70,7 +72,7 @@ public class Oauth2UserService extends DefaultOAuth2UserService {
         else {
             return null;
         }
-        return new Oauth2User(KaKaoResponse, role);
+        return new Oauth2User(KaKaoResponse, role, existAccount.getAccountId());
     }
 
 }
