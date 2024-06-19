@@ -40,13 +40,12 @@
         <div class="marginofcontainer">
             <div class="form_container">
                 <div class="title_container">
-                    <h1 class="title">Create a New Blog Post</h1>
-                    <p class="sub_title">Share your thoughts and ideas with the world.</p>
+                    <h1 class="title" style="font-size: 25px">Create a New Post</h1>
                 </div>
                 <form class="form" id="post" method="post" enctype="multipart/form-data">
                     <div>
                         <label for="title" class="form_title" th:id="input_title">
-                            Title
+                            <b style="font-size: 17px"><br>Title</b>
                         </label>
                         <div class="input_title_text">
                             <input
@@ -60,10 +59,10 @@
                     </div>
                     <div>
                         <label for="title" class="form_title" >
-                            Content
                         </label>
                         <div class="mt-1">
-                            <div id="container">
+                            <div class="wigiwig" style="display: flex; width: 100%" >
+                            <div id="container" >
                                 <textarea id="editor"></textarea>
                             </div>
                             <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/super-build/ckeditor.js"></script>
@@ -293,9 +292,10 @@
                             </script>
                         </div>
                     </div>
+                    </div>
                     <div>
                         <label for="category" class="form_title">
-                            Category
+                            <b style="font-size: 17px"><br>Select Category</b>
                         </label>
                         <div class="category_container">
                             <select
@@ -311,7 +311,7 @@
                         </div>
                     </div>
                     <div>
-                        <label class="form_title" >Open Type</label>
+                        <label class="form_title" ><b style="font-size: 17px"><br>Open Type</b></label>
                         <div class="opentype_container">
                             <div class="opentype_radio_container">
                                 <input
@@ -322,7 +322,7 @@
                                         value=1
                                 />
                                 <label for="public" class="opentype_radio_label">
-                                    Public
+                                    <b style="font-size: 13px"><br>Public</b>
                                 </label>
                             </div>
                             <div class="opentype_radio_container">
@@ -334,14 +334,14 @@
                                         class="opentype_radio"
                                 />
                                 <label for="private" class="opentype_radio_label">
-                                    Private
+                                    <b style="font-size: 13px"><br>Private</b>
                                 </label>
                             </div>
                         </div>
                     </div>
                     <div>
                         <label for="tag" class="block text-sm font-medium text-gray-700">
-                            Hashtags
+                            <b style="font-size: 17px"><br>Hashtags</b>
                         </label>
                         <div class="hashtag_container">
                             <input
@@ -354,7 +354,7 @@
                         </div>
                     </div>
                     <div>
-                        <label class="form_title">Thumbnail</label>
+                        <label class="form_title"><b style="font-size: 17px"><br>Attach</b></label>
                         <div class="thumbnail_container">
                             <div class="thumbnail_box_inner_text_small_container">
                                 <svg
@@ -376,19 +376,20 @@
                                             for="file"
                                             class="thumbnail_input_file_container"
                                     >
-                                        <span>Upload a file</span>
+                                        <span ><b style="font-size: 15px">Upload a file</b></span>
+                                        <p class="thumbnail_input_box_text2">PNG, JPG, GIF up to 10MB</p>
 
                                     </labels>
                                     <input id="file" type="file" name="file" class="file" />
-                                    <p class="thumbnail_input_box_text">or drag and drop</p>
+<!--                                    <p class="thumbnail_input_box_text">or drag and drop</p>-->
                                 </div>
-                                <p class="thumbnail_input_box_text2">PNG, JPG, GIF up to 10MB</p>
+
                             </div>
                         </div>
                     </div>
                     <div class="btn_submit_container">
 
-                        <button type="submit" class="btn"  >제출</button>
+                        <button type="submit" class="btn"  style="background-color: #c2c0ab"><b>Post</b></button>
                     </div>
                 </form>
             </div>
