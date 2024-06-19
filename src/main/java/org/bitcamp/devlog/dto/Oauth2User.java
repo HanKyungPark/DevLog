@@ -1,5 +1,6 @@
 package org.bitcamp.devlog.dto;
 
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 
-
+@Data
 public class Oauth2User implements OAuth2User {
 
     private final KaKaoResponse KaKaoResponse;
@@ -55,9 +56,7 @@ public class Oauth2User implements OAuth2User {
         return KaKaoResponse.getName();
     }
 
-    public Long getAccountId() {
-        return accountId;
-    }
+    public Long getAccountId() { return accountId;}
 
     public String getUserName() {
         return KaKaoResponse.getProviderType()+""+ KaKaoResponse.getAccountId();

@@ -14,7 +14,8 @@ $(function (){
         let form = $("#profileForm")[0];
         let formData = new FormData(form);
 
-        console.log(form);
+
+
         $.ajax({
             url:"/api/blog/create",
             type:"post",
@@ -23,6 +24,7 @@ $(function (){
             processData: false,
             cache:false,
             success: function (data){
+                console.log(data);
                 if(data){
                     alert("중복된 URL 입니다.");
                 } else{

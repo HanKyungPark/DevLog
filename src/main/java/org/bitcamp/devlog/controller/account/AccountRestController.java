@@ -22,23 +22,27 @@ public class AccountRestController {
     public boolean saveBlog(@RequestParam String blogId,
                          @RequestParam String biography,
                          @RequestParam String homepage,
-                         @RequestParam MultipartFile file) {
+                         @RequestParam(required = false) MultipartFile file) {
 
         Oauth2User oauth2User = (Oauth2User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        String fileName = minioService.uploadFile("devlog", oauth2User.getName(), file);
+        System.out.println("Oauth2User.accountId:" + oauth2User.getAccountId());
 
         Account account = new Account().builder()
+                .accountId(oauth2User.getAccountId())
                 .blogId(blogId)
                 .biography(biography)
                 .homepage(homepage)
-                .file(fileName)
                 .build();
-        if (accountService.countByHomePage(homepage).get("count") == 1) {
-            return true;
-        } else {
-            accountService.update(account);
-            return false;
+        if(!file.isEmpty()){
+            String fileName = minioService.uploadFile("devlog", oauth2User.getName(), file);
+            account.setFile((fileName));
         }
+        if(accountService.countByHomePage(homepage)){
+            return true;
+        }
+        System.out.println("saveBlog: " + account);
+        accountService.update(account);
+        return false;
     }
 }
