@@ -18,8 +18,4 @@ public class AccountService {
 
         accountMapper.update(account);
     }
-    public void saveBlog(Account account) {
-
-
-    }
 }
