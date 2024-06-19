@@ -8,4 +8,23 @@ $(function (){
         };
         reader.readAsDataURL(event.target.files[0]);
     });
+    $("#btn-summit").click(function (e){
+        e.preventDefault();
+
+        let form = $("#profileForm")[0];
+        let formData = new FormData(form);
+
+        console.log(form);
+        $.ajax({
+            url:"/api/blog/create",
+            type:"post",
+            data:formData,
+            contentType : false,
+            processData: false,
+            cache:false,
+            success: function (){
+                location.href="/"
+            }
+        })
+    })
 })
