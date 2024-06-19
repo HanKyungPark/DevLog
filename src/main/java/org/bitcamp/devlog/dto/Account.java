@@ -17,10 +17,10 @@ public class Account {
   private Long providerType;
   private java.sql.Timestamp aCreatedAt;
   private java.sql.Timestamp aUpdateAt;
-  private String biography;
-  private String blogId;
+  private String biography;//블로그 설명
+  private String blogId;// 블로그의 이름
   private String email;
-  private String homepage;
+  private String homepage;//url 주소
   private String name;
   private String refreshToken;
   private String accessToken;

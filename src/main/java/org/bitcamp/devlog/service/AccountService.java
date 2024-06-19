@@ -18,6 +18,4 @@ public class AccountService {
 
         accountMapper.update(account);
     }
-
-
 }

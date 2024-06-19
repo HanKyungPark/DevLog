@@ -12,7 +12,7 @@ spring:
             client-secret: 0QOlXVhoDMiNByBovTSDswKLVjuwE8yW
             scope: profile_nickname, account_email, profile_image
             client-authentication-method: client_secret_post
-            redirect-uri: ${REDIRECT_URI}
+            redirect-uri: ${KAKAO_REDIRECT_URI}
             client-name: Kakao
         provider:
           kakao:
@@ -21,10 +21,8 @@ spring:
             user-info-uri: https://kapi.kakao.com/v2/user/me
             authorization-uri: https://kauth.kakao.com/oauth/authorize
 
-
   application:
     name: devlog
-
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -35,14 +33,9 @@ spring:
       name: admin
       password: admin
 
-
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: false
   type-aliases-package: org.bitcamp.devlog.dto
   mapper-locations: classpath:mapper/*.xml
-
-
-
-

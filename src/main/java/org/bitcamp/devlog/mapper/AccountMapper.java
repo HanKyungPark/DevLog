@@ -15,8 +15,12 @@ public interface AccountMapper {
 
     void update(Account account);
 
+    Account findByEmail(String email);
+
     //블로그 검색
     List<Account> findAllByBlogId(String blogId);
+
+    void saveBlog(Account account);
 }
 
 

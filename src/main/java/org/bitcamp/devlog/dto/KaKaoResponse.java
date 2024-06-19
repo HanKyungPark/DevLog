@@ -2,12 +2,12 @@ package org.bitcamp.devlog.dto;
 
 import java.util.Map;
 
-public class AccountResponse extends Account {
+public class KaKaoResponse extends Account {
 
     private final Map<String, Object> attribute;
     private final Map<String, Object> profile;
 
-    public AccountResponse(Map<String, Object> attribute) {
+    public KaKaoResponse(Map<String, Object> attribute) {
         this.attribute = (Map<String, Object>) attribute.get("kakao_account");
         this.profile = (Map<String, Object>) attribute.get("properties");
     }
