@@ -31,4 +31,10 @@
         where p.post_id = #{postId}
     </select>
 
+    <select id="findAllByAccountId" parameterType="long" resultType="Category">
+        select *
+        from category
+        where account_id = #{accountId}
+    </select>
+
 </mapper>
