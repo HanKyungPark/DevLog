@@ -18,7 +18,7 @@ public interface AccountMapper {
     Account findByEmail(String email);
 
 
-    Account countByHomePage(String homepage);
+    Long countByHomePage(String homepage);
 
 
 

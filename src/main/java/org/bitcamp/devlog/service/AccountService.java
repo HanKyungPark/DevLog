@@ -22,7 +22,7 @@ public class AccountService {
 
     }
     public void update(Account account) {
-        account.setAccountId(((Oauth2User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getAccountId());
+        System.out.println("AccountServiceUpdate:" + account);
         accountMapper.update(account);
     }
 
@@ -37,10 +37,10 @@ public class AccountService {
             return "redirect:/home";
         }
     }
-    public Map<String,Integer> countByHomePage(@RequestParam String homepage){
-        Map<String, Integer> map = new HashMap<>();
-        int count = accountMapper.countByHomePage(homepage) == null? 0 :1;
-        map.put("count",count);
-        return map;
+    public boolean countByHomePage(String homepage){
+        if(accountMapper.countByHomePage(homepage) >= 1){
+            return true;
+        }
+        return false;
     }
 }
