@@ -7,6 +7,16 @@
 
 
     <update id="update" parameterType="Account">
-        update account set a_update_at=now(), biography=#{biography}, blog_id=#{blogId}, homapage=#{homepage}, file=#{file} where account_id=#{accountId}
+        update account set a_updated_at=now(), biography=#{biography}, blog_id=#{blogId}, homepage=#{homepage}, file=#{file} where account_id=#{accountId}
     </update>
+
+    <select id="findByEmail" parameterType="String" resultType="Account">
+        select * from account where email=#{email}
+    </select>
+
+    <insert id="saveBlog" parameterType="Account">
+        insert into account (account_id,blog_id,biography,homepage) values (#{account_id},#{blog_id},#{biography},#{homepage})
+    </insert>
+
+
 </mapper>

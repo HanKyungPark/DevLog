@@ -44,6 +44,10 @@ public class SecurityConfig {
                 .oauth2Login(login -> login
                         .loginPage("/login")
                 );
+
+        http
+                .logout(logout -> logout.logoutSuccessUrl("/")
+                        .logoutUrl("/logout"));
         return http.build();
     }
 }
