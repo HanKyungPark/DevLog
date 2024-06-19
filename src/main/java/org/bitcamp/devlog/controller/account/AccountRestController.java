@@ -30,6 +30,7 @@ public class AccountRestController {
                 .blogId(blogId)
                 .biography(biography)
                 .homepage(homepage)
+                .file(fileName)
                 .build();
         accountService.update(account);
     }
