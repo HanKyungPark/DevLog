@@ -81,7 +81,7 @@ h6 {
 .header {
     color: var(--default-color);
     background-color: var(--background-color);
-    padding: 20px 0;
+    padding: 2px 0;
     transition: all 0.5s;
     z-index: 997;
 }
@@ -456,7 +456,7 @@ h6 {
 }
 
 .footer .copyright {
-    padding-top: 20px;
+    /*padding-top: 20px;*/
     border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
 }
 
