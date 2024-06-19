@@ -3,6 +3,8 @@ package org.bitcamp.devlog.controller.account;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.bitcamp.devlog.dto.Account;
+import org.bitcamp.devlog.mapper.AccountMapper;
+import org.bitcamp.devlog.service.AccountService;
 import org.bitcamp.devlog.service.Oauth2UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 @RequiredArgsConstructor
 @Controller
 public class AccountServController {
+    private final AccountService accountService;
 
 
 
@@ -44,6 +47,16 @@ public class AccountServController {
     public String home()
     {
         return "contents/homePage";
+    }
+
+    @GetMapping("/check")
+    public String check(){
+        return accountService.findByEmail();
+    }
+
+    @GetMapping("/loginForm")
+    public String loginForm(){
+        return "contents/loginForm";
     }
 
 }

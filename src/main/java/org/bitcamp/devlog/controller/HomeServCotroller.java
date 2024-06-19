@@ -12,11 +12,5 @@ public class HomeServCotroller {
         return "contents/mainPage";
     }
 
-    @GetMapping("/login")
-    public String Home() {
-        return "index";
-    }
-
-
 }
 
