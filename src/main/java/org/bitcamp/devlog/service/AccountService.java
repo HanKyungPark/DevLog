@@ -2,6 +2,7 @@ package org.bitcamp.devlog.service;
 
 import lombok.RequiredArgsConstructor;
 import org.bitcamp.devlog.dto.Account;
+import org.bitcamp.devlog.dto.Oauth2User;
 import org.bitcamp.devlog.mapper.AccountMapper;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -16,12 +17,7 @@ public class AccountService {
 
     }
     public void update(Account account) {
-
-        accountMapper.update(account);
-        
-        
-
-
+        account.setAccountId(((Oauth2User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getAccountId());
         accountMapper.update(account);
     }
 
