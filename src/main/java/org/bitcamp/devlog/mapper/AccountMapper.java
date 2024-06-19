@@ -18,6 +18,10 @@ public interface AccountMapper {
     Account findByEmail(String email);
 
 
+    Account countByHomePage(String homepage);
+
+
+
     Account findByHomepage(String homepage);
 
     //블로그 검색

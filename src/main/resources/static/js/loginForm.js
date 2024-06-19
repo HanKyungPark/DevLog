@@ -22,8 +22,13 @@ $(function (){
             contentType : false,
             processData: false,
             cache:false,
-            success: function (){
-                location.href="/"
+            success: function (data){
+                if(data){
+                    alert("중복된 URL 입니다.");
+                } else{
+                    alert("블로그 등록 성공!");
+                    location.href = "/home";
+                }
             }
         })
     })
