@@ -16,7 +16,7 @@
 <div th:fragment="header" class="header" >
     <header id="header" class="header d-flex align-items-center sticky-top">
         <div style="width: 100%; text-align: center">
-        <img src="https://minio.bmops.kro.kr/devlog/logo/TitleLog.png" style="width: 100px; height: 50px;margin: 0 auto 10px auto" href="/home"/>
+        <div onclick="location.href='/home'" style="cursor:pointer;"><img src="https://minio.bmops.kro.kr/devlog/logo/TitleLog.png" style="width: 100px; height: 50px;margin: 0 auto 10px auto" href="/home"/></div>
         </div>
         <a href="/home"><h2 class="sitename" style="margin-left: 100px">DevLog</h2></a>
             <div class="container position-relative d-flex align-items-center justify-content-between">

@@ -45,5 +45,10 @@ public class AccountServController {
     {
         return "contents/homePage";
     }
+    @GetMapping("/home2")
+    public String home2()
+    {
+        return "contents/homePage2";
+    }
 
 }
