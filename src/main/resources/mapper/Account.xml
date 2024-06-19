@@ -26,4 +26,8 @@
     <select id="findByEmail" parameterType="String" resultType="Account">
         select * from account where email = #{email}
     </select>
+
+    <select id="countByHomePage" parameterType="String" resultType="Account">
+        select count (*) from account where homepage=#{homepage}
+    </select>
 </mapper>

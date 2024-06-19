@@ -9,6 +9,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Map;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
@@ -17,7 +19,7 @@ public class AccountRestController {
     private final MinioService minioService;
 
     @PostMapping("/blog/create")
-    public void saveBlog(@RequestParam String blogId,
+    public boolean saveBlog(@RequestParam String blogId,
                          @RequestParam String biography,
                          @RequestParam String homepage,
                          @RequestParam MultipartFile file) {
@@ -32,6 +34,11 @@ public class AccountRestController {
                 .homepage(homepage)
                 .file(fileName)
                 .build();
-        accountService.update(account);
+        if (accountService.countByHomePage(homepage).get("count") == 1) {
+            return true;
+        } else {
+            accountService.update(account);
+            return false;
+        }
     }
 }

@@ -6,6 +6,11 @@ import org.bitcamp.devlog.dto.Oauth2User;
 import org.bitcamp.devlog.mapper.AccountMapper;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.HashMap;
+import java.util.Map;
+
 @RequiredArgsConstructor
 @Service
 public class AccountService {
@@ -31,5 +36,11 @@ public class AccountService {
         } else {
             return "redirect:/home";
         }
+    }
+    public Map<String,Integer> countByHomePage(@RequestParam String homepage){
+        Map<String, Integer> map = new HashMap<>();
+        int count = accountMapper.countByHomePage(homepage) == null? 0 :1;
+        map.put("count",count);
+        return map;
     }
 }
