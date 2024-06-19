@@ -4,6 +4,7 @@ import org.bitcamp.devlog.dto.Account;
 import org.bitcamp.devlog.dto.KaKaoResponse;
 import org.bitcamp.devlog.dto.Oauth2User;
 import org.bitcamp.devlog.mapper.AccountMapper;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
@@ -25,6 +26,9 @@ public class Oauth2UserService extends DefaultOAuth2UserService {
         //OAuth2User라는 객체에 super를 통해서 부모클래스에서 존재하는 load user 메소드에서 userRequest를 넣어줘서
         //유저 정보를 가지고 온다
         OAuth2User oAuth2User = super.loadUser(userRequest);
+        String role = "ROLE_USER";
+
+
 
 
         //확인을 위해서 syso으로 콘솔에 가져온 oAuth2User.getAttributes()를 찍어본다.
@@ -41,30 +45,27 @@ public class Oauth2UserService extends DefaultOAuth2UserService {
         if (registrationId.equals("kakao")) {
 
             KaKaoResponse = new KaKaoResponse(oAuth2User.getAttributes());
-
-            System.out.println(KaKaoResponse.getName());
             System.out.println(KaKaoResponse.getEmail());
-            System.out.println(KaKaoResponse.getFile());
 
-            Account account = new Account();
-            account.setName(KaKaoResponse.getName());
-            account.setEmail(KaKaoResponse.getEmail());
-            account.setFile(KaKaoResponse.getFile());
+            Account existAccount = accountMapper.findByEmail(KaKaoResponse.getEmail());
 
-            accountMapper.save(account);
-        } else if (registrationId.equals("google")){
-
-
-        } else if (registrationId.equals("naver")) {
-
+            if(existAccount == null) {
+                Account account = new Account().builder()
+                        .name(KaKaoResponse.getName())
+                        .email(KaKaoResponse.getEmail())
+                        .file(KaKaoResponse.getFile())
+                        .build();
+                accountMapper.save(account);
+            } else {
+                existAccount.setFile(KaKaoResponse.getFile());
+                accountMapper.update(existAccount);
+            }
         }
         else {
             return null;
         }
 
-        String role = "ROLE_USER";
 
-//        Account account = new Account();
 
         return new Oauth2User(KaKaoResponse, role);
     }
