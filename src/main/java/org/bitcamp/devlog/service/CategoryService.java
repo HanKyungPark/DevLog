@@ -33,4 +33,8 @@ public class CategoryService {
 
         return categories;
     }
+
+    public List<Category> findAllByAccountId(Long accountId){
+        return categoryMapper.findAllByAccountId(accountId);
+    };
 }
