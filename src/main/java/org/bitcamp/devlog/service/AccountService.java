@@ -18,6 +18,11 @@ public class AccountService {
     public void update(Account account) {
 
         accountMapper.update(account);
+        
+        
+
+
+        accountMapper.update(account);
     }
 
     public String findByEmail(){

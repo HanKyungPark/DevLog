@@ -14,9 +14,12 @@ public class Oauth2User implements OAuth2User {
 
     private final String role;
 
-    public Oauth2User(KaKaoResponse KaKaoResponse, String role) {
+    private final Long accountId;
+
+    public Oauth2User(KaKaoResponse KaKaoResponse, String role,Long accountId) {
     this.KaKaoResponse = KaKaoResponse;
     this.role = role;
+    this.accountId = accountId;
     }
 
     @Override
@@ -44,7 +47,17 @@ public class Oauth2User implements OAuth2User {
         return KaKaoResponse.getEmail();
     }
 
+    public String getEmail() {
+        return KaKaoResponse.getEmail();
+    }
 
+    public String getUsername() {
+        return KaKaoResponse.getName();
+    }
+
+    public Long getAccountId() {
+        return accountId;
+    }
 
     public String getUserName() {
         return KaKaoResponse.getProviderType()+""+ KaKaoResponse.getAccountId();
