@@ -41,8 +41,10 @@ public class Oauth2User implements OAuth2User {
     @Override
     public String getName() {
 
-        return KaKaoResponse.getName();
+        return KaKaoResponse.getEmail();
     }
+
+
 
     public String getUserName() {
         return KaKaoResponse.getProviderType()+""+ KaKaoResponse.getAccountId();

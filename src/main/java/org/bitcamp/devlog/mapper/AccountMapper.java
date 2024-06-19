@@ -18,7 +18,7 @@ public interface AccountMapper {
     Account findByEmail(String email);
 
 
-    Account findByHompage(String hompage);
+    Account findByHomepage(String homepage);
 
     //블로그 검색
     List<Account> findAllByBlogId(String blogId);
