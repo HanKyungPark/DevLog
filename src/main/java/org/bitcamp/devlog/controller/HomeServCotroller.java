@@ -9,8 +9,9 @@ public class HomeServCotroller {
 
     @GetMapping("/")
     public String home() {
-        return "contents/mainPage";
+        return "contents/postingForm";
     }
+
 
 }
 

@@ -21,4 +21,6 @@ public interface CategoryMapper {
 
     Category findByPostId(Post post);
 
+    List<Category> findAllByAccountId(Long accountId);
+
 }
