@@ -1,4 +1,21 @@
 $(function () {
+
+        // 사진 미리보기
+        $("#file").change(function(){
+            let reg=/(.*?)\/(jpg|jpeg|png|gif)$/;
+            let f=$(this)[0].files[0]
+            if(!f.type.match(reg)){
+                alert("이미지파일만 가능합니다")
+                return;
+            }
+            if(f){
+                let reader=new FileReader();
+                reader.onload=function(e){
+                    $("#showimg1").attr("src",e.target.result);
+                }
+                reader.readAsDataURL($(this)[0].files[0]);
+            }
+        })
     // category data 받아오기
     $.ajax({
         url: '/postingForm',
