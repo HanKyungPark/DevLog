@@ -2,19 +2,25 @@ package org.bitcamp.devlog.controller.post;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
 import lombok.RequiredArgsConstructor;
 import org.bitcamp.devlog.dto.Oauth2User;
 import org.bitcamp.devlog.dto.Post;
 import org.bitcamp.devlog.dto.PostTag;
 import org.bitcamp.devlog.dto.Tag;
+import org.bitcamp.devlog.service.CategoryService;
 import org.bitcamp.devlog.service.PostService;
 import org.bitcamp.devlog.service.PostTagService;
 import org.bitcamp.devlog.service.TagService;
+import org.bitcamp.devlog.service.minio.MinioService;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,75 +31,92 @@ public class PostRestController {
     private final PostService postService;
     private final TagService tagService;
     private final PostTagService postTagService;
+    private final CategoryService categoryService;
+    private final MinioService minioService;
 
-    /** 포스트 작성
-     * 제목, 내용은 태그에 넣기
-     * 사진은 어떤 형태로 오조???
-     * 태그는 태그 이름을 조회한다
-     * null이면 tag 테이블에 태그를 추가해준다, post_tag 테이블에 tag_id와 post_id로 저장한다
-     * post_tag 테이블에
-     *
-     *
-     * @param postData
-     * @return
-     */
-    @PostMapping("/api/post/posting")
+    @PostMapping(value = "/api/post/posting", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> posting(
-            @RequestBody Map<String, Object> postData,
-            @RequestParam(required = false) MultipartFile file
-            ) {
+            @RequestPart("postData") Map<String, Object> postData,
+            @RequestPart(value = "file", required = false) MultipartFile file
+    ) {
+        /*나중에 서비스로 빼줘서 트랜잭션 하기*/
+
+        // accountId 생성
         Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
                 .getContext()
                 .getAuthentication()
-                    .getPrincipal();
-        System.out.println(oauth2User);
-        //태그저장
-        System.out.println(postData.toString());
-        for(String tagName : (List<String>)postData.get("postTags")){
-            Long tagId = tagService.findTagIdByTagName(tagName);
-            if(tagId == null){ //태그id가 없으면
-                //태그저장
-                tagService.save(
-                    Tag.builder()
-                        .tagName(tagName)
-                        .build()
-                );
-            }
-            tagId = tagService.findTagIdByTagName(tagName);
-            if(tagId == null) {
-                throw new NullPointerException("tag이름이 제대로 저장되지 못했습니다.");
-            }
-            // 포스트 태그 저장
-            postTagService.save(
-                PostTag.builder()
-                    .postId(
-                        Long.parseLong(
-                            (String)postData.get("postId")
-                        ))
-                    .tagId(tagId)
-                    .build()
-            );
-        }
+                .getPrincipal();
 
-        //썸네일 ncp에 저장
+        /*해야할 일*/
 
+        //포스트 저장 void createPost
         Post post = Post.builder()
-            .title((String)postData.get("title"))
-            .pContent((String)postData.get("content"))
-            .openType(Long.parseLong((String)postData.get("openType")))
-            .postUrl((String)postData.get("postUrl"))
+            .title((String) postData.get("title" ))
+            .pContent((String) postData.get("pContent" ))
+            .postUrl(String.valueOf(UUID.randomUUID()))
+            .openType(Long.parseLong((String) postData.getOrDefault("openType", "0" )))
             .accountId(oauth2User.getAccountId())
+            .categoryId(
+                categoryService.findCategoryIdByCategoryType(
+                    (String) postData.get("categoryType" )))
+            .file(minioService.uploadFile("devlog", oauth2User.getEmail(), file))
             .build();
 
-        //post내용저장
+        // post 내용 저장
         postService.save(post);
-        if(postService.findByPostIdAndAccountId(post.getPostId(), oauth2User.getAccountId()) == null){
-            throw new NullPointerException("Post가 저장되지 못하였습니다.");
-        }
 
+        /**
+         *
+         * 태그이름 확인후 저장
+         * 매개변수: postId
+         */
+        List<String> postTags = (List<String>) postData.get("postTags");
+        if (postTags != null) {
+            for (String tagName : postTags) {
+                Long tagId = tagService.findTagIdByTagName(tagName);
+                if (tagId == null) {
+                    tagService.save(
+                            Tag.builder()
+                                    .tagName(tagName)
+                                    .build()
+                    );
+                    if (tagService.findTagIdByTagName(tagName) == null) {
+                        throw new NullPointerException("tag이름이 제대로 저장되지 못했습니다.");
+                    }
+                }
+
+                postTagService.save(
+                        PostTag.builder()
+                                .postId(post.getPostId())
+                                .tagId(tagId)
+                                .build()
+                );
+            }
+        }
 
         return ResponseEntity.ok("post를 저장하였습니다.");
     }
+
+    /** 게시글 조회
+     * RQ : post_id, account_id
+     * RP :
+     */
+
+    @GetMapping("/api/host/list")
+    public ResponseEntity<String> feedPagePostList(
+        Model model
+    ){
+
+        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
+            .getContext()
+            .getAuthentication()
+            .getPrincipal();
+        List<Post> posts = postService.findRandomPosts();
+        model.addAttribute("posts", posts);
+        model.addAttribute("email", oauth2User.getEmail());
+        return ResponseEntity.ok("피드를 성공적으로 불러왔습니다.");
+    }
+
 
 
 }

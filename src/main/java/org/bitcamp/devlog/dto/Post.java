@@ -21,8 +21,8 @@ public class Post {
   private java.sql.Timestamp pUpdatedAt;
   private String pContent;
   private Long hits;
-  private Long openType;
-  private String postUrl;
+  private Long openType; //공개여부
+  private String postUrl;//post페이지url
   private String title;
   private Long accountId;
   private String file;

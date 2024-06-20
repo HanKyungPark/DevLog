@@ -24,23 +24,22 @@
         <result column="tag_name" property="tagName"/>
     </resultMap>
 
-    <insert id="save" parameterType="Post">
+    <insert id="save" parameterType="Post" useGeneratedKeys="true" keyProperty="postId">
         insert into post
-        (category_id,p_created_at,p_content,open_type,post_url,title,account_id,file,post_tag_id)
+        (category_id,p_created_at,p_content,open_type,post_url,title,account_id,file)
         values
-        (#{category_id},now(),#{p_content},#{open_type},#{post_url},#{title},#{account_id},#{file},#{post_tag_id})
+        (#{categoryId},now(),#{pContent},#{openType},#{postUrl},#{title},#{accountId},#{file})
     </insert>
 
     <update id="update" parameterType="Post">
         update post
-        set category_id = #{category_id},
+        set category_id = #{categoryId},
             p_updated_at = now(),
-            p_content = #{p_content},
-            open_type = #{open_type},
+            p_content = #{pContent},
+            open_type = #{openType},
             title = #{title},
             file = #{file},
-            post_tag_id = #{post_tag_id}
-        where post_id = #{post_id}
+        where post_id = #{postId}
     </update>
 
     <delete id="delete" parameterType="Post">
@@ -82,6 +81,14 @@
         from post
         where title=#{title}
           and account_id = #{accountId}
+    </select>
+
+    <!--랜덤포스트리스트    -->
+    <select id="findRandomPosts" resultType="Post">
+        select *
+        from post
+        order by rand()
+        limit 20
     </select>
 
 </mapper>

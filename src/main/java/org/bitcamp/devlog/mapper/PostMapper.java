@@ -30,4 +30,8 @@ public interface PostMapper {
 
     //제목검색
     List<Post> findAllByTitleAndAccountId(String title, Long accountId);
+
+    //랜덤으로 리스트
+    List<Post> findRandomPosts();
+
 }

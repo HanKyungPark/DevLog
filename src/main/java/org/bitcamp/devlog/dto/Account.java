@@ -12,7 +12,6 @@ import org.apache.ibatis.type.Alias;
 @Data
 @Alias("Account")
 public class Account {
-
   private Long accountId;
   private Long providerType;
   private java.sql.Timestamp aCreatedAt;
