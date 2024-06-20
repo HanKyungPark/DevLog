@@ -45,4 +45,13 @@ public class AccountRestController {
         accountService.update(account);
         return false;
     }
+
+    @GetMapping("/account/check")
+    public String account_check(){
+        return accountService.accountCheck();
+    }
+    @PostMapping("/blog/check")
+    public Boolean blog_check(@RequestParam String pathName){
+        return accountService.countByHomePage(pathName);
+    }
 }

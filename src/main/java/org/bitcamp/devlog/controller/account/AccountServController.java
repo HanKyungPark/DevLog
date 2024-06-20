@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RequiredArgsConstructor
 @Controller
@@ -31,40 +32,41 @@ public class AccountServController {
      */
 
     @GetMapping("/mypage")
-    public String mypage()
-    {
+    public String mypage() {
         return "contents/myPage";
     }
 
     @GetMapping("/feed")
-    public String feed()
-    {
+    public String feed() {
         return "contents/feedPage";
     }
 
     @GetMapping("/home")
-    public String home()
-    {
+    public String home() {
         return "contents/homePage";
     }
+
     @GetMapping("/home2")
-    public String home2()
-    {
+    public String home2() {
         return "contents/homePage2";
     }
 
     @GetMapping("/check")
-    public String check(){
+    public String check() {
         return accountService.findByEmail();
     }
 
     @GetMapping("/loginForm")
-    public String loginForm(Model model){
+    public String loginForm(Model model) {
         Oauth2User oauth2User = (Oauth2User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("name", oauth2User.getUsername());
-        model.addAttribute("email",oauth2User.getEmail());
+        model.addAttribute("email", oauth2User.getEmail());
 
         return "contents/loginForm";
     }
 
+    @GetMapping("/{homepage}")
+    public String mypage(@PathVariable String homepage) {
+        return "contents/myBlogPage";
+    }
 }

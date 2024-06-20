@@ -43,4 +43,15 @@ public class AccountService {
         }
         return false;
     }
+
+    public String accountCheck(){
+        String sessionEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        if (sessionEmail == null) {
+            return null;
+        }
+
+        return accountMapper.findByEmail(sessionEmail).getHomepage();
+    }
+
 }

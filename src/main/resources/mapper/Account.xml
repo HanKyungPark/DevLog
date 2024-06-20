@@ -18,7 +18,7 @@
         where homepage = #{homepage}
     </select>
 
-    <select id="findAllByBlogId" parameterType="String">
+    <select id="findByBlogId" parameterType="String" resultType="Account">
         select * from account
         where blogId = #{blogId}
     </select>
@@ -30,4 +30,5 @@
     <select id="countByHomePage" parameterType="String" resultType="long">
         select count(*) from account where homepage=#{homepage}
     </select>
+
 </mapper>
