@@ -197,5 +197,9 @@
     width: 3rem;
     height: 3rem;
     color: #374151;
+}
 
+/* 파일 박스 꾸미기*/
+#file{
+    display: none;
 }
