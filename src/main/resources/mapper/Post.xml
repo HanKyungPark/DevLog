@@ -83,5 +83,13 @@
           and account_id = #{accountId}
     </select>
 
+    <!--랜덤포스트리스트    -->
+    <select id="findRandomPosts" resultType="Post">
+        select *
+        from post
+        order by rand()
+        limit 20
+    </select>
+
 </mapper>
 

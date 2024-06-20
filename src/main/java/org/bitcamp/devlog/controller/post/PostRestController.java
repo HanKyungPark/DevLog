@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+
 import java.util.stream.DoubleStream;
+
 import lombok.RequiredArgsConstructor;
 import org.bitcamp.devlog.dto.Oauth2User;
 import org.bitcamp.devlog.dto.Post;
@@ -18,6 +20,9 @@ import org.bitcamp.devlog.service.minio.MinioService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
+
+import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -96,6 +101,27 @@ public class PostRestController {
 
         return ResponseEntity.ok("post를 저장하였습니다.");
     }
+
+    /** 게시글 조회
+     * RQ : post_id, account_id
+     * RP :
+     */
+
+    @GetMapping("/api/host/list")
+    public ResponseEntity<String> feedPagePostList(
+        Model model
+    ){
+
+        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
+            .getContext()
+            .getAuthentication()
+            .getPrincipal();
+        List<Post> posts = postService.findRandomPosts();
+        model.addAttribute("posts", posts);
+        model.addAttribute("email", oauth2User.getEmail());
+        return ResponseEntity.ok("피드를 성공적으로 불러왔습니다.");
+    }
+
 
 
 
