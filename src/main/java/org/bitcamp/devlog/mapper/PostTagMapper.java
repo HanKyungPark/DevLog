@@ -15,4 +15,6 @@ public interface PostTagMapper {
 
     //태그검색
     List<Long> findAllPostIdByTagId(Long tagId);
+
+    PostTag findPostTagId(Long postTagId);
 }

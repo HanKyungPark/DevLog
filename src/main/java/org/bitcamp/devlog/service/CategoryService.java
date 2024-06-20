@@ -37,4 +37,8 @@ public class CategoryService {
     public List<Category> findAllByAccountId(Long accountId){
         return categoryMapper.findAllByAccountId(accountId);
     };
+
+    public Long findCategoryIdByCategoryType(String categoryType){
+        return categoryMapper.findCategoryIdByCategoryType(categoryType);
+    }
 }
