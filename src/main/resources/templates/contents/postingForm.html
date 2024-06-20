@@ -44,7 +44,7 @@
                 </div>
                 <form class="form" id="post" method="post" enctype="multipart/form-data">
                     <div>
-                        <label for="title" class="form_title" th:id="input_title" >
+                        <label for="title" class="form_title" th:id="input_title">
                             <b style="font-size: 17px"><br>제목</b>
                         </label>
                         <div class="input_title_text">
@@ -298,7 +298,7 @@
                         <label class="form_title" ><b style="font-size: 17px"><br>공개여부</b></label>
                         <div class="opentype_container">
                             <div class="opentype_radio_container">
-                                <input id="public" type="radio" name="open_type" class="opentype_radio" value=1>
+                                <input id="public" type="radio" name="open_type" class="opentype_radio" value=1/>
                                 <label for="public" class="opentype_radio_label">
                                     <b style="font-size: 13px"><br>전체공개</b>
                                 </label>
@@ -311,13 +311,12 @@
                             </div>
                         </div>
                     </div>
-                    <div>  <input id="file" type="file" name="file" class="file"  >
+                    <div>
                         <label for="tag" class="block text-sm font-medium text-gray-700">
                             <b style="font-size: 17px"><br>#hashtag</b>
                         </label>
                         <div class="hashtag_container">
                             <input id="tag" type="text" name="tag" class="hashtag_input_container" placeholder="#hashtag를 이용해 글을 꾸미세요"/>
-                            <div id="tagDisplay"></div>
                         </div>
                     </div>
                     <div>
@@ -327,7 +326,7 @@
 
                                 <div class="thumbnail_box_inner_text_container">
                                     <img src="" id="showimg1" style="width: 200px">
-
+                                    <input id="file" type="file" name="file" class="file"  >
                                     <labels for="file" class="thumbnail_input_file_container">
                                         <span ><b style="font-size: 15px">이 글의 대표사진을 설정할 수 있습니다</b></span>
                                         <p class="thumbnail_input_box_text2">PNG, JPG, GIF up to 10MB</p>
