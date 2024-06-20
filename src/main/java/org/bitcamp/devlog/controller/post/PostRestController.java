@@ -17,6 +17,7 @@ import org.bitcamp.devlog.service.PostService;
 import org.bitcamp.devlog.service.PostTagService;
 import org.bitcamp.devlog.service.TagService;
 import org.bitcamp.devlog.service.minio.MinioService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -64,7 +65,7 @@ public class PostRestController {
             .categoryId(
                 categoryService.findCategoryIdByCategoryType(
                     (String) postData.get("categoryType" )))
-            .file(minioService.uploadFile("devlog", oauth2User.getEmail(), file))
+            .file(oauth2User.getEmail()+"/"+minioService.uploadFile("devlog", oauth2User.getEmail(), file))
             .build();
 
         // post 내용 저장
@@ -85,7 +86,8 @@ public class PostRestController {
                                     .tagName(tagName)
                                     .build()
                     );
-                    if (tagService.findTagIdByTagName(tagName) == null) {
+                    tagId = tagService.findTagIdByTagName(tagName);
+                    if (tagId == null) {
                         throw new NullPointerException("tag이름이 제대로 저장되지 못했습니다.");
                     }
                 }
@@ -107,19 +109,10 @@ public class PostRestController {
      * RP :
      */
 
-    @GetMapping("/api/host/list")
-    public ResponseEntity<String> feedPagePostList(
-        Model model
-    ){
-
-        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
-            .getContext()
-            .getAuthentication()
-            .getPrincipal();
+    @GetMapping("/api/post/list")
+    public ResponseEntity<List<Post>> feedPagePostList() {
         List<Post> posts = postService.findRandomPosts();
-        model.addAttribute("posts", posts);
-        model.addAttribute("email", oauth2User.getEmail());
-        return ResponseEntity.ok("피드를 성공적으로 불러왔습니다.");
+        return new ResponseEntity<>(posts, HttpStatus.OK);
     }
 
 

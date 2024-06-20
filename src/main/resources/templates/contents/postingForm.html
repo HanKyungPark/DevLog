@@ -40,30 +40,23 @@
         <div class="marginofcontainer">
             <div class="form_container">
                 <div class="title_container">
-                    <h1 class="title" style="font-size: 25px">Create a New Post</h1>
+                    <h1 class="title" style="font-size: 25px">글 쓰기</h1>
                 </div>
                 <form class="form" id="post" method="post" enctype="multipart/form-data">
                     <div>
-                        <label for="title" class="form_title" th:id="input_title">
-                            <b style="font-size: 17px"><br>Title</b>
+                        <label for="title" class="form_title" th:id="input_title" >
+                            <b style="font-size: 17px"><br>제목</b>
                         </label>
                         <div class="input_title_text">
-                            <input
-                                    id="title"
-                                    name="title"
-                                    type="text"
-                                    class="input_title_text_box"
-                                    placeholder="Enter a captivating title"
-                            />
+                            <input id="title" name="title" type="text" class="input_title_text_box" placeholder="게시글의 제목을 입력해주세요"/>
                         </div>
                     </div>
                     <div>
-                        <label for="title" class="form_title" >
-                        </label>
+
                         <div class="mt-1">
                             <div class="wigiwig" style="display: flex; width: 100%" >
                             <div id="container" >
-                                <textarea id="editor"></textarea>
+                                <textarea id="editor" placeholder="내용을 입력해주세요"></textarea>
                             </div>
                             <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/super-build/ckeditor.js"></script>
                             <script>
@@ -295,89 +288,58 @@
                     </div>
                     <div>
                         <label for="category" class="form_title">
-                            <b style="font-size: 17px"><br>Select Category</b>
+                            <b style="font-size: 17px"><br>카테고리 선택</b>
                         </label>
                         <div class="category_container">
                             <select multiple=""  id="category"  name="category"  class="category_option_container"></select>
                         </div>
                     </div>
                     <div>
-                        <label class="form_title" ><b style="font-size: 17px"><br>Open Type</b></label>
+                        <label class="form_title" ><b style="font-size: 17px"><br>공개여부</b></label>
                         <div class="opentype_container">
                             <div class="opentype_radio_container">
-                                <input
-                                        id="public"
-                                        type="radio"
-                                        name="open_type"
-                                        class="opentype_radio"
-                                        value=1
-                                />
+                                <input id="public" type="radio" name="open_type" class="opentype_radio" value=1>
                                 <label for="public" class="opentype_radio_label">
-                                    <b style="font-size: 13px"><br>Public</b>
+                                    <b style="font-size: 13px"><br>전체공개</b>
                                 </label>
                             </div>
                             <div class="opentype_radio_container">
-                                <input
-                                        id="private"
-                                        type="radio"
-                                        value=0
-                                        name="open_type"
-                                        class="opentype_radio"
-                                />
+                                <input id="private" type="radio" value=0 name="open_type" class="opentype_radio"/>
                                 <label for="private" class="opentype_radio_label">
-                                    <b style="font-size: 13px"><br>Private</b>
+                                    <b style="font-size: 13px"><br>비공개</b>
                                 </label>
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <label for="tag" class="block text-sm font-medium text-gray-700">
-                            <b style="font-size: 17px"><br>Hashtags</b>
+                    <div>  <input id="file" type="file" name="file" class="file"  >
+                        <label for="hashtag" class="block text-sm font-medium text-gray-700">
+                            <b style="font-size: 17px"><br>#hashtag</b>
                         </label>
-                        <div class="hashtag_container">
-                            <input
-                                    id="tag"
-                                    type="text"
-                                    name="tag"
-                                    class="hashtag_input_container"
-                                    placeholder="Enter hashtags separated by commas"
-                            />
+                        <div class="upload-form-hashtag" align="center">
+                            <input type="text" placeholder="해시태그를 추가해보세요!" id="hashtag" name="hashtag">
+                            <button type="button" class="cta blue" onclick="addHashtag()">추가</button>
+                        </div>
+                        <div class="hashtagList" id="hashtagList">
                         </div>
                     </div>
                     <div>
                         <label class="form_title"><b style="font-size: 17px"><br>Attach</b></label>
                         <div class="thumbnail_container">
                             <div class="thumbnail_box_inner_text_small_container">
-                                <svg
-                                        class="thumbnail_box_inner_photo"
-                                        stroke="currentColor"
-                                        fill="none"
-                                        viewBox="0 0 48 48"
-                                        aria-hidden="true"
-                                >
-                                    <path
-                                            d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                                            stroke-width="2"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                    ></path>
-                                </svg>
+
                                 <div class="thumbnail_box_inner_text_container">
-                                    <labels
-                                            for="file"
-                                            class="thumbnail_input_file_container">
-                                        <span ><b style="font-size: 15px">Upload a file</b></span>
+                                    <img src="" id="showimg1" style="width: 200px">
+
+                                    <labels for="file" class="thumbnail_input_file_container">
+                                        <span ><b style="font-size: 15px">이 글의 대표사진을 설정할 수 있습니다</b></span>
                                         <p class="thumbnail_input_box_text2">PNG, JPG, GIF up to 10MB</p>
                                     </labels>
-                                    <input id="file" type="file" name="file" class="file" />
-
                                 </div>
 
                             </div>
                         </div>
                     </div>
                     <div class="btn_submit_container">
-
                         <button type="submit" class="btn"  style="background-color: #c2c0ab"><b>Post</b></button>
                     </div>
                 </form>
