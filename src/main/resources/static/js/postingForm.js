@@ -1,7 +1,4 @@
-
 $(function () {
-
-
     // category data 받아오기
     $.ajax({
         url: '/postingForm',
@@ -25,8 +22,7 @@ $(function () {
         }
     });
 
-
-    //  폼 데이터 전송하기
+    // 폼 데이터 전송하기
     $(".form").submit(function (e) {
         e.preventDefault();
 
@@ -35,42 +31,44 @@ $(function () {
             return;
         }
 
-
-
-
         let tags = [];
-        let data = {
-            "title":$("#title").val(),
-            "pContent":$("#editor").val(),
-            "openType":$("input[name='open_type']:checked").val(),
-            "postTags":tags,
-            "category":$("#category").val()
-        }
-
         let tagArray = $("#tag").val().split("#");
 
-        //빈 문자열 제거
+        // 빈 문자열 제거
         tagArray = tagArray.filter(tag => tag.trim() !== "");
-
         tags.push(...tagArray);
 
+        let formData = new FormData();
+        formData.append("postData", new Blob([JSON.stringify({
+            title: $("#title").val(),
+            pContent: $("#editor").val(),
+            openType: $("input[name='open_type']:checked").val(),
+            postTags: tags,
+            category: $("#category").val()
+        })], { type: "application/json" }));
+
+        // 파일 입력 요소가 있는지 확인
+
+            formData.append("file", $("#file")[0].files[0]);
+
+
+        console.log("FormData being sent:", formData);
+
         $.ajax({
-            dataType: "json",
             type: "POST",
             url: "/api/post/posting",
-            data: JSON.stringify(data),
-            contentType : "application/json; utf-8",
-            processData: false,
-            cache:false,
+            data: formData,
+            cache: false,
+            processData: false, // 데이터 처리를 하지 않음
+            contentType: false, // 기본 폼 데이터로 전송
             success: function (response) {
                 alert(response.message || "포스트가 성공적으로 등록되었습니다.");
-                location.href="/home"
+                location.href = "/home";
             },
-            error: function(error) {
-                console.log(data)
+            error: function(xhr, status, error) {
                 console.error('Error submitting form:', error);
+                console.error('Status:', status);
             }
         });
     });
 });
-
