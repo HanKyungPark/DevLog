@@ -201,8 +201,5 @@
 
 /* 파일 박스 꾸미기*/
 #file{
-display: none
-;
+    display: none;
 }
-
-/*tag 꾸미기*/
