@@ -30,11 +30,11 @@
             <div style="width: 100%; text-align: center">
             <nav id="navmenu" class="navmenu"  >
                 <th:block sec:authorize="isAnonymous()">
-                    <ul style="float: right"><a href="/"><b style="font-size: 15px">로그인</b></a>
+                    <ul style="float: right"><a href="/"><b style="font-size: 17px; color: #505052">로그인</b></a>
                     </ul>
                 </th:block>
                 <th:block sec:authorize="isAuthenticated()">
-                <ul class="dropdown" style="float: right;"><a style="font-size: 17px"><img style="width: 30px;height: 30px;border-radius: 30px" th:src="${#authentication.principal.KaKaoResponse.file}">&nbsp;<span th:text="${#authentication.principal.KaKaoResponse.name}"></span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul class="dropdown" style="float: right;"><a style="font-size: 17px"><img style="width: 30px;height: 30px;border-radius: 30px" th:src="${#authentication.principal.KaKaoResponse.file}">&nbsp;<span style="font-family: 'Bodoni 72'" th:text="${#authentication.principal.KaKaoResponse.name}"></span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                     <ul>
                         <li><a id="myBlog">My Blog</a></li>
                         <li><a href="/mypage">My Page</a></li>
@@ -44,7 +44,7 @@
                 <ul style="text-align: center; margin-left: 300px">
                     <li><a href="/home" style="font-size: 20px">Home<br></a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <li><a href="/feed" style="font-size: 20px">Feed</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <li><a href="/contents" style="font-size: 20px">My Blog</a></li>
+                    <li><a href="/newblogs" style="font-size: 20px">New Blogs</a></li>
                 </ul>
                 </th:block>
             </nav>
