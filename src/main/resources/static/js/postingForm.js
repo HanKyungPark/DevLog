@@ -90,13 +90,11 @@ $(function () {
             processData: false, // 데이터 처리를 하지 않음
             contentType: false, // 기본 폼 데이터로 전송
             success: function (response) {
-                alert(response.message || "포스트가 성공적으로 등록되었습니다.");
+
                 location.href = "/home";
             },
             error: function (xhr, status, error) {
-                console.error('Error submitting form:', error);
-                console.error('XHR object:', xhr);
-                console.error('Status:', status);
+                location.href = "/home";
             }
         });
     });
