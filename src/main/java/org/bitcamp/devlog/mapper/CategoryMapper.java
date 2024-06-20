@@ -23,4 +23,5 @@ public interface CategoryMapper {
 
     List<Category> findAllByAccountId(Long accountId);
 
+    Long findCategoryIdByCategoryType(String categoryType);
 }

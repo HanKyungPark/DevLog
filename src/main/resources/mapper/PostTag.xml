@@ -21,4 +21,10 @@
         where tag_id = #{tagId}
     </select>
 
+    <select id="findPostTagId" parameterType="long" resultType="PostTag">
+        select *
+        from post_tag
+        where post_tag_id = #{postTagId}
+    </select>
+
 </mapper>

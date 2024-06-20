@@ -15,6 +15,10 @@ public class PostServController {
     {
         return "contents/postingForm";
     }
+    @GetMapping("/newblogs")
+    public String newblogs() {
+        return "contents/newBlogs";
+    }
 
 
 }
