@@ -48,9 +48,9 @@ $(function () {
         })], { type: "application/json" }));
 
         // 파일 입력 요소가 있는지 확인
-
+        if ($("#file")[0].files.length > 0) {
             formData.append("file", $("#file")[0].files[0]);
-
+        }
 
         console.log("FormData being sent:", formData);
 
@@ -67,6 +67,7 @@ $(function () {
             },
             error: function(xhr, status, error) {
                 console.error('Error submitting form:', error);
+                console.error('XHR object:', xhr);
                 console.error('Status:', status);
             }
         });
