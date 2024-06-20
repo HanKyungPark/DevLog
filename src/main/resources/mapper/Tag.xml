@@ -10,7 +10,7 @@
 
     <!--태그검색-->
     <select id="findTagIdByTagName" parameterType="String" resultType="long">
-        select count(*)
+        select tag_id
         from tag
         where tag_name = #{tagName}
     </select>
