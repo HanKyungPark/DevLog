@@ -111,14 +111,8 @@ public class PostRestController {
     public ResponseEntity<String> feedPagePostList(
         Model model
     ){
-
-        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
-            .getContext()
-            .getAuthentication()
-            .getPrincipal();
         List<Post> posts = postService.findRandomPosts();
         model.addAttribute("posts", posts);
-        model.addAttribute("email", oauth2User.getEmail());
         return ResponseEntity.ok("피드를 성공적으로 불러왔습니다.");
     }
 
