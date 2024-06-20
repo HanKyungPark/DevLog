@@ -24,7 +24,7 @@
         <result column="tag_name" property="tagName"/>
     </resultMap>
 
-    <insert id="save" parameterType="Post" useGeneratedKeys="true" keyProperty="postId">
+    <insert id="save" parameterType="Post" useGeneratedKeys="true" keyProperty="post_id">
         insert into post
         (category_id,p_created_at,p_content,open_type,post_url,title,account_id,file)
         values
@@ -60,6 +60,7 @@
             title,
             account_id,
             file,
+            post_tag_id,
             tag_id,
             tag_name
         from post p left outer join post_tag_join ptj on p.post_id = ptj.post_id
@@ -67,10 +68,11 @@
     </select>
 
     <!--태그검색-->
-    <select id="findAllByAccountId" parameterType="long" resultType="Post">
+    <select id="findByPostIdAndAccountId" parameterType="long" resultType="Post">
         select *
         from post
-        where account_id=#{accountId}
+        where post_id = #{postId}
+          and account_id = #{accountId}
     </select>
 
     <!--제목검색-->
@@ -81,21 +83,5 @@
           and account_id = #{accountId}
     </select>
 
-    <!--랜덤포스트리스트    -->
-    <select id="findRandomPosts" resultType="Post">
-        select *
-        from post
-        order by rand()
-        limit 20
-    </select>
-
-    <select id="findByHomePage" parameterType="String" resultType="Post">
-        select * from post p join account a on p.account_id = a.account_id
-        where a.homepage = #{homepage}
-    </select>
-
-
-    
-    
 </mapper>
 

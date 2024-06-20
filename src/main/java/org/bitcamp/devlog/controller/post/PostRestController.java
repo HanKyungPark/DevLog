@@ -4,9 +4,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-
-import java.util.stream.DoubleStream;
-
 import lombok.RequiredArgsConstructor;
 import org.bitcamp.devlog.dto.Oauth2User;
 import org.bitcamp.devlog.dto.Post;
@@ -17,14 +14,9 @@ import org.bitcamp.devlog.service.PostService;
 import org.bitcamp.devlog.service.PostTagService;
 import org.bitcamp.devlog.service.TagService;
 import org.bitcamp.devlog.service.minio.MinioService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
-
-import org.springframework.ui.Model;
-
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -53,9 +45,12 @@ public class PostRestController {
                 .getAuthentication()
                 .getPrincipal();
 
-        /*해야할 일*/
+        System.out.println("Received file: " + (file != null ? file.getOriginalFilename() : "No file"));
+        System.out.println("Received postData: " + postData);
+        System.out.println("User: " + oauth2User);
+        System.out.println(oauth2User.getAccountId());
 
-        //포스트 저장 void createPost
+        // 새 Post 객체 생성 및 저장
         Post post = Post.builder()
             .title((String) postData.get("title" ))
             .pContent((String) postData.get("pContent" ))
@@ -65,32 +60,31 @@ public class PostRestController {
             .categoryId(
                 categoryService.findCategoryIdByCategoryType(
                     (String) postData.get("categoryType" )))
-            .file(oauth2User.getEmail()+"/"+minioService.uploadFile("devlog", oauth2User.getEmail(), file))
+            .file(minioService.uploadFile("devlog", oauth2User.getEmail(), file))
             .build();
 
         // post 내용 저장
         postService.save(post);
 
-        /**
-         *
-         * 태그이름 확인후 저장
-         * 매개변수: postId
-         */
+        // 태그 저장 및 PostTag 연결
         List<String> postTags = (List<String>) postData.get("postTags");
         if (postTags != null) {
             for (String tagName : postTags) {
                 Long tagId = tagService.findTagIdByTagName(tagName);
-                if (tagId == null) {
+                if (tagId == null) { // 태그 id가 없으면
+                    // 태그 저장
                     tagService.save(
                             Tag.builder()
                                     .tagName(tagName)
                                     .build()
                     );
-                    if (tagService.findTagIdByTagName(tagName) == null) {
+                    tagId = tagService.findTagIdByTagName(tagName);
+                    if (tagId == null) {
                         throw new NullPointerException("tag이름이 제대로 저장되지 못했습니다.");
                     }
                 }
 
+                // 포스트 태그 저장
                 postTagService.save(
                         PostTag.builder()
                                 .postId(post.getPostId())
@@ -100,21 +94,8 @@ public class PostRestController {
             }
         }
 
+        // 썸네일 ncp에 저장 (파일 처리 로직 추가 필요)
+
         return ResponseEntity.ok("post를 저장하였습니다.");
     }
-
-    /** 게시글 조회
-     * RQ : post_id, account_id
-     * RP :
-     */
-
-    @GetMapping("/api/post/list")
-    public ResponseEntity<List<Post>> feedPagePostList() {
-        List<Post> posts = postService.findRandomPosts();
-        return new ResponseEntity<>(posts, HttpStatus.OK);
-    }
-
-
-
-
 }
