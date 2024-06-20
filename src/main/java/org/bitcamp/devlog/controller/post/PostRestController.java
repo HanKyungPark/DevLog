@@ -14,6 +14,7 @@ import org.bitcamp.devlog.service.PostService;
 import org.bitcamp.devlog.service.PostTagService;
 import org.bitcamp.devlog.service.TagService;
 import org.bitcamp.devlog.service.minio.MinioService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -103,13 +104,10 @@ public class PostRestController {
      * RP :
      */
 
-    @GetMapping("/api/host/list")
-    public ResponseEntity<String> feedPagePostList(
-        Model model
-    ){
+    @GetMapping("/api/post/list")
+    public ResponseEntity<List<Post>> feedPagePostList() {
         List<Post> posts = postService.findRandomPosts();
-        model.addAttribute("posts", posts);
-        return ResponseEntity.ok("피드를 성공적으로 불러왔습니다.");
+        return new ResponseEntity<>(posts, HttpStatus.OK);
     }
 
 
