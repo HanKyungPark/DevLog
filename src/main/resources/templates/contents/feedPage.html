@@ -23,6 +23,11 @@
 <body>
 
 <div layout:fragment="content">
+
+
+    <th:block th:each="post:${posts}">
+        <div th:text="${post.title}"></div>
+    </th:block>
     <div id="dataContainer"></div>
     <section class="section">
         <div class="container">
