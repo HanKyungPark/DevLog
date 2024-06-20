@@ -60,7 +60,7 @@ public class PostRestController {
             .categoryId(
                 categoryService.findCategoryIdByCategoryType(
                     (String) postData.get("categoryType" )))
-            .file(oauth2User.getEmail()+"/"+minioService.uploadFile("devlog", oauth2User.getEmail(), file))
+            .file( " https://minio.bmops.kro.kr/devlog"+ "/" + oauth2User.getEmail()+"/"+minioService.uploadFile("devlog", oauth2User.getEmail(), file))
             .build();
 
         // post 내용 저장
@@ -81,10 +81,10 @@ public class PostRestController {
                                     .tagName(tagName)
                                     .build()
                     );
-                    tagId = tagService.findTagIdByTagName(tagName);
-                    if (tagId == null) {
-                        throw new NullPointerException("tag이름이 제대로 저장되지 못했습니다.");
-                    }
+                }
+                tagId = tagService.findTagIdByTagName(tagName);
+                if (tagId == null) {
+                    throw new NullPointerException("tag이름이 제대로 저장되지 못했습니다.");
                 }
 
                 postTagService.save(
