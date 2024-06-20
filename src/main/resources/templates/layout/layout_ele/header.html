@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -29,10 +30,16 @@
             </a>
             <div style="width: 100%; text-align: center">
             <nav id="navmenu" class="navmenu"  >
-                <ul class="dropdown" style="float: right;"><a style="font-size: 17px"><span>login_id</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <th:block sec:authorize="isAnonymous()">
+                    <ul style="float: right"><a href="/"><b style="font-size: 15px">로그인</b></a>
+                    </ul>
+                </th:block>
+                <th:block sec:authorize="isAuthenticated()">
+                <ul class="dropdown" style="float: right;"><a style="font-size: 17px"><img style="width: 30px;height: 30px;border-radius: 30px" th:src="${#authentication.principal.KaKaoResponse.file}">&nbsp;<span th:text="${#authentication.principal.KaKaoResponse.name}"></span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                     <ul>
                         <li><a href="/contents">My Blog</a></li>
                         <li><a href="/mypage">My Page</a></li>
+                        <li><button class="btnLogout" style="float: left;"><br><b><a href="/logout">Logout</a></b></button></li>
                     </ul>
                 </ul>
                 <ul style="text-align: center; margin-left: 300px">
@@ -40,7 +47,7 @@
                     <li><a href="/feed" style="font-size: 20px">Feed</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <li><a href="/contents" style="font-size: 20px">My Blog</a></li>
                 </ul>
-
+                </th:block>
             </nav>
             </div>
 
