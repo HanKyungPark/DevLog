@@ -19,10 +19,13 @@
 <div class="login">
 
 <div layout:fragment="content">
-    <h1  align="top" class="text_blogcreate">블로그 생성</h1>
+
     <form id="profileForm" method="post" enctype="multipart/form-data">
         <table>
+                <h1  align="top" class="text_blogcreate" style="float: left; margin-left: 20px; font-family: 'Trebuchet MS'; font-size: 40px;color: #449bf2"><b>Make my DevLog</b></h1><br>
+            <br>
             <tr>
+                <br><br>
                 <td>이름</td>
                 <td><b th:text="${name}">dd</b></td>
             </tr>
@@ -49,9 +52,8 @@
                 <td>블로그 소개 글</td>
                 <td><textarea id="biography" name="biography"></textarea></td>
             </tr>
-            <tr >
                 <td colspan="2" class="login_btn_container"><button type="submit" id="btn-summit" class="login_submit_btn">Submit</button></td>
-            </tr>
+
         </table>
 
     </form>
