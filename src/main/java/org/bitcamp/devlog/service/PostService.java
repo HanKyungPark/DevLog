@@ -1,10 +1,10 @@
 package org.bitcamp.devlog.service;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.bitcamp.devlog.dto.Post;
 import org.bitcamp.devlog.mapper.CategoryMapper;
 import org.bitcamp.devlog.mapper.PostMapper;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -39,5 +39,9 @@ public class PostService {
     }
     public Post findByPostIdAndAccountId(Long postId, Long accountId){
         return postMapper.findByPostIdAndAccountId(postId, accountId);
+    }
+
+    public List<Post> findRandomPosts() {
+        return postMapper.findRandomPosts();
     }
 }
