@@ -36,7 +36,6 @@ public class CategoryRestController {
         List<Category> categories = new ArrayList<>();
         categories.add(Category.builder()
                         .categoryId(1L)
-                        .categoryType("테스트")
                         .accountId(1L)
                 .build());
 
