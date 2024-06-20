@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.bitcamp.devlog.mapper.AccountRole">
+<mapper namespace="org.bitcamp.devlog.mapper.AccountRoleMapper">
 
     <insert id="save" parameterType="AccountRole">
         insert into account_role(ar_creat_at, role_name, account_id)

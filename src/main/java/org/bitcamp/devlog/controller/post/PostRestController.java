@@ -75,7 +75,7 @@ public class PostRestController {
             );
         }
 
-        //이미지 ncp에 저장
+        //썸네일 ncp에 저장
 
         Post post = Post.builder()
             .title((String)postData.get("title"))
