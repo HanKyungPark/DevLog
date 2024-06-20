@@ -36,8 +36,16 @@ $(function () {
         }
 
 
-        let tags = [];
 
+
+        let tags = [];
+        let data = {
+            "title":$("#title").val(),
+            "pContent":$("#editor").val(),
+            "openType":$("input[name='open_type']:checked").val(),
+            "postTags":tags,
+            "category":$("#category").val()
+        }
 
         let tagArray = $("#tag").val().split("#");
 
@@ -50,19 +58,16 @@ $(function () {
             dataType: "json",
             type: "POST",
             url: "/api/post/posting",
-            data: {
-                "title":$("#title").val(),
-                "pContent":$("#editor").val(),
-                "openType":$("input[name='open_type']:checked").val(),
-                "file":$("#editor").val(),
-                "postTags":tags,
-                "category":$("#category").val()
-
-            },
+            data: JSON.stringify(data),
+            contentType : "application/json; utf-8",
+            processData: false,
+            cache:false,
             success: function (response) {
                 alert(response.message || "포스트가 성공적으로 등록되었습니다.");
+                location.href="/home"
             },
             error: function(error) {
+                console.log(data)
                 console.error('Error submitting form:', error);
             }
         });

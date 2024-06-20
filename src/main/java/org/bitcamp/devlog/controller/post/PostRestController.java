@@ -14,7 +14,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequiredArgsConstructor
@@ -37,15 +39,17 @@ public class PostRestController {
      */
     @PostMapping("/api/post/posting")
     public ResponseEntity<String> posting(
-        @RequestBody Map<String, Object> postData
-    ) {
+            @RequestBody Map<String, Object> postData,
+            @RequestParam(required = false) MultipartFile file
+            ) {
         Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
-            .getContext()
-            .getAuthentication()
-            .getPrincipal();
-
+                .getContext()
+                .getAuthentication()
+                    .getPrincipal();
+        System.out.println(oauth2User);
         //태그저장
-        for(String tagName : (List<String>)postData.get("tags")){
+        System.out.println(postData.toString());
+        for(String tagName : (List<String>)postData.get("postTags")){
             Long tagId = tagService.findTagIdByTagName(tagName);
             if(tagId == null){ //태그id가 없으면
                 //태그저장
