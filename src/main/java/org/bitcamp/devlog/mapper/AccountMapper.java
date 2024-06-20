@@ -21,12 +21,10 @@ public interface AccountMapper {
     Long countByHomePage(String homepage);
 
 
-
     Account findByHomepage(String homepage);
 
     //블로그 검색
-    List<Account> findAllByBlogId(String blogId);
-
+    Account findByBlogId(String blogId);
 }
 
 
