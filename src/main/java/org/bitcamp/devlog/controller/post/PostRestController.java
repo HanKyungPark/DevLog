@@ -40,7 +40,7 @@ public class PostRestController {
     @PostMapping("/api/post/posting")
     public ResponseEntity<String> posting(
         @RequestBody Map<String, Object> postData,
-        @RequestParam MultipartFile file
+        @RequestParam(value = "file") MultipartFile file
     ) {
         /*나중에 서비스로 빼줘서 트랜잭션 하기*/
 
@@ -49,8 +49,9 @@ public class PostRestController {
             .getContext()
             .getAuthentication()
             .getPrincipal();
-        System.out.println(oauth2User);
-
+        System.out.println("oauth2User:"+oauth2User);
+        System.out.println("postData:"+postData);
+        System.out.println("file:"+file);
 
         // 포스트 내용저장
         Post post = Post.builder()
