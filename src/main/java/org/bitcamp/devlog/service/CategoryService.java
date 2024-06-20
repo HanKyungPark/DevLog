@@ -30,7 +30,6 @@ public class CategoryService {
     };
     public List<Category> findByPostId(Post post){
         List<Category> categories=categoryMapper.findAllByPostId(post.getPostId());
-
         return categories;
     }
 
