@@ -28,4 +28,7 @@ public class PostTagService {
         return postTagMapper.findAllPostIdByTagId(tagId);
     }
 
+    public PostTag findPostTagId(Long postTagId) {
+        return postTagMapper.findPostTagId(postTagId);
+    }
 }
