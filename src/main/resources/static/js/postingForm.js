@@ -10,7 +10,6 @@ $(function () {
     //tag 입력할때 꾸미기
 
 
-
     // 사진 미리보기
     $("#file").change(function () {
         let reg = /(.*?)\/(jpg|jpeg|png|gif)$/;
@@ -54,24 +53,15 @@ $(function () {
     $(".form").submit(function (e) {
         e.preventDefault();
 
-        if ($("#title").val() === "") {
-            alert("제목은 필수 입력사항입니다.");
-            return;
-        }
 
-        let tags = [];
-        let tagArray = $("#tag").val().split("#");
 
-        // 빈 문자열 제거
-        tagArray = tagArray.filter(tag => tag.trim() !== "");
-        tags.push(...tagArray);
 
         let formData = new FormData();
         formData.append("postData", new Blob([JSON.stringify({
             title: $("#title").val(),
             pContent: $("#editor").val(),
             openType: $("input[name='open_type']:checked").val(),
-            postTags: tags,
+            postTags: tag,
             category: $("#category").val()
         })], {type: "application/json"}));
 
@@ -99,3 +89,28 @@ $(function () {
         });
     });
 });
+let tag=[];
+// 해시 태그 추가, 삭제 로직
+function addHashtag() {
+    let hashtag = $("#hashtag").val();
+    let item = getHashtagItem(hashtag);
+    $("#hashtagList").append(item);
+    $("#hashtag").val('');
+    tag.push(hashtag);
+}
+
+function removeHashtag(hashtag) {
+    document.getElementById(hashtag).remove();
+    tag.pop(hashtag);
+
+}
+
+function getHashtagItem(hashtag) {
+    let item =
+        `<div class="hashtag" id="${hashtag}">
+			<span class="hashtag-value">#${hashtag}</span>
+			<button type="button" onclick="removeHashtag('${hashtag}')">×</button>
+		</div>`
+
+    return item;
+}

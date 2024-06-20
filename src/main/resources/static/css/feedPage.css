@@ -13,10 +13,14 @@
     border: 1px solid #ddd;
     text-align: center;
     vertical-align: top;
+    width: 150px;
+
 }
 .table-cell img {
+    margin-left: 18px;
     width: 100px;
     height: 100px;
+    align-items: center;
 }
 #dataContainer{
     margin-left: 20%;

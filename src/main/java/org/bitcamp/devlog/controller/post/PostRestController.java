@@ -81,7 +81,8 @@ public class PostRestController {
                                     .tagName(tagName)
                                     .build()
                     );
-                    if (tagService.findTagIdByTagName(tagName) == null) {
+                    tagId = tagService.findTagIdByTagName(tagName);
+                    if (tagId == null) {
                         throw new NullPointerException("tag이름이 제대로 저장되지 못했습니다.");
                     }
                 }
