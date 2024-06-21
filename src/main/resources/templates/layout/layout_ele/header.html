@@ -36,7 +36,7 @@
                 <th:block sec:authorize="isAuthenticated()">
                 <ul class="dropdown" style="float: right;"><a style="font-size: 17px"><img style="width: 30px;height: 30px;border-radius: 30px" th:src="${#authentication.principal.KaKaoResponse.file}">&nbsp;<span style="font-family: 'Bodoni 72'" th:text="${#authentication.principal.KaKaoResponse.name}"></span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                     <ul>
-                        <li><a id="myBlog">My Blog</a></li>
+                        <li><a id="myBlog" style="cursor: pointer">My Blog</a></li>
                         <li><a href="/mypage">My Page</a></li>
                         <li><button class="btnLogout" style="float: left;"><br><b><a href="/logout">Logout</a></b></button></li>
                     </ul>
