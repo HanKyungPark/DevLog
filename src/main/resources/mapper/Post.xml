@@ -98,5 +98,10 @@
 
 
 
+
+    <select id="findAllByPostUrl" parameterType="String" resultType="Post">
+        select * from post where post_url=#{postUrl}
+    </select>
+
 </mapper>
 

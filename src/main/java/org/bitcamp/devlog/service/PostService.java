@@ -8,6 +8,7 @@ import org.bitcamp.devlog.dto.Post;
 import org.bitcamp.devlog.mapper.CategoryMapper;
 import org.bitcamp.devlog.mapper.PostMapper;
 import org.springframework.security.core.context.SecurityContextHolder;
+
 import org.bitcamp.devlog.mapper.PostTagMapper;
 import org.bitcamp.devlog.mapper.TagMapper;
 import org.springframework.stereotype.Service;
@@ -66,6 +67,7 @@ public class PostService {
 
         return postMapper.findByHomePage(homepage);
     }
+
 
     public List<Object> findPost_namebypostUrl(String postUrl){
 //        List<Long> postTagid=new ArrayList<>();
