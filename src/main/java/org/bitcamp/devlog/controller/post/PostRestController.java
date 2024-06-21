@@ -1,8 +1,12 @@
 package org.bitcamp.devlog.controller.post;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+
+
+import java.util.stream.DoubleStream;
 
 import lombok.RequiredArgsConstructor;
 import org.bitcamp.devlog.dto.Oauth2User;
@@ -18,11 +22,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
+
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
@@ -60,7 +63,7 @@ public class PostRestController {
             .categoryId(
                 categoryService.findCategoryIdByCategoryType(
                     (String) postData.get("categoryType" )))
-            .file(minioService.uploadFile("devlog", oauth2User.getEmail(), file))
+            .file(oauth2User.getEmail()+"/"+minioService.uploadFile("devlog", oauth2User.getEmail(), file))
             .build();
 
         // post 내용 저장
@@ -110,6 +113,9 @@ public class PostRestController {
         return new ResponseEntity<>(posts, HttpStatus.OK);
     }
 
-
+    @PostMapping("/api/post/map")
+    public Map<String, Object> test(@RequestBody Post post){
+        return postService.findById(post);
+    }
 
 }
