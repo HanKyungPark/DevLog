@@ -17,4 +17,6 @@ public interface PostTagMapper {
     List<Long> findAllPostIdByTagId(Long tagId);
 
     PostTag findPostTagId(Long postTagId);
+
+    List<Long> findPostTagIdByPostId(Long postId);
 }

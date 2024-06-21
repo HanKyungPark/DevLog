@@ -30,10 +30,5 @@
     <select id="countByHomePage" parameterType="String" resultType="long">
         select count(*) from account where homepage=#{homepage}
     </select>
-    <select id="findAll" resultType="Account">
-        select blog_id,name,biography,a_created_at,file
-        from account order by a_created_at desc ;
-    </select>
-
 
 </mapper>

@@ -25,8 +25,6 @@ public interface AccountMapper {
 
     //블로그 검색
     Account findByBlogId(String blogId);
-
-    List<Account> findAll();
 }
 
 
