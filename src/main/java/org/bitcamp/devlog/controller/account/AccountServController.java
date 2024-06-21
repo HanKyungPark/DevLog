@@ -65,11 +65,8 @@ public class AccountServController {
         return "contents/loginForm";
     }
 
-
     @GetMapping("/{homepage}")
     public String mypage(@PathVariable String homepage) {
         return "contents/myBlogPage";
     }
 }
-
-
