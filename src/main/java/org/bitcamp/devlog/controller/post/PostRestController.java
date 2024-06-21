@@ -1,6 +1,5 @@
 package org.bitcamp.devlog.controller.post;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -25,7 +24,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import org.springframework.ui.Model;
 
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
@@ -55,7 +57,6 @@ public class PostRestController {
 
         //포스트 저장 void createPost
         Post post = Post.builder()
-
             .title((String) postData.get("title" ))
             .pContent((String) postData.get("pContent" ))
             .postUrl(String.valueOf(UUID.randomUUID()))
@@ -115,10 +116,6 @@ public class PostRestController {
     }
 
 
-    @PostMapping("/api/post/list")
-    public List<Post> findByHomePage(@RequestParam String homepage) {
-        return postService.findByHomePage(homepage);
-    }
+
 
 }
-
