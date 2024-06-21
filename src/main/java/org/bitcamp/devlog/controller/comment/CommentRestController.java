@@ -32,11 +32,11 @@ public class CommentRestController {
         Long accountId =oauth2User.getAccountId();
 
         List<Comment> comments = commentService.findAllByAccountId(accountId);
-        String file = accountService.findFileByAccountId(accountId);
+//        String file = accountService.findFileByAccountId(accountId);
 
         Map<String, Object> commentMap = new HashMap<>();
         commentMap.put("comments", comments);
-        commentMap.put("file", file);
+//        commentMap.put("file", file);
 
         return new ResponseEntity<>(commentMap, HttpStatus.OK);
     }
