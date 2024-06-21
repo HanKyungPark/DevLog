@@ -1,10 +1,16 @@
 package org.bitcamp.devlog.controller.post;
 
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.bitcamp.devlog.service.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+
 @Controller
 public class PostServController {
+
+
     @GetMapping("/contents")
     public String post()
     {
@@ -19,6 +25,5 @@ public class PostServController {
     public String newblogs() {
         return "contents/newBlogs";
     }
-
 
 }

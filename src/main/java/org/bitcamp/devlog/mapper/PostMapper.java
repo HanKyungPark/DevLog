@@ -34,4 +34,7 @@ public interface PostMapper {
     //랜덤으로 리스트
     List<Post> findRandomPosts();
 
+    //마이블로그
+    List<Post> findByHomePage(String homepage);
+
 }

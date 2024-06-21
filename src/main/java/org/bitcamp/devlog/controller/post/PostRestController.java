@@ -12,6 +12,7 @@ import org.bitcamp.devlog.dto.Oauth2User;
 import org.bitcamp.devlog.dto.Post;
 import org.bitcamp.devlog.dto.PostTag;
 import org.bitcamp.devlog.dto.Tag;
+import org.bitcamp.devlog.mapper.PostMapper;
 import org.bitcamp.devlog.service.CategoryService;
 import org.bitcamp.devlog.service.PostService;
 import org.bitcamp.devlog.service.PostTagService;
@@ -23,10 +24,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import org.springframework.ui.Model;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
@@ -38,6 +36,7 @@ public class PostRestController {
     private final PostTagService postTagService;
     private final CategoryService categoryService;
     private final MinioService minioService;
+    private final PostMapper postMapper;
 
     @PostMapping(value = "/api/post/posting", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> posting(
@@ -56,16 +55,16 @@ public class PostRestController {
 
         //포스트 저장 void createPost
         Post post = Post.builder()
-            .title((String) postData.get("title" ))
-            .pContent((String) postData.get("pContent" ))
-            .postUrl(String.valueOf(UUID.randomUUID()))
-            .openType(Long.parseLong((String) postData.getOrDefault("openType", "0" )))
-            .accountId(oauth2User.getAccountId())
-            .categoryId(
-                categoryService.findCategoryIdByCategoryType(
-                    (String) postData.get("categoryType" )))
-            .file(minioService.uploadFile("devlog", oauth2User.getEmail(), file))
-            .build();
+                .title((String) postData.get("title"))
+                .pContent((String) postData.get("pContent"))
+                .postUrl(String.valueOf(UUID.randomUUID()))
+                .openType(Long.parseLong((String) postData.getOrDefault("openType", "0")))
+                .accountId(oauth2User.getAccountId())
+                .categoryId(
+                        categoryService.findCategoryIdByCategoryType(
+                                (String) postData.get("categoryType")))
+                .file(minioService.uploadFile("devlog", oauth2User.getEmail(), file))
+                .build();
 
         // post 내용 저장
         postService.save(post);
@@ -102,27 +101,30 @@ public class PostRestController {
         return ResponseEntity.ok("post를 저장하였습니다.");
     }
 
-    /** 게시글 조회
+    /**
+     * 게시글 조회
      * RQ : post_id, account_id
      * RP :
      */
 
     @GetMapping("/api/host/list")
     public ResponseEntity<String> feedPagePostList(
-        Model model
-    ){
+            Model model
+    ) {
 
         Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
-            .getContext()
-            .getAuthentication()
-            .getPrincipal();
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
         List<Post> posts = postService.findRandomPosts();
         model.addAttribute("posts", posts);
         model.addAttribute("email", oauth2User.getEmail());
         return ResponseEntity.ok("피드를 성공적으로 불러왔습니다.");
     }
 
-
-
-
+    @PostMapping("/api/post/list")
+    public List<Post> findByHomePage(@RequestParam String homepage) {
+        return postService.findByHomePage(homepage);
+    }
 }
+
