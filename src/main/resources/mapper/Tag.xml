@@ -15,8 +15,4 @@
         where tag_name = #{tagName}
     </select>
 
-    <select id="findTagNameByTag_id" resultType="String" parameterType="Long">
-        select tag_name where tag_id=#{tagId}
-    </select>
-
 </mapper>
