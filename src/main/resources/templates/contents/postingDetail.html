@@ -18,8 +18,8 @@
     <div class="container max-w-3xl px-4 py-12 mx-auto">
         <article class="prose prose-gray dark:prose-invert">
             <div class="space-y-4 not-prose">
-                <h1 class="text-4xl font-extrabold tracking-tight lg:text-5xl">
-                    The Importance of Accessibility in Web Design
+                <h1 class="text-4xl font-extrabold tracking-tight lg:text-5xl" th:text="${post.title}">
+                    게시글 제목
                 </h1>
                 <div class="flex items-center gap-4">
                     <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
@@ -40,7 +40,7 @@
                             <rect width="18" height="18" x="3" y="4" rx="2"></rect>
                             <path d="M3 10h18"></path>
                         </svg>
-                        <span>May 15, 2023</span>
+                        <span th:text = "${post.createdAt}">작성날짜</span>
                     </div>
                     <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
                         <svg
@@ -58,7 +58,6 @@
                             <circle cx="12" cy="12" r="10"></circle>
                             <polyline points="12 6 12 12 16 14"></polyline>
                         </svg>
-                        <span>5 min read</span>
                     </div>
                 </div>
                 <div class="flex flex-wrap gap-2">
@@ -230,14 +229,19 @@
         </span>
                     <div class="flex-1 space-y-2">
                         <div class="flex items-center justify-between">
-                            <h3 class="text-base font-medium">Jane Doe</h3>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">May 17, 2023</p>
+                            <h3 class="text-base font-medium">작성자 이름</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">작성 날짜</p>
                         </div>
                         <p>
                             Excellent points! Accessibility should be a top priority for any modern website or application. The
                             benefits you outlined are really compelling, especially the imp
                         </p>
                     </div>
+                </div>
+            </div>
+            <div>
+                <div th:each >
+
                 </div>
             </div>
             <div>

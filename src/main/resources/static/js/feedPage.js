@@ -26,7 +26,7 @@ $(function () {
 
                 let cell = $(`
                             <div class="table-cell" onclick="location.href='${item.postUrl}'">
-                                <img src="https://minio.bmops.kro.kr/devlog/${item.file}">
+                                <img src="${item.file}">
                                 <h5>${titleHtml}</h5>
                                 <h6>${formattedDate}</h6>
                             </div>

@@ -44,4 +44,8 @@ public class PostService {
     public List<Post> findRandomPosts() {
         return postMapper.findRandomPosts();
     }
+
+    public List<Post> findAllByAccountId(Long accountId) {
+        return postMapper.findAllByAccountId(accountId);
+    }
 }

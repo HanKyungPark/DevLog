@@ -1,5 +1,6 @@
 package org.bitcamp.devlog.controller.post;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -104,11 +105,26 @@ public class PostRestController {
      * RP :
      */
 
-    @GetMapping("/api/post/list")
+    @GetMapping("/api/post/posts")
     public ResponseEntity<List<Post>> feedPagePostList() {
         List<Post> posts = postService.findRandomPosts();
         return new ResponseEntity<>(posts, HttpStatus.OK);
     }
+
+    @GetMapping("/api/mypage/post")
+    public ResponseEntity<List<Post>> mypagePosts() {
+        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
+            .getContext()
+            .getAuthentication()
+            .getPrincipal();
+
+        List<Post> posts = postService.findAllByAccountId(oauth2User.getAccountId());
+
+
+        return new ResponseEntity<>(posts, HttpStatus.OK);
+    }
+
+
 
 
 

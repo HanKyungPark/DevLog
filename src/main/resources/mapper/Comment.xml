@@ -25,4 +25,11 @@
             where post_id = #{postId}
     </select>
 
+    <select id="findAllByAccountId" parameterType="long" resultType="Comment">
+        select * from comment
+        where account_id = #{accountId}
+    </select>
+
+
+
 </mapper>

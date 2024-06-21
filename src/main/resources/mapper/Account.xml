@@ -31,4 +31,10 @@
         select count(*) from account where homepage=#{homepage}
     </select>
 
+    <select id="findFileByAccountId" parameterType="long" resultType="String">
+        select file from account
+        where account_id = #{accountId}
+    </select>
+
+
 </mapper>

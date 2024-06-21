@@ -54,4 +54,7 @@ public class AccountService {
         return accountMapper.findByEmail(sessionEmail).getHomepage();
     }
 
+    public String findFileByAccountId(Long accountId) {
+        return accountMapper.findFileByAccountId(accountId);
+    }
 }
