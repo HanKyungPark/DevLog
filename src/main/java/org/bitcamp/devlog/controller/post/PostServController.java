@@ -1,5 +1,8 @@
 package org.bitcamp.devlog.controller.post;
 
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.bitcamp.devlog.service.PostService;
 import org.bitcamp.devlog.dto.Post;
 import org.bitcamp.devlog.dto.PostTag;
 import org.bitcamp.devlog.service.PostService;

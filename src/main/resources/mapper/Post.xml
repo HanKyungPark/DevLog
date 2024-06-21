@@ -90,8 +90,13 @@
         limit 20
     </select>
 
-    <select id="findAllByPostUrl" parameterType="String" resultType="Post">
-        select * from post where post_url=#{postUrl}
+    <select id="findByHomePage" parameterType="String" resultType="Post">
+        select * from post p join account a on p.account_id = a.account_id
+        where a.homepage = #{homepage}
     </select>
+
+
+
+
 </mapper>
 

@@ -1,6 +1,5 @@
 package org.bitcamp.devlog.controller.post;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -55,16 +54,16 @@ public class PostRestController {
 
         //포스트 저장 void createPost
         Post post = Post.builder()
-            .title((String) postData.get("title" ))
-            .pContent((String) postData.get("pContent" ))
-            .postUrl(String.valueOf(UUID.randomUUID()))
-            .openType(Long.parseLong((String) postData.getOrDefault("openType", "0" )))
-            .accountId(oauth2User.getAccountId())
-            .categoryId(
-                categoryService.findCategoryIdByCategoryType(
-                    (String) postData.get("categoryType" )))
-            .file(oauth2User.getEmail()+"/"+minioService.uploadFile("devlog", oauth2User.getEmail(), file))
-            .build();
+                .title((String) postData.get("title"))
+                .pContent((String) postData.get("pContent"))
+                .postUrl(String.valueOf(UUID.randomUUID()))
+                .openType(Long.parseLong((String) postData.getOrDefault("openType", "0")))
+                .accountId(oauth2User.getAccountId())
+                .categoryId(
+                        categoryService.findCategoryIdByCategoryType(
+                                (String) postData.get("categoryType")))
+                .file(minioService.uploadFile("devlog", oauth2User.getEmail(), file))
+                .build();
 
         // post 내용 저장
         postService.save(post);
@@ -113,9 +112,12 @@ public class PostRestController {
         return new ResponseEntity<>(posts, HttpStatus.OK);
     }
 
-    @PostMapping("/api/post/map")
-    public Map<String, Object> test(@RequestBody Post post){
-        return postService.findById(post);
+    @PostMapping("/api/post/list")
+    public List<Post> findByHomePage(@RequestParam String homepage) {
+        return postService.findByHomePage(homepage);
     }
+}
+
+
 
 }

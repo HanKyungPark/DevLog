@@ -3,9 +3,11 @@ package org.bitcamp.devlog.service;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.bitcamp.devlog.dto.Oauth2User;
 import org.bitcamp.devlog.dto.Post;
 import org.bitcamp.devlog.mapper.CategoryMapper;
 import org.bitcamp.devlog.mapper.PostMapper;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.bitcamp.devlog.mapper.PostTagMapper;
 import org.bitcamp.devlog.mapper.TagMapper;
 import org.springframework.stereotype.Service;
@@ -51,10 +53,19 @@ public class PostService {
     public List<Post> findRandomPosts() {
         return postMapper.findRandomPosts();
     }
-    public List<Post> findAllPosts(String postUrl) {
 
-        return postMapper.findAllByPostUrl(postUrl);
-    };
+    public List<Post> findAllByAccountId(){
+        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+        return postMapper.findAllByAccountId(oauth2User.getAccountId());
+    }
+
+    public List<Post> findByHomePage(String homepage){
+
+        return postMapper.findByHomePage(homepage);
+    }
 
     public List<Object> findPost_namebypostUrl(String postUrl){
 //        List<Long> postTagid=new ArrayList<>();
