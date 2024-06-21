@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.bitcamp.devlog.mapper.CategoryMapper">
+
+    <insert id="save" parameterType="Category">
+        insert into category (category_id,category_type,account_id)
+        values (#{categoryId},#{categoryType},#{accountId})
+    </insert>
+
+    <update id="update" parameterType="Category">
+        update category
+        set category_type=#{categoryType}
+        where category_id=#{categoryId}
+    </update>
+
+    <delete id="delete" parameterType="Category">
+        delete from category where category_id=#{categoryId}
+    </delete>
+
+    <select id="findAllByPostId" parameterType="long" resultType="Post">
+        select category_id,category_type
+        from category
+        where category_id = #{categoryId}
+    </select>
+
+    <select id="findByPostId" parameterType="post" resultType="Category">
+        select
+            category_type,
+            c.category_id as category_id
+        from category c join post p on c.category_id = p.category_id
+        where p.post_id = #{postId}
+    </select>
+
+    <select id="findAllByAccountId" parameterType="long" resultType="Category">
+        select *
+        from category
+        where account_id = #{accountId}
+    </select>
+
+    <select id="findCategoryIdByCategoryType" parameterType="String" resultType="long">
+        select category_id
+        from category
+        where category_type = #{categoryType}
+    </select>
+
+
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.bitcamp.devlog.mapper.PostTagMapper">
+
+    <!--태그 추가-->
+    <insert id="save" parameterType="PostTag">
+        insert into post_tag (pt_created_at, pt_updated_at, post_id, tag_id)
+        values(now(), null, #{postId}, #{tagId})
+    </insert>
+
+    <!--태그 삭제-->
+    <delete id="delete" parameterType="long">
+        delete from post_tag
+        where post_tag_id = #{postTagId}
+    </delete>
+
+    <!--태그검색-->
+    <select id="findAllPostIdByTagId" parameterType="long" resultType="Long">
+        select post_id
+        from post_tag
+        where tag_id = #{tagId}
+    </select>
+
+    <select id="findPostTagId" parameterType="long" resultType="PostTag">
+        select *
+        from post_tag
+        where post_tag_id = #{postTagId}
+    </select>
+
+</mapper>

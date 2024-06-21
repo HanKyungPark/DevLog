@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout_main/layout1_hmenu}">
+<head>
+    <meta charset="UTF-8">
+    <title>Devlog</title>
+    <link rel="shortcut icon" th:href="@{/im/DL.png}"/>
+    <!--부트스트랩 아이콘-->
+    <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css}" rel="stylesheet">
+    <!--부트스트랩 css-->
+    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="/css/myBlogPage.css">
+    <!--제이쿼리-->
+    <script th:src="@{https://code.jquery.com/jquery-3.7.1.js}"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script th:src="@{/js/myBlogPage.js}"></script>
+</head>
+<body>
+<div layout:fragment="content" style="text-align: left">
+    <div class="all_container">
+                <div style="display: flex; justify-content: flex-end">
+                    <div class="post_container">
+
+                        <div class="blogpost_box" data-v0-t="card">
+                            <a href="#">
+                                <img
+                                        src="/img/KakaoTalk_Photo_2024-06-12-15-37-02-1.png"
+                                        alt="Featured Post"
+                                        width="300"
+                                        height="200"
+                                        class="blog_photo"
+                                        style="aspect-ratio: 300 / 200; object-fit: cover;"
+                                />
+                            </a>
+                            <div class="post_content">
+                                <div class="post_header">
+                                    <div class="category_inpost">
+                                        Design
+                                    </div>
+                                    <div class="post_date">May 15, 2023</div>
+                                    <div class="icon-container">
+                                        &nbsp;&nbsp;<i class="bi bi-chat-dots">2</i>
+                                        &nbsp;<i class="bi bi-heart"></i>
+                                    </div>
+                                </div>
+                                <a class="post_title_container" href="#">
+                                    <h2 class="post_title">
+                                        Designing a Minimalist Blog Layout
+                                    </h2>
+                                </a>
+                                <p class="text-gray-600 dark:text-gray-400 line-clamp-3">
+                                    In this article, we'll explore the principles of minimalist design and how to apply them to create a
+                                    clean and visually appealing blog layout.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="blogpost_box" data-v0-t="card" id="blogpost_box2">
+                            <a href="#">
+                                <img
+                                        src="/img/KakaoTalk_Photo_2024-06-12-15-39-06-1.png"
+                                        alt="Featured Post"
+                                        width="300"
+                                        height="200"
+                                        style="aspect-ratio: 300 / 200; object-fit: cover;"
+                                        class="blog_photo"
+                                        id="blog_photo2"
+                                />
+                            </a>
+                            <div class="post_content" id="post_content2">
+                                <div class="post_header" id="post_header2">
+                                    <div class="category_inpost" id="category_inpost2">
+                                        Development
+                                    </div>
+                                    <div class="post_date">May 10, 2023</div>
+                                    <div class="icon-container">
+                                        &nbsp;&nbsp;<i class="bi bi-chat-dots">2</i>
+                                        &nbsp;<i class="bi bi-heart"></i>
+                                    </div>
+                                </div>
+                                <a class="post_title_container" id="post_title_container2" href="#">
+                                    <h2 class="post_title">
+                                        Building a Responsive Web App with React
+                                    </h2>
+                                </a>
+                                <p class="text-gray-600 dark:text-gray-400 line-clamp-3">
+                                    Discover the best practices for building a responsive web application using React, including tips on
+                                    component structure, state management, and performance optimization.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="blogpost_box" id="blogpost_box3" data-v0-t="card">
+                            <a href="#">
+                                <img
+                                        src="/img/KakaoTalk_Photo_2024-06-12-15-37-02-3.png"
+                                        alt="Featured Post"
+                                        width="300"
+                                        height="200"
+                                        class="blog_photo"
+                                        id="blog_photo3"
+                                        style="aspect-ratio: 300 / 200; object-fit: cover;"
+                                />
+                            </a>
+                            <div class="post_content" id="post_content3">
+                                <div class="post_header" id="post_header3">
+                                    <div class="category_inpost" id="category_inpost3">
+                                        Productivity
+                                    </div>
+                                    <div class="post_date">May 5, 2023</div>
+                                    <div class="icon-container">
+                                        &nbsp;&nbsp;<i class="bi bi-chat-dots">1</i>
+                                        &nbsp;<i class="bi bi-heart"></i>
+                                    </div>
+                                </div>
+                                <a class="post_title_container" id="post_title_container3" href="#">
+                                    <h2 class="post_title">
+                                        5 Productivity Tips for Remote Workers
+                                    </h2>
+                                </a>
+                                <p class="text-gray-600 dark:text-gray-400 line-clamp-3">
+                                    Struggling to stay focused and productive while working from home? Check out these five practical
+                                    tips to boost your productivity and make the most of your remote work setup.ps to boost your
+                                    productivity and make the most of your remote work
+                                </p>
+                            </div>
+                        </div>
+                        <div class="blogpost_box" id="blogpost_box4" data-v0-t="card">
+                            <a href="#">
+                                <img
+                                        src="/img/KakaoTalk_Image_2024-06-17-12-11-40.jpeg"
+                                        alt="Featured Post"
+                                        width="300"
+                                        height="200"
+                                        class="blog_photo"
+                                        id="blog_photo4"
+                                        style="aspect-ratio: 300 / 200; object-fit: cover;"
+                                />
+                            </a>
+                            <div class="post_content" id="post_content4">
+                                <div class="post_header" id="post_header4">
+                                    <div class="category_inpost" id="category_inpost4">
+                                        Lifestyle
+                                    </div>
+                                    <div class="post_date">May 1, 2023</div>
+                                    <div class="icon-container">
+                                        &nbsp;&nbsp;<i class="bi bi-chat-dots">5</i>
+                                        &nbsp;<i class="bi bi-heart"></i>
+                                    </div>
+                                </div>
+                                <a class="post_title_container" id="post_title_container4" href="#">
+                                    <h2 class="post_title">
+                                        The Art of Mindful Living: A Beginner's Guide
+                                    </h2>
+                                </a>
+                                <p class="text-gray-600 dark:text-gray-400 line-clamp-3">
+                                    Discover the transformative power of mindfulness and learn practical techniques to incorporate it
+                                    into your daily life for a more balanced and fulfilling existence.ss and learn practical techniques
+                                    to incorporate it into your daily
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post_container2">
+
+                        <div data-v0-t="card">
+                            <div class="category_container" data-v0-t="card">
+                                <div class="category_title_container">
+                                    <a href="/post" class="btn-get-started">Make a new post</a><br>
+                                    <h3 class="category_title">Categories</h3>
+                                </div>
+                                <div class="p-6">
+                                    <ul class="category_content_container">
+                                        <li>
+                                            <a href="#" class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50">
+                                                Design
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50" href="#">
+                                                Development
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50" href="#">
+                                                Productivity
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50" href="#">
+                                                Lifestyle
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50" href="#">
+                                                Technology
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="popular_post_container" data-v0-t="card">
+                            <div class="flex flex-col space-y-1.5 p-6">
+                                <br><br>
+                                <h3 class="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight">Popular Posts</h3>
+                            </div>
+                            <div class="p-6">
+                                <ul class="space-y-4">
+                                    <li>
+                                        <a
+                                                class="flex items-center gap-4 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                                                href="#"
+                                        >
+                                            <img
+                                                    src="/img/111.jpeg"
+                                                    alt="Popular Post"
+                                                    width="60"
+                                                    height="60"
+                                                    class="rounded-md"
+                                                    style="aspect-ratio: 60 / 60; object-fit: cover;"
+                                            />
+                                            <div>
+                                                <h3 class="text-base font-medium line-clamp-2">Mastering CSS Grid: A Comprehensive Guide</h3>
+                                                <div class="text-gray-500 dark:text-gray-400 text-sm">May 20, 2023</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                                class="flex items-center gap-4 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                                                href="#"
+                                        >
+                                            <img
+                                                    src="/img/angel.png"
+                                                    alt="Popular Post"
+                                                    width="60"
+                                                    height="60"
+                                                    class="rounded-md"
+                                                    style="aspect-ratio: 60 / 60; object-fit: cover;"
+                                            />
+                                            <div>
+                                                <h3 class="text-base font-medium line-clamp-2">10 Inspiring Minimalist Web Designs</h3>
+                                                <div class="text-gray-500 dark:text-gray-400 text-sm">May 15, 2023</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                                href="#"
+                                                class="flex items-center gap-4 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                                        >
+                                            <img
+                                                    src="/placeholder.svg"
+                                                    alt="Popular Post"
+                                                    width="60"
+                                                    height="60"
+                                                    class="rounded-md"
+                                                    style="aspect-ratio: 60 / 60; object-fit: cover;"
+                                            />
+                                            <div>
+                                                <h3 class="text-base font-medium line-clamp-2">Unlocking the Power of Tailwind CSS</h3>
+                                                <div class="text-gray-500 dark:text-gray-400 text-sm">May 10, 2023</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </main>
+
+    </div>
+</div>
+</body>
+<!--부트스트랩-->
+<script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js}"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<!--태일윈즈-->
+<script th:src="@{https://cdn.tailwindcss.com}"></script>
+</html>

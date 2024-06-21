@@ -1,0 +1,169 @@
+
+\<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout_main/layout1_hmenu}">
+<head>
+    <meta charset="UTF-8">
+    <title>Devlog</title>
+    <link rel="shortcut icon" th:href="@{/im/DL.png}"/>
+    <!--부트스트랩 아이콘-->
+    <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css}" rel="stylesheet">
+    <!--부트스트랩 css-->
+    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="/css/myPage.css">
+    <script th:src="@{/js/loginForm.js}" defer></script>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <main class="container">
+        <section class="totalSection">
+            <div class="blogpost_section" data-v0-t="card">
+                <div class="blogtitle_section">
+                    <h3 class="blogposts">Blog Posts</h3>
+                    <button class="blogpost_button">
+                        Details
+                    </button>
+                </div>
+                <div class="blogpost_inside">
+                    <a class="blogpost_first" href="#" id="blogpost_first">
+                        <img
+                                src="https://minio.bmops.kro.kr/devlog/logo/notes2.gif"
+                                width="80"
+                                height="80"
+                                alt="Blog post thumbnail"
+                                class="post_img"
+                                id="post_img_first"
+                                style="aspect-ratio: 80 / 80; object-fit: cover;"
+                        />
+                        <div class="firstpost_container">
+                            <h3 class="firstpost_title">The Future of Web Development</h3>
+                            <p class="firstpost_content">
+                                In this blog post, we explore the latest trends and technologies shaping the future of web
+                                development.
+                            </p>
+                        </div>
+                    </a>
+                    <a href="#" class="blogpost_first" id="blogpost_second">
+                        <img
+                                src="https://minio.bmops.kro.kr/devlog/logo/feed.png"
+                                width="80"
+                                height="80"
+                                alt="Blog post thumbnail"
+                                class="post_img"
+                                id="post_img_second"
+                                style="aspect-ratio: 80 / 80; object-fit: cover;"
+                        />
+                        <div class="firstpost_container" id="second_container">
+                            <h3 class="firstpost_title" id="secondpost_title">Mastering React Hooks</h3>
+                            <p class="firstpost_content" id="second_content">
+                                Dive deep into the world of React Hooks and learn how to leverage them to build powerful and
+                                efficient web applications.n how to leverage them to build powerful and efficient web
+                            </p>
+                        </div>
+                    </a>
+                    <a class="blogpost_first" id="blogpost_third" href="#">
+                        <img
+                                src="https://minio.bmops.kro.kr/devlog/logo/yellow.png"
+                                width="80"
+                                height="80"
+                                alt="Blog post thumbnail"
+                                class="post_img"
+                                id="post_img_third"
+                                style="aspect-ratio: 80 / 80; object-fit: cover;"
+                        />
+                        <div class="firstpost_container" id="third_container">
+                            <h3 class="firstpost_title" id="thirdpost_title">Optimizing Website Performance</h3>
+                            <p class="firstpost_content" id="third_content">
+                                Learn how to optimize your website's performance and deliver a lightning-fast experience to your
+                                users.
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="comments_container" data-v0-t="card">
+                <div class="comments_title_container">
+                    <h3 class="comments_title">Comments</h3>
+                    <button class="blogpost_button" id="comments_detail">
+                        Details
+                    </button>
+                </div>
+                <div class="comments_inside_container">
+                    <div class="comments_frame">
+            <span class="user_img_frame">
+              <img class="user_img" alt="@shadcn" src="/placeholder-user.jpg" />
+            </span>
+                        <div class="comments_allcontents">
+                            <div class="name_time">
+                                <div class="comments_name">Jane Doe</div>
+                                <div class="comments_time">2 days ago</div>
+                            </div>
+                            <p class="comments_content">
+                                Great post! I really enjoyed reading about the future of web development.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="comments_frame" id="comments_frame_second">
+            <span class="user_img_frame" id="user_img_frame_second">
+              <img class="user_img" id="user_img_second" alt="@shadcn" src="/placeholder-user.jpg" />
+            </span>
+                        <div class="comments_allcontents" id="comments_allcontents2">
+                            <div class="name_time" id="name_time2">
+                                <div class="comments_name" id="comments_name2">John Smith</div>
+                                <div class="comments_time" id="comments_time2">1 week ago</div>
+                            </div>
+                            <p class="comments_content" id="comments_content2">
+                                Awesome tips on optimizing website performance. I'll definitely be implementing these on my own
+                                site.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="comments_frame" id="comments_frame3">
+            <span class="user_img_frame" id="user_img_frame3">
+              <img class="user_img" id="user_img3" alt="@shadcn" src="/placeholder-user.jpg" />
+            </span>
+                        <div class="comments_allcontents" id="comments_allcontents3">
+                            <div class="name_time" id="name_time3">
+                                <div class="comments_name" id="comments_name3">Sarah Johnson</div>
+                                <div class="comments_time" id="comments_time3">2 weeks ago</div>
+                            </div>
+                            <p class="comments_content" id="comments_content3">
+                                I'm really excited to try out the React Hooks techniques you covered in your latest post. Thanks for
+                                the great content!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="visitor_container" data-v0-t="card">
+                <div class="visitor_title_container">
+                    <h3 class="visitor_count">Visitor Count</h3>
+                    <button class="blogpost_button" id="visitor_detail">
+                        Details
+                    </button>
+                </div>
+                <div class="count_container">
+                    <div class="count_frame">
+                        <div class="count">12,345</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script th:src="@{/js/myPage.js}" defer></script>
+</body>
+<!--부트스트랩-->
+<script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js}"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<!--제이쿼리-->
+<script th:src="@{https://code.jquery.com/jquery-3.7.1.js}"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<!--태일윈즈-->
+<script th:src="@{https://cdn.tailwindcss.com}"></script>
+</html>

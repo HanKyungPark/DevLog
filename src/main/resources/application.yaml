@@ -1,22 +1,41 @@
 spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            authorization-grant-type: authorization_code
+            client-id: 0b16e5f5488cc0262219d50ab7b0d03c
+            client-secret: 0QOlXVhoDMiNByBovTSDswKLVjuwE8yW
+            scope: profile_nickname, account_email, profile_image
+            client-authentication-method: client_secret_post
+            redirect-uri: ${KAKAO_REDIRECT_URI}
+            client-name: Kakao
+        provider:
+          kakao:
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-name-attribute: id
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+
   application:
     name: devlog
-
-  mvc:
-    view:
-      prefix: /WEB-INF/
-      suffix: .jsp
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: ${MYSQL_HOST}
     username: ${MYSQL_USER}
     password: ${MYSQL_PASSWORD}
-  security:
     user:
       name: admin
       password: admin
 
 mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
   type-aliases-package: org.bitcamp.devlog.dto
   mapper-locations: classpath:mapper/*.xml

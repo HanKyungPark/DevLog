@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout_main/layout1_hmenu}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Devlog</title>
+    <link rel="shortcut icon" th:href="@{/im/DL.png}"/>
+    <!--부트스트랩 아이콘-->
+    <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css}" rel="stylesheet">
+    <!--부트스트랩 css-->
+    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}"/>
+    <!--해당 파일의 css 와 javascript 추가-->
+    <link rel="stylesheet" href="/css/feedPage.css">
+    <!--제이쿼리-->
+    <script th:src="@{https://code.jquery.com/jquery-3.7.1.js}"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="/js/feedPage.js"></script>
+
+</head>
+<body>
+
+<div layout:fragment="content">
+    <div id="dataContainer"></div>
+    <section class="section">
+        <div class="container">
+            <table style="width: 100%;height: 100%" class="table">
+
+
+            </table>
+        </div>
+        <div class=".div">
+
+        </div>
+    </section>
+
+</div>
+
+</body>
+<!--부트스트랩-->
+<script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js}"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+<!--태일윈즈-->
+<script th:src="@{https://cdn.tailwindcss.com}"></script>
+</html>

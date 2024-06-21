@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--부트스트랩 아이콘-->
+    <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css}" rel="stylesheet">
+    <!--부트스트랩 css-->
+    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}"/>
+<!--    css,script-->
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+<body>
+<div th:fragment="footer" th:class="footer">
+    <footer id="footer" class="footer">
+
+        <div class="container">
+            <div class="row gy-3">
+                <div class="col-lg-3 col-md-6 d-flex">
+                    <i class="bi bi-geo-alt icon"></i>
+                    <div class="address">
+                        <h4>Address</h4>
+                        <p>20, Gangnam-daero 94-gil,</p>
+                        <p>Gangnam-gu, Seoul, Republic of Korea, 06134</p>
+                        <p></p>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-3 col-md-6 d-flex">
+                    <i class="bi bi-telephone icon"></i>
+                    <div>
+                        <h4>Contact</h4>
+                        <p>
+                            <strong>Phone:</strong> <span>+82 10 6201 9228</span><br>
+                            <strong>Email:</strong> <span>kumupaf6998@naver.com</span><br>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 d-flex">
+                    <i class="bi bi-clock icon"></i>
+                    <div>
+                        <h4>Opening Hours</h4>
+                        <p>
+                            <strong>Mon-Fri:</strong> <span>8AM - 22PM</span><br>
+                            <strong>Saturday</strong>: <span>8AM - 18PM</span><br>
+                            <strong>Sunday</strong>: <span>Closed</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h4>Follow Us</h4>
+                    <div class="snsbox">
+                        <a href="#"><i class="bi bi-twitter-x" style="color:#e0e0ca"></i></a>
+                        <a href="#"><i class="bi bi-facebook" style="color:#e0e0ca"></i></a>
+                        <a href="#"><i class="bi bi-instagram" style="color:#e0e0ca"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="container copyright text-center mt-4">
+            <br><p>© <span>Copyright</span> <strong class="px-1 sitename">DevLog</strong> <span>All Rights Reserved</span></p>
+            <div class="credits">
+            </div>
+        </div>
+
+    </footer>
+</div>
+
+</body>
+<!--부트스트랩-->
+<script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js}"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<!--제이쿼리-->
+<script th:src="@{https://code.jquery.com/jquery-3.7.1.js}"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<!--태일윈즈-->
+<script th:src="@{https://cdn.tailwindcss.com}"></script>
+</html>
