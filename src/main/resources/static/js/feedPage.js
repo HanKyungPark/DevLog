@@ -25,7 +25,7 @@ $(function () {
                 let titleHtml = item.openType === 0 ? `<span class="lock-icon">[비공개]</span>${item.title}` : item.title;
 
                 let cell = $(`
-                            <div class="table-cell" onclick="location.href='${item.postUrl}'">
+                            <div class="table-cell" onclick="location.href='/detail?postUrl=${item.postUrl}'">
                                 <img src="https://minio.bmops.kro.kr/devlog/${item.file}">
                                 <h5>${titleHtml}</h5>
                                 <h6>${formattedDate}</h6>
