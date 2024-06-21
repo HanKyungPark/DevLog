@@ -11,15 +11,27 @@
     <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css}" rel="stylesheet">
     <!--부트스트랩 css-->
     <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" href="/css/newblogs.css">
+    <link rel="stylesheet" href="/css/newBlogs.css">
 </head>
 <style>
-    #wrapper{width: 1300px;padding: 100px 0;margin: 0 auto;}
-    @media screen and (max-width: 1300px){
-        #wrapper{width: auto;padding: 50px 30px;}
+    #wrapper {
+        width: 1300px;
+        padding: 100px 0;
+        margin: 0 auto;
     }
-    @media screen and (max-width: 700px){
-        #wrapper{width: auto;padding: 30px 15px;}
+
+    @media screen and (max-width: 1300px) {
+        #wrapper {
+            width: auto;
+            padding: 50px 30px;
+        }
+    }
+
+    @media screen and (max-width: 700px) {
+        #wrapper {
+            width: auto;
+            padding: 30px 15px;
+        }
     }
 </style>
 <body>
@@ -30,129 +42,38 @@
                 <div class="col-12">
                     <h2 class="section-title">New Blogs</h2>
                 </div>
+                <div th:each="list:${list}">
+
+
                 <div class="col-md-9 pr-md-5">
                     <div class="row">
                         <div class="col-12">
                             <div class="post-entry horizontal d-md-flex">
                                 <div class="media">
-                                    <a href="#"><img src="https://minio.bmops.kro.kr/devlog/logo/gradation.png" style="width: 100px;height: 100px" alt="Image" class="img-fluid"></a>
+                                    <a href="#"><img th:src="${list.file}"
+                                                     style="width: 100px;height: 100px" alt="Image"
+                                                     class="img-fluid"></a>
                                 </div>
                                 <div class="text">
-                                    <div class="meta-cat"><a href="#">Business</a></div>
-                                    <h2><a href="#">Far far away behind the Word Mountains far from Away</a></h2>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-                                    <div class="meta mb-0">
-                                        <span>May 10, 2020</span>
-                                        <span>&bullet;</span>
-                                        <span>5 mins read</span>
-                                    </div>
-
+                                    <a>New!</a>
+                                    <h2><a href="#" th:text="${list.blogId}" style="color: #4181f0"></a></h2>
+                                    <a href="#" th:text="${list.biography}" style="color: #3f3f3f"></a><br>
+                                    <a><span th:text="${#strings.substring(list.aCreatedAt,0,10)}" style="color: #787b7d"></span></a>
 
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-12">
-                            <div class="post-entry horizontal d-md-flex">
-                                <div class="media">
-                                    <a href="#"><img src="https://minio.bmops.kro.kr/devlog/logo/comment.gif" style="width: 100px;height: 100px" alt="Image" class="img-fluid"></a>
-                                </div>
-                                <div class="text">
-                                    <div class="meta-cat"><a href="#">Business</a></div>
-                                    <h2><a href="#">Far far away behind the Word Mountains far from Away</a></h2>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-                                    <div class="meta mb-0">
-                                        <span>May 10, 2020</span>
-                                        <span>&bullet;</span>
-                                        <span>5 mins read</span>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12">
-                            <div class="post-entry horizontal d-md-flex">
-                                <div class="media">
-                                    <a href="#"><img src="https://minio.bmops.kro.kr/devlog/logo/yellow.png" style="width: 100px;height: 100px" alt="Image" class="img-fluid"></a>
-                                </div>
-                                <div class="text">
-                                    <div class="meta-cat"><a href="#">Business</a></div>
-                                    <h2><a href="#">Far far away behind the Word Mountains far from Away</a></h2>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-                                    <div class="meta mb-0">
-                                        <span>May 10, 2020</span>
-                                        <span>&bullet;</span>
-                                        <span>5 mins read</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-12">
-                            <div class="post-entry horizontal d-md-flex">
-                                <div class="media">
-                                    <a href="#"><img src="https://minio.bmops.kro.kr/devlog/logo/flower.gif" style="width: 100px;height: 100px" alt="Image" class="img-fluid"></a>
-                                </div>
-                                <div class="text">
-                                    <div class="meta-cat"><a href="#">Business</a></div>
-                                    <h2><a href="#">Far far away behind the Word Mountains far from Away</a></h2>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-                                    <div class="meta mb-0">
-                                        <span>May 10, 2020</span>
-                                        <span>&bullet;</span>
-                                        <span>5 mins read</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12">
-                            <div class="post-entry horizontal d-md-flex">
-                                <div class="media">
-                                    <a href="#"><img src="https://minio.bmops.kro.kr/devlog/logo/lightblue.png" style="width: 100px;height: 100px" alt="Image" class="img-fluid"></a>
-                                </div>
-                                <div class="text">
-                                    <div class="meta-cat"><a href="#">Business</a></div>
-                                    <h2><a href="#">Far far away behind the Word Mountains far from Away</a></h2>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-                                    <div class="meta mb-0">
-                                        <span>May 10, 2020</span>
-                                        <span>&bullet;</span>
-                                        <span>5 mins read</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12">
-                            <div class="post-entry horizontal d-flex mb-0">
-                                <div class="media">
-                                    <a href="#" style="width: 100px"><img src="https://minio.bmops.kro.kr/devlog/logo/posting1.png" style="width: 100px;height: 100px" alt="Image" class="img-fluid"></a>
-                                </div>
-                                <div class="text">
-                                    <div class="meta-cat"><a href="#">Business</a></div>
-                                    <h2><a href="#">Far far away behind the Word Mountains far from Away</a></h2>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
-                                    <div class="meta mb-0">
-                                        <span>May 10, 2020</span>
-                                        <span>&bullet;</span>
-                                        <span>5 mins read</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
 
-                <div class="col-md-3">
+                </div>
+
+                <div class="col-md-3" style="position: absolute; top: 270px;right: 180px" >
                     <div class="mb-4">
                         <a data-fancybox class="video-wrap">
 
-                            <img src="https://minio.bmops.kro.kr/devlog/logo/notes2.gif" alt="Image" class="img-fluid rounded">
+                            <img src="https://minio.bmops.kro.kr/devlog/logo/notes2.gif" alt="Image"
+                                 class="img-fluid rounded">
                         </a>
                     </div>
                     <div class="floating-block sticky-top text-center">
@@ -167,18 +88,16 @@
             </div>
 
 
-
-                    </div>
-                </div>
-
-
-
-                    </div>
-                </div>
-
-            </div>
         </div>
     </div>
+
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
 </div>
 
 </body>

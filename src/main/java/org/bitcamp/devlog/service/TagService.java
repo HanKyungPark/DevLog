@@ -5,8 +5,6 @@ import org.bitcamp.devlog.dto.Tag;
 import org.bitcamp.devlog.mapper.TagMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 @RequiredArgsConstructor
 public class TagService {
@@ -26,9 +24,4 @@ public class TagService {
         tagMapper.save(tag);
     }
 
-
-    public String findTagNameByTag_id(Long postId){
-        String tagname=tagMapper.findTagNameByTag_id(postId);
-        return tagname;
-    }
 }
