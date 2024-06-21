@@ -117,6 +117,7 @@ public class PostRestController {
 
     @PostMapping("/api/post/list")
     public List<Post> findByHomePage(@RequestParam String homepage) {
+        int test = 0;
         return postService.findByHomePage(homepage);
     }
 

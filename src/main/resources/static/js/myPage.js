@@ -4,7 +4,7 @@ $(document).ready(function() {
   //포스트가져와
   function loadPosts() {
     $.ajax({
-      url: '/api/mypage/post',
+      url: '/api/mypage/posts',
       method: 'GET',
       success: function(data) {
         let postsHtml = '';
@@ -38,14 +38,13 @@ $(document).ready(function() {
                         />
                         <div class="firstpost_container" id="third_container">
                             <h3 class="firstpost_title" id="thirdpost_title">
-                            ${formattedDate}
+                              ${formattedDate}
                             </h3>
                             <p class="firstpost_content" id="third_content">
                                 ${post.title}
                             </p>
                         </div>
                     </a>`;
-
         });
 
 
