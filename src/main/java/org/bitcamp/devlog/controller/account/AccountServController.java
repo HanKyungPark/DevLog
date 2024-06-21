@@ -32,7 +32,9 @@ public class AccountServController {
      */
 
     @GetMapping("/mypage")
-    public String mypage() {
+    public String mypage(
+        Model model
+    ) {
         return "contents/myPage";
     }
 
@@ -64,7 +66,6 @@ public class AccountServController {
 
         return "contents/loginForm";
     }
-
     @GetMapping("/{homepage}")
     public String mypage(@PathVariable String homepage) {
         return "contents/myBlogPage";

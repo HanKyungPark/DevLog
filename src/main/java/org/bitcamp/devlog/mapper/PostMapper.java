@@ -33,5 +33,11 @@ public interface PostMapper {
 
     //랜덤으로 리스트
     List<Post> findRandomPosts();
+    //posturl로 글 디테일 가져오기
 
+
+    //마이블로그
+    List<Post> findByHomePage(String homepage);
+
+    List<Object> findBypostUrl(String postUrl);
 }

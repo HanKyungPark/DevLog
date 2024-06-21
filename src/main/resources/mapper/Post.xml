@@ -47,7 +47,7 @@
         where post_id = #{postId}
     </delete>
 
-    <select id="findById" parameterType="Post" resultMap="postMap">
+    <select id="findBypostUrl" parameterType="String" resultMap="postMap">
         select
             p.post_id as post_id,
             category_id,
@@ -60,11 +60,10 @@
             title,
             account_id,
             file,
-            post_tag_id,
             tag_id,
             tag_name
         from post p left outer join post_tag_join ptj on p.post_id = ptj.post_id
-        where p.post_id = #{postId}
+        where p.post_url = #{postUrl}
     </select>
 
     <!--태그검색-->
@@ -73,6 +72,12 @@
         from post
         where post_id = #{postId}
           and account_id = #{accountId}
+    </select>
+
+    <select id="findAllByAccountId" parameterType="long" resultType="Post">
+        select *
+        from post
+        where account_id = #{accountId}
     </select>
 
     <!--제목검색-->
@@ -89,6 +94,19 @@
         from post
         order by rand()
         limit 20
+    </select>
+
+    <select id="findByHomePage" parameterType="String" resultType="Post">
+        select * from post p join account a on p.account_id = a.account_id
+        where a.homepage = #{homepage}
+    </select>
+
+
+
+
+
+    <select id="findAllByPostUrl" parameterType="String" resultType="Post">
+        select * from post where post_url=#{postUrl}
     </select>
 
 </mapper>
