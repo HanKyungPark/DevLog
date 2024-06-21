@@ -29,9 +29,13 @@ public class VisitService {
         Map<String,Object> map=new HashMap<>();
         map.put("accountId",session.getAttribute("accountId").toString());
         map.put("visitDate",visitDate);
-        long visits= visitMapper.findByAccountIdAndVisitDate(map);
+        long visits = visitMapper.findByAccountIdAndVisitDate(map);
 
         return visits;
     };
+
+    public Long findVisitCountByAccountId(Long accountId) {
+        return visitMapper.findVisitCountByAccountId(accountId);
+    }
 
 }

@@ -12,4 +12,6 @@ public interface VisitMapper {
     int findByAccountIdAndVisitDate(Map<String, Object> map);
 
     List<Visit> findAllByAccountId(String account_id);
+
+    Long findVisitCountByAccountId(Long accountId);
 }
