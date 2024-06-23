@@ -120,5 +120,13 @@ public class PostRestController {
         return postService.findByHomePage(homepage);
     }
 
+    @PostMapping("/detail/comment")
+    public ResponseEntity<List<String>> detailPost(@RequestParam String postId) {
+        System.out.println(postId);
+        List<String> posts= new ArrayList<>();
+             posts.add(postId);
+             System.out.println(posts);
+        return new ResponseEntity<>(posts,HttpStatus.OK);
+    }
 }
 
