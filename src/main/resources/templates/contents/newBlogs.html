@@ -51,40 +51,65 @@
                             <div class="post-entry horizontal d-md-flex">
                                 <div class="media">
                                     <a href="#"><img th:src="${list.file}"
-                                                     style="width: 100px;height: 100px" alt="Image"
+                                                     style="width: 100px;height: 100px;border-radius: 40px" alt="Image"
                                                      class="img-fluid"></a>
                                 </div>
-                                <div class="text">
-                                    <a>New!</a>
+                                <div class="text" style="width: 1000px">
+                                    <div style="width: 200px; height: 100px;border: 1px solid black; float: right;margin-right: 20px">
+                                        사진나오는 곳
+                                        <h5>포스팅제목</h5>
+                                    </div>
+                                    <div style="width: 200px; height: 100px;border: 1px solid black; float: right;margin-right: 20px">
+                                        사진나오는 곳
+                                        <h5>포스팅제목</h5>
+                                    </div>
+                                    <div style="width: 200px; height: 100px;border: 1px solid black; float: right;margin-right: 20px">
+                                        사진나오는 곳
+                                        <h5>포스팅제목</h5>
+                                    </div>
+                                    <div><a>New!</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button class="follow-btn" style="width: 50px;background-color: #37dde6;color: white;border:1px ;border-radius: 20px">팔로우</button>
+                                    </div>
+
+                                    <script>
+                                        // 클릭 이벤트 핸들러 함수 정의
+                                        function toggleFollow(event) {
+                                            const button = event.target;
+                                            let clickCount = button.dataset.clickCount ? parseInt(button.dataset.clickCount) : 0;
+                                            clickCount++;
+
+                                            if (clickCount % 2 === 1) {
+                                                button.style.backgroundColor = '#80898a';
+                                                button.textContent = '팔로잉';
+                                            } else {
+                                                button.style.backgroundColor = '#37dde6';
+                                                button.textContent = '팔로우';
+                                            }
+
+                                            button.dataset.clickCount = clickCount;
+                                        }
+
+                                        document.addEventListener('DOMContentLoaded', (event) => {
+                                            const buttons = document.querySelectorAll('.follow-btn');
+                                            buttons.forEach(button => {
+                                                button.onclick = toggleFollow;
+                                                button.dataset.clickCount = 0; // 초기 클릭 카운트를 0으로 설정
+                                            });
+                                        });
+                                    </script>
                                     <h2><a href="#" th:text="${list.blogId}" style="color: #4181f0"></a></h2>
                                     <a href="#" th:text="${list.biography}" style="color: #3f3f3f"></a><br>
                                     <a><span th:text="${#strings.substring(list.aCreatedAt,0,10)}" style="color: #787b7d"></span></a>
 
+
                                 </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
 
                 </div>
 
-                <div class="col-md-3" style="position: absolute; top: 270px;right: 180px" >
-                    <div class="mb-4">
-                        <a data-fancybox class="video-wrap">
-
-                            <img src="https://minio.bmops.kro.kr/devlog/logo/notes2.gif" alt="Image"
-                                 class="img-fluid rounded">
-                        </a>
-                    </div>
-                    <div class="floating-block sticky-top text-center">
-                        <h2 class="mb-3 text-black">Subscribe to Newsletter</h2>
-                        <p>Far far away behind the word mountains far from.</p>
-                        <form action="#">
-                            <input type="email" class="form-control mb-2" placeholder="Enter email">
-                            <input type="submit" value="Subscribe" class="btn btn-primary btn-block">
-                        </form>
-                    </div>
-                </div>
             </div>
 
 
@@ -93,12 +118,7 @@
 
 
 </div>
-</div>
 
-</div>
-</div>
-</div>
-</div>
 
 </body>
 <!--부트스트랩-->

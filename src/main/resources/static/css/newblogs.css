@@ -1565,7 +1565,7 @@ input[type="password"] {
 
 .section-latest {
     padding-top: 10px;
-    padding-left: 10px;
+    padding-left: 100px;
     padding-bottom: 100px !important; }
 
 .custom-accordion .accordion-item {
@@ -1864,4 +1864,9 @@ input[type="password"] {
     height: 1px; }
 .media{
     float: left;
+}
+
+.follow-btn.active {
+    background-color: lightgray;
+    text-content: '팔로잉';
 }
