@@ -3,8 +3,13 @@ package org.bitcamp.devlog.controller.post;
 
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+
 import org.bitcamp.devlog.dto.Account;
 import org.bitcamp.devlog.service.*;
+
+import org.bitcamp.devlog.service.AccountService;
+import org.bitcamp.devlog.service.PostService;
+
 
 import org.bitcamp.devlog.dto.Post;
 import org.bitcamp.devlog.dto.PostTag;
@@ -23,10 +28,13 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class PostServController {
+
     private final PostService postService;
     private final PostTagService postTagService;
     private final TagService tagService;
     private final AccountService accountService;
+
+
 
 
 
@@ -52,12 +60,13 @@ public class PostServController {
     @GetMapping("/detail")
     public String detail(@RequestParam String postUrl, Model model) {
 
-        List<Object> tag=new ArrayList<>();
-        tag=postService.findPost_namebypostUrl(postUrl);
+        List<Object> tag = new ArrayList<>();
+        tag = postService.findPost_namebypostUrl(postUrl);
         model.addAttribute("post",tag);
 
 
         System.out.println(tag);
+
         return "contents/postingDetail";
     }
 

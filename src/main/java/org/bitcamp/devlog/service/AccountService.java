@@ -12,8 +12,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RequiredArgsConstructor
+
 @Service
+@RequiredArgsConstructor
 public class AccountService {
 
     private final AccountMapper accountMapper;
