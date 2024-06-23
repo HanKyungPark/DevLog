@@ -101,13 +101,11 @@
         where a.homepage = #{homepage}
     </select>
 
+    <delete id="deleteByPostUrl" parameterType="String">
+        delete from post
+        where posturl=#{postUrl}
 
-
-
-
-    <select id="findAllByPostUrl" parameterType="String" resultType="Post">
-        select * from post where post_url=#{postUrl}
-    </select>
+    </delete>
 
 </mapper>
 

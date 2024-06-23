@@ -64,4 +64,13 @@ public class AccountService {
     public String findNameByAccountId(long accountId){
         return  accountMapper.findNameByAccountId(accountId);
     }
+
+    //마이페이지 댓글리스트
+    public String findFileByAccountId(){
+        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
+            .getContext()
+            .getAuthentication()
+            .getPrincipal();
+        return accountMapper.findFileByAccountId(oauth2User.getAccountId());
+    }
 }

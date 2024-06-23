@@ -26,6 +26,8 @@ public class PostService {
     private final PostTagMapper postTagMapper;
     private final TagMapper tagMapper;
 
+
+
     public void save(Post post){
         postMapper.save(post);
     }
@@ -47,6 +49,7 @@ public class PostService {
 
         return map;
     }
+
     public Post findByPostIdAndAccountId(Long postId, Long accountId){
         return postMapper.findByPostIdAndAccountId(postId, accountId);
     }
@@ -55,11 +58,12 @@ public class PostService {
         return postMapper.findRandomPosts();
     }
 
+
     public List<Post> findAllByAccountId(){
         Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
-                .getContext()
-                .getAuthentication()
-                .getPrincipal();
+            .getContext()
+            .getAuthentication()
+            .getPrincipal();
         return postMapper.findAllByAccountId(oauth2User.getAccountId());
     }
 
@@ -87,5 +91,10 @@ public class PostService {
 //        return postName;
         List<Object> list=postMapper.findBypostUrl(postUrl);
         return list;
+    }
+
+
+    public void deleteByPostUrl(String postUrl) {
+        postMapper.deleteByPostUrl(postUrl);
     }
 }

@@ -35,11 +35,6 @@ public class PostServController {
     private final AccountService accountService;
 
 
-
-
-
-
-
     @GetMapping("/contents")
     public String post()
     {
