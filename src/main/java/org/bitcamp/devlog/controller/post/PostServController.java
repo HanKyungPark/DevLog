@@ -55,6 +55,8 @@ public class PostServController {
         List<Object> tag=new ArrayList<>();
         tag=postService.findPost_namebypostUrl(postUrl);
         model.addAttribute("post",tag);
+
+
         System.out.println(tag);
         return "contents/postingDetail";
     }

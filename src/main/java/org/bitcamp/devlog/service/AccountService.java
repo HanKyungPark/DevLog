@@ -60,4 +60,7 @@ public class AccountService {
         return accountMapper.findAll();
     }
 
+    public String findNameByAccountId(long accountId){
+        return  accountMapper.findNameByAccountId(accountId);
+    }
 }

@@ -11,275 +11,163 @@
     <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css}" rel="stylesheet">
     <!--부트스트랩 css-->
     <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}"/>
+    <!--제이쿼리-->
+    <script th:src="@{https://code.jquery.com/jquery-3.7.1.js}"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="/js/postingDetail.js"></script>
 </head>
 <body>
 <div layout:fragment="content">
 
-    <div class="container max-w-3xl px-4 py-12 mx-auto">
-        <article class="prose prose-gray dark:prose-invert">
-            <div class="space-y-4 not-prose">
-                <h1 class="text-4xl font-extrabold tracking-tight lg:text-5xl" th:text="${post.title}">
-                    게시글 제목
-                </h1>
-                <div class="flex items-center gap-4">
-                    <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                        <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="w-4 h-4"
-                        >
-                            <path d="M8 2v4"></path>
-                            <path d="M16 2v4"></path>
-                            <rect width="18" height="18" x="3" y="4" rx="2"></rect>
-                            <path d="M3 10h18"></path>
-                        </svg>
-                        <span th:text = "${post.createdAt}">작성날짜</span>
-                    </div>
-                    <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                        <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="w-4 h-4"
-                        >
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polyline points="12 6 12 12 16 14"></polyline>
-                        </svg>
-                    </div>
-                </div>
-                <div class="flex flex-wrap gap-2">
-                    <a
-                            class="inline-flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-900 transition-colors hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
-                            href="#"
-                    >
-                        <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="w-4 h-4"
-                        >
-                            <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"></path>
-                            <circle cx="7.5" cy="7.5" r=".5" fill="currentColor"></circle>
-                        </svg>
-                        Web Design
-                    </a>
-                    <a
-                            class="inline-flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-900 transition-colors hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
-                            href="#"
-                    >
-                        <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="w-4 h-4"
-                        >
-                            <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"></path>
-                            <circle cx="7.5" cy="7.5" r=".5" fill="currentColor"></circle>
-                        </svg>
-                        Accessibility
-                    </a>
-                    <a
-                            class="inline-flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-900 transition-colors hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
-                            href="#"
-                    >
-                        <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="w-4 h-4"
-                        >
-                            <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"></path>
-                            <circle cx="7.5" cy="7.5" r=".5" fill="currentColor"></circle>
-                        </svg>
-                        User Experience
-                    </a>
-                </div>
-            </div>
-            <p>
-                In today's digital landscape, where the internet has become an integral part of our daily lives, the
-                importance of accessibility in web design cannot be overstated. Accessibility is not just a consideration, but
-                a fundamental requirement that ensures everyone, regardless of their abilities, can access and engage with
-                online content and services. internet has become an integral part of our daily lives, the importance of
-                accessibility in
-            </p>
-            <p>
-                Accessibility in web design is about creating websites and applications that are usable by people with a wide
-                range of abilities, including those with visual, auditory, motor, or cognitive impairments. By incorporating
-                accessibility best practices, designers and developers can ensure that their creations are inclusive,
-                user-friendly, and provide an equal opportunity for all users to access and interact with the content.ng
-                websites and applications that are usable by people with a wide range of abilities, including those with
-                visual, auditory, motor, or cognitive impairments. By incorporating accessibility best
-            </p>
-            <h2>The Benefits of Accessible Web Design</h2>
-            <p>
-                Implementing accessible web design practices offers numerous benefits, both for users and businesses. Some of
-                the key advantages include:ffers numerous
-            </p>
-            <ul>
-                <li>
-                    Improved user experience: Accessible websites are easier to navigate, more intuitive, and provide a better
-                    overall experience for all users, regardless of their abilities.
-                </li>
-                <li>
-                    Increased reach and inclusivity: By catering to users with disabilities, businesses can expand their
-                    audience and reach a wider customer base, fostering a more inclusive online environment.o users with
-                    disabilities, businesses can expand their audience and reach a wider customer base, fostering a more
-                    inclusive online
-                </li>
-                <li>
-                    Legal compliance: In many countries, there are laws and regulations that require websites to meet certain
-                    accessibility standards, such as the Web Content Accessibility Guidelines (WCAG). Adhering to these
-                    guidelines can help organizations avoid legal issues and potential fines.s and regulations that require
-                    websites to meet certain accessibility standards, such as the Web Content Accessibility Guidelines
-                </li>
-                <li>
-                    Enhanced search engine optimization (SEO): Accessible websites often have better structure, clearer content,
-                    and more user-friendly features, which can improve their search engine rankings and visibility.cessible
-                    websites
-                </li>
-                <li>
-                    Improved brand reputation: Demonstrating a commitment to accessibility can enhance a company's reputation,
-                    positioning it as a socially responsible and inclusive organization.
-                </li>
-            </ul>
-            <h2>Implementing Accessible Web Design Practices</h2>
-            <p>
-                Implementing accessible web design practices involves a multi-faceted approach that considers the diverse
-                needs of users. Some key principles to follow include:siders the diverse needs of users.
-            </p>
-            <ul>
-                <li>
-                    Providing alternative text for images, videos, and other non-text content to ensure they are accessible to
-                    users with visual impairments.
-                </li>
-                <li>
-                    Ensuring that the website's structure and navigation are intuitive and easy to use, with clear headings,
-                    logical organization, and keyboard accessibility.
-                </li>
-                <li>
-                    Ensuring that color contrast ratios meet WCAG guidelines to accommodate users with visual impairments or
-                    color blindness.
-                </li>
-                <li>
-                    Providing captions and transcripts for audio and video content to support users with hearing impairments.
-                </li>
-                <li>
-                    Designing forms and interactive elements to be easily navigable and operable by users with motor or
-                    cognitive impairments.
-                </li>
-            </ul>
-            <p>
-                By incorporating these and other accessibility best practices, designers and developers can create websites
-                that are inclusive, user-friendly, and provide an equal opportunity for all users to access and engage with
-                the content.
-            </p>
-        </article>
-        <div class="mt-12 space-y-6">
-            <h2 class="text-2xl font-bold">Comments</h2>
-            <div class="space-y-4">
-                <div class="flex items-start gap-4">
-        <span class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">
-          <img class="aspect-square h-full w-full" alt="@shadcn" src="/placeholder-user.jpg" />
-        </span>
-                    <div class="flex-1 space-y-2">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-base font-medium">Acme User</h3>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">May 16, 2023</p>
+    <div th:each="post : ${post}">
+        <div class="container max-w-3xl px-4 py-12 mx-auto">
+            <article class="prose prose-gray dark:prose-invert">
+                <div class="space-y-4 not-prose">
+                    <h1 class="text-4xl font-extrabold tracking-tight lg:text-5xl" th:text="${post.title}">
+                        The Importance of Accessibility in Web Design
+                    </h1>
+                    <div class="flex items-center gap-4">
+                        <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                            <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="w-4 h-4"
+                            >
+                                <path d="M8 2v4"></path>
+                                <path d="M16 2v4"></path>
+                                <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+                                <path d="M3 10h18"></path>
+                            </svg>
+                            <span th:text="${post.pCreatedAt}">May 15, 2023</span>
                         </div>
-                        <p>
-                            This is a great article on the importance of accessibility in web design. I completely agree that it's a
-                            fundamental requirement for creating inclusive and user-friendly experiences online.
-                        </p>
-                    </div>
-                </div>
-                <div class="flex items-start gap-4">
-        <span class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">
-          <img class="aspect-square h-full w-full" alt="@shadcn" src="/placeholder-user.jpg" />
-        </span>
-                    <div class="flex-1 space-y-2">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-base font-medium">작성자 이름</h3>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">작성 날짜</p>
+                        <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                            <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="w-4 h-4"
+                            >
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            <div th:each="tag : ${post.postTags}">
+                                <div>
+
+
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+
+                                    <a
+                                            class="inline-flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-900 transition-colors hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
+                                            href="#"
+                                    >
+                                        <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="w-4 h-4"
+                                        >
+                                            <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"></path>
+                                            <circle cx="7.5" cy="7.5" r=".5" fill="currentColor"></circle>
+                                        </svg>
+                                        <span th:if="${tag.tagName != null}" th:text="${tag.tagName}">5 min read</span>
+                                        <span th:if="${tag.tagName == null}">No Tag</span>
+
+                                    </a>
+                                </div>
+                            </div>
+
                         </div>
-                        <p>
-                            Excellent points! Accessibility should be a top priority for any modern website or application. The
-                            benefits you outlined are really compelling, especially the imp
-                        </p>
+
                     </div>
                 </div>
-            </div>
-            <div>
-                <div th:each >
+
+                <div class="cont" th:utext="${post.pContent}">
 
                 </div>
-            </div>
-            <div>
-                <h2 class="text-2xl font-bold">Leave a Comment</h2>
-                <form class="mt-4 space-y-4">
-        <textarea
-                class="flex w-full rounded-md border border-input bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 p-4 min-h-[150px]"
-                placeholder="Write your comment..."
-        ></textarea>
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-2">
+            </article>
+
+            <div class="mt-12 space-y-6" style="width: 100%">
+                <h2 class="text-2xl font-bold">Comments</h2>
+                <div class="space-y-4">
+                    <div class="flex items-start gap-4">
+        <span class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">
+          <img class="aspect-square h-full w-full" alt="@shadcn" src="/placeholder-user.jpg"/>
+        </span>
+                        <div class="flex-1 space-y-2">
+                            <div class="flex items-center justify-between" id="comment">
+
+                                    <table id="commentTable" class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>닉네임</th>
+                                            <th>Content</th>
+                                            <th>Created At</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold">Leave a Comment</h2>
+                        <form class="form mt-4 space-y-4" id="form" method="post">
+                            <input type="hidden" id="postId" th:value="${post.postId}"></input>
+                            <input type="hidden" id="accountId" th:value="${post.accountId}">
+                            <textarea
+                                    class="flex w-full rounded-md border border-input bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 p-4 min-h-[150px]"
+                                    placeholder="Write your comment..." id="cContent"
+                            ></textarea>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
             <span class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10">
-              <img class="aspect-square h-full w-full" alt="@shadcn" src="/placeholder-user.jpg" />
+              <img class="aspect-square h-full w-full" alt="@shadcn" src="/placeholder-user.jpg"/>
             </span>
-                            <span class="text-sm text-gray-500 dark:text-gray-400">Commenting as Jane Doe</span>
-                        </div>
-                        <button
-                                class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
-                                type="submit"
-                        >
-                            Post Comment
-                        </button>
+                                    <span class="text-sm text-gray-500 dark:text-gray-400">Commenting as Jane Doe</span>
+                                </div>
+                                <button
+                                        class="btn inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+                                        type="submit"
+                                >
+                                    Post Comment
+                                </button>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
-    </div>
 
-</div>
+        </div>
+
 
 </body>
 <!--부트스트랩-->
 <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js}"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-<!--제이쿼리-->
-<script th:src="@{https://code.jquery.com/jquery-3.7.1.js}"
-        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <!--태일윈즈-->
 <script th:src="@{https://cdn.tailwindcss.com}"></script>
 </html>

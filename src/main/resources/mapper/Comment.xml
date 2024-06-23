@@ -3,7 +3,7 @@
 <mapper namespace="org.bitcamp.devlog.mapper.CommentMapper">
 
     <insert id="save" parameterType="Comment">
-        insert into comment (c_Created_at, c_updated_at, c_content, parent_id, post_id, account_id)
+        insert into comment (c_created_at, c_updated_at, c_content, parent_id, post_id, account_id)
         values (now(), null, #{cContent}, #{parentId}, #{postId}, #{accountId})
     </insert>
 
