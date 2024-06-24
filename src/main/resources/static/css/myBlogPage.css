@@ -1,9 +1,13 @@
 /* 포스트 컨테이너 */
+
 .post_container {
+    min-width: 80%; /* or any other value you prefer */
     display: flex;
     flex-wrap: wrap; /* 화면이 작을 경우 자동으로 다음 줄로 넘어감 */
     gap: 20px; /* 포스트 간 간격 */
-    justify-content: flex-start; /* 포스트들을 왼쪽에서부터 정렬 */
+    justify-content: flex-start;
+    width: 100%;
+/* 포스트들을 왼쪽에서부터 정렬 */
     padding: 20px; /* 전체 패딩 추가 */
 }
 
@@ -16,6 +20,8 @@
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* 호버 효과 */
     overflow: hidden; /* 넘치는 부분 숨김 */
+    margin: 0;
+    flex-grow: 1;
 }
 
 /* 포스트 박스 호버 효과 */
@@ -77,11 +83,16 @@
     display: flex;
     align-items: center;
 }
-
+ㅌ
 .icon-container i {
     margin-left: 8px; /* 아이콘 사이 간격 */
     font-size: 18px; /* 아이콘 크기 */
     color: #6b7280; /* 아이콘 색상 */
+}
+.post_date {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 10px;
 }
 
 /* 반응형 조정 */
