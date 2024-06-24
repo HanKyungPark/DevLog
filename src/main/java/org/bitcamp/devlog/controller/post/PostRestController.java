@@ -13,10 +13,7 @@ import org.bitcamp.devlog.dto.Oauth2User;
 import org.bitcamp.devlog.dto.Post;
 import org.bitcamp.devlog.dto.PostTag;
 import org.bitcamp.devlog.dto.Tag;
-import org.bitcamp.devlog.service.CategoryService;
-import org.bitcamp.devlog.service.PostService;
-import org.bitcamp.devlog.service.PostTagService;
-import org.bitcamp.devlog.service.TagService;
+import org.bitcamp.devlog.service.*;
 import org.bitcamp.devlog.service.minio.MinioService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -37,6 +34,7 @@ public class PostRestController {
     private final PostTagService postTagService;
     private final CategoryService categoryService;
     private final MinioService minioService;
+    private final VisitService visitService;
 
     @PostMapping(value = "/api/post/posting", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> posting(
@@ -108,10 +106,11 @@ public class PostRestController {
      * RP :
      */
 
-    @GetMapping("/api/post/list")
-    public ResponseEntity<List<Post>> feedPagePostList() {
-        List<Post> posts = postService.findRandomPosts();
-        return new ResponseEntity<>(posts, HttpStatus.OK);
+    @PostMapping("/api/post/list")
+    public List<Map<String,Object>>  feedPagePostList() {
+
+
+        return postService.findRandomPosts();
     }
 
 
@@ -121,11 +120,10 @@ public class PostRestController {
     }
 
     @PostMapping("/detail/comment")
-    public ResponseEntity<List<String>> detailPost(@RequestParam String postId) {
-        System.out.println(postId);
+    public ResponseEntity<List<String>> commentPost(@RequestParam String postId) {
         List<String> posts= new ArrayList<>();
              posts.add(postId);
-             System.out.println(posts);
+             System.out.println(posts.get(0));
         return new ResponseEntity<>(posts,HttpStatus.OK);
     }
 
@@ -142,6 +140,21 @@ public class PostRestController {
         @RequestBody Map<String, String> postUrl
     ){
         postService.deleteByPostUrl(postUrl.get("postUrl"));
+
         return new ResponseEntity<>("성공적으로 삭제되었습니다.", HttpStatus.OK);
     }
+
+    //postdetail 바꾸기
+    @PostMapping("/api/post/detail")
+    public ResponseEntity<Object> detailPost(@RequestParam String postUrl,
+                                           @RequestParam Long accountId
+    ) {
+      List<Object> list=postService.findAllbypostUrl(postUrl);
+//      조회수 늘리기
+      visitService.updateVisit(accountId);
+
+        return new ResponseEntity<>(list,HttpStatus.OK);
+    };
+
+
 }
