@@ -47,7 +47,9 @@ public class PostServController {
         return "contents/postingForm";
     }
     @GetMapping("/newblogs")
-    public String newblogs() {
+    public String newblogs(Model model) {
+        List<Account> list=accountService.findAll();
+        model.addAttribute("list",list);
         return "contents/newBlogs";
     }
 
@@ -67,14 +69,6 @@ public class PostServController {
     @GetMapping("/{homepage}/{postUrl}/detail")
     public String postDetail(@PathVariable String homepage, @PathVariable String postUrl){
         return "contents/postingDetail";
-    }
-
-    //마이페이지에서 수정페이지로 이동
-    @GetMapping("/mypage/post/update/{postUrl}")
-    public String mypageToPostUpdatePage(
-        @PathVariable String postUrl
-    ){
-        return "contents/updateForm";
     }
 
 

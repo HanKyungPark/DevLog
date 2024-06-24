@@ -1,7 +1,6 @@
 package org.bitcamp.devlog.controller.post;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -63,7 +62,7 @@ public class PostRestController {
             .categoryId(
                 categoryService.findCategoryIdByCategoryType(
                     (String) postData.get("categoryType" )))
-            .file("https://minio.bmops.kro.kr/devlog/"+oauth2User.getEmail()+"/"+minioService.uploadFile("devlog", oauth2User.getEmail(), file))
+            .file(oauth2User.getEmail()+"/"+minioService.uploadFile("devlog", oauth2User.getEmail(), file))
             .build();
 
         // post 내용 저장
@@ -136,15 +135,15 @@ public class PostRestController {
     }
 
     //마이페이지 포스트 삭제
-    @PostMapping("/api/mypage/post/delete")
+    @GetMapping("/api/mypage/post/delete")
     public ResponseEntity<String> myPagePostDelete(
         @RequestBody Map<String, String> postUrl
     ){
-        System.out.println(postUrl);
         postService.deleteByPostUrl(postUrl.get("postUrl"));
 
         return new ResponseEntity<>("성공적으로 삭제되었습니다.", HttpStatus.OK);
     }
+<<<<<<< HEAD
 
 
     //postdetail 바꾸기
@@ -201,4 +200,6 @@ public class PostRestController {
     }
 
 
+=======
+>>>>>>> parent of 99bbd97 (mypage button)
 }

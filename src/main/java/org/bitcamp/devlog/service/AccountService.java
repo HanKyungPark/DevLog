@@ -74,7 +74,4 @@ public class AccountService {
         return accountMapper.findFileByAccountId(oauth2User.getAccountId());
     }
 
-    public List<Account> findAllOrderByCreatedAt() {
-        return accountMapper.findAllOrderByCreatedAt();
-    }
 }

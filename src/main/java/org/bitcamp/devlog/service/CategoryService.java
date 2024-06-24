@@ -40,8 +40,4 @@ public class CategoryService {
     public Long findCategoryIdByCategoryType(String categoryType){
         return categoryMapper.findCategoryIdByCategoryType(categoryType);
     }
-
-    public String findCategoryTypeByCategoryId(Long categoryId) {
-        return categoryMapper.findCategoryTypeByCategoryId(categoryId);
-    }
 }

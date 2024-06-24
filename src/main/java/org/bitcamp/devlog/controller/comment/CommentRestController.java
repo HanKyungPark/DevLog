@@ -58,18 +58,10 @@ public class CommentRestController {
     @PostMapping("/api/comment/list")
     public ResponseEntity<List<Comment>> listComments(@RequestParam Long postId ) {
         List<Comment> comments = commentService.findAllByPostId(postId);
-        return new ResponseEntity<>(comments,HttpStatus.OK);
-    }
 
-    //마이페이지 댓글 삭제
-    @PostMapping("/api/mypage/comment/delete")
-    public ResponseEntity<String> mypageCommentDelete(
-        @RequestBody Map<String, Long> commentIdMap
-    ) {
-        Long commentId = commentIdMap.get("commentId");
-        System.out.println(commentId);
-        commentService.delete(commentId);
-        return new ResponseEntity<>("댓글이 성공적으로 삭제 되었습니다.",HttpStatus.OK);
+
+        return new ResponseEntity<>(comments,HttpStatus.OK);
+
     }
 
 }

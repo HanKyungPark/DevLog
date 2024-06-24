@@ -12,7 +12,5 @@ public interface TagMapper {
 
     //태그추가
     void save(Tag tag);
-
-    String findTagNameByTagId(Long tagId);
 }
 
