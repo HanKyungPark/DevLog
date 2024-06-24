@@ -97,4 +97,22 @@ public class PostService {
     public void deleteByPostUrl(String postUrl) {
         postMapper.deleteByPostUrl(postUrl);
     }
+
+    public Post findByPostUrl(String postUrl) {
+        return postMapper.findByPostUrl(postUrl);
+    }
+
+    public Long findPostIdByPostUrl(String postUrl) {
+        return postMapper.findPostIdByPostUrl(postUrl);
+    }
+
+    public List<Long> findAllTagIdByPostId(Long postId) {
+        return postMapper.findAllTagIdByPostId(postId);
+    }
+
+    public List<Post> findAllByAccountIdLong(Long accountId){
+        return postMapper.findAllByAccountIdLong(accountId);
+    }
+
+
 }
