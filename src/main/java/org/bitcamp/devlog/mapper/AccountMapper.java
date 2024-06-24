@@ -32,6 +32,7 @@ public interface AccountMapper {
 
     String findFileByAccountId(Long accountId);
 
+    List<Account> findAllOrderByCreatedAt();
 }
 
 

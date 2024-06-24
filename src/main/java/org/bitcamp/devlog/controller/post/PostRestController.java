@@ -1,6 +1,7 @@
 package org.bitcamp.devlog.controller.post;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -61,7 +62,7 @@ public class PostRestController {
             .categoryId(
                 categoryService.findCategoryIdByCategoryType(
                     (String) postData.get("categoryType" )))
-            .file(oauth2User.getEmail()+"/"+minioService.uploadFile("devlog", oauth2User.getEmail(), file))
+            .file("https://minio.bmops.kro.kr/devlog/"+oauth2User.getEmail()+"/"+minioService.uploadFile("devlog", oauth2User.getEmail(), file))
             .build();
 
         // post 내용 저장
@@ -129,11 +130,53 @@ public class PostRestController {
     }
 
     //마이페이지 포스트 삭제
-    @GetMapping("/api/mypage/post/delete")
+    @PostMapping("/api/mypage/post/delete")
     public ResponseEntity<String> myPagePostDelete(
         @RequestBody Map<String, String> postUrl
     ){
+        System.out.println(postUrl);
         postService.deleteByPostUrl(postUrl.get("postUrl"));
         return new ResponseEntity<>("성공적으로 삭제되었습니다.", HttpStatus.OK);
     }
+
+    //마이페이지 -> 게시글수정페이지 데이터 요청
+    //제목, 내용, 카테고리, 공개여부, 해시태그, 사진
+    @PostMapping("api/post/mypage/update")
+    public ResponseEntity<Map<String, Object>> myPagePostUpdate(
+        @RequestBody Map<String, String> requestPostUrl
+    ){
+        Map<String, Object> postUpdateData = new HashMap<>();
+        String postUrl = requestPostUrl.get("postUrl");
+
+        Post post = postService.findByPostUrl(postUrl);
+        if(post != null){
+            postUpdateData.put("post", post);
+
+        } else {
+            throw new NullPointerException("url에 해당하는 Post 데이터가 없습니다.");
+        }
+
+        //posturl -> postid -> tagids -> tagnames
+        List<String> tags =
+            tagService.findAllTagNameByTagId(
+                postTagService.findAllTagIdByPostId(
+                    postService.findPostIdByPostUrl(
+                        postUrl
+                    )
+                )
+            );
+
+        if(tags.size() != 0) postUpdateData.put("tags", tags);
+
+
+        if(post.getCategoryId() != null){
+            String categoryType =
+                categoryService
+                    .findCategoryTypeByCategoryId(post.getCategoryId());
+            postUpdateData.put("categoryType", categoryType);
+        }
+
+        return new ResponseEntity<>(postUpdateData, HttpStatus.OK);
+    }
+
 }
