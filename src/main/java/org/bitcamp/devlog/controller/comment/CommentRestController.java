@@ -35,7 +35,7 @@ public class CommentRestController {
 
         return new ResponseEntity<>(commentMap, HttpStatus.OK);
     }
-//    작성 댓글 저장
+    //    작성 댓글 저장
     @PostMapping("/api/comment/write")
     public void saveComment(@RequestBody Map<String, Object> commentData) {
 //        현재 로그인된 아이디 가져오기
@@ -64,7 +64,7 @@ public class CommentRestController {
     //마이페이지 댓글 삭제
     @PostMapping("/api/mypage/comment/delete")
     public ResponseEntity<String> mypageCommentDelete(
-        @RequestBody Map<String, Long> commentIdMap
+            @RequestBody Map<String, Long> commentIdMap
     ) {
         Long commentId = commentIdMap.get("commentId");
         System.out.println(commentId);

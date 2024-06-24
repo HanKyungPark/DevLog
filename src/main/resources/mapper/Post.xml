@@ -128,7 +128,7 @@
 
     <select id="findAllByAccountIdLong" parameterType="long" resultType="Post">
         select * from post
-        where account_id = #{accountId}
+        where account_id = #{accountId} order by p_created_at desc
         limit 3
     </select>
 

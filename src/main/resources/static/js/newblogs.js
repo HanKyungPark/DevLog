@@ -9,25 +9,36 @@ function loadUserInformation(){
         success: function(data) {
             console.log(data);
 
-            data.forEach(function(newBlogData){
+            data.forEach(function(newBlogData) {
                 let userHtml = '';
                 //유저 계정
                 userHtml += `
-                <div>${newBlogData.account.acreatedAt}</div>
+                <div class="user-block">
+           
+                <img src="${newBlogData.account.file}" style="width: 150px;height: 150px; border-radius: 50px; margin-right: 30px;border: 1px solid black">
+                <div class="user-total" style="width: 200px">
+                <div><p class="blink" style="color: red;font-size: 15px">New!</p></div>
+                <div>${newBlogData.account.blogId}</div>
                 <div>${newBlogData.account.biography}</div>
-                <img src="${newBlogData.account.file}" >
-                <div>${newBlogData.blogId}</div>
+                <div>${newBlogData.account.acreatedAt.substring(0,10)}</div>
+                </div>
+               
+                <div class="postbox">
+                <div class="user-posts">
                 `
                 //유저 post들
-                newBlogData.posts.forEach(function (post){
-                      console.log(post);
-                      userHtml += `
-                        <div>${post.title}</div>
-                        <img src="${post.file}" >
+                newBlogData.posts.forEach(function (post) {
+                    userHtml += `
+                        <div class="post-container">
+                        <div><p style="height: 10px">${post.title}</p></div>
+                        <div class="user-posts"><img src="${post.file}" style="width: 130px;height: 130px; border: 1px solid #b8d6d2"></div>
+                        </div>
                     `
-                })
+                });
+                userHtml +=`</div></div></div></div><hr>`;
 
-                $('.just_test').html(userHtml);
+
+                $('.just_test').append(userHtml);
             })
         },
         error: function(error) {
