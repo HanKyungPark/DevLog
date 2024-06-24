@@ -13,6 +13,10 @@
     </select>
 
 
+    <update id="updateVisit" parameterType="Long">
+        update visit set count=count+1 where account_id=#{account_id}
+    </update>
+
     <select id="findVisitCountByAccountId" resultType="long" parameterType="long">
         select sum(`count`) from visit
         where account_id = #{accountId}

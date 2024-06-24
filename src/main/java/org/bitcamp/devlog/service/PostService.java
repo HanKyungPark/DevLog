@@ -54,7 +54,7 @@ public class PostService {
         return postMapper.findByPostIdAndAccountId(postId, accountId);
     }
 
-    public List<Post> findRandomPosts() {
+    public List<Map<String,Object>> findRandomPosts() {
         return postMapper.findRandomPosts();
     }
 
@@ -73,22 +73,8 @@ public class PostService {
     }
 
 
-    public List<Object> findPost_namebypostUrl(String postUrl){
-//        List<Long> postTagid=new ArrayList<>();
-//        List<String> postName=new ArrayList<>();
-//        Long post_id=1L;
-//        List<Post> posts = findAllPosts(postUrl);//posts에는 postdetail들이 들어있음
-//        //postdetail 에서 post_id만을 꺼내서 post_id에 담는다.
-//        post_id=(posts.get(0).getPostId());
-//        System.out.println("post_id"+post_id);//통과
-//        //post_id를 통해서 post_tag의 id 값을 담아온다.
-//        postTagid = postTagMapper.findPostTagIdByPostId(post_id);
-//        System.out.println("postTagid.size()"+postTagid.size());
-//        for(int i=0;i<postTagid.size();i++){
-//            postName.add(tagMapper.findTagNameByTag_id(postTagid.get(i)));
-//        }
-//        System.out.println("postName.size()"+postName.size());
-//        return postName;
+    public List<Object> findAllbypostUrl(String postUrl){
+
         List<Object> list=postMapper.findBypostUrl(postUrl);
         return list;
     }

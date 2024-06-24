@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.bitcamp.devlog.dto.Post;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface PostMapper {
@@ -32,13 +33,12 @@ public interface PostMapper {
     List<Post> findAllByTitleAndAccountId(String title, Long accountId);
 
     //랜덤으로 리스트
-    List<Post> findRandomPosts();
-    //posturl로 글 디테일 가져오기
-
+    List<Map<String,Object>> findRandomPosts();
 
     //마이블로그
     List<Post> findByHomePage(String homepage);
 
+    //posturl로 글 디테일 가져오기
     List<Object> findBypostUrl(String postUrl);
 
     //마이페이지 포스트 삭제
