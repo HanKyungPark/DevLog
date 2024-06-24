@@ -40,4 +40,7 @@ public interface PostMapper {
     List<Post> findByHomePage(String homepage);
 
     List<Object> findBypostUrl(String postUrl);
+
+    //마이페이지 포스트 삭제
+    void deleteByPostUrl(String postUrl);
 }

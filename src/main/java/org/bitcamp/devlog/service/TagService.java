@@ -12,7 +12,6 @@ public class TagService {
     private final TagMapper tagMapper;
 
 
-
     //태그검색
     public Long findTagIdByTagName(String tagName) {
         return tagMapper.findTagIdByTagName(tagName);
