@@ -64,7 +64,7 @@
             tag_name,
             a.homepage as homepage
         from post p left outer join post_tag_join ptj on p.post_id = ptj.post_id
-        join account a on a.account_id = p.account_id
+        right join  account a on a.account_id = p.account_id
         where p.post_url = #{postUrl}
     </select>
 
