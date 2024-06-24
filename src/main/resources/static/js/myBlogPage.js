@@ -14,7 +14,7 @@ $(function () {
 
         // AJAX 요청
         $.ajax({
-            url: "/api/post/lists",
+            url: "/api/post/myblog/list",
             type: "POST",
             data: {"homepage": pathname},
             dataType: "json",
