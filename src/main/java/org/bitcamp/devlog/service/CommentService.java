@@ -2,7 +2,9 @@ package org.bitcamp.devlog.service;
 
 import lombok.RequiredArgsConstructor;
 import org.bitcamp.devlog.dto.Comment;
+import org.bitcamp.devlog.dto.Oauth2User;
 import org.bitcamp.devlog.mapper.CommentMapper;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,9 +38,15 @@ public class CommentService {
     }
 
 
-    public List<Comment> findAllByAccountId(Long accountId) {
+    public List<Comment> findAllByAccountId() {
+        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
+            .getContext()
+            .getAuthentication()
+            .getPrincipal();
+
+
         List<Comment> comments = commentMapper
-            .findAllByAccountId(accountId);
+            .findAllByAccountId(oauth2User.getAccountId());
         return comments;
     }
 

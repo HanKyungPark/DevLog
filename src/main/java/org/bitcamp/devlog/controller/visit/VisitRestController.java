@@ -16,7 +16,7 @@ public class VisitRestController {
     private final VisitService visitService;
 
     @GetMapping("/api/mypage/visits")
-    public ResponseEntity<Long> mypageHearts() {
+    public ResponseEntity<Long>countByVisit() {
         Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
             .getContext()
             .getAuthentication()

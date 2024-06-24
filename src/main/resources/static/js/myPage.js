@@ -4,28 +4,32 @@ $(document).ready(function() {
   //포스트가져와
   function loadPosts() {
     $.ajax({
-      url: '/api/mypage/post',
+      url: '/api/mypage/posts',
       method: 'GET',
       success: function(data) {
         let postsHtml = '';
+        console.log(data.length);
 
-        data.forEach(function(post) {
+        if(data.length === 0) {
 
-          const dateString = post.pcreatedAt;
+          postsHtml = `<h2>게시글이 없습니다</h2>`
 
-          // Date 객체 생성
-          const date = new Date(dateString);
+        } else {
+          data.forEach(function(post) {
 
-          // 날짜 관련 정보 추출
-          const year = date.getFullYear(); // 연도
-          const month = date.getMonth() + 1; // 월 (0부터 시작하므로 +1 필요)
-          const day = date.getDate(); // 일
+            // Date 객체 생성
+            const date = new Date(post.pcreatedAt);
 
-          // 원하는 형식으로 날짜 문자열 생성
-          const formattedDate = `${year}년 ${month < 10 ? '0' + month : month}월 ${day < 10 ? '0' + day : day}일`;
+            // 날짜 관련 정보 추출
+            const year = date.getFullYear(); // 연도
+            const month = date.getMonth() + 1; // 월 (0부터 시작하므로 +1 필요)
+            const day = date.getDate(); // 일
 
+            // 원하는 형식으로 날짜 문자열 생성
+            const formattedDate = `${year}년 ${month < 10 ? '0' + month : month}월 ${day < 10 ? '0' + day : day}일`;
 
-          postsHtml += `
+            postsHtml += `
+                    <div style="display:flex; align-items: center">
                     <a class="blogpost_first" id="blogpost_third" href="${post.postUrl}">
                         <img
                             src="${post.file}"
@@ -38,16 +42,25 @@ $(document).ready(function() {
                         />
                         <div class="firstpost_container" id="third_container">
                             <h3 class="firstpost_title" id="thirdpost_title">
-                            ${formattedDate}
+                              ${formattedDate}
                             </h3>
                             <p class="firstpost_content" id="third_content">
                                 ${post.title}
                             </p>
                         </div>
-                    </a>`;
-
-        });
-
+                    </a>
+                    <div>
+                      <div>
+                        <button onclick=postUpdate() class="btn btn-primary">수정</button>
+                      </div>
+                      <div>
+                        <button onclick=postDelete() class="btn btn-danger">삭제</button>
+                      </div>
+                    </div>    
+                   </div>        
+              `;
+          });
+        }
 
         $('#blogpost_inside').html(postsHtml);
 
@@ -66,7 +79,7 @@ $(document).ready(function() {
       method: 'GET',
       //그러고보니 상세에서 댓글 생성하는 걸 안했다 ^^;;
       success: function(data) {
-        console.log(data)
+        // console.log(data)
 
         let commentsHtml = '';
         if(data.comments.length == 0){
@@ -76,9 +89,9 @@ $(document).ready(function() {
             commentsHtml +=
                 `<div className="comments_frame" id="comments_frame3">
 
-            <span className="user_img_frame" id="user_img_frame3">
-              <img className="user_img" id="user_img3" alt="@shadcn" src="https://minio.bmops.kro.kr/devlog/"+${comment.file} />
-            </span>
+                  <span className="user_img_frame" id="user_img_frame3">
+                    <img className="user_img" id="user_img3" alt="@shadcn" src="https://minio.bmops.kro.kr/devlog/"+${comment.file} />
+                  </span>
             <div className="comments_allcontents" id="comments_allcontents3">
 
               <div className="name_time" id="name_time3">
@@ -89,7 +102,8 @@ $(document).ready(function() {
                 ${comment.ccontent}
               </p>
             </div>
-          </div>`
+          </div>
+            `
           })
         };
 
@@ -138,3 +152,37 @@ $(document).ready(function() {
 
 });
 
+
+function postDelete(button){
+  let postUrl =  $(button).closest('a').attr('href');
+  $.ajax({
+        url: "/api/mypage/post/delete",
+        type: 'GET',
+        contentType: 'application/json', //json타입이라고 말함
+        data: JSON.stringify({ url: postUrl }),
+        success: function(response) {
+          alert('Post updated successfully');
+        },
+        error: function(xhr, status, error) {
+          alert('Failed to update post');
+        }
+  })
+}
+
+// 해당버튼을 누르면
+// 해당 포스트의 수정페이지로 이동한다
+function postUpdate(button) {
+  let postUrl =  $(button).closest('a').attr('href');
+  $.ajax({
+    url: "/api/mypage/post/delete",  // 서버에서 수정 처리를 할 엔드포인트
+    type: 'GET',
+    contentType: 'application/json',
+    data: JSON.stringify({ url: postUrl }),  // 서버에 전송할 데이터
+    success: function(response) {
+      alert('Post updated successfully');
+    },
+    error: function(xhr, status, error) {
+      alert('Failed to update post');
+    }
+  })
+}

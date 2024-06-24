@@ -43,7 +43,6 @@ public class PostRestController {
             @RequestPart("postData") Map<String, Object> postData,
             @RequestPart(value = "file", required = false) MultipartFile file
     ) {
-        /*나중에 서비스로 빼줘서 트랜잭션 하기*/
 
         // accountId 생성
         Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
@@ -51,11 +50,9 @@ public class PostRestController {
                 .getAuthentication()
                 .getPrincipal();
 
-        /*해야할 일*/
 
         //포스트 저장 void createPost
         Post post = Post.builder()
-
             .title((String) postData.get("title" ))
             .pContent((String) postData.get("pContent" ))
             .postUrl(String.valueOf(UUID.randomUUID()))
@@ -70,11 +67,7 @@ public class PostRestController {
         // post 내용 저장
         postService.save(post);
 
-        /**
-         *
-         * 태그이름 확인후 저장
-         * 매개변수: postId
-         */
+
         List<String> postTags = (List<String>) postData.get("postTags");
         if (postTags != null) {
             for (String tagName : postTags) {
@@ -103,11 +96,8 @@ public class PostRestController {
         return ResponseEntity.ok("post를 저장하였습니다.");
     }
 
-    /** 게시글 조회
-     * RQ : post_id, account_id
-     * RP :
-     */
 
+    //피드페이지 랜덤리스트
     @GetMapping("/api/post/list")
     public ResponseEntity<List<Post>> feedPagePostList() {
         List<Post> posts = postService.findRandomPosts();
@@ -115,8 +105,10 @@ public class PostRestController {
     }
 
 
-    @PostMapping("/api/post/list")
+    //마이블로그 홈페이지
+    @PostMapping("/api/post/lists")
     public List<Post> findByHomePage(@RequestParam String homepage) {
+        int test = 0;
         return postService.findByHomePage(homepage);
     }
 
@@ -128,5 +120,20 @@ public class PostRestController {
              System.out.println(posts);
         return new ResponseEntity<>(posts,HttpStatus.OK);
     }
-}
 
+    //마이페이지 post리스트
+    @GetMapping("/api/mypage/posts")
+    public ResponseEntity<List<Post>> myPagePosts(){
+        List<Post> posts = postService.findAllByAccountId();
+        return new ResponseEntity<>(posts, HttpStatus.OK);
+    }
+
+    //마이페이지 포스트 삭제
+    @GetMapping("/api/mypage/post/delete")
+    public ResponseEntity<String> myPagePostDelete(
+        @RequestBody Map<String, String> postUrl
+    ){
+        postService.deleteByPostUrl(postUrl.get("postUrl"));
+        return new ResponseEntity<>("성공적으로 삭제되었습니다.", HttpStatus.OK);
+    }
+}
