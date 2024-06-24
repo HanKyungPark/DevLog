@@ -108,10 +108,9 @@ public class PostRestController {
      */
 
     @PostMapping("/api/post/list")
-    public List<Map<String,Object>>  feedPagePostList() {
-
-
-        return postService.findRandomPosts();
+    public ResponseEntity<List<Map<String,Object>>> feedPagePostList() {
+        List<Map<String,Object>> posts = postService.findRandomPosts();
+        return new ResponseEntity<>(posts, HttpStatus.OK);
     }
 
 
@@ -147,17 +146,6 @@ public class PostRestController {
     }
 
 
-    //postdetail 바꾸기
-    @PostMapping("/api/post/detail")
-    public ResponseEntity<Object> detailPost(@RequestParam String postUrl,
-                                           @RequestParam Long accountId
-    ) {
-      List<Object> list=postService.findAllbypostUrl(postUrl);
-//      조회수 늘리기
-      visitService.updateVisit(accountId);
-
-        return new ResponseEntity<>(list,HttpStatus.OK);
-    };
 
 
     //마이페이지 -> 게시글수정페이지 데이터 요청
@@ -200,5 +188,12 @@ public class PostRestController {
         return new ResponseEntity<>(postUpdateData, HttpStatus.OK);
     }
 
+    @PostMapping("/api/post/detail")
+    public ResponseEntity<List<Object>> detailPost(@RequestParam String postUrl, @RequestParam Long accountId){
 
+        List<Object> list=postService.findAllbypostUrl(postUrl);
+
+        return new ResponseEntity<>(list, HttpStatus.OK);
+
+    }
 }

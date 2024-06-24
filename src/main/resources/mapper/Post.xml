@@ -113,6 +113,7 @@
 
     </delete>
 
+
     <!--수정페이지 포스트 가져오기-->
     <select id="findByPostUrl" parameterType="String" >
         select * from post
@@ -131,6 +132,7 @@
         where account_id = #{accountId} order by p_created_at desc
         limit 3
     </select>
+
 
 
 </mapper>
