@@ -73,4 +73,5 @@ public class AccountService {
             .getPrincipal();
         return accountMapper.findFileByAccountId(oauth2User.getAccountId());
     }
+
 }

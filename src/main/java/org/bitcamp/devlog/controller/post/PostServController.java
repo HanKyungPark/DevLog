@@ -4,11 +4,16 @@ package org.bitcamp.devlog.controller.post;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
+
 import org.bitcamp.devlog.dto.Account;
 import org.bitcamp.devlog.service.*;
 
 import org.bitcamp.devlog.service.AccountService;
 import org.bitcamp.devlog.service.PostService;
+
+import org.bitcamp.devlog.dto.Account;
+import org.bitcamp.devlog.service.*;
+
 
 
 import org.bitcamp.devlog.dto.Post;
@@ -33,7 +38,6 @@ public class PostServController {
     private final PostTagService postTagService;
     private final TagService tagService;
     private final AccountService accountService;
-
 
     @GetMapping("/contents")
     public String post()

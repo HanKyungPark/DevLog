@@ -29,7 +29,9 @@ public interface AccountMapper {
     List<Account> findAll();
     String findNameByAccountId(long accountId);
 
+
     String findFileByAccountId(Long accountId);
+
 }
 
 

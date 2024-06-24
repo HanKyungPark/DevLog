@@ -121,7 +121,6 @@ public class PostRestController {
         return new ResponseEntity<>(posts,HttpStatus.OK);
     }
 
-
     //마이페이지 post리스트
     @GetMapping("/api/mypage/posts")
     public ResponseEntity<List<Post>> myPagePosts(){
