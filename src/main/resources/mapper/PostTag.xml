@@ -27,4 +27,9 @@
         where post_tag_id = #{postTagId}
     </select>
 
+    <select id="findAllTagIdByPostId" parameterType="long" resultType="long">
+        select post_id from post_tag
+        where post_id = #{postId}
+    </select>
+
 </mapper>
