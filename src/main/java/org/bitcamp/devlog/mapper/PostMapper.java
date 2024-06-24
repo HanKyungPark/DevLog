@@ -43,4 +43,12 @@ public interface PostMapper {
 
     //마이페이지 포스트 삭제
     void deleteByPostUrl(String postUrl);
+
+    Post findByPostUrl(String postUrl);
+
+    Long findPostIdByPostUrl(String postUrl);
+
+    List<Long> findAllTagIdByPostId(Long postId);
+
+    List<Post> findAllByAccountIdLong(Long accountId);
 }

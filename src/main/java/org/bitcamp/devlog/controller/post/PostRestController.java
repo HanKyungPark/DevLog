@@ -63,14 +63,13 @@ public class PostRestController {
             .categoryId(
                 categoryService.findCategoryIdByCategoryType(
                     (String) postData.get("categoryType" )))
-            .file(oauth2User.getEmail()+"/"+minioService.uploadFile("devlog", oauth2User.getEmail(), file))
+            .file("https://minio.bmops.kro.kr/devlog/"+oauth2User.getEmail()+"/"+minioService.uploadFile("devlog", oauth2User.getEmail(), file))
             .build();
 
         // post 내용 저장
         postService.save(post);
 
         /**
-         *
          * 태그이름 확인후 저장
          * 매개변수: postId
          */
@@ -109,8 +108,6 @@ public class PostRestController {
 
     @PostMapping("/api/post/list")
     public List<Map<String,Object>>  feedPagePostList() {
-
-
         return postService.findRandomPosts();
     }
 
@@ -136,15 +133,15 @@ public class PostRestController {
     }
 
     //마이페이지 포스트 삭제
-    @GetMapping("/api/mypage/post/delete")
+    @PostMapping("/api/mypage/post/delete")
     public ResponseEntity<String> myPagePostDelete(
         @RequestBody Map<String, String> postUrl
     ){
+        System.out.println(postUrl);
         postService.deleteByPostUrl(postUrl.get("postUrl"));
 
         return new ResponseEntity<>("성공적으로 삭제되었습니다.", HttpStatus.OK);
     }
-
 
 
     //postdetail 바꾸기
@@ -153,7 +150,7 @@ public class PostRestController {
                                            @RequestParam Long accountId
     ) {
       List<Object> list=postService.findAllbypostUrl(postUrl);
-//      조회수 늘리기
+      //조회수 늘리기
       visitService.updateVisit(accountId);
 
         return new ResponseEntity<>(list,HttpStatus.OK);
@@ -177,7 +174,6 @@ public class PostRestController {
             throw new NullPointerException("url에 해당하는 Post 데이터가 없습니다.");
         }
 
-        //posturl -> postid -> tagids -> tagnames
         List<String> tags =
             tagService.findAllTagNameByTagId(
                 postTagService.findAllTagIdByPostId(
@@ -189,7 +185,6 @@ public class PostRestController {
 
         if(tags.size() != 0) postUpdateData.put("tags", tags);
 
-
         if(post.getCategoryId() != null){
             String categoryType =
                 categoryService
@@ -199,6 +194,4 @@ public class PostRestController {
 
         return new ResponseEntity<>(postUpdateData, HttpStatus.OK);
     }
-
-
 }
