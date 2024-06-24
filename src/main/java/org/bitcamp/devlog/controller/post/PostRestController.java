@@ -1,6 +1,7 @@
 package org.bitcamp.devlog.controller.post;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -143,7 +144,7 @@ public class PostRestController {
 
         return new ResponseEntity<>("성공적으로 삭제되었습니다.", HttpStatus.OK);
     }
-<<<<<<< HEAD
+
 
 
     //postdetail 바꾸기
@@ -200,6 +201,4 @@ public class PostRestController {
     }
 
 
-=======
->>>>>>> parent of 99bbd97 (mypage button)
 }
