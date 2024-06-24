@@ -153,6 +153,7 @@ $(document).ready(function() {
 });
 
 
+//게시글 삭제 함수
 function postDelete(button){
   let postUrl =  $(button).closest('a').attr('href');
   $.ajax({
@@ -186,3 +187,7 @@ function postUpdate(button) {
     }
   })
 }
+function commentUpdate(button){
+  $.ajax()
+}
+
