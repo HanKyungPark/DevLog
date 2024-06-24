@@ -19,11 +19,11 @@
 <body>
 <div layout:fragment="content">
 
-    <div th:each="post : ${post}">
+
         <div class="container max-w-3xl px-4 py-12 mx-auto">
             <article class="prose prose-gray dark:prose-invert">
                 <div class="space-y-4 not-prose">
-                    <h1 class="text-4xl font-extrabold tracking-tight lg:text-5xl" th:text="${post.title}">
+                    <h1 class="text-4xl font-extrabold tracking-tight lg:text-5xl" >
                         The Importance of Accessibility in Web Design
                     </h1>
                     <div class="flex items-center gap-4">
@@ -45,7 +45,7 @@
                                 <rect width="18" height="18" x="3" y="4" rx="2"></rect>
                                 <path d="M3 10h18"></path>
                             </svg>
-                            <span th:text="${post.pCreatedAt}">May 15, 2023</span>
+                            <span >May 15, 2023</span>
                         </div>
                         <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
                             <svg
@@ -63,7 +63,7 @@
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <polyline points="12 6 12 12 16 14"></polyline>
                             </svg>
-                            <div th:each="tag : ${post.postTags}">
+                            <div>
                                 <div>
 
 
@@ -89,8 +89,8 @@
                                             <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"></path>
                                             <circle cx="7.5" cy="7.5" r=".5" fill="currentColor"></circle>
                                         </svg>
-                                        <span th:if="${tag.tagName != null}" th:text="${tag.tagName}">5 min read</span>
-                                        <span th:if="${tag.tagName == null}">No Tag</span>
+                                        <span >5 min read</span>
+                                        <span >No Tag</span>
 
                                     </a>
                                 </div>
@@ -101,7 +101,7 @@
                     </div>
                 </div>
 
-                <div class="cont" th:utext="${post.pContent}">
+                <div class="cont" >
 
                 </div>
             </article>
@@ -135,8 +135,8 @@
                     <div>
                         <h2 class="text-2xl font-bold">Leave a Comment</h2>
                         <form class="form mt-4 space-y-4" id="form" method="post">
-                            <input type="hidden" id="postId" th:value="${post.postId}"></input>
-                            <input type="hidden" id="accountId" th:value="${post.accountId}">
+                            <input type="hidden" id="postId" >
+                            <input type="hidden" id="accountId" >
                             <textarea
                                     class="flex w-full rounded-md border border-input bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 p-4 min-h-[150px]"
                                     placeholder="Write your comment..." id="cContent"
@@ -154,7 +154,7 @@
                                 >
                                     Post Comment
                                 </button>
-                            </div>
+                            </div>>
                         </form>
                     </div>
                 </div>

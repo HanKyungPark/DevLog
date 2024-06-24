@@ -14,4 +14,6 @@ public interface VisitMapper {
     List<Visit> findAllByAccountId(String account_id);
 
     Long findVisitCountByAccountId(Long accountId);
+
+    void updateVisit(Long accountId);
 }

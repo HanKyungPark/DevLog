@@ -58,11 +58,13 @@
             open_type,
             post_url,
             title,
-            account_id,
-            file,
+            p.account_id as account_id,
+            p.file as file,
             tag_id,
-            tag_name
+            tag_name,
+            a.homepage as homepage
         from post p left outer join post_tag_join ptj on p.post_id = ptj.post_id
+        join account a on a.account_id = p.account_id
         where p.post_url = #{postUrl}
     </select>
 
@@ -89,11 +91,15 @@
     </select>
 
     <!--랜덤포스트리스트    -->
-    <select id="findRandomPosts" resultType="Post">
-        select *
-        from post
-        order by rand()
-        limit 20
+    <select id="findRandomPosts" resultType="map">
+        SELECT p.*, a.homepage
+        FROM (
+                 SELECT *
+                 FROM post
+                 ORDER BY RAND()
+                 LIMIT 20
+             ) p
+                 JOIN account a ON p.account_id = a.account_id;
     </select>
 
     <select id="findByHomePage" parameterType="String" resultType="Post">
@@ -104,6 +110,7 @@
     <delete id="deleteByPostUrl" parameterType="String">
         delete from post
         where post_url=#{postUrl}
+
     </delete>
 
     <!--수정페이지 포스트 가져오기-->

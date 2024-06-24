@@ -22,10 +22,7 @@ import org.bitcamp.devlog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,16 +51,21 @@ public class PostServController {
         return "contents/newBlogs";
     }
 
-    @GetMapping("/detail")
-    public String detail(@RequestParam String postUrl, Model model) {
-
-        List<Object> tag = new ArrayList<>();
-        tag = postService.findPost_namebypostUrl(postUrl);
-        model.addAttribute("post",tag);
-
-
-        System.out.println(tag);
-
+//    @GetMapping("/detail")
+//    public String detail(@RequestParam String postUrl, Model model) {
+//
+//        List<Object> tag = new ArrayList<>();
+//        tag = postService.findPost_namebypostUrl(postUrl);
+//        model.addAttribute("post",tag);
+//
+//
+//        System.out.println(tag);
+//
+//        return "contents/postingDetail";
+//    }
+//
+    @GetMapping("/{homepage}/{postUrl}/detail")
+    public String postDetail(@PathVariable String homepage, @PathVariable String postUrl){
         return "contents/postingDetail";
     }
 
@@ -74,7 +76,6 @@ public class PostServController {
     ){
         return "contents/updateForm";
     }
-
 
 
 
