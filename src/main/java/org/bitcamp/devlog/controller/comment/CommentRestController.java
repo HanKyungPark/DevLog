@@ -64,33 +64,4 @@ public class CommentRestController {
 
     }
 
-//    작성 댓글 저장
-    @PostMapping("/api/comment/write")
-    public void saveComment(@RequestBody Map<String, Object> commentData) {
-//        현재 로그인된 아이디 가져오기
-        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
-                .getContext()
-                .getAuthentication()
-                .getPrincipal();
-//      받은 데이터를  dto에 넣기
-        Comment comment = Comment.builder()
-                .postId(Long.valueOf(commentData.get("postId").toString()))
-                .parentId(Long.valueOf(commentData.get("parentId").toString()))
-                .accountId(oauth2User.getAccountId())
-                .cContent(commentData.get("cContent").toString())
-                .build();
-//        저장
-        commentService.save(comment);
-    }
-
-    //댓글 가져오기
-    @PostMapping("/api/comment/list")
-    public ResponseEntity<List<Comment>> listComments(@RequestParam Long postId ) {
-        List<Comment> comments = commentService.findAllByPostId(postId);
-
-        return new ResponseEntity<>(comments,HttpStatus.OK);
-    }
-
-
-
 }
