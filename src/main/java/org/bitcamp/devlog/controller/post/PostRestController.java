@@ -115,10 +115,11 @@ public class PostRestController {
     }
 
 
-    @PostMapping("/api/post/list")
+    @PostMapping("/api/post/lists")
     public List<Post> findByHomePage(@RequestParam String homepage) {
         return postService.findByHomePage(homepage);
     }
+
 
 }
 
