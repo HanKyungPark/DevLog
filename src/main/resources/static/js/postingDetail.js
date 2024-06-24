@@ -1,15 +1,14 @@
 $(function () {
     let postId = $("#postId").val();
-    let info=window.location.pathname.split("/")
-
+    let info=window.location.pathname.split("/");
+    info[1];
     //페이지 정보들 불러오고 조회
     $.ajax({
         url:"/api/post/detail",
         type:"post",
         dataType: "json",
         success:function(data){
-        console.log(info.get(0));
-            console.log(info.get(1));
+
         }
 
     })
