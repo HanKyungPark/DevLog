@@ -43,5 +43,10 @@
         where category_type = #{categoryType}
     </select>
 
+    <select id="findCategoryTypeByCategoryId" parameterType="long" resultType="String">
+        select category_id
+        from category
+        where category_type = #{categoryType}
+    </select>
 
 </mapper>

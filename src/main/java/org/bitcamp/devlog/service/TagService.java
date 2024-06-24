@@ -1,5 +1,7 @@
 package org.bitcamp.devlog.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.bitcamp.devlog.dto.Tag;
 import org.bitcamp.devlog.mapper.TagMapper;
@@ -23,4 +25,15 @@ public class TagService {
         tagMapper.save(tag);
     }
 
+    public String findTagNameByTagId(Long tagId){
+        return tagMapper.findTagNameByTagId(tagId);
+    }
+
+    public List<String> findAllTagNameByTagId(List<Long> tagIds) {
+        List<String> tagNames = new ArrayList<>();
+        for(Long tagId : tagIds){
+            tagNames.add(tagMapper.findTagNameByTagId(tagId));
+        }
+        return tagNames;
+    }
 }

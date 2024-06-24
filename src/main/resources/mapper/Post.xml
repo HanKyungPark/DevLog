@@ -113,5 +113,25 @@
 
     </delete>
 
+    <!--수정페이지 포스트 가져오기-->
+    <select id="findByPostUrl" parameterType="String" >
+        select * from post
+        where post_url = #{postUrl}
+    </select>
+
+
+    <select id="findPostIdByPostUrl" parameterType="String" resultType="long">
+        select post_id from post
+        where post_url = #{postUrl}
+    </select>
+
+
+    <select id="findAllByAccountIdLong" parameterType="long" resultType="Post">
+        select * from post
+        where account_id = #{accountId}
+        limit 3
+    </select>
+
+
 </mapper>
 
