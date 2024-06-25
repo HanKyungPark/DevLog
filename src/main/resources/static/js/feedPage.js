@@ -10,8 +10,8 @@ $(function () {
             let row;
             $.each(data, function (index, item) {
                 // 6개마다 새로운 행을 생성
-                if (index % 6 === 0) {
-                    row = $('<div class="table-row"></div>');
+                if (index % 1 === 0) {
+                    row = $('<div class="table-row" style="width: 100%;"></div>');
                     container.append(row);
                 }
 
@@ -24,12 +24,14 @@ $(function () {
 
                 let cell = $(`
                     <div class="table-cell">
+                    <div id="cell">
                         <input type="hidden" value="${item.post_url}" class="postURL">
                         <input type="hidden" value="${item.account_id}" class="accountId">
                         <input type="hidden" value="${item.homepage}" class="homepage">
                         <img src="https://minio.bmops.kro.kr/devlog/${item.file}">
                         <h5>${titleHtml}</h5>
                         <h6>${formattedDate}</h6>
+                        </div>
                     </div>
                 `);
                 row.append(cell);
