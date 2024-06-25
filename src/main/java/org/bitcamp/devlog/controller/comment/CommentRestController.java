@@ -9,6 +9,8 @@ import org.bitcamp.devlog.dto.Comment;
 import org.bitcamp.devlog.dto.Oauth2User;
 import org.bitcamp.devlog.service.AccountService;
 import org.bitcamp.devlog.service.CommentService;
+import org.bitcamp.devlog.service.PostService;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,19 +23,48 @@ public class CommentRestController {
 
     private final CommentService commentService;
     private final AccountService accountService;
+    private final PostService postService;
 
     //마이페이지 댓글리스트
     @GetMapping("/api/mypage/comment")
-    public ResponseEntity<Map<String, Object>> mypageComments(){
+    public ResponseEntity<List<Map<String, Object>>> mypageComments(){
 
         List<Comment> comments = commentService.findAllByAccountId();
         String file = accountService.findFileByAccountId();
+        List<String> homepages = new ArrayList<>();
+        List<String> postUrls = new ArrayList<>();
+        for(Comment comment : comments){
+            Long postId = 0L;
+            //나의 홈페이지 주소넣기
+            homepages.add(
+                accountService.findHomepageByAccountId(
+                    postService.findAccountIdByPostId(
+                        commentService.findPostIdByCommentId(comment.getCommentId())
+                    )
+                )
+            );
+            //postUrl넣기
+            postUrls.add(
+                postService.findPostUrlByPostId(
+                        commentService.findPostIdByCommentId(
+                                comment.getCommentId()
+                        )
+                )
+            );
 
-        Map<String, Object> commentMap = new HashMap<>();
-        commentMap.put("comments", comments);
-        commentMap.put("file", file);
+        }
+        List<Map<String, Object>> commentData = new ArrayList<>();
+        for(int index = 0; index < comments.size(); index++){
+            Map<String, Object> commentMap = new HashMap<>();
+            commentMap.put("comment", comments.get(index));
+            commentMap.put("homepage", homepages.get(index));
+            commentMap.put("postUrl", postUrls.get(index));
+            commentMap.put("file", file);
+            commentData.add(commentMap);
+        }
+        System.out.println(commentData);
+        return new ResponseEntity<>(commentData, HttpStatus.OK);
 
-        return new ResponseEntity<>(commentMap, HttpStatus.OK);
     }
     //    작성 댓글 저장
     @PostMapping("/api/comment/write")
