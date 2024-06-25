@@ -1,8 +1,8 @@
 .table-container {
     display: table;
     width: 80%;
-    margin-right: 10%;
-    margin-left: 10%;
+    /*margin-right: 10%;*/
+    /*margin-left: 10%;*/
 }
 .table-row {
     display: table-row;
@@ -10,20 +10,21 @@
 .table-cell {
     display: table-cell;
     padding: 10px;
-    border: 1px solid #ddd;
+    /*border: 1px solid #ddd;*/
     text-align: center;
     vertical-align: top;
-    width: 150px;
+    width: 350px;
+    height: 400px;
 
 }
 .table-cell img {
     margin-left: 18px;
-    width: 100px;
-    height: 100px;
+    width: 400px;
+    height: 300px;
     align-items: center;
 }
 #dataContainer{
-    margin-left: 20%;
-    margin-right:20% ;
+    margin-left: 8%;
+    margin-right:8% ;
     text-align: center;
 }

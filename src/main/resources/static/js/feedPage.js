@@ -35,7 +35,9 @@ $(function () {
                 row.append(cell);
             });
 
-            $(".table-cell").click(function () {
+
+            $(".table-cell").click(function(){
+
                 let postUrl = $(this).find(".postURL").val();
                 let homepage = $(this).find(".homepage").val();
                 let accountId = $(this).find(".accountId").val();
