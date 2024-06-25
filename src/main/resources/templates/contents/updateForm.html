@@ -14,11 +14,13 @@
     <link rel="stylesheet" href="/css/postingForm.css">
 
     <!--제이쿼리-->
+<!--    <script src="https://code.jquery.com/jquery-3.7.1.js"-->
+<!--            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>-->
+<!--    <script src="/js/updateForm.js"></script>-->
     <script th:src="@{https://code.jquery.com/jquery-3.7.1.js}"
             integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <script src="/js/postingForm.js">
+    <script th:src="@{/js/updateForm.js}" defer></script>
 
-    </script>
     <style>
         #container {
             width: 1000px;
@@ -32,6 +34,7 @@
             margin: 20px auto;
         }
     </style>
+
 </head>
 <body>
 <div layout:fragment="content">
@@ -57,8 +60,11 @@
                         <div class="mt-1">
                             <div class="wigiwig" style="display: flex; width: 100%" >
                                 <div id="container" >
-                                    <textarea id="editor" placeholder="내용을 입력해주세요"></textarea>
+                                    <textarea id="editor" placeholder="내용을 입력해주세요">
+
+                                    </textarea>
                                 </div>
+
                                 <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/super-build/ckeditor.js"></script>
                                 <script>
                                     CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
@@ -348,6 +354,7 @@
         </div>
     </div>
 </div>
+
 
 </body>
 <!--부트스트랩-->
