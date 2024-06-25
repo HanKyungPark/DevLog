@@ -77,4 +77,9 @@ public class AccountService {
     public List<Account> findAllOrderByCreatedAt() {
         return accountMapper.findAllOrderByCreatedAt();
     }
+
+    public String findHomepageByAccountId(Long accountId) {
+        return accountMapper.findHomepageByAccountId(accountId);
+    }
+
 }

@@ -33,7 +33,11 @@ public interface AccountMapper {
     String findFileByAccountId(Long accountId);
 
     List<Account> findAllOrderByCreatedAt();
+
     String findnameByAccountId(Long accountId);
+
+
+    String findHomepageByAccountId(Long accountId);
 
 }
 
