@@ -51,4 +51,10 @@ public interface PostMapper {
     List<Long> findAllTagIdByPostId(Long postId);
 
     List<Post> findAllByAccountIdLong(Long accountId);
+
+    Long findAccountIdByPostId(Long postId);
+
+    void deleteByPostId(Long postId);
+
+    String findPostUrlByPostId(Long postId);
 }

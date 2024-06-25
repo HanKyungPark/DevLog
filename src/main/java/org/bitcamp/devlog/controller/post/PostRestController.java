@@ -36,6 +36,7 @@ public class PostRestController {
     private final CategoryService categoryService;
     private final MinioService minioService;
     private final VisitService visitService;
+    private final AccountService accountService;
 
     @PostMapping(value = "/api/post/posting", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> posting(
@@ -117,19 +118,25 @@ public class PostRestController {
 
     //마이페이지 post리스트
     @GetMapping("/api/mypage/posts")
-    public ResponseEntity<List<Post>> myPagePosts() {
+    public ResponseEntity<Map<String, Object>> myPagePosts() {
+        Map<String, Object> postMap = new HashMap<>();
         List<Post> posts = postService.findAllByAccountId();
-        return new ResponseEntity<>(posts, HttpStatus.OK);
+        String homepage = accountService
+            .findHomepageByAccountId(
+                posts.get(1).getAccountId()
+            );
+        postMap.put("posts", posts);
+        postMap.put("homepage", homepage);
+
+        return new ResponseEntity<>(postMap, HttpStatus.OK);
     }
 
     //마이페이지 포스트 삭제
     @PostMapping("/api/mypage/post/delete")
     public ResponseEntity<String> myPagePostDelete(
-        @RequestBody Map<String, String> postUrl
+        @RequestBody Map<String, Long> postId
     ) {
-        System.out.println(postUrl);
-        postService.deleteByPostUrl(postUrl.get("postUrl"));
-
+        postService.deleteByPostId(postId.get("postId"));
         return new ResponseEntity<>("성공적으로 삭제되었습니다.", HttpStatus.OK);
     }
 
@@ -140,8 +147,6 @@ public class PostRestController {
     public ResponseEntity<Map<String, Object>> myPagePostUpdate(
         @RequestBody Map<String, String> requestPostUrl
     ) {
-
-        System.out.println(requestPostUrl);
 
         Map<String, Object> postUpdateData = new HashMap<>();
         String postUrl = requestPostUrl.get("postUrl");
@@ -182,7 +187,6 @@ public class PostRestController {
     public ResponseEntity<List<Object>> detailPost(@RequestParam String info) {
 
         List<Object> list = postService.findAllbypostUrl(info);
-        System.out.println(list);
 
         return new ResponseEntity<>(list, HttpStatus.OK);
     }

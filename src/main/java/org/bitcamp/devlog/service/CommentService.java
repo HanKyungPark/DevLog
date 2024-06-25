@@ -53,8 +53,14 @@ public class CommentService {
         return comments;
     }
 
+
     public String findnameByAccountId(Long accountId) {
         return accountMapper.findnameByAccountId(accountId);
+    }
+
+
+    public Long findPostIdByCommentId(Long commentId) {
+        return commentMapper.findPostIdByCommentId(commentId);
     }
 
 }
