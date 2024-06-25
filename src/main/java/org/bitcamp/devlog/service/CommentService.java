@@ -53,8 +53,14 @@ public class CommentService {
         return comments;
     }
 
+<<<<<<< HEAD
     public String findnameByAccountId(Long accountId) {
         return accountMapper.findnameByAccountId(accountId);
     }
 
+=======
+    public Long findPostIdByCommentId(Long commentId) {
+        return commentMapper.findPostIdByCommentId(commentId);
+    }
+>>>>>>> b6c0351 (mypage link 지정)
 }

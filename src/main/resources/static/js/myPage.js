@@ -5,17 +5,19 @@ let commentCurrentPage = 0;
 const commentPageSize = 8;
 let comments = [];
 let file;
+let homepage;
 
 //게시글 저장하기
 function loadPosts() {
   $.ajax({
     url: '/api/mypage/posts',
     method: 'GET',
-    success: function(data) {
-      posts = data;
+    success: function (data) {
+      posts = data.posts;
+      homepage = data.homepage;
       displayPosts()
       postToggleButtons()
-    }, error: function(error) {
+    }, error: function (error) {
       console.error('Error fetching posts', error);
     }
   });
@@ -29,7 +31,7 @@ function displayPosts() {
 
   let postsHtml = '';
 
-  if(posts == null){
+  if (posts == null) {
 
     postsHtml = `<h2>게시글이 없습니다.</h2>`
 
@@ -37,7 +39,7 @@ function displayPosts() {
 
     $('#blogpost_inside').empty();
 
-    pagePosts.forEach(function(post) {
+    pagePosts.forEach(function (post) {
       // Date 객체 생성
       const date = new Date(post.pcreatedAt);
 
@@ -47,11 +49,12 @@ function displayPosts() {
       const day = date.getDate(); // 일
 
       // 원하는 형식으로 날짜 문자열 생성
-      const formattedDate = `${year}년 ${month < 10 ? '0' + month : month}월 ${day < 10 ? '0' + day : day}일`;
+      const formattedDate = `${year}년 ${month < 10 ? '0' + month : month}월 ${day
+      < 10 ? '0' + day : day}일`;
 
       postsHtml += `
                     <div class="blog_post_box" style="display:flex; align-items: center; justify-content: space-between">
-                    <a class="blogpost_first" id="blogpost_third" href="${post.postUrl}">
+                    <a class="blogpost_first" id="blogpost_third" href="/hompage/${post.postUrl}/detail">
                         <img
                             src="https://minio.bmops.kro.kr/devlog/${post.file}"
                             width="80"
@@ -75,7 +78,10 @@ function displayPosts() {
                         <a  href="/mypage/post/update/${post.postUrl}" class="btn btn-primary">수정</a>
                       </div>
                       <div>
-                        <button onclick="postDelete(this)" class="btn btn-danger">삭제</button>
+                        <button onclick="postDelete(this)" class="btn btn-danger">
+                        삭제
+                        <p id="post_id" style="display: none">${post.postId}</p>
+                        </button>
                       </div>
                     </div>    
                    </div>        
@@ -89,18 +95,19 @@ function displayPosts() {
 }
 
 //게시글 삭제
-function postDelete(button){
-  let postUrl = $(button).closest('.blog_post_box').find('a.blogpost_first').attr('href');
+function postDelete(button) {
+
+  let postId = $(button).find("#post_id").text();
 
   $.ajax({
     url: "/api/mypage/post/delete",
     type: 'POST',
     contentType: 'application/json',
-    data: JSON.stringify({ postUrl: postUrl }),
-    success: function(response) {
-      displayPosts()
+    data: JSON.stringify({postId: postId}),
+    success: function (response) {
+      loadPosts()
     },
-    error: function(xhr, status, error) {
+    error: function (xhr, status, error) {
       alert('Failed to delete post');
     }
   })
@@ -127,11 +134,11 @@ function postNextPage() {
 //게시글 버튼 유무
 function postToggleButtons() {
   $('#prev-btn').css('display', postCurrentPage <= 0 ? 'none' : 'block');
-  $('#next-btn').css('display', (postCurrentPage + 1) * postPageSize >= posts.length ? 'none' : 'block');
+  $('#next-btn').css('display',
+      (postCurrentPage + 1) * postPageSize >= posts.length ? 'none' : 'block');
   // $('#prev-btn').prop('disabled', postCurrentPage <= 0);
   // $('#next-btn').prop('disabled', (postCurrentPage + 1) * postPageSize >= posts.length);
 }
-
 
 //댓글 저장하기
 function loadComments() {
@@ -139,19 +146,16 @@ function loadComments() {
     url: '/api/mypage/comment',
     method: 'GET',
     //댓글 리스트 요청
-    success: function(data) {
-      let commentsHtml = '';
-      file = data.file;
-      comments = data.comments;
+    success: function (data) {
 
-      console.log(comments);
-      console.log(file);
+      console.log("loadComments")
+      console.log(data);
+      comments = data;
 
       displayComments()
       commentToggleButtons()
-
     },
-    error: function(error) {
+    error: function (error) {
       console.error('Error fetching comments', error);
     }
   });
@@ -167,17 +171,21 @@ function displayComments() {
 
   let commentsHtml = '';
 
+  console.log(pageComments);
+
   $('#comments_box').empty();
 
-  if(comments == 0){
+  if (comments == 0) {
 
     commentsHtml = `<h1>댓글이 없습니다.</h1>`
 
   } else {
 
-    pageComments.forEach(function(comment) {
+    pageComments.forEach(function (data) {
+      console.log("pageComments")
+      console.log(data);
 
-      const date = new Date(comment.ccreatedAt);
+      const date = new Date(data.comment.ccreatedAt);
 
       // 날짜 관련 정보 추출
       const year = date.getFullYear(); // 연도
@@ -185,7 +193,8 @@ function displayComments() {
       const day = date.getDate(); // 일
 
       // 원하는 형식으로 날짜 문자열 생성
-      const formattedDate = `${year}년 ${month < 10 ? '0' + month : month}월 ${day < 10 ? '0' + day : day}일`;
+      const formattedDate = `${year}년 ${month < 10 ? '0' + month : month}월 ${day
+      < 10 ? '0' + day : day}일`;
 
       commentsHtml +=
           `<div className="comments_frame" id="comments_frame3" style="display: flex; align-items: center; justify-content: space-between">
@@ -193,7 +202,7 @@ function displayComments() {
                   <span className="user_img_frame" id="user_img_frame3">
                     <img className="user_img" 
                           id="user_img3"
-                          src="${file}"
+                          src="${data.file}"
                           alt="user_image"
                           width="50" height="50"
                           style="border-radius: 50%;"
@@ -206,17 +215,17 @@ function displayComments() {
                 <div className="comments_time" id="comments_time3">${formattedDate}</div>
               </div>
               <p className="comments_content" id="comments_content3">
-                ${comment.ccontent}
+                ${data.comment.ccontent}
               </p>
             </div>
             <div>
                 <div>
-                  <a  href="해당글의 상세페이지로 이동" class="btn btn-primary">수정</a>
+                  <a  href="/${data.homepage}/${data.postUrl}/detail" class="btn btn-primary">수정</a>
                 </div>
                 <div>
                   <button onclick="commentDelete(this)" class="btn btn-danger">
                   삭제
-                  <p id="comment_id" style="display: none">${comment.commentId}</p>
+                  <p id="comment_id" style="display: none">${data.comment.commentId}</p>
                   </button>
                 </div>
               </div>
@@ -227,23 +236,24 @@ function displayComments() {
 
     })
   };
+
   $('#comments_box').html(commentsHtml);
 
 }
 
 //댓글삭제
-function commentDelete(button){
+function commentDelete(button) {
   let commentId = $(button).find("#comment_id").text();
 
   $.ajax({
     url: "/api/mypage/comment/delete",
     type: 'POST',
     contentType: 'application/json',
-    data: JSON.stringify({ commentId: commentId }),
-    success: function(response) {
-      displayComments();
+    data: JSON.stringify({commentId: commentId}),
+    success: function (response) {
+      loadComments();
     },
-    error: function(xhr, status, error) {
+    error: function (xhr, status, error) {
       alert('Failed to delete comment');
     }
   })
@@ -269,21 +279,23 @@ function commentNextPage() {
 
 //댓글 버튼 유무
 function commentToggleButtons() {
-  $('#comment-prev-btn').css('display', commentCurrentPage <= 0 ? 'none' : 'block');
-  $('#comment-next-btn').css('display', (commentCurrentPage + 1) * commentPageSize >= comments.length ? 'none' : 'block');
+  $('#comment-prev-btn').css('display',
+      commentCurrentPage <= 0 ? 'none' : 'block');
+  $('#comment-next-btn').css('display',
+      (commentCurrentPage + 1) * commentPageSize >= comments.length ? 'none'
+          : 'block');
 }
 
 //조회수 가져오기
-function loadVisitCount(){
+function loadVisitCount() {
   $.ajax({
     url: '/api/mypage/visits',
     method: 'GET',
-    //그러고보니 상세에서 댓글 생성하는 걸 안했다 ^^;;
-    success: function(data) {
-      console.log(data)
+    success: function (data) {
+
       let visitsHtml = '';
 
-      if(data.visitCount == null){
+      if (data.visitCount == null) {
         visitsHtml = `<h3>0</h3>`
       } else {
         visitsHtml += `
@@ -293,25 +305,25 @@ function loadVisitCount(){
       }
       $('#visit_box').html(visitsHtml);
     },
-    error: function(error) {
+    error: function (error) {
       console.error('Error fetching comments', error);
     }
   });
 };
 
 //페이지 로드 되면
-$(document).ready(function() {
+$(document).ready(function () {
 
   // 포스트 목록 로드
-  loadPosts()
-  console.log("포스트는 끝")
+  // loadPosts()
 
   // 댓글 목록 로드
   loadComments();
-  console.log("댓글 끝")
 
   //방문자수 로드
   loadVisitCount();
-  console.log("방문자수 끝")
+
 });
+
+
 

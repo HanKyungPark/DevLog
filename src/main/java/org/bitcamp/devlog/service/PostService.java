@@ -101,4 +101,15 @@ public class PostService {
     }
 
 
+    public Long findAccountIdByPostId(Long postId) {
+        return postMapper.findAccountIdByPostId(postId);
+    }
+
+    public void deleteByPostId(Long postId) {
+        postMapper.deleteByPostId(postId);
+    }
+
+    public String findPostUrlByPostId(Long postId) {
+        return postMapper.findPostUrlByPostId(postId);
+    }
 }
