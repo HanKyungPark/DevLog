@@ -36,6 +36,7 @@ public class PostRestController {
     private final CategoryService categoryService;
     private final MinioService minioService;
     private final VisitService visitService;
+    private final AccountService accountService;
 
     @PostMapping(value = "/api/post/posting", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> posting(
@@ -179,11 +180,13 @@ public class PostRestController {
     }
 
     @PostMapping("/api/post/detail")
-    public ResponseEntity<List<Object>> detailPost(@RequestParam String info) {
+    public ResponseEntity<List<Object>> detailPost(@RequestParam String info
+    ,@RequestParam Long postId) {
 
         List<Object> list = postService.findAllbypostUrl(info);
         System.out.println(list);
 
+        visitService.updateVisit(postService.findByPostUrl(info).getAccountId());
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
