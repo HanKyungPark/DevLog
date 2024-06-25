@@ -24,15 +24,16 @@ function loadPost() {
       let fileHtml = `<img src="${file}">`;
       let categoryHtml = '';
       let tagHtml = '';
-      console.log(contentHtml);
+
       //태그
       data.tags.forEach(function(tag){
         tagHtml += `<div>${tag}</div>`;
       })
 
-      $(".input_title_text_box").val(titleHtml);
-      // $('.ck-restricted-editing_mode_standard').html(contentHtml);
-      CKEDITOR.instances.editor.setData(contentHtml)
+      // $(".input_title_text_box").val(titleHtml);
+      // $('#container').html(`<textarea id="editor" th:field="*{${contentHtml}}"></textarea>`);
+      // CKEDITOR.instances.editor.setData(contentHtml)
+
 
     },
     error: function(error) {

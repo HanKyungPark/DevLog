@@ -162,15 +162,7 @@ public class PostRestController {
                     )
                 )
             );
-        System.out.println("-------");
-        System.out.println(tagService.findAllTagNameByTagId(
-            postTagService.findAllTagIdByPostId(
-                postService.findPostIdByPostUrl(
-                    postUrl
-                )
-            )
-        ));
-        System.out.println("-------");
+
 
         if (tags.size() != 0) {
             postUpdateData.put("tags", tags);
