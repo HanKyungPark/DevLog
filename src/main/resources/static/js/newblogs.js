@@ -1,6 +1,5 @@
 
 
-
 //유저정보
 function loadUserInformation(){
     $.ajax({
@@ -52,9 +51,7 @@ function loadPosts(){
 
 }
 
-
 $(document).ready(function() {
-    $('.follow-btn').click(function() {
-        $(this).toggleClass('active');
-    });
+    loadUserInformation();
 });
+console.log(1);
