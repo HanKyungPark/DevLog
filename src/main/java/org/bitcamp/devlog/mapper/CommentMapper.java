@@ -15,8 +15,6 @@ public interface CommentMapper {
 
     List<Comment> findAllByAccountId(Long accountId);
 
-<<<<<<< HEAD
-=======
     Long findPostIdByCommentId(Long commentId);
->>>>>>> b6c0351 (mypage link 지정)
+
 }

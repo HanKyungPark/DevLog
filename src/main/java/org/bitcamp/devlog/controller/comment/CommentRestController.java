@@ -62,9 +62,8 @@ public class CommentRestController {
             commentMap.put("file", file);
             commentData.add(commentMap);
         }
-        System.out.println(commentData);
-        return new ResponseEntity<>(commentData, HttpStatus.OK);
 
+        return new ResponseEntity<>(commentData, HttpStatus.OK);
     }
     //    작성 댓글 저장
     @PostMapping("/api/comment/write")
@@ -107,7 +106,7 @@ public class CommentRestController {
             @RequestBody Map<String, Long> commentIdMap
     ) {
         Long commentId = commentIdMap.get("commentId");
-        System.out.println(commentId);
+
         commentService.delete(commentId);
         return new ResponseEntity<>("댓글이 성공적으로 삭제 되었습니다.",HttpStatus.OK);
     }

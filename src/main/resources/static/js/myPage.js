@@ -2,7 +2,7 @@ let postCurrentPage = 0;
 const postPageSize = 5;
 let posts = [];
 let commentCurrentPage = 0;
-const commentPageSize = 8;
+const commentPageSize = 7;
 let comments = [];
 let file;
 let homepage;
@@ -56,7 +56,7 @@ function displayPosts() {
                     <div class="blog_post_box" style="display:flex; align-items: center; justify-content: space-between">
                     <a class="blogpost_first" id="blogpost_third" href="/hompage/${post.postUrl}/detail">
                         <img
-                            src="https://minio.bmops.kro.kr/devlog/${post.file}"
+                            src="${post.file}"
                             width="80"
                             height="80"
                             alt="Blog post thumbnail"
@@ -106,6 +106,7 @@ function postDelete(button) {
     data: JSON.stringify({postId: postId}),
     success: function (response) {
       loadPosts()
+      alert("게시글이 삭제 되었습니다.")
     },
     error: function (xhr, status, error) {
       alert('Failed to delete post');
@@ -148,8 +149,6 @@ function loadComments() {
     //댓글 리스트 요청
     success: function (data) {
 
-      console.log("loadComments")
-      console.log(data);
       comments = data;
 
       displayComments()
@@ -171,7 +170,6 @@ function displayComments() {
 
   let commentsHtml = '';
 
-  console.log(pageComments);
 
   $('#comments_box').empty();
 
@@ -182,8 +180,8 @@ function displayComments() {
   } else {
 
     pageComments.forEach(function (data) {
-      console.log("pageComments")
-      console.log(data);
+
+
 
       const date = new Date(data.comment.ccreatedAt);
 
@@ -252,6 +250,7 @@ function commentDelete(button) {
     data: JSON.stringify({commentId: commentId}),
     success: function (response) {
       loadComments();
+      alert("댓글이 삭제되었습니다.")
     },
     error: function (xhr, status, error) {
       alert('Failed to delete comment');
@@ -260,9 +259,9 @@ function commentDelete(button) {
 }
 
 //댓글 이전페이지 이동
-function commentNextPage() {
-  if ((commentCurrentPage + 1) * commentPageSize < comments.length) {
-    commentCurrentPage++;
+function commentPrevPage() {
+  if (commentCurrentPage > 0) {
+    commentCurrentPage--;
     displayComments();
     commentToggleButtons();
   }
@@ -315,7 +314,7 @@ function loadVisitCount() {
 $(document).ready(function () {
 
   // 포스트 목록 로드
-  // loadPosts()
+  loadPosts()
 
   // 댓글 목록 로드
   loadComments();
