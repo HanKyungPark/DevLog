@@ -1,11 +1,8 @@
 /* mainPage.css */
 
 /* Title Styling */
-.body{
-    background-color: black;
-}
-.container{
-    margin-left: 5%;
+body{
+    margin: 0;
 }
 .title {
     font-size: 2.5em; /* 폰트 크기 증가 */
