@@ -184,7 +184,8 @@ public class PostRestController {
     }
 
     @PostMapping("/api/post/detail")
-    public ResponseEntity<List<Object>> detailPost(@RequestParam String info) {
+    public ResponseEntity<List<Object>> detailPost(@RequestParam String info
+    ,@RequestParam Long postId) {
 
         List<Object> list = postService.findAllbypostUrl(info);
 
