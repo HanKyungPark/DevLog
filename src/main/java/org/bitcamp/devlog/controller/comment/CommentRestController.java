@@ -54,11 +54,20 @@ public class CommentRestController {
         commentService.save(comment);
     }
 
-    //댓글 가져오기
     @PostMapping("/api/comment/list")
-    public ResponseEntity<List<Comment>> listComments(@RequestParam Long postId ) {
+    public ResponseEntity<List<Map<String, Object>>> listComments(@RequestParam Long postId) {
+        List<Map<String, Object>> list = new ArrayList<>();
         List<Comment> comments = commentService.findAllByPostId(postId);
-        return new ResponseEntity<>(comments,HttpStatus.OK);
+
+        for (Comment comment : comments) {
+            Map<String, Object> commentData = new HashMap<>();
+            commentData.put("comment", comment);
+            String name = commentService.findnameByAccountId(comment.getAccountId());
+            commentData.put("name", name);
+            list.add(commentData);
+        }
+
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
     //마이페이지 댓글 삭제
@@ -71,5 +80,6 @@ public class CommentRestController {
         commentService.delete(commentId);
         return new ResponseEntity<>("댓글이 성공적으로 삭제 되었습니다.",HttpStatus.OK);
     }
+
 
 }
