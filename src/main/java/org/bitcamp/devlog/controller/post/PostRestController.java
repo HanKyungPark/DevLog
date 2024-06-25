@@ -136,7 +136,6 @@ public class PostRestController {
     public ResponseEntity<String> myPagePostDelete(
         @RequestBody Map<String, Long> postId
     ) {
-        System.out.println(postId);
         postService.deleteByPostId(postId.get("postId"));
         return new ResponseEntity<>("성공적으로 삭제되었습니다.", HttpStatus.OK);
     }
@@ -148,8 +147,6 @@ public class PostRestController {
     public ResponseEntity<Map<String, Object>> myPagePostUpdate(
         @RequestBody Map<String, String> requestPostUrl
     ) {
-
-        System.out.println(requestPostUrl);
 
         Map<String, Object> postUpdateData = new HashMap<>();
         String postUrl = requestPostUrl.get("postUrl");
@@ -190,7 +187,6 @@ public class PostRestController {
     public ResponseEntity<List<Object>> detailPost(@RequestParam String info) {
 
         List<Object> list = postService.findAllbypostUrl(info);
-        System.out.println(list);
 
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
