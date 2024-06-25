@@ -65,7 +65,9 @@ public class PostServController {
 //    }
 //
     @GetMapping("/{homepage}/{postUrl}/detail")
-    public String postDetail(@PathVariable String homepage, @PathVariable String postUrl){
+    public String postDetail(
+        @PathVariable String homepage,
+        @PathVariable String postUrl){
         return "contents/postingDetail";
     }
 
@@ -76,7 +78,5 @@ public class PostServController {
     ){
         return "contents/updateForm";
     }
-
-
 
 }
