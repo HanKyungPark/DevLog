@@ -39,50 +39,43 @@ public class PostRestController {
 
     @PostMapping(value = "/api/post/posting", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> posting(
-            @RequestPart("postData") Map<String, Object> postData,
-            @RequestPart(value = "file", required = false) MultipartFile file
+        @RequestPart("postData") Map<String, Object> postData,
+        @RequestPart(value = "file", required = false) MultipartFile file
     ) {
-        /*나중에 서비스로 빼줘서 트랜잭션 하기*/
 
         // accountId 생성
         Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
-                .getContext()
-                .getAuthentication()
-                .getPrincipal();
-
-        /*해야할 일*/
+            .getContext()
+            .getAuthentication()
+            .getPrincipal();
 
         //포스트 저장 void createPost
         Post post = Post.builder()
 
-            .title((String) postData.get("title" ))
-            .pContent((String) postData.get("pContent" ))
+            .title((String) postData.get("title"))
+            .pContent((String) postData.get("pContent"))
             .postUrl(String.valueOf(UUID.randomUUID()))
-            .openType(Long.parseLong((String) postData.getOrDefault("openType", "0" )))
+            .openType(Long.parseLong((String) postData.getOrDefault("openType", "0")))
             .accountId(oauth2User.getAccountId())
             .categoryId(
                 categoryService.findCategoryIdByCategoryType(
-                    (String) postData.get("categoryType" )))
-            .file("https://minio.bmops.kro.kr/devlog/"+oauth2User.getEmail()+"/"+minioService.uploadFile("devlog", oauth2User.getEmail(), file))
+                    (String) postData.get("categoryType")))
+            .file("https://minio.bmops.kro.kr/devlog/" + oauth2User.getEmail() + "/"
+                + minioService.uploadFile("devlog", oauth2User.getEmail(), file))
             .build();
 
         // post 내용 저장
         postService.save(post);
 
-        /**
-         *
-         * 태그이름 확인후 저장
-         * 매개변수: postId
-         */
         List<String> postTags = (List<String>) postData.get("postTags");
         if (postTags != null) {
             for (String tagName : postTags) {
                 Long tagId = tagService.findTagIdByTagName(tagName);
                 if (tagId == null) {
                     tagService.save(
-                            Tag.builder()
-                                    .tagName(tagName)
-                                    .build()
+                        Tag.builder()
+                            .tagName(tagName)
+                            .build()
                     );
                     tagId = tagService.findTagIdByTagName(tagName);
                     if (tagId == null) {
@@ -91,10 +84,10 @@ public class PostRestController {
                 }
 
                 postTagService.save(
-                        PostTag.builder()
-                                .postId(post.getPostId())
-                                .tagId(tagId)
-                                .build()
+                    PostTag.builder()
+                        .postId(post.getPostId())
+                        .tagId(tagId)
+                        .build()
                 );
             }
         }
@@ -102,14 +95,9 @@ public class PostRestController {
         return ResponseEntity.ok("post를 저장하였습니다.");
     }
 
-    /** 게시글 조회
-     * RQ : post_id, account_id
-     * RP :
-     */
-
     @PostMapping("/api/post/list")
-    public ResponseEntity<List<Map<String,Object>>> feedPagePostList() {
-        List<Map<String,Object>> posts = postService.findRandomPosts();
+    public ResponseEntity<List<Map<String, Object>>> feedPagePostList() {
+        List<Map<String, Object>> posts = postService.findRandomPosts();
         return new ResponseEntity<>(posts, HttpStatus.OK);
     }
 
@@ -121,15 +109,15 @@ public class PostRestController {
 
     @PostMapping("/detail/comment")
     public ResponseEntity<List<String>> commentPost(@RequestParam String postId) {
-        List<String> posts= new ArrayList<>();
-             posts.add(postId);
-             System.out.println(posts.get(0));
-        return new ResponseEntity<>(posts,HttpStatus.OK);
+        List<String> posts = new ArrayList<>();
+        posts.add(postId);
+        System.out.println(posts.get(0));
+        return new ResponseEntity<>(posts, HttpStatus.OK);
     }
 
     //마이페이지 post리스트
     @GetMapping("/api/mypage/posts")
-    public ResponseEntity<List<Post>> myPagePosts(){
+    public ResponseEntity<List<Post>> myPagePosts() {
         List<Post> posts = postService.findAllByAccountId();
         return new ResponseEntity<>(posts, HttpStatus.OK);
     }
@@ -138,7 +126,7 @@ public class PostRestController {
     @PostMapping("/api/mypage/post/delete")
     public ResponseEntity<String> myPagePostDelete(
         @RequestBody Map<String, String> postUrl
-    ){
+    ) {
         System.out.println(postUrl);
         postService.deleteByPostUrl(postUrl.get("postUrl"));
 
@@ -146,26 +134,26 @@ public class PostRestController {
     }
 
 
-
-
     //마이페이지 -> 게시글수정페이지 데이터 요청
     //제목, 내용, 카테고리, 공개여부, 해시태그, 사진
     @PostMapping("api/post/mypage/update")
     public ResponseEntity<Map<String, Object>> myPagePostUpdate(
         @RequestBody Map<String, String> requestPostUrl
-    ){
+    ) {
+
+        System.out.println(requestPostUrl);
+
         Map<String, Object> postUpdateData = new HashMap<>();
         String postUrl = requestPostUrl.get("postUrl");
 
         Post post = postService.findByPostUrl(postUrl);
-        if(post != null){
+        //게시글 내용
+        if (post != null) {
             postUpdateData.put("post", post);
-
         } else {
             throw new NullPointerException("url에 해당하는 Post 데이터가 없습니다.");
         }
 
-        //posturl -> postid -> tagids -> tagnames
         List<String> tags =
             tagService.findAllTagNameByTagId(
                 postTagService.findAllTagIdByPostId(
@@ -175,10 +163,12 @@ public class PostRestController {
                 )
             );
 
-        if(tags.size() != 0) postUpdateData.put("tags", tags);
 
+        if (tags.size() != 0) {
+            postUpdateData.put("tags", tags);
+        }
 
-        if(post.getCategoryId() != null){
+        if (post.getCategoryId() != null) {
             String categoryType =
                 categoryService
                     .findCategoryTypeByCategoryId(post.getCategoryId());
@@ -189,11 +179,12 @@ public class PostRestController {
     }
 
     @PostMapping("/api/post/detail")
-    public ResponseEntity<List<Object>> detailPost(@RequestParam String postUrl, @RequestParam Long accountId){
+    public ResponseEntity<List<Object>> detailPost(@RequestParam String info) {
 
-        List<Object> list=postService.findAllbypostUrl(postUrl);
+        List<Object> list = postService.findAllbypostUrl(info);
+        System.out.println(list);
 
         return new ResponseEntity<>(list, HttpStatus.OK);
-
     }
+
 }

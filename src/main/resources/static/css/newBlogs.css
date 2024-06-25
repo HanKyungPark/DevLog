@@ -1,0 +1,47 @@
+.user-block {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-left: 250px;
+}
+.user-block img {
+    margin-right: 10px;
+}
+.user-block hr {
+    width: 100%;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+}
+/*.user-info{*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*}*/
+.user-posts {
+    display: flex;
+}
+.postbox {
+    display: flex;
+    flex-direction: column;
+}
+/*.user-total {*/
+/*    display: flex;*/
+/*}*/
+.post-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-right: 20px;
+}
+.post-container img {
+    margin-bottom: 5px;
+}
+@keyframes blink-effect {
+    50%{
+        opacity: 0;
+    }
+
+}
+.blink{
+    animation: blink-effect 1s step-end infinite;
+}

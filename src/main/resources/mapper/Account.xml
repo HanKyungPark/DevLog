@@ -50,4 +50,8 @@
         order by a_created_at desc
     </select>
 
+    <select id="findnameByAccountId" parameterType="long" resultType="String">
+        select name from account where account_id =#{accountId}
+    </select>
+
 </mapper>

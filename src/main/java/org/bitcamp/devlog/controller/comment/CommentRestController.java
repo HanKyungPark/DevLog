@@ -35,7 +35,7 @@ public class CommentRestController {
 
         return new ResponseEntity<>(commentMap, HttpStatus.OK);
     }
-//    작성 댓글 저장
+    //    작성 댓글 저장
     @PostMapping("/api/comment/write")
     public void saveComment(@RequestBody Map<String, Object> commentData) {
 //        현재 로그인된 아이디 가져오기
@@ -54,22 +54,32 @@ public class CommentRestController {
         commentService.save(comment);
     }
 
-    //댓글 가져오기
     @PostMapping("/api/comment/list")
-    public ResponseEntity<List<Comment>> listComments(@RequestParam Long postId ) {
+    public ResponseEntity<List<Map<String, Object>>> listComments(@RequestParam Long postId) {
+        List<Map<String, Object>> list = new ArrayList<>();
         List<Comment> comments = commentService.findAllByPostId(postId);
-        return new ResponseEntity<>(comments,HttpStatus.OK);
+
+        for (Comment comment : comments) {
+            Map<String, Object> commentData = new HashMap<>();
+            commentData.put("comment", comment);
+            String name = commentService.findnameByAccountId(comment.getAccountId());
+            commentData.put("name", name);
+            list.add(commentData);
+        }
+
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
     //마이페이지 댓글 삭제
     @PostMapping("/api/mypage/comment/delete")
     public ResponseEntity<String> mypageCommentDelete(
-        @RequestBody Map<String, Long> commentIdMap
+            @RequestBody Map<String, Long> commentIdMap
     ) {
         Long commentId = commentIdMap.get("commentId");
         System.out.println(commentId);
         commentService.delete(commentId);
         return new ResponseEntity<>("댓글이 성공적으로 삭제 되었습니다.",HttpStatus.OK);
     }
+
 
 }

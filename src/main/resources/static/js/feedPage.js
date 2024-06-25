@@ -24,7 +24,7 @@ $(function () {
 
                 let cell = $(`
                     <div class="table-cell">
-                        <input type="hidden" value="${item.postUrl}" class="postURL">
+                        <input type="hidden" value="${item.post_url}" class="postURL">
                         <input type="hidden" value="${item.account_id}" class="accountId">
                         <input type="hidden" value="${item.homepage}" class="homepage">
                         <img src="https://minio.bmops.kro.kr/devlog/${item.file}">
@@ -35,23 +35,14 @@ $(function () {
                 row.append(cell);
             });
 
+
             $(".table-cell").click(function(){
+
                 let postUrl = $(this).find(".postURL").val();
                 let homepage = $(this).find(".homepage").val();
                 let accountId = $(this).find(".accountId").val();
 
-                $.ajax({
-                    url: "/api/post/detail",
-                    dataType: "json",
-                    data: {
-                        "postUrl": postUrl,
-                        "accountId": accountId
-                    },
-                    type: "post",
-                    success: function () {
-                        location.href = '/' + homepage + "/" + postUrl;
-                    }
-                });
+                location.href = '/' + homepage + "/" + postUrl + "/detail";
             });
         }
     });

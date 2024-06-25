@@ -1,13 +1,17 @@
 $(function () {
     let pathname = window.location.pathname.split("/")[1];
     $.ajax({
-        url: "api/blog/check", type: "post", data: {"pathName": pathname}, dataType: "json", success: function (data) {
+        url: "api/blog/check",
+        type: "post",
+        data: {"pathName": pathname},
+        dataType: "json",
+        success: function (data) {
             if (!data) {
                 alert("존재하지 않는 블로그입니다.");
-                location.href = "/"
+                location.href = "/";
             }
         }
-    })
+    });
 
     $(document).ready(function() {
         let pathname = window.location.pathname.split("/")[1];
@@ -44,7 +48,7 @@ $(function () {
                         <h2 class="post_title">${post.title}</h2>
                       </a>
                       <!--<p class="text-gray-600">${post.pcontent}</p> -->
-                      <div class="post_date">${post.pcreatedAt}</div> <!-- pcreatedAt 요소를 하단으로 이동 -->
+                      <div class="post_date">${formatDate(post.pcreatedAt)}</div> <!-- formatDate 함수를 적용 -->
                     </div>
                   </div>`;
                 });
@@ -59,4 +63,27 @@ $(function () {
             }
         });
     });
-})
+});
+
+// 날짜 포맷 변환 함수
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    if (month < 10) {
+        month = '0' + month;
+    }
+    let day = date.getDate();
+    if (day < 10) {
+        day = '0' + day;
+    }
+    let hours = date.getHours();
+    if (hours < 10) {
+        hours = '0' + hours;
+    }
+    let minutes = date.getMinutes();
+    if (minutes < 10) {
+        minutes = '0' + minutes;
+    }
+    return `${year}-${month}-${day} ${hours}:${minutes}`;
+}

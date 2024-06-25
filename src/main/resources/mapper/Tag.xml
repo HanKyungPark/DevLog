@@ -17,8 +17,8 @@
 
     <!--수정페이지 태그이름-->
     <select id="findTagNameByTagId" parameterType="long" resultType="String">
-        select tag_id
+        select tag_name
         from tag
-        where tag_name = #{tagName}
+        where tag_id = #{tagId}
     </select>
 </mapper>
