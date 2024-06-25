@@ -53,7 +53,7 @@ function displayPosts() {
                     <div class="blog_post_box" style="display:flex; align-items: center; justify-content: space-between">
                     <a class="blogpost_first" id="blogpost_third" href="${post.postUrl}">
                         <img
-                            src="${post.file}"
+                            src="https://minio.bmops.kro.kr/devlog/${post.file}"
                             width="80"
                             height="80"
                             alt="Blog post thumbnail"

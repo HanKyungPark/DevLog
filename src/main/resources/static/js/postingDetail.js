@@ -9,6 +9,7 @@ $(function () {
         type: "post",
         data: {"info": info},
         dataType: "json",
+
         success: function (data) {
             postId = data[0].postId;
             console.log(postId);
