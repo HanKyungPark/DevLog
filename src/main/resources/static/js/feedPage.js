@@ -29,8 +29,11 @@ $(function () {
                         <input type="hidden" value="${item.account_id}" class="accountId">
                         <input type="hidden" value="${item.homepage}" class="homepage">
                         <img src="https://minio.bmops.kro.kr/devlog/${item.file}">
-                        <h5>${titleHtml}</h5>
+                        <div id="content">
+                        <h1>${titleHtml}</h1>
                         <h6>${formattedDate}</h6>
+              
+                        </div>
                         </div>
                     </div>
                 `);

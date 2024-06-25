@@ -11,17 +11,25 @@
     display: flex;
     padding: 10px;
     justify-content: space-between;
-    /*border: 1px solid #ddd;*/
-    text-align: center;
+    border: 1px solid #ddd;
+    text-align: right;
     /*vertical-align: top;*/
-    width: 100%;
     height: 150px;
+
+}
+#content{
+    width: 550px;
+    float: left;
+    margin-right: 300px;
+    margin-left: 20%;
 
 }
 #cell{
     display: flex;
+    width: 100%;
     justify-content: space-between;
     vertical-align: center;
+    text-align: center;
 }
 .table-cell img {
     display: flex;
