@@ -14,4 +14,5 @@ public interface CommentMapper {
     List<Comment> findAllByPostId(Long postId);
 
     List<Comment> findAllByAccountId(Long accountId);
+
 }
