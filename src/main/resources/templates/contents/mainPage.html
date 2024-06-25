@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout/layout_main/layout1_hmenu}">
+      xmlns:th="http://www.thymeleaf.org">
+<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
+<!--      layout:decorate="~{layout/layout_main/layout1_hmenu}">-->
 <head>
     <meta charset="UTF-8">
     <title>Devlog</title>
@@ -15,24 +15,20 @@
 
 </head>
 <body>
-<div layout:fragment="content">
-    <div class="con">
-    <section class="bigcontainer">
-        <div class="container">
-            <div class="infotext">
-                <h1 class="title"><b>Welcome to our Platform</b></h1>
-                <p class="subtitle">
-                    Get started with our platform in just a few seconds.<br><br>
-                </p>
-            </div>
-            <div class="btncontainer" >
-                <button class="btn" id="btn_login" onclick="location.href='/oauth2/authorization/kakao'">
-                    <i class="bi bi-chat-fill"></i>&nbsp;
-                    <b>카카오톡으로 로그인</b>
-                </button>
-            </div>
+<div class="container" onclick="onclick">
+    <div class="top"></div>
+    <div class="bottom"></div>
+    <div class="center">
+        <h1 class="title" style="font-size: 30px"><b>DevLog</b></h1>
+        <p class="subtitle" style="font-size: 15px">
+            새로운 블로그 플랫폼의 시작<br><br>
+        </p>
+        <div class="btncontainer" >
+            <button class="btn" id="btn_login" onclick="location.href='/oauth2/authorization/kakao'">
+                <i class="bi bi-chat-fill"></i>&nbsp;
+                <b>카카오톡으로 로그인</b>
+            </button>
         </div>
-    </section>
     </div>
 </div>
 </body>
