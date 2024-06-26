@@ -267,5 +267,16 @@
     line-height: 2.5rem;
     font-weight: 700;
 }
+.visitor_conunt_container{
+
+}
+.category_admin{
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1;
+    white-space: nowrap;
+}
 
 
