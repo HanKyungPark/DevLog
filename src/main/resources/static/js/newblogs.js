@@ -15,9 +15,17 @@ function loadUserInformation(){
                 userHtml += `
                 <div class="user-block">
            
-                <img src="${newBlogData.account.file}" style="width: 150px;height: 150px; border-radius: 50px; margin-right: 30px;border: 1px solid black">
-                <div class="user-total" style="width: 200px">
-                <div><p class="blink" style="color: red;font-size: 15px">New!</p></div>
+                <img src="${newBlogData.account.file}" style="width: 180px;height: 180px; border-radius: 100px; margin-right: 30px;border:2px solid black">
+                <div class="user-total" style="width: 200px;margin-right: 80px">
+                <button class="follow-button" style="    font-size: 15px;
+    border-radius: 30px ;
+    width: 60px;
+    height: 30px;
+    background-color: #90f5dd;
+    float: right;
+    margin-right: 30px;
+    cursor: pointer;"><b class="follow-p">팔로우</b></button>
+                <div><p class="blink" style="color: red;font-size: 15px">New!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></div>
                 <div>${newBlogData.account.blogId}</div>
                 <div>${newBlogData.account.biography}</div>
                 <div>${newBlogData.account.acreatedAt.substring(0,10)}</div>
@@ -30,8 +38,11 @@ function loadUserInformation(){
                 newBlogData.posts.forEach(function (post) {
                     userHtml += `
                         <div class="post-container">
-                        <div><p style="height: 10px">${post.title}</p></div>
-                        <div class="user-posts"><img src="${post.file}" style="width: 130px;height: 130px; border: 1px solid #b8d6d2"></div>
+                             <input type="hidden" value="${post.postUrl}" class="postUrl">
+                        <input type="hidden" value="${newBlogData.account.accountId}" class="accountId">
+                        <input type="hidden" value="${newBlogData.account.homepage}" class="homepage">
+                        <div class="user-posts"><img class="posted_img" src="${post.file}" style="width: 130px;height: 130px; border: 1px solid #b8d6d2;border-radius: 20px"></div>
+                        <div><b style="height: 10px; font-size: 15px">${post.title}</b></div>
                         </div>
                     `
                 });
@@ -39,8 +50,30 @@ function loadUserInformation(){
 
 
                 $('.just_test').append(userHtml);
-            })
+            });
+
+            //클릭시 해당 게시물로 이동
+            $(".post-container").click(function(){
+
+                let postUrl = $(this).find(".postUrl").val();
+                let homepage = $(this).find(".homepage").val();
+                let accountId = $(this).find(".accountId").val();
+
+                location.href = '/' + homepage + "/" + postUrl + "/detail";
+            });
+            // 버튼 클릭 이벤트 핸들러 설정
+            $('.just_test').on('click', '.follow-button', function() {
+                const button = $(this);
+                if (button.text().trim() === '팔로우') {
+                    button.css('background-color', '#adb8b6'); // 색상 변경
+                    button.html('<b>팔로잉</b>'); // 텍스트 변경
+                } else {
+                    button.css('background-color', '#90f5dd'); // 색상 원래대로
+                    button.html('<b>팔로우</b>'); // 텍스트 원래대로
+                }
+            });
         },
+
         error: function(error) {
             console.error('Error fetching comments', error);
         }
