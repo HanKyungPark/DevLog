@@ -229,8 +229,7 @@ function displayComments() {
       $("#comments_box").html(commentsHtml);
 
     })
-  }
-  ;
+  };
 
   $('#comments_box').html(commentsHtml);
 
