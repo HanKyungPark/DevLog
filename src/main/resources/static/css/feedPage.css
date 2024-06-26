@@ -17,6 +17,9 @@
     height: 150px;
 
 }
+a{
+    color: #4a90e2;
+}
 #content{
     width: 550px;
     float: left;
