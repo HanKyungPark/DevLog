@@ -56,15 +56,74 @@
                 </div>
             </div>
 
+            <style>
 
+
+            </style>
 
             <div class="visitor_container" data-v0-t="card">
-                <div class="visitor_title_container">
-                    <h3 class="visitor_count">Visitor Count</h3>
-                </div>
-                <div class="count_container">
-                    <div class="count_frame" id="visit_box">
+                <div class="visitor_conunt_container">
+                    <div class="visitor_title_container" style="display: flex">
+                        <h3 class="visitor_count">Visitor Count</h3>
+                        <div class="count_container">
+                            <div class="count_frame" id="visit_box">
+                            </div>
+                        </div>
                     </div>
+
+                </div>
+                <style>
+                    .category-container {
+                        margin-top: 20px;
+                    }
+                    .input-title-text-box {
+                        width: 50%;
+                        display: inline-block;
+                    }
+                    .add-category-btn {
+                        display: inline-block;
+                        vertical-align: top;
+                        background-color: #d3d3d3;
+                        border-color: #d3d3d3;
+                        color: black;
+                    }
+                    .input-title-text-box{
+                        width: 100px;
+                    }
+                    .add-category-btn{
+                        margin-left: 7px;
+                    }
+                </style>
+
+                <div class="category-container">
+                    <div id="category-container">
+                        <div class="category-name" style="display: flex; justify-content: space-between; ">
+                            <div>음악</div>
+                            <button class="category-delete" onclick="categoryDelete(this)">
+                                삭제
+                                <div class="category-id" style="display: none;"></div>
+                            </button>
+
+                        </div>
+                        <div class="category-name">
+                            음악
+                            <button class="category-delete" onclick="categoryDelete(this)">삭제
+                                <div class="category-id" style="display: none;"></div>
+                            </button>
+                        </div>
+                        <div class="category-name">
+                            음악
+                            <button class="category-delete" onclick="categoryDelete(this)">삭제
+                                <div class="category-id" style="display: none;"></div>
+                            </button>
+                        </div>
+                    </div>
+                    <form id="category-form" style="display: flex">
+                        <div class="form-group" style = "display: flex; justify-content: center">
+                            <input type="text" class="form-control input-title-text-box" id="category-input" placeholder="Enter a category">
+                            <button type="button" onclick="addCategory()" class="btn add-category-btn">Add Category</button>
+                        </div>
+                    </form>
                 </div>
             </div>
 
