@@ -9,10 +9,10 @@ import java.util.List;
 @Mapper
 public interface CategoryMapper {
     //카테고리 추가
-    void save(Category dto);
+    void save(Category category);
 
     //카테고리 수정
-    void update(Category dto);
+    void update(Category category);
 
     //카테고리 리스트
     List<Category> findAllByPostId(Long categoryId);
@@ -26,4 +26,8 @@ public interface CategoryMapper {
     Long findCategoryIdByCategoryType(String categoryType);
 
     String findCategoryTypeByCategoryId(Long categoryId);
+
+    Category findByCategoryId(Long categoryId);
+
+    Category findByCategoryType(String categoryType);
 }

@@ -22,6 +22,7 @@
 <body>
 
 <div layout:fragment="content">
+
     <main class="container">
         <section class="totalSection">
             <div class="blogpost_section" data-v0-t="card">
@@ -96,36 +97,28 @@
                 </style>
 
                 <div class="category-container">
+
+                    <!--카테고리이름-->
                     <div id="category-container">
+
                         <div class="category-name" style="display: flex; justify-content: space-between; ">
-                            <div>음악</div>
-                            <button class="category-delete" onclick="categoryDelete(this)">
-                                삭제
-                                <div class="category-id" style="display: none;"></div>
-                            </button>
 
                         </div>
-                        <div class="category-name">
-                            음악
-                            <button class="category-delete" onclick="categoryDelete(this)">삭제
-                                <div class="category-id" style="display: none;"></div>
-                            </button>
-                        </div>
-                        <div class="category-name">
-                            음악
-                            <button class="category-delete" onclick="categoryDelete(this)">삭제
-                                <div class="category-id" style="display: none;"></div>
-                            </button>
-                        </div>
+
                     </div>
-                    <form id="category-form" style="display: flex">
-                        <div class="form-group" style = "display: flex; justify-content: center">
-                            <input type="text" class="form-control input-title-text-box" id="category-input" placeholder="Enter a category">
-                            <button type="button" onclick="addCategory()" class="btn add-category-btn">Add Category</button>
+
+                    <!--카테고리추가-->
+                    <form id="category-form" style="display: flex; visibility: visible">
+                        <div class="form-group"  style = "display: flex; justify-content: center">
+                            <input type="text" class="form-control input-title-text-box category-input" placeholder="Enter a category">
+                            <button type="button" onclick="addCategory(this)" class="btn add-category-btn">Add Category</button>
                         </div>
                     </form>
+
                 </div>
             </div>
+
+
 
         </section>
     </main>
