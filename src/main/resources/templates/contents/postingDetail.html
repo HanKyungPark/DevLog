@@ -12,7 +12,6 @@
     <!--부트스트랩 css-->
     <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}"/>
     <link rel="stylesheet" href="/css/postingDetail.css">
-    <link rel="stylesheet" href="/css/style.css">
     <!--제이쿼리-->
     <script th:src="@{https://code.jquery.com/jquery-3.7.1.js}"
             integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
@@ -46,21 +45,24 @@
                         </svg>
                         <span id="date">May 15, 2023</span>
                     </div>
+                    <div class="homepage" style="margin-right: 0">
+                        <span id="home">May 15, 2023</span>
+                    </div>
                     <div class="flex items-center gap-2 text-sm text-gray-500">
-                        <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="icon-clock"
-                        >
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polyline points="12 6 12 12 16 14"></polyline>
+                        <!--                        <svg-->
+                        <!--                                xmlns="http://www.w3.org/2000/svg"-->
+                        <!--                                width="24"-->
+                        <!--                                height="24"-->
+                        <!--                                viewBox="0 0 24 24"-->
+                        <!--                                fill="none"-->
+                        <!--                                stroke="currentColor"-->
+                        <!--                                stroke-width="2"-->
+                        <!--                                stroke-linecap="round"-->
+                        <!--                                stroke-linejoin="round"-->
+                        <!--                                class="icon-clock"-->
+                        <!--                        >-->
+                        <!--                            <circle cx="12" cy="12" r="10"></circle>-->
+                        <polyline points="12 6 12 12 16 14"></polyline>
                         </svg>
                         <div>
                             <div></div>
@@ -69,53 +71,46 @@
                     </div>
                 </div>
             </div>
-            <div class="content-container"></div>
+            <div class="content-container" id="cont" style="height: max(300px)"></div>
         </article>
         <div class="mt-12 space-y-6" style="width: 100%">
-            <h2 class="text-2xl font-bold">Comments</h2>
-            <div class="space-y-4">
-                <div class="flex items-start gap-4">
-                    <span class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10"></span>
-                    <div class="flex-1 space-y-2">
-                        <div class="flex items-center justify-between" id="comment">
-                            <table id="commentTable" class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th>닉네임</th>
-                                    <th>Content</th>
-                                    <th>Created At</th>
-                                </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
+
+
+            <div>
+                <h2 class="text-2xl font-bold">Leave a Comment</h2>
+                <form class="form mt-4 space-y-4" id="form" method="post">
+                    <input type="hidden" id="postId">
+                    <input type="hidden" id="accountId">
+                    <input
+                            type="text"
+                            class="comment-textarea"
+                            placeholder="Write your comment..."
+                            id="cContent"
+                    />
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <span class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10"></span>
                         </div>
+                        <button
+                                class="btn"
+                                type="submit"
+                        >
+                            Post Comment
+                        </button>
                     </div>
-                </div>
-                <div>
-                    <h2 class="text-2xl font-bold">Leave a Comment</h2>
-                    <form class="form mt-4 space-y-4" id="form" method="post">
-                        <input type="hidden" id="postId">
-                        <input type="hidden" id="accountId">
-                        <textarea
-                                class="comment-textarea"
-                                placeholder="Write your comment..."
-                                id="cContent"
-                        ></textarea>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-2">
-                                <span class="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10"></span>
-                                <span class="text-sm text-gray-500">Commenting as Jane Doe</span>
-                            </div>
-                            <button
-                                    class="btn"
-                                    type="submit"
-                            >
-                                Post Comment
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                </form>
             </div>
+            <table class="table table-bordered">
+                <thead>
+                    <th>name</th>
+                    <th>content</th>
+                    <th>date</th>
+
+                </thead>
+                <tbody id="tbody">
+
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
