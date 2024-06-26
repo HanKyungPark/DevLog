@@ -1,7 +1,6 @@
 package org.bitcamp.devlog.controller.category;
 
 
-import jakarta.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +15,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -29,17 +27,12 @@ public class CategoryRestController {
     @GetMapping("/postingForm")
     public Map<String, Object> categories() {
         Map<String, Object> map = new HashMap<>();
-//        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
-//                .getContext()
-//                .getAuthentication()
-//                .getPrincipal();
-//        List<Category> categories = categoryService.findAllByAccountId(oauth2User.getAccountId());
+        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+        List<Category> categories = categoryService.findAllByAccountId(oauth2User.getAccountId());
 
-        List<Category> categories = new ArrayList<>();
-        categories.add(Category.builder()
-            .categoryId(1L)
-            .accountId(1L)
-            .build());
 
         if (categories.isEmpty()) {
             map.put("code", HttpStatus.BAD_REQUEST.value());//400error
@@ -127,3 +120,4 @@ public class CategoryRestController {
     }
 
 }
+
