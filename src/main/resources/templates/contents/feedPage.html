@@ -19,29 +19,77 @@
             integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="/js/feedPage.js"></script>
 
+    <style>
+        body{
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+        /* 기존 스타일 유지 */
+
+        #pro-gallery-margin-container-pro-blog {
+            width: 100%;
+        }
+
+        #container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .gallery-item-container {
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        .post-list-pro-gallery-pg-grid {
+            margin: 30px; /* 페이지 주변 여백 추가 */
+            padding: 30px; /* 페이지 내부 여백 추가 */
+        }
+
+        .gallery-item-container {
+            margin-bottom: 20px; /* 갤러리 아이템 간 여백 추가 */
+            padding: 10px; /* 갤러리 아이템 내부 여백 추가 */
+            border: 1px solid #ccc; /* 갤러리 아이템 테두리 추가 */
+            width: calc(33.33% - 20px); /* 갤러리 아이템 너비 계산 */
+            float: left; /* 왼쪽 정렬 */
+            box-sizing: border-box; /* 상자 크기 및 여백 포함 */
+        }
+
+        .gallery-item-common-info-outer {
+            margin-top: 10px; /* 갤러리 아이템 상단 여백 추가 */
+            padding: 10px; /* 갤러리 아이템 내부 여백 추가 */
+        }
+
+    </style>
 </head>
 <body>
-
 <div layout:fragment="content">
-    <div id="dataContainer"></div>
-    <section class="section">
-        <div class="container">
-            <table style="width: 100%;height: 100%" class="table">
-
-
-            </table>
+    <div>
+        <div data-hook="post-list-pro-gallery-container"
+             style="--blog-pl-common-padding-top:28px;--blog-pl-common-padding-bottom:25px;--blog-pl-slider-padding-top:16px;--blog-pl-slider-padding-bottom:24px;--blog-pl-header-height:34px;--blog-pl-header-margin-bottom:18px;--blog-pl-footer-content-height:18px;--blog-pl-footer-separator-margin:15px;--blog-pl-footer-padding-top:8px;--blog-pl-common-title-margin:11px;--blog-pl-default-title-margin:10px;--blog-pl-slider-title-margin-top:10px;--blog-pl-category-label-margin-bottom:12px;--blog-pl-slider-category-label-margin-bottom:2px;margin-top:20px;margin-bottom:20px;margin-left:20px;margin-right:20px" class="post-list-pro-gallery-pg-grid homepage gallery-right-align _SIYmI">
+            <div id="pro-gallery-pro-blog" class="pro-gallery">
+                <div data-key="pro-gallery-inner-container" class="" tabindex="-1">
+                    <div data-hook="css-scroll-indicator" data-scroll-base="0" data-scroll-top="1553" class="pgscl-1553 pgscl_problog_0-40960 pgscl_problog_0-20480 pgscl_problog_0-10240 pgscl_problog_0-5120 pgscl_problog_0-2560 pgscl_problog_1280-2560 pgscl_problog_1280-1920 pgscl_problog_1280-1600 pgscl_problog_1440-1600 pgscl_problog_1520-1600 pgscl_problog_1520-1560 pgscl_problog_1540-1560 pgscl_problog_1550-1560" style="display:none"></div>
+                    <div class="pro-gallery-parent-container" role="region" aria-label="Blog feed. Select a post to read.">
+                        <div id="pro-gallery-container-pro-blog" class="pro-gallery inline-styles ltr " style="height: 1653.33px; overflow-x: hidden;">
+                            <div id="pro-gallery-margin-container-pro-blog" class="pro-gallery-margin-container" style="margin: 0px; height: 1653.33px; width: 100%; overflow: visible; position: relative;">
+                                <div data-id="7c0cd68a-821f-43e1-8a4d-0abc19887849" class="item-link-wrapper" data-idx="0" data-hook="item-link-wrapper" tabindex="-1" id="container" style="text-align: center">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-key="items-styles" style="display:none"></div>
+                </div>
+            </div>
         </div>
-        <div class=".div">
-
-        </div>
-    </section>
-
+    </div>
 </div>
-
 </body>
 <!--부트스트랩-->
 <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js}"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        integrity="sha384-MrcW6ZMFyUyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 
 <!--태일윈즈-->
