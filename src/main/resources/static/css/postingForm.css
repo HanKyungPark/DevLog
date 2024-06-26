@@ -13,7 +13,8 @@
     max-width: 50%;
     margin-bottom: 20px;
     height: fit-content;
-    background-color: #65737e;
+    /*background-color: #65737e;*/
+    background: linear-gradient(50deg,#4f5b66 50%,#65737e 50%);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     font-family: Tahoma;
     @media (min-width: 640px) {
@@ -57,12 +58,17 @@
 .phone-button {
     display: flex;
     justify-content: center;
-    height: 60px;
-    width: 60px;
+    height: 70px;
+    width: 70px;
     background: #49525b;
     border-radius: 50%;
     margin: 0 auto; /* 좌우 여백 자동 설정 */
-    margin-top: 13px;
+    margin-top: 20px;
+    box-shadow: 1px 1px 3px 1px inset;
+}
+.phone-button:hover{
+    transform: scale(1.1);
+
 }
 .form_container{
     margin-top: 2rem;
