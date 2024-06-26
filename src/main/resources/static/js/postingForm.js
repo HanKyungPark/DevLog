@@ -2,7 +2,9 @@ $(function () {
 
 
     // file click event를 div에 넓게 줌
+
     $(".thumbnail_container").click(function (){
+
         $('#file').click(); // #file input 요소를 클릭
     });
 
