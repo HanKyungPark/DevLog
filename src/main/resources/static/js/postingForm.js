@@ -2,8 +2,7 @@ $(function () {
 
 
     // file click event를 div에 넓게 줌
-    $(".thumbnail_container").click(function () {
-        alert("click");
+    $(".thumbnail_container").click(function (){
         $('#file').click(); // #file input 요소를 클릭
     });
 
@@ -53,10 +52,6 @@ $(function () {
     // 폼 데이터 전송하기
     $(".form").submit(function (e) {
         e.preventDefault();
-
-
-
-
         let formData = new FormData();
         formData.append("postData", new Blob([JSON.stringify({
             title: $("#title").val(),
