@@ -121,10 +121,13 @@ public class PostRestController {
     public ResponseEntity<Map<String, Object>> myPagePosts() {
         Map<String, Object> postMap = new HashMap<>();
         List<Post> posts = postService.findAllByAccountId();
-        String homepage = accountService
-            .findHomepageByAccountId(
-                posts.get(1).getAccountId()
-            );
+        String homepage = "";
+        if(posts != null){
+            homepage = accountService
+                .findHomepageByAccountId(
+                    posts.get(0).getAccountId()
+                );
+        }
         postMap.put("posts", posts);
         postMap.put("homepage", homepage);
 
