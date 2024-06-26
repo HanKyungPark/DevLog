@@ -118,6 +118,4 @@ public class CategoryRestController {
             return new ResponseEntity<>("카테고리가 성공적으로 삭제되었습니다.", HttpStatus.OK);
         }
     }
-
 }
-
