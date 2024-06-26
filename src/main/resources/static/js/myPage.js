@@ -6,6 +6,7 @@ const commentPageSize = 7;
 let comments = [];
 let file;
 let homepage;
+let categories = [];
 
 //게시글 저장하기
 function loadPosts() {
@@ -106,7 +107,6 @@ function postDelete(button) {
     data: JSON.stringify({postId: postId}),
     success: function (response) {
       loadPosts()
-      alert("게시글이 삭제 되었습니다.")
     },
     error: function (xhr, status, error) {
       alert('Failed to delete post');
@@ -246,7 +246,6 @@ function commentDelete(button) {
     data: JSON.stringify({commentId: commentId}),
     success: function (response) {
       loadComments();
-      alert("댓글이 삭제되었습니다.")
     },
     error: function (xhr, status, error) {
       alert('Failed to delete comment');
@@ -306,7 +305,177 @@ function loadVisitCount() {
   });
 };
 
-//페이지 로드 되면
+//카테고리 추가
+function addCategory(button){
+  let categoryName = $(button).prev('.category-input').val();
+
+  $.ajax({
+    url:'/api/mypage/category-post',
+    type: 'POST',
+    contentType: 'application/json',
+    data: JSON.stringify({categoryName: categoryName}),
+    success: function(response) {
+      console.log(response);
+      if(response.categoryType == null){
+        alert("동일한 카테고리 이름이 존재합니다.")
+      } else {
+        alert("카테고리 이름이 추가되었습니다.")
+      }
+      loadCategories();
+      validationCategories();
+      console.log('Category added successfully:', response);
+    },
+    error: function(error) {
+      console.error('Error adding category:', error);
+    }
+  })
+
+}
+
+//카테고리 불러오기
+function loadCategories(){
+
+  $.ajax({
+    url:'/api/mypage/categories',
+    method: 'GET',
+    success: function(data){
+      console.log("loadCategories");
+      console.log(data);
+      categories = data;
+      validationCategories();
+      displayCategories();
+    },
+    error: function(){
+
+    }
+  })
+}
+
+//카테고리 보여주기
+function displayCategories(){
+  const pageCategories = categories;
+
+  $('#category-container').empty();
+
+  categoryHtml = '';
+
+  pageCategories.forEach(function(category){
+    console.log("display category")
+    console.log(category)
+
+    categoryHtml +=
+        `
+          <div class="category-name" style="display: flex; justify-content: space-between; ">
+                            <div clas="category-type">${category.categoryType}</div>
+                            <div>
+                                <button class="category-delete" onclick="categoryDelete(this)">
+                                    삭제
+                                    <div class="category-id" style="display: none;">${category.categoryId}</div>
+                                </button>
+                                <button class="category-update" onclick="openCategoryUpdate(this)">
+                                    수정
+                                </button>
+                            </div>
+                        </div>
+                        <form class="category-form" style="display: none; ">
+                        <div class="form-group"  style = "display: flex; justify-content: center">
+                            <input type="text" class="form-control input-title-text-box category-input" placeholder="Enter a category">
+                            <button type="button" onclick="categoryUpdate(this)" class="btn add-category-btn">
+                              변경
+                            <div class="category-id" style="display: none;">${category.categoryId}</div>
+                            </button>
+                            <button type="button" onclick="closeCategoryUpdate(this)" class="btn add-category-btn">
+                              닫기
+                            </button>
+                            
+                        </div>
+                    </form>
+        `
+  })
+
+
+  $('#category-container').html(categoryHtml);
+}
+
+//카테고리 크기마다 검증
+function validationCategories(){
+  if(categories.length >= 5){
+    $('#category-form').css('visibility', 'hidden');
+  } else {
+    $('#category-form').css('visibility', 'visible');
+  }
+}
+
+//카테고리삭제
+function categoryDelete(button){
+  let categoryId = $(button).find(".category-id").text();
+  console.log(categoryId);
+
+  $.ajax({
+    url: "/api/mypage/category/delete",
+    type: 'POST',
+    contentType: 'application/json',
+    data: JSON.stringify({categoryId: categoryId}),
+    success: function () {
+      loadCategories();
+      validationCategories();
+      alert('Success to delete post');
+    }, error: function (xhr, status, error) {
+      alert('Failed to delete post');
+    }
+  })
+}
+
+
+//카테고리 수정
+function categoryUpdate(button){
+  let categoryId = $(button).find(".category-id").text();
+  let categoryForm = $(button).closest('.category-form')
+  let categoryType = categoryForm.find(".category-input").val();
+
+  console.log(categoryId);
+  console.log(categoryForm);
+  console.log(categoryType);
+
+  $.ajax({
+    url: "/api/mypage/category/update",
+    type: 'POST',
+    contentType: 'application/json',
+    data: JSON.stringify({
+      categoryId: categoryId,
+      categoryType : categoryType
+    }),
+    success: function (response) {
+      console.log(response);
+      if(response == '600'){
+        alert('동일한 이름이 존재합니다.');
+      } else {
+        loadCategories()
+        categoryForm.css('display', 'none');
+        alert('카테고리 이름이 변경되었습니다.');
+      }
+
+    }, error: function (xhr, status, error) {
+      alert('Failed to delete post');
+    }
+  })
+
+}
+
+//카테고리 수정폼 보여주기
+function openCategoryUpdate(button){
+  let categoryForm = $(button).closest('.category-name').next('.category-form');
+  console.log(categoryForm);
+  categoryForm.css('display', 'flex');
+}
+
+//카테고리 수정폼 닫기
+function closeCategoryUpdate(button){
+  let categoryForm = $(button).closest('.category-form');
+  categoryForm.css('display', 'none');
+}
+
+//페이지 로드
 $(document).ready(function () {
 
   // 포스트 목록 로드
@@ -318,8 +487,7 @@ $(document).ready(function () {
   //방문자수 로드
   loadVisitCount();
 
-});
+  //카테고리 불러오기
+  loadCategories();
 
-function loadCategories(){
-  
-}
+});

@@ -15,7 +15,6 @@ public class CategoryService {
     final CategoryMapper categoryMapper;
 
     public void save (Category category){
-
         categoryMapper.save(category);
     }
     public void update (Category category){
@@ -43,5 +42,13 @@ public class CategoryService {
 
     public String findCategoryTypeByCategoryId(Long categoryId) {
         return categoryMapper.findCategoryTypeByCategoryId(categoryId);
+    }
+
+    public Category findByCategoryId(Long categoryId) {
+        return categoryMapper.findByCategoryId(categoryId);
+    }
+
+    public Category findByCategoryType(String categoryType) {
+        return categoryMapper.findByCategoryType(categoryType);
     }
 }
