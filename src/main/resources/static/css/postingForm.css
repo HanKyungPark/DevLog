@@ -6,18 +6,63 @@
     background-color: #ffffff;
 }
 .marginofcontainer{
-    background-image: url("https://minio.bmops.kro.kr/devlog/logo/lightblue.png");
-    padding-right: 20px;
-    padding-left: 20px;
-    border-radius: 0.5rem;
+    padding-right: 50px;
+    padding-left: 50px;
+    border-radius: 50px;
     width: 100%;
-    max-width: 70%;
+    max-width: 50%;
+    margin-bottom: 20px;
     height: fit-content;
-    background-color: #ffffff;
+    background-color: #65737e;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    font-family: Tahoma;
     @media (min-width: 640px) {
-        padding: 2.5rem;
+        padding: 40px;
     }
+}
+.speaker{
+    height: 8px;
+    width: 50px;
+    border-radius: 4px;
+    background: #3e4752;
+    position: relative;
+    top: 15px;
+    left: 50%;
+    margin-left: -21px;
+}
+.phone-shade {
+    position: absolute;
+    left: 50%;
+    background: #555f6b;
+    transform: rotate(18deg);
+}
+.lines {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 30px;
+}
+
+.line {
+    background-color: white;
+    width: 30px;
+    height: 4px;
+}
+.form_content{
+    background-color: #f5f3eb;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+}
+.phone-button {
+    display: flex;
+    justify-content: center;
+    height: 60px;
+    width: 60px;
+    background: #49525b;
+    border-radius: 50%;
+    margin: 0 auto; /* 좌우 여백 자동 설정 */
+    margin-top: 13px;
 }
 .form_container{
     margin-top: 2rem;
@@ -180,8 +225,8 @@
 }
 .thumbnail_container{
     display: flex;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 50px;
+    padding-right: 50px;
     padding-top: 1.25rem;
     padding-bottom: 1.5rem;
     margin-top: 0.25rem;
