@@ -167,9 +167,7 @@ function displayComments() {
   const end = start + commentPageSize;
   const pageComments = comments.slice(start, end);
 
-
   let commentsHtml = '';
-
 
   $('#comments_box').empty();
 
@@ -180,8 +178,6 @@ function displayComments() {
   } else {
 
     pageComments.forEach(function (data) {
-
-
 
       const date = new Date(data.comment.ccreatedAt);
 
@@ -233,7 +229,8 @@ function displayComments() {
       $("#comments_box").html(commentsHtml);
 
     })
-  };
+  }
+  ;
 
   $('#comments_box').html(commentsHtml);
 
@@ -295,7 +292,7 @@ function loadVisitCount() {
       let visitsHtml = '';
 
       if (data.visitCount == null) {
-        visitsHtml = `<h3>0</h3>`
+        visitsHtml = `<h4>0</h4>`
       } else {
         visitsHtml += `
                     <div class="count_frame">
@@ -324,5 +321,6 @@ $(document).ready(function () {
 
 });
 
-
-
+function loadCategories(){
+  
+}
