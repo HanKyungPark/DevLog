@@ -88,4 +88,8 @@ public class AccountService {
         return accountMapper.findHomepageByAccountId(accountId);
     }
 
+    public Account findByHomepage(String homepage) {
+        return accountMapper.findByHomepage(homepage);
+    }
+
 }
