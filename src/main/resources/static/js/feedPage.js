@@ -42,11 +42,11 @@ style="width: 300px;height: 450px; overflow: hidden; border-color: rgb(0, 0, 0);
                                     </p>
                                     
                                     <h5 class="blog-post-homepage-excerpt-font blog-post-homepage-hover-visible" data-hook="blog-excerpt" style="text-align: right; padding: 0; margin: 0">
+                                        
                                         <div  class="blog-post-homepage-meta-font"><p>좋아요${item.hits}</p></div>
                                         ${formattedDate}
+                                        <a href="${item.homepage}" class="blog-post-homepage-meta-font" style="cursor: pointer"><p>블로그 바로가기${item.homepage}</p></a>
                                     </h5>
-                                    <div onclick="location.href='${item.homepage}'" class="blog-post-homepage-meta-font" style="cursor: pointer"><p>블로그 바로가기(${item.homepage})</p></div>
-
                                 </div>
                                 <div class="MyC1u blog-post-homepage-meta-font" style="display:flex;align-items:center;gap:12px">
                                     <div class="fQEAd blog-post-homepage-meta-font" style="display:flex; text-align: right">
@@ -68,14 +68,14 @@ style="width: 300px;height: 450px; overflow: hidden; border-color: rgb(0, 0, 0);
 </div>`;
                 container.append(msg);
             });
+
+            // 이벤트 핸들러 추가
             $(".detail").click(function () {
-                let homepage=$("#homepage").val();
-                let postURL=$("#postURL").val();
+                let homepage=$(this).find("#homepage").val();
+                let postURL=$(this).find("#postURL").val();
                 location.href="/"+homepage+"/"+postURL+"/detail";
-            })
+            });
+
         }
-
     });
-
-
 });

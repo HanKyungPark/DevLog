@@ -193,6 +193,7 @@ public class PostRestController {
         List<Object> list = postService.findAllbypostUrl(info);
 
         visitService.updateVisit(postService.findByPostUrl(info).getAccountId());
+
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
