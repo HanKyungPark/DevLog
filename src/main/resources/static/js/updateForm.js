@@ -2,6 +2,9 @@ let currentUrl = window.location.href;
 let postUrl =  currentUrl.substring(currentUrl.lastIndexOf('/') + 1);
 console.log(postUrl);
 
+let contentHtml = '';
+
+
 // "ck-restricted-editing_mode_standard ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred"
 function loadPost() {
   $.ajax({
@@ -17,22 +20,31 @@ function loadPost() {
       const categoryType = data.categoryType;
       const openTyp = data.post.openType;
       const file = data.post.file;
-
+      const tags = data.tags
 
       let titleHtml = `${title}`;
-      let contentHtml = `${content}`;
-      let fileHtml = `<img src="${file}">`;
+      contentHtml = `${content}`;
+      let fileHtml = `${file}`;
       let categoryHtml = '';
       let tagHtml = '';
-
-      //태그
-      data.tags.forEach(function(tag){
-        tagHtml += `<div>${tag}</div>`;
+      tags.forEach(function(tag){
+        tagHtml += `<div class="hashtag" id="${tag}">
+			<span class="hashtag-value">${tag}</span>
+			<button type="button" onclick="removeHashtag('${tag}')">×</button>
+		      </div>`;
       })
 
-      // $(".input_title_text_box").val(titleHtml);
-      // $('#container').html(`<textarea id="editor" th:field="*{${contentHtml}}"></textarea>`);
-      // CKEDITOR.instances.editor.setData(contentHtml)
+      //제목
+      $("#title").val(titleHtml);
+
+      //카테고리
+      $("#category").html(categoryHtml)
+
+      //태그
+      $('#hashtagList').html(tagHtml)
+
+      //사진
+      $('#showimg1').attr('src', fileHtml)
 
 
     },
