@@ -49,8 +49,13 @@ h1, h2 {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
+    margin-top: 10px;
 }
-
+#heart{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
 #tagcontainer .inline-flex {
     background-color: #cfd8e3;
     color: #2c3e50;

@@ -61,4 +61,5 @@ public interface PostMapper {
     void updateHitsByPostid(Long postId);
 
     Long findHitsByPostid(Long accountId);
+    Post findByCategoryIdAndAccountId(Long categoryId, Long accountId);
 }

@@ -13,7 +13,7 @@
         where account_id=#{accountId}
     </update>
 
-    <select id="findByHomepage" parameterType="long">
+    <select id="findByHomepage" parameterType="String" resultType="Account">
         select * from account
         where homepage = #{homepage}
     </select>
@@ -59,7 +59,7 @@
     <select id="findHomepageByAccountId"  parameterType="long" resultType="String">
         select homepage from account
         where account_id = ${accoutId}
-
     </select>
+
 
 </mapper>

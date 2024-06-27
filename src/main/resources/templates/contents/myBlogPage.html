@@ -20,8 +20,74 @@
 <body>
 <div layout:fragment="content" style="text-align: left">
     <div class="all_container">
-        <div style="display: flex; justify-content: flex-end; width: 100%">
+
+        <div style="width: 100%;height: 350px" id="user">
+
+            <!--
+// v0 by Vercel.
+// https://v0.dev/t/0JYD0AGz0ql
+-->
+
+            <div class="bg-background p-6 sm:p-8 rounded-lg shadow-lg" style="height: 100%">
+                <div class="flex items-center gap-4">
+    <span class="relative flex shrink-0 overflow-hidden rounded-full w-16 h-16 sm:w-20 sm:h-20">
+      <img class="aspect-square h-full w-full" alt="@shadcn" src="/placeholder-user.jpg" id="profile" />
+    </span>
+                    <div class="grid gap-1">
+                        <h2 class="text-xl font-bold" id="uname">John Doe</h2>
+                        <div class="text-muted-foreground" id="uhomepage">@johndoe</div>
+                    </div>
+                </div>
+                <div class="mt-6 grid grid-cols-3 gap-4 text-center">
+                    <div class="grid gap-1">
+                        <div class="text-2xl font-bold" id="utotalpost">100</div>
+                        <div class="text-muted-foreground">Posts</div>
+                    </div>
+                    <div class="grid gap-1">
+                        <div class="text-2xl font-bold" id="uviews">1.2K</div>
+                        <div class="text-muted-foreground">Followers</div>
+                    </div>
+                    <div class="grid gap-1">
+                        <div class="text-2xl font-bold">500</div>
+                        <div class="text-muted-foreground">Following</div>
+                    </div>
+                </div>
+                <div class="mt-6 text-muted-foreground">
+                    <p id="ubiography">
+                        John Doe is a passionate photographer and traveler. He loves capturing the beauty of the world through his
+                        lens.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <div style="display: flex; width: 100%">
+
+
             <div class="post_container">
+                <div class="all" style="width: 100%; height: 50px;">
+                    <div class="ab" style="width: 50%; height: 100%; display: flex">
+                        <div class="a" style="width: 13%; height: 80%;display: block; border: 1px solid " id="all">
+                            All
+                        </div>
+                        <div class="a" style="width: 13%; height: 80%; display: none; border: 1px solid " id="category1">
+
+                        </div>
+                        <div class="a" style="width: 13%; height: 80%;display: none; border: 1px solid " id="category2">
+
+                        </div>
+                        <div class="a" style="width: 13%; height: 80%;display: none; border: 1px solid " id="category3">
+
+                        </div>
+                        <div class="a" style="width: 13%; height: 80%;display: none; border: 1px solid " id="category4">
+
+                        </div>
+                        <div class="a" style="width: 13%; height: 80%;display: none; border: 1px solid " id="category5">
+
+                        </div>
+                    </div>
+                </div>
                 <div class="blogpost_box" data-v0-t="card">
 
                 </div>
