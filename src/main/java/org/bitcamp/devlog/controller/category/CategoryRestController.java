@@ -10,11 +10,12 @@ import org.bitcamp.devlog.dto.Category;
 import org.bitcamp.devlog.dto.Oauth2User;
 import org.bitcamp.devlog.service.CategoryService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -47,7 +48,7 @@ public class CategoryRestController {
         return map;
     }
 
-<<<<<<< HEAD
+
     //mypage 카테고리추가
     @PostMapping("/api/mypage/category-post")
     public ResponseEntity<Category> mypageSaveCategory(
@@ -119,11 +120,7 @@ public class CategoryRestController {
             return new ResponseEntity<>("카테고리가 성공적으로 삭제되었습니다.", HttpStatus.OK);
         }
     }
-=======
-<<<<<<< HEAD
->>>>>>> e23a551 (mypage to editpage)
-}
-=======
+
     //mypage 카테고리추가
     @PostMapping("/api/mypage/category-post")
     public ResponseEntity<Category> mypageSaveCategory(
@@ -197,4 +194,4 @@ public class CategoryRestController {
     }
 
 }
->>>>>>> 13774e0 (mypage to editpage)
+

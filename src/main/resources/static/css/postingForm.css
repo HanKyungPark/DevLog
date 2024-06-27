@@ -1,3 +1,4 @@
+
 .bigcontainer {
   display: flex;
   justify-content: center;
@@ -63,14 +64,12 @@
 .phone-button {
   display: flex;
   justify-content: center;
-
   height: 60px;
   width: 60px;
   background: #49525b;
   border-radius: 50%;
   margin: 0 auto; /* 좌우 여백 자동 설정 */
   margin-top: 13px;
-
 }
 
 .form_container {
