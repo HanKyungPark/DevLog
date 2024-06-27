@@ -1,7 +1,7 @@
 $(function () {
-
-    let postUrl = "";
     let pathname = window.location.pathname.split("/")[1];
+
+    // AJAX 요청
     $.ajax({
         url: "api/blog/check",
         type: "post",
@@ -15,8 +15,6 @@ $(function () {
         }
     });
 
-
-
     // AJAX 요청
     $.ajax({
         url: "/api/post/myblog/list",
@@ -29,9 +27,8 @@ $(function () {
 
             // 각 포스트 데이터를 HTML로 변환하여 추가
             data.forEach(function(post, idx) {
-                postUrl = post.postUrl;
                 postElement += `
-                <div class="blogpost_box" data-v0-t="card" id="blogpost_box${idx+1}">
+                <div class="blogpost_box" data-post-url="${post.postUrl}" data-v0-t="card" id="blogpost_box${idx+1}">
                     <a href="#">
                         <img
                             src="https://minio.bmops.kro.kr/devlog/${post.file}"
@@ -65,9 +62,10 @@ $(function () {
             });
         }
     });
-    $(document).on("click", ".blogpost_box", function() {
 
+    $(document).on("click", ".blogpost_box", function() {
         let homepage = pathname;
+        let postUrl = $(this).data("post-url"); // 클릭한 요소의 data-post-url 속성 값 가져오기
 
         location.href = '/' + homepage + "/" + postUrl + "/detail";
     });

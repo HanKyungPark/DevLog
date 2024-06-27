@@ -38,6 +38,7 @@ public class PostRestController {
     private final VisitService visitService;
     private final AccountService accountService;
 
+
     @PostMapping(value = "/api/post/posting", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> posting(
         @RequestPart("postData") Map<String, Object> postData,
@@ -92,6 +93,7 @@ public class PostRestController {
                 );
             }
         }
+
 
         return ResponseEntity.ok("post를 저장하였습니다.");
     }
