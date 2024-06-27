@@ -50,6 +50,10 @@ $(function () {
     // 폼 데이터 전송하기
     $(".form").submit(function (e) {
         e.preventDefault();
+
+
+
+
         let formData = new FormData();
         formData.append("postData", new Blob([JSON.stringify({
             title: $("#title").val(),

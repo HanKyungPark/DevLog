@@ -111,7 +111,7 @@ public class PostRestController {
     }
 
     @PostMapping("/detail/comment")
-    public ResponseEntity<List<String>> commentPost(@RequestParam String postId) {
+    public ResponseEntity<List<String>> commentPost(@RequestParam String postId ) {
         List<String> posts = new ArrayList<>();
         posts.add(postId);
         System.out.println(posts.get(0));
@@ -192,10 +192,20 @@ public class PostRestController {
     ) {
 
         List<Object> list = postService.findAllbypostUrl(info);
+        System.out.println(list.size());
 
-        visitService.updateVisit(postService.findByPostUrl(info).getAccountId());
+        postService.updateHitsByPostid(postService.findPostIdByPostUrl(info));
 
         return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+    @GetMapping("/api/mypage/visits")
+    public Long countByVisit() {
+        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+
+        return postService.findHitsByPostid(oauth2User.getAccountId());
     }
 
     @PostMapping("/api/search/category")

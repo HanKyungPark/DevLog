@@ -34,11 +34,7 @@ public class VisitService {
         return visits;
     };
 
-    public Long findVisitCountByAccountId(Long accountId) {
-        return visitMapper.findVisitCountByAccountId(accountId);
-    }
 
-    public void updateVisit(Long accountId){
-        visitMapper.updateVisit(accountId);
-    };
+
+
 }
