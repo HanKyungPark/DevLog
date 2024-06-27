@@ -147,6 +147,8 @@
         where post_id = #{postId}
     </select>
 
-
+    <select id="findByCategoryIdAndAccountId" parameterType="long" resultType="Post">
+        select * from post where category_id=#{categoryId} and account_id = #{accountId}
+    </select>
 </mapper>
 

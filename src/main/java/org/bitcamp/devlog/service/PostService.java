@@ -111,4 +111,8 @@ public class PostService {
         return postMapper.findPostUrlByPostId(postId);
     }
 
+    public Post findByCategoryIdAndAccountId(Long categoryId, Long accountId) {
+        return postMapper.findByCategoryIdAndAccountId(categoryId, accountId);
+    }
+
 }
