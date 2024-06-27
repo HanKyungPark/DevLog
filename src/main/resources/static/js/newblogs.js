@@ -18,7 +18,7 @@ function loadUserInformation(){
                 <img src="${newBlogData.account.file}" style="width: 180px;min-width: 180px;height: 180px; border-radius: 100px; margin-right: 30px;border:2px solid black">
                 <div class="user-total" style="width: 200px;margin-right: 80px">
                 <div> 
-                <a style="color: black" href="https://dev.devlog.r-e.kr/${newBlogData.account.homepage}"><div class="blog_home" style="width: 200px"><button style="  font-size: 15px;
+                <a style="color: black" href="${newBlogData.account.homepage}"><div class="blog_home" style="width: 200px"><button style="  font-size: 15px;
     border-radius: 30px ;
     width: 60px;
     height: 30px;
@@ -50,7 +50,7 @@ function loadUserInformation(){
                              <input type="hidden" value="${post.postUrl}" class="postUrl">
                         <input type="hidden" value="${newBlogData.account.accountId}" class="accountId">
                         <input type="hidden" value="${newBlogData.account.homepage}" class="homepage">
-                        <div class="user-posts"><img class="posted_img" src="https://minio.bmops.kro.kr/devlog/${post.file}" style="width: 130px;height: 130px; border: 1px solid #b8d6d2;border-radius: 20px"></div>
+                        <div class="user-posts"><img class="posted_img" src="${post.file}" style="width: 130px;height: 130px; border: 1px solid #b8d6d2;border-radius: 20px"></div>
                         <div style="height: 20px; font-size: 15px;width: 100px; overflow: hidden;
 text-overflow: ellipsis;
 white-space: nowrap;"><b>${post.title}</b></div>
