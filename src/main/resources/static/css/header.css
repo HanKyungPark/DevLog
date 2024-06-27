@@ -200,10 +200,15 @@
 }
 
 
+.headermenu .dropdown .dropdown ul {
+  top: 0;
+  left: -90%;
+  visibility: hidden;
+}
 
-
-
-
-
-
-
+.headermenu .dropdown .dropdown:hover > ul {
+  opacity: 1;
+  top: 0;
+  left: -100%;
+  visibility: visible;
+}

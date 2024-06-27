@@ -47,6 +47,7 @@ public class CategoryRestController {
         return map;
     }
 
+<<<<<<< HEAD
     //mypage 카테고리추가
     @PostMapping("/api/mypage/category-post")
     public ResponseEntity<Category> mypageSaveCategory(
@@ -118,4 +119,82 @@ public class CategoryRestController {
             return new ResponseEntity<>("카테고리가 성공적으로 삭제되었습니다.", HttpStatus.OK);
         }
     }
+=======
+<<<<<<< HEAD
+>>>>>>> e23a551 (mypage to editpage)
 }
+=======
+    //mypage 카테고리추가
+    @PostMapping("/api/mypage/category-post")
+    public ResponseEntity<Category> mypageSaveCategory(
+        @RequestBody Map<String, String> categoryName
+    ) {
+        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
+            .getContext()
+            .getAuthentication()
+            .getPrincipal();
+
+        String categoryType = categoryName.get("categoryName");
+        Category category = categoryService.findByCategoryType(categoryType);
+
+        if(category != null){
+            return new ResponseEntity<>(new Category(), HttpStatus.OK);
+        } else {
+             category = Category.builder()
+                .categoryType(categoryName.get("categoryName"))
+                .accountId(oauth2User.getAccountId())
+                .build();
+
+            categoryService.save(category);
+            return new ResponseEntity<>(category, HttpStatus.OK);
+        }
+    }
+
+    //마이페이지 카테고리 리스트
+    @GetMapping("/api/mypage/categories")
+    public ResponseEntity<List<Category>> mypageCategories(){
+        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
+            .getContext()
+            .getAuthentication()
+            .getPrincipal();
+
+        List<Category> categories = categoryService
+            .findAllByAccountId(oauth2User.getAccountId());
+
+        return new ResponseEntity<>(categories, HttpStatus.OK);
+    }
+
+    //카테고리 삭제
+    @PostMapping("/api/mypage/category/delete")
+    public ResponseEntity<String> mypageCategoryDelete(
+        @RequestBody Map<String, Long> categoryId
+    ){
+        Category category = categoryService.findByCategoryId(categoryId.get("categoryId"));
+        categoryService.delete(category);
+        return new ResponseEntity<>("카테고리가 성공적으로 삭제되었습니다.", HttpStatus.OK);
+    }
+
+    //카테고리 수정
+    @PostMapping("/api/mypage/category/update")
+    public ResponseEntity<String> mypageCategoryUpdate(
+        @RequestBody Map<String, String> categoryUpdateData
+    ){
+        String categoryType = categoryUpdateData.get("categoryType");
+        Long categoryId = Long.valueOf(categoryUpdateData.get("categoryId"));
+        Category category = categoryService.findByCategoryType(categoryType);
+        if(category != null){
+            return new ResponseEntity<>("600", HttpStatus.OK);
+        } else {
+            category = Category.builder()
+                .categoryType(categoryType)
+                .categoryId(categoryId)
+                .build();
+
+            categoryService.update(category);
+
+            return new ResponseEntity<>("카테고리가 성공적으로 삭제되었습니다.", HttpStatus.OK);
+        }
+    }
+
+}
+>>>>>>> 13774e0 (mypage to editpage)
