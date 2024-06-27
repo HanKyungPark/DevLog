@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.bitcamp.devlog.dto.Account;
 import org.bitcamp.devlog.dto.Oauth2User;
 import org.bitcamp.devlog.mapper.AccountMapper;
+import org.bitcamp.devlog.mapper.VisitMapper;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,7 +19,7 @@ import java.util.Map;
 public class AccountService {
 
     private final AccountMapper accountMapper;
-
+    private final VisitMapper visitMapper ;
     public void save(Account account) {
         accountMapper.save(account);
 
@@ -26,6 +27,11 @@ public class AccountService {
     public void update(Account account) {
         System.out.println("AccountServiceUpdate:" + account);
         accountMapper.update(account);
+        // visit 초기화 및 생성 (default value=0)
+        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
     }
 
     public String findByEmail(){

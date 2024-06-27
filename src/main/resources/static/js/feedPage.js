@@ -68,14 +68,14 @@ style="width: 300px;height: 450px; overflow: hidden; border-color: rgb(0, 0, 0);
 </div>`;
                 container.append(msg);
             });
+
+            // 이벤트 핸들러 추가
             $(".detail").click(function () {
-                let homepage=$("#homepage").val();
-                let postURL=$("#postURL").val();
+                let homepage=$(this).find("#homepage").val();
+                let postURL=$(this).find("#postURL").val();
                 location.href="/"+homepage+"/"+postURL+"/detail";
-            })
+            });
+
         }
-
     });
-
-
 });

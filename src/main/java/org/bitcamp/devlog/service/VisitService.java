@@ -38,5 +38,7 @@ public class VisitService {
         return visitMapper.findVisitCountByAccountId(accountId);
     }
 
-    public void updateVisit(Long account_id){};
+    public void updateVisit(Long accountId){
+        visitMapper.updateVisit(accountId);
+    };
 }
