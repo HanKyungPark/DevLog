@@ -320,7 +320,9 @@ function addCategory(button){
         alert("동일한 카테고리 이름이 존재합니다.")
       } else {
         alert("카테고리 이름이 추가되었습니다.")
+
       }
+      $(button).prev('.category-input').val("");
       loadCategories();
       validationCategories();
     },
