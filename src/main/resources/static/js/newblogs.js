@@ -15,16 +15,25 @@ function loadUserInformation(){
                 userHtml += `
                 <div class="user-block">
            
-                <img src="${newBlogData.account.file}" style="width: 180px;height: 180px; border-radius: 100px; margin-right: 30px;border:2px solid black">
+                <img src="${newBlogData.account.file}" style="width: 180px;min-width: 180px;height: 180px; border-radius: 100px; margin-right: 30px;border:2px solid black">
                 <div class="user-total" style="width: 200px;margin-right: 80px">
-                <button class="follow-button" style="    font-size: 15px;
+                <div> 
+                <a style="color: black" href="https://dev.devlog.r-e.kr/${newBlogData.account.homepage}"><div class="blog_home" style="width: 200px"><button style="  font-size: 15px;
+    border-radius: 30px ;
+    width: 60px;
+    height: 30px;
+    background-color: #5dd2fc;
+    float: right;
+    margin-right: 30px;
+    cursor: pointer;"><b>블로그</b><input type="hidden" value="${newBlogData.account.homepage}" class="homepage"></button></div></a></div>
+               <div> <button class="follow-button" style="    font-size: 15px;
     border-radius: 30px ;
     width: 60px;
     height: 30px;
     background-color: #90f5dd;
-    float: right;
-    margin-right: 30px;
-    cursor: pointer;"><b class="follow-p">팔로우</b></button>
+    margin-right: 10px;
+    margin-left: 40px;
+    cursor: pointer;"><b class="follow-p">팔로우</b></button></div>
                 <div><p class="blink" style="color: red;font-size: 15px">New!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></div>
                 <div>${newBlogData.account.blogId}</div>
                 <div>${newBlogData.account.biography}</div>
@@ -52,6 +61,7 @@ function loadUserInformation(){
                 $('.just_test').append(userHtml);
             });
 
+
             //클릭시 해당 게시물로 이동
             $(".post-container").click(function(){
 
@@ -61,6 +71,7 @@ function loadUserInformation(){
 
                 location.href = '/' + homepage + "/" + postUrl + "/detail";
             });
+
             // 버튼 클릭 이벤트 핸들러 설정
             $('.just_test').on('click', '.follow-button', function() {
                 const button = $(this);

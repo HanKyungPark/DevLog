@@ -10,7 +10,7 @@
     padding-left: 50px;
     border-radius: 50px;
     width: 100%;
-    max-width: 50%;
+    max-width: 60%;
     margin-bottom: 20px;
     height: fit-content;
     /*background-color: #65737e;*/
@@ -23,13 +23,13 @@
 }
 .speaker{
     height: 8px;
-    width: 50px;
+    width: 80px;
     border-radius: 4px;
     background: #3e4752;
     position: relative;
     top: 15px;
     left: 50%;
-    margin-left: -21px;
+    margin-left: -25px;
 }
 .phone-shade {
     position: absolute;
