@@ -57,4 +57,6 @@ public interface PostMapper {
     void deleteByPostId(Long postId);
 
     String findPostUrlByPostId(Long postId);
+
+    Post findByCategoryIdAndAccountId(Long categoryId, Long accountId);
 }

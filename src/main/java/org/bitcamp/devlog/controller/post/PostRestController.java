@@ -38,6 +38,7 @@ public class PostRestController {
     private final VisitService visitService;
     private final AccountService accountService;
 
+
     @PostMapping(value = "/api/post/posting", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> posting(
         @RequestPart("postData") Map<String, Object> postData,
@@ -92,6 +93,7 @@ public class PostRestController {
                 );
             }
         }
+
 
         return ResponseEntity.ok("post를 저장하였습니다.");
     }
@@ -195,5 +197,18 @@ public class PostRestController {
 
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
+
+    @PostMapping("/api/search/category")
+    public Post findByCategoryIdAndAccountId(@RequestParam String categoryId) {
+        Long category=(Long.parseLong(categoryId));
+        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+        Long accountId = oauth2User.getAccountId();
+
+        return postService.findByCategoryIdAndAccountId(category, accountId);
+    }
+
 
 }
