@@ -16,4 +16,6 @@ public interface VisitMapper {
     Long findVisitCountByAccountId(Long accountId);
 
     void updateVisit(Long accountId);
+
+
 }

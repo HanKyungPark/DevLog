@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.bitcamp.devlog.mapper.AccountMapper">
 
-    <insert id="save" parameterType="Account">
+    <insert id="save" parameterType="Account" useGeneratedKeys="true" keyProperty="accountId">
         insert into account (name,email,provider_type,a_created_at,a_updated_at,file)
         values(#{name},#{email},'0',now(),now(),#{file})
     </insert>
