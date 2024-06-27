@@ -122,7 +122,7 @@ public class PostRestController {
         Map<String, Object> postMap = new HashMap<>();
         List<Post> posts = postService.findAllByAccountId();
         String homepage = "";
-        if(posts != null){
+        if (posts != null) {
             homepage = accountService
                 .findHomepageByAccountId(
                     posts.get(0).getAccountId()
@@ -171,7 +171,6 @@ public class PostRestController {
                 )
             );
 
-
         if (tags.size() != 0) {
             postUpdateData.put("tags", tags);
         }
@@ -188,7 +187,7 @@ public class PostRestController {
 
     @PostMapping("/api/post/detail")
     public ResponseEntity<List<Object>> detailPost(@RequestParam String info
-   ) {
+    ) {
 
         List<Object> list = postService.findAllbypostUrl(info);
 
