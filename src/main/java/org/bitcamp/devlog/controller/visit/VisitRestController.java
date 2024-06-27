@@ -15,16 +15,5 @@ public class VisitRestController {
 
     private final VisitService visitService;
 
-    @GetMapping("/api/mypage/visits")
-    public ResponseEntity<Long>countByVisit() {
-        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
-            .getContext()
-            .getAuthentication()
-            .getPrincipal();
 
-        Long visitCount = visitService
-            .findVisitCountByAccountId(oauth2User.getAccountId());
-
-        return new ResponseEntity<>(visitCount, HttpStatus.OK);
-    }
 }

@@ -147,6 +147,15 @@
         where post_id = #{postId}
     </select>
 
+    <update id="updateHitsByPostid" parameterType="Long">
+        update post set hits=hits+1 where post_id=#{postId}
+    </update>
 
+    <select id="findHitsByPostid" parameterType="Long" resultType="Long">
+        SELECT SUM(hits) as total_hits
+        FROM post
+        WHERE account_id = #{accountId}
+        GROUP BY account_id
+    </select>
 </mapper>
 

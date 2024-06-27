@@ -112,4 +112,8 @@ public class PostService {
     public String findPostUrlByPostId(Long postId) {
         return postMapper.findPostUrlByPostId(postId);
     }
+
+    public void updateHitsByPostid ( Long postId){postMapper.updateHitsByPostid(postId);};
+
+    public Long findHitsByPostid (Long accountId){return postMapper.findHitsByPostid(accountId);};
 }

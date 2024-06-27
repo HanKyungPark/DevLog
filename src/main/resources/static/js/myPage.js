@@ -279,21 +279,21 @@ function commentToggleButtons() {
           : 'block');
 }
 
+
 //조회수 가져오기
 function loadVisitCount() {
   $.ajax({
     url: '/api/mypage/visits',
     method: 'GET',
     success: function (data) {
-
       let visitsHtml = '';
 
-      if (data.visitCount == null) {
+      if (data == null) {
         visitsHtml = `<h4>0</h4>`
       } else {
         visitsHtml += `
                     <div class="count_frame">
-                        <div class="count">${data.visitCount}</div>
+                        <div class="count">${data}</div>
                     </div>`;
       }
       $('#visit_box').html(visitsHtml);
@@ -304,10 +304,11 @@ function loadVisitCount() {
   });
 };
 
+
 //카테고리 추가
 function addCategory(button){
   let categoryName = $(button).prev('.category-input').val();
-
+  console.log(categoryName)
   $.ajax({
     url:'/api/mypage/category-post',
     type: 'POST',
