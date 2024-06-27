@@ -90,7 +90,6 @@ function displayPosts() {
     });
 
     $('#blogpost_inside').html(postsHtml);
-
   }
 
 }
@@ -315,7 +314,7 @@ function addCategory(button){
     contentType: 'application/json',
     data: JSON.stringify({categoryName: categoryName}),
     success: function(response) {
-      console.log(response);
+
       if(response.categoryType == null){
         alert("동일한 카테고리 이름이 존재합니다.")
       } else {
@@ -323,7 +322,6 @@ function addCategory(button){
       }
       loadCategories();
       validationCategories();
-      console.log('Category added successfully:', response);
     },
     error: function(error) {
       console.error('Error adding category:', error);
@@ -339,8 +337,6 @@ function loadCategories(){
     url:'/api/mypage/categories',
     method: 'GET',
     success: function(data){
-      console.log("loadCategories");
-      console.log(data);
       categories = data;
       validationCategories();
       displayCategories();
@@ -360,8 +356,6 @@ function displayCategories(){
   categoryHtml = '';
 
   pageCategories.forEach(function(category){
-    console.log("display category")
-    console.log(category)
 
     categoryHtml +=
         `
@@ -393,7 +387,6 @@ function displayCategories(){
         `
   })
 
-
   $('#category-container').html(categoryHtml);
 }
 
@@ -409,7 +402,6 @@ function validationCategories(){
 //카테고리삭제
 function categoryDelete(button){
   let categoryId = $(button).find(".category-id").text();
-  console.log(categoryId);
 
   $.ajax({
     url: "/api/mypage/category/delete",
@@ -433,10 +425,6 @@ function categoryUpdate(button){
   let categoryForm = $(button).closest('.category-form')
   let categoryType = categoryForm.find(".category-input").val();
 
-  console.log(categoryId);
-  console.log(categoryForm);
-  console.log(categoryType);
-
   $.ajax({
     url: "/api/mypage/category/update",
     type: 'POST',
@@ -446,7 +434,7 @@ function categoryUpdate(button){
       categoryType : categoryType
     }),
     success: function (response) {
-      console.log(response);
+
       if(response == '600'){
         alert('동일한 이름이 존재합니다.');
       } else {
@@ -465,7 +453,6 @@ function categoryUpdate(button){
 //카테고리 수정폼 보여주기
 function openCategoryUpdate(button){
   let categoryForm = $(button).closest('.category-name').next('.category-form');
-  console.log(categoryForm);
   categoryForm.css('display', 'flex');
 }
 

@@ -66,7 +66,6 @@ public class CategoryRestController {
 
         String categoryType = categoryName.get("categoryName");
         Category category = categoryService.findByCategoryType(categoryType);
-        System.out.println(category);
 
         if(category != null){
             return new ResponseEntity<>(new Category(), HttpStatus.OK);
@@ -120,8 +119,6 @@ public class CategoryRestController {
                 .categoryType(categoryType)
                 .categoryId(categoryId)
                 .build();
-
-            System.out.println(category);
 
             categoryService.update(category);
 
