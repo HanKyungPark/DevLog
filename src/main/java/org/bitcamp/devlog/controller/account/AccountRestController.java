@@ -104,4 +104,11 @@ public class AccountRestController {
 
         return new ResponseEntity(newBlogData, HttpStatus.OK);
     }
+
+    @PostMapping("/user/info")
+    public Account findByHomepage(@RequestParam String homepage){
+
+
+     return accountService.findByHomepage(homepage);
+    }
 }

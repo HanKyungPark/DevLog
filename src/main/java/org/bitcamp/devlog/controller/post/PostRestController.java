@@ -198,4 +198,17 @@ public class PostRestController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
+    @PostMapping("/api/search/category")
+    public Post findByCategoryIdAndAccountId(@RequestParam String categoryId) {
+        Long category=(Long.parseLong(categoryId));
+        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+        Long accountId = oauth2User.getAccountId();
+
+        return postService.findByCategoryIdAndAccountId(category, accountId);
+    }
+
+
 }
