@@ -149,13 +149,22 @@ $(function () {
             }
         });
     });
-});    $(document).on("click", ".blogpost_box", function () {
+
+});
+  $(document).on("click", ".blogpost_box", function () {
     let homepage = window.location.pathname.split("/")[1];
     let postUrl = $(this).data("post-url"); // 클릭한 요소의 data-post-url 속성 값 가져오기
 
-    location.href = '/' + homepage + "/" + postUrl + "/detail";
-});
+    location.href = '/' + homepage + "/" + postUrl + "/detail";});
 
+    $.ajax({
+        url:"/api/post/view",
+        type:"post",
+        data:{"homepage":pathname},
+        success:function (data) {
+            $("#uviews").text(data);
+        }
+    })
 // 날짜 포맷 변환 함수
 function formatDate(dateString) {
     const date = new Date(dateString);

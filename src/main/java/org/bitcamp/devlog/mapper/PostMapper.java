@@ -63,4 +63,6 @@ public interface PostMapper {
     Long findHitsByPostid(Long accountId);
 
     List<Post> findByCategoryIdAndAccountId(Long categoryId, Long accountId);
+
+    Long findHitsByHomepage(String homepage);
 }
