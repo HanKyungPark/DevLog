@@ -47,3 +47,15 @@ a{
     margin-right:15% ;
     text-align: center;
 }
+.like-button {
+    float: left;
+    margin-left: 20px;
+    font-size: 30px;
+    color: black;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.liked {
+    color: red;
+}
