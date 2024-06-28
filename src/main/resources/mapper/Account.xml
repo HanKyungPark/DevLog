@@ -58,14 +58,7 @@
 
     <select id="findHomepageByAccountId"  parameterType="long" resultType="String">
         select homepage from account
-        where account_id = ${accoutId}
-
-    </select>
-
-    <select id="findEmailByAccountId"  parameterType="long" resultType="String">
-        select email from account
-        where account_id = ${accoutId}
-
+        where account_id = #{accountId}
     </select>
 
 
