@@ -19,7 +19,7 @@ $(function () {
 <div class="detail gallery-item-container item-container-regular has-custom-focus visible hover-animation-fade-in" id="pgi7c0cd68a821f43e18a4d0abc19887849_0" tabindex="0" aria-label="FUN WAYS TO DRESS UP A T-SHIRT" data-hash="7c0cd68a-821f-43e1-8a4d-0abc19887849" data-id="7c0cd68a-821f-43e1-8a4d-0abc19887849" data-idx="0" role="" data-hook="item-container"
 style="width: 300px;height: 430px; overflow: hidden; border-color: rgb(0, 0, 0); border:2px solid black; transition: opacity 0.2s ease 0s; opacity: 1;border-radius: 20px;padding: 0">
     <div>
-    <div style="outline: black;background-color: #fffeed;font-size: 20px; font-family: Verdana">${item.homepage}</div>
+    <div style="background-color: #fffeed;"><a style="color: black;font-size: 20px; font-family: Verdana" href="${item.homepage}">${item.homepage}</a></div>
         <div data-hook="item-wrapper" class="gallery-item-wrapper visible cube-type-fill [object Object]" id="item-wrapper-7c0cd68a-821f-43e1-8a4d-0abc19887849"
          style="height: 500px; width: 100%; margin: -1px;">
             <div class="gallery-item-content item-content-regular image-item gallery-item-visible gallery-item gallery-item-preloaded   " data-hook="image-item"
