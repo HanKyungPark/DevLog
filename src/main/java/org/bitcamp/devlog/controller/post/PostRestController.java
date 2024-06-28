@@ -248,10 +248,6 @@ public class PostRestController {
                 + minioService.uploadFile("devlog", email, file));
         }
 
-        System.out.println("updatePost");
-        System.out.println(updatePost);
-        System.out.println("updatePost");
-
         postService.update(updatePost);
 
         //태그 삭제
