@@ -15,16 +15,25 @@ function loadUserInformation(){
                 userHtml += `
                 <div class="user-block">
            
-                <img src="${newBlogData.account.file}" style="width: 180px;height: 180px; border-radius: 100px; margin-right: 30px;border:2px solid black">
+                <img src="${newBlogData.account.file}" style="width: 160px;min-width: 160px;height: 160px; border-radius: 100px; margin-right: 30px;border:2px solid black">
                 <div class="user-total" style="width: 200px;margin-right: 80px">
-                <button class="follow-button" style="    font-size: 15px;
+                <div> 
+                <a style="color: black" href="${newBlogData.account.homepage}"><div class="blog_home" style="width: 200px"><button style="  font-size: 15px;
+    border-radius: 30px ;
+    width: 60px;
+    height: 30px;
+    background-color: #5dd2fc;
+    float: right;
+    margin-right: 30px;
+    cursor: pointer;"><b>블로그</b><input type="hidden" value="${newBlogData.account.homepage}" class="homepage"></button></div></a></div>
+               <div> <button class="follow-button" style="    font-size: 15px;
     border-radius: 30px ;
     width: 60px;
     height: 30px;
     background-color: #90f5dd;
-    float: right;
-    margin-right: 30px;
-    cursor: pointer;"><b class="follow-p">팔로우</b></button>
+    margin-right: 10px;
+    margin-left: 40px;
+    cursor: pointer;"><b class="follow-p">팔로우</b></button></div>
                 <div><p class="blink" style="color: red;font-size: 15px">New!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></div>
                 <div>${newBlogData.account.blogId}</div>
                 <div>${newBlogData.account.biography}</div>
@@ -41,8 +50,12 @@ function loadUserInformation(){
                              <input type="hidden" value="${post.postUrl}" class="postUrl">
                         <input type="hidden" value="${newBlogData.account.accountId}" class="accountId">
                         <input type="hidden" value="${newBlogData.account.homepage}" class="homepage">
-                        <div class="user-posts"><img class="posted_img" src="${post.file}" style="width: 130px;height: 130px; border: 1px solid #b8d6d2;border-radius: 20px"></div>
-                        <div><b style="height: 10px; font-size: 15px">${post.title}</b></div>
+
+                        <div class="user-posts" style="padding-top: 20px"><img class="posted_img" src="${post.file}" style="width: 130px;height: 130px; border: 1px solid #b8d6d2;border-radius: 20px;"></div>
+                        <div style="height: 20px; font-size: 15px;width: 100px; overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;"><b>${post.title}</b></div>
+
                         </div>
                     `
                 });
@@ -51,6 +64,7 @@ function loadUserInformation(){
 
                 $('.just_test').append(userHtml);
             });
+
 
             //클릭시 해당 게시물로 이동
             $(".post-container").click(function(){
@@ -61,6 +75,7 @@ function loadUserInformation(){
 
                 location.href = '/' + homepage + "/" + postUrl + "/detail";
             });
+
             // 버튼 클릭 이벤트 핸들러 설정
             $('.just_test').on('click', '.follow-button', function() {
                 const button = $(this);
