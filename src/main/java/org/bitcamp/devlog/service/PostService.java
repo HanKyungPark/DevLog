@@ -9,6 +9,7 @@ import org.bitcamp.devlog.mapper.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -118,6 +119,9 @@ public class PostService {
 
     public List<Post> findByCategoryIdAndAccountId(Long categoryId, Long accountId) {
         return postMapper.findByCategoryIdAndAccountId(categoryId, accountId);
+    }
+    public Long findHitsByHomepage(String homepage) {
+        return postMapper.findHitsByHomepage(homepage);
     }
 
 

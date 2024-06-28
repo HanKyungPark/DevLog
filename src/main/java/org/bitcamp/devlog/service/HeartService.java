@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class HeartService {
     private final HeartMapper heartMapper;
 
-    //종아요 조회
+    //좋아요 조회
     public Long countHeartByPostId(Long postId) {
         return heartMapper.countHeartByPostId(postId);
     }
@@ -22,7 +22,7 @@ public class HeartService {
         return heartMapper.countHeartByAccountId(accountId);
     }
 
-    // 종아요 조회
+    // 좋아요 조회
     public void clickHeart(Long postId){
         Oauth2User oauth2User = (Oauth2User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Long accountId = oauth2User.getAccountId();
