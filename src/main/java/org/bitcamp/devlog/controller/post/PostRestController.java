@@ -273,4 +273,11 @@ public class PostRestController {
 
         return new ResponseEntity<>("성공적으로 수정하였습니다.", HttpStatus.OK);
     }
+
+    @PostMapping("/api/post/view")
+    public long findHitsByHomepage(@RequestParam String homepage) {
+        return postService.findHitsByHomepage(homepage);
+
+    }
+
 }
