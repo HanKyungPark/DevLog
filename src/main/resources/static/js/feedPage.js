@@ -1,7 +1,10 @@
+let homepage = window.location.pathname.split("/")[1]
+
 $(function () {
     $.ajax({
         url: '/api/post/list',
         method: 'post',
+        data:{"homepage" : homepage},
         dataType: 'json',
         success: function (data) {
             let container = $('#container');

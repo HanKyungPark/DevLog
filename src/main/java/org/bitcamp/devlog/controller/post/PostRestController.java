@@ -43,6 +43,7 @@ public class PostRestController {
             .getContext()
             .getAuthentication()
             .getPrincipal();
+
         System.out.println(postData);
         List<String> categoryType = (List)postData.get("category");
         Long categoryId = categoryService.findCategoryIdByCategoryType(categoryType.get(0));
@@ -99,7 +100,22 @@ public class PostRestController {
 
     @PostMapping("/api/post/myblog/list")
     public List<Post> findByHomePage(@RequestParam String homepage) {
-        return postService.findByHomePage(homepage);
+        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
+            .getContext()
+            .getAuthentication()
+            .getPrincipal();
+
+        Long pageAccountId = accountService.findByHomepage(homepage).getAccountId();
+        Long myAccountId = oauth2User.getAccountId();
+
+        List<Post> posts = new ArrayList<>();
+
+        if(pageAccountId == myAccountId){
+            posts = postService.findByHomePage(homepage);
+        } else {
+            posts = postService.findAllByAccountIdOpenOnly(pageAccountId);
+        }
+        return posts;
     }
 
     @PostMapping("/detail/comment")
