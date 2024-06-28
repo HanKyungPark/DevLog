@@ -10,9 +10,9 @@
     <!--부트스트랩 css-->
     <link rel="stylesheet" href="/css/postingForm.css">
 
+    <!--제이쿼리-->
     <script src="https://code.jquery.com/jquery-3.7.1.js"
             integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <script src="/js/postingForm.js"></script>
     <script src="/js/updateForm.js"></script>
 
     <style>
@@ -64,7 +64,8 @@
                                     </div>
                                     <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/super-build/ckeditor.js"></script>
                                     <script>
-                                        CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
+                                        CKEDITOR.ClassicEditor
+                                        .create(document.getElementById("editor"), {
                                             toolbar: {
                                                 items: [
                                                     "findAndReplace",
@@ -183,13 +184,10 @@
                                                 ],
                                                 supportAllValues: true,
                                             },
-                                            // https://ckeditor.com/docs/ckeditor5/latest/features/font.html#configuring-the-font-size-feature
                                             fontSize: {
                                                 options: [10, 12, 14, "default", 18, 20, 22],
                                                 supportAllValues: true,
                                             },
-                                            // Be careful with the setting below. It instructs CKEditor to accept ALL HTML markup.
-                                            // https://ckeditor.com/docs/ckeditor5/latest/features/general-html-support.html#enabling-all-html-features
                                             htmlSupport: {
                                                 allow: [
                                                     {
@@ -285,7 +283,12 @@
                                                 "PasteFromOfficeEnhanced",
                                                 "CaseChange",
                                             ],
-                                        });
+                                        }).then( newEditor => {
+                                            editor = newEditor;
+                                        } )
+                                        .catch( error => {
+                                            console.error( error );
+                                        } );
                                     </script>
                                 </div>
                             </div>
@@ -355,7 +358,9 @@
     </div>
 </div>
 
+
 </body>
+
 <!--부트스트랩-->
 <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js}"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -363,7 +368,6 @@
 <!--부트스트랩 아이콘-->
 <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css}" rel="stylesheet">
 <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}"/>
-<!--태일윈즈-->
-<script th:src="@{https://cdn.tailwindcss.com}"></script>
+
 
 </html>
