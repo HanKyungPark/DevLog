@@ -212,7 +212,7 @@
   left: -100%;
   visibility: visible;
 }
-=======
+
     .header .headermenu ul {
         display: flex;
         flex-direction: column;
@@ -228,7 +228,7 @@
     .header .headermenu ul.dropdown ul {
         position: static;
     }
-}
+
 
     .headermenu {
         padding: 0;

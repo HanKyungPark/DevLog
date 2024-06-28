@@ -1,86 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.bitcamp.devlog.mapper.AccountMapper">
 
-    <insert id="save" parameterType="Account" useGeneratedKeys="true" keyProperty="accountId">
-        insert into account (name, email, provider_type, a_created_at, a_updated_at, file)
-        values (#{name}, #{email}, '0', now(), now(), #{file})
-    </insert>
+  <insert id="save" parameterType="Account" useGeneratedKeys="true" keyProperty="accountId">
+    insert into account (name, email, provider_type, a_created_at, a_updated_at, file)
+    values (#{name}, #{email}, '0', now(), now(), #{file})
+  </insert>
 
+  <update id="update" parameterType="Account">
+    update account
+    set a_updated_at=now(),
+        biography=#{biography},
+        blog_id=#{blogId},
+        homepage=#{homepage},
+        file=#{file}
+    where account_id = #{accountId}
+  </update>
 
-    <update id="update" parameterType="Account">
-        update account
-        set a_updated_at=now(),
-            biography=#{biography},
-            blog_id=#{blogId},
-            homepage=#{homepage},
-            file=#{file}
-        where account_id = #{accountId}
-    </update>
+  <select id="findByHomepage" parameterType="String" resultType="Account">
+    select *
+    from account
+    where homepage = #{homepage}
+  </select>
 
-    <select id="findByHomepage" parameterType="String" resultType="Account">
-        select *
-        from account
-        where homepage = #{homepage}
-    </select>
+  <select id="findByBlogId" parameterType="String" resultType="Account">
+    select *
+    from account
+    where blogId = #{blogId}
+  </select>
 
-    <select id="findByBlogId" parameterType="String" resultType="Account">
-        select *
-        from account
-        where blogId = #{blogId}
-    </select>
+  <select id="findByEmail" parameterType="String" resultType="Account">
+    select *
+    from account
+    where email = #{email}
+  </select>
 
-    <select id="findByEmail" parameterType="String" resultType="Account">
-        select *
-        from account
-        where email = #{email}
-    </select>
+  <select id="countByHomePage" parameterType="String" resultType="long">
+    select count(*)
+    from account
+    where homepage = #{homepage}
+  </select>
 
-    <select id="countByHomePage" parameterType="String" resultType="long">
-        select count(*)
-        from account
-        where homepage = #{homepage}
-    </select>
+  <select id="findAll" resultType="Account">
+    select blog_id, name, biography, a_created_at, file
+    from account
+    order by a_created_at desc;
+  </select>
 
-    <select id="findAll" resultType="Account">
-        select blog_id, name, biography, a_created_at, file
-        from account
-        order by a_created_at desc;
-    </select>
+  <select id="findFileByAccountId" parameterType="long" resultType="String">
+    select file
+    from account
+    where account_id = #{accountId}
+  </select>
 
+  <select id="findNameByAccountId" parameterType="Long" resultType="String">
+    select name
+    from account
+    where account_id = #{accountId}
+  </select>
 
-    <select id="findFileByAccountId" parameterType="long" resultType="String">
-        select file
-        from account
-        where account_id = #{accountId}
-    </select>
+  <select id="findAllOrderByCreatedAt" resultType="Account">
+    select *
+    from account
+    order by a_created_at desc
+  </select>
 
-    <select id="findNameByAccountId" parameterType="Long" resultType="String">
-        select name
-        from account
-        where account_id = #{accountId}
-    </select>
+  <select id="findHomepageByAccountId" parameterType="long" resultType="String">
+    select homepage
+    from account
+    where account_id = #{accoutId}
+  </select>
 
-    <select id="findAllOrderByCreatedAt" resultType="Account">
-        select *
-        from account
-        order by a_created_at desc
-    </select>
+  <select id="findEmailByAccountId" parameterType="long" resultType="String">
+    select email
+    from account
+    where account_id = #{accoutId}
+  </select>
 
-
-    <select id="findnameByAccountId" parameterType="long" resultType="String">
-        select name
-        from account
-        where account_id = #{accountId}
-    </select>
-
-
-    <select id="findHomepageByAccountId" parameterType="long" resultType="String">
-        select homepage
-        from account
-
-        where account_id = #{accountId}
-    </select>
-
+  <select id="findHomepageByAccountId" parameterType="long" resultType="String">
+    select homepage
+    from account
+    where account_id = #{accountId}
+  </select>
 
 </mapper>
