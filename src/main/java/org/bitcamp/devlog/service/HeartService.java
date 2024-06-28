@@ -7,6 +7,8 @@ import org.bitcamp.devlog.mapper.HeartMapper;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class HeartService {
@@ -31,5 +33,11 @@ public class HeartService {
         } else if(!(countHeartByAccountId(accountId) == 0)){
             heartMapper.delete(accountId);
         }
+    }
+
+    public List<Heart> findByAccountId(){
+        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Long accountId = oauth2User.getAccountId();
+        return heartMapper.findByAccountId(accountId);
     }
 }
