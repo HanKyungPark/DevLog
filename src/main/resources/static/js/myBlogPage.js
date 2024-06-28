@@ -106,6 +106,14 @@ $(function () {
         }
         //}
     });
+    $.ajax({
+        url:"/api/post/view",
+        type:"post",
+        data:{"homepage":pathname},
+        success:function (data) {
+            $("#uviews").text(data);
+        }
+    })
     $(".a").click(function () {
         let categoryId = $(this).attr("value");
 
@@ -157,14 +165,7 @@ $(function () {
 
     location.href = '/' + homepage + "/" + postUrl + "/detail";});
 
-    $.ajax({
-        url:"/api/post/view",
-        type:"post",
-        data:{"homepage":pathname},
-        success:function (data) {
-            $("#uviews").text(data);
-        }
-    })
+
 // 날짜 포맷 변환 함수
 function formatDate(dateString) {
     const date = new Date(dateString);
