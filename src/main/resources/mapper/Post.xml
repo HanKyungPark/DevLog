@@ -163,7 +163,12 @@
 
     <select id="findByCategoryIdAndAccountId" parameterType="long" resultType="Post">
         select * from post where category_id=#{categoryId} and account_id = #{accountId}
+    </select>
 
+    <select id="findHitsByHomepage" parameterType="String" resultType="long">
+
+        select sum(hits) from post p join account a on p.account_id = a.account_id
+        where a.homepage=#{homepage}
     </select>
 </mapper>
 

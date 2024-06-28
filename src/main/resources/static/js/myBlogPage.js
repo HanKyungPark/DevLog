@@ -153,6 +153,14 @@ $(function () {
             }
         });
     });
+    $.ajax({
+        url:"/api/post/view",
+        type:"post",
+        data:{"homepage":pathname},
+        success:function (data) {
+            $("#uviews").text(data);
+        }
+    })
 });
 
 // 날짜 포맷 변환 함수
