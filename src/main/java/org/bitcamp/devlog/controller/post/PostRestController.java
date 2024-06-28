@@ -209,13 +209,9 @@ public class PostRestController {
     }
 
     @PostMapping("/api/search/category")
-    public List <Post> findByCategoryIdAndAccountId(@RequestParam String categoryId) {
+    public List <Post> findByCategoryIdAndAccountId(@RequestParam String categoryId,@RequestParam Long accountId) {
         Long category=(Long.parseLong(categoryId));
-        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
-                .getContext()
-                .getAuthentication()
-                .getPrincipal();
-        Long accountId = oauth2User.getAccountId();
+
 
         return postService.findByCategoryIdAndAccountId(category, accountId);
     }

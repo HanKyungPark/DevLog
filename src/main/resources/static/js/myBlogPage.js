@@ -25,6 +25,7 @@ $(function () {
     //해당 카테고리에 해당하는 카테고리들 불러오고 갯수 구하기
     $.ajax({
         url: "/api/mypage/categories",
+        data:{"homepage":pathname},
         type: "get",
         success: function (data) {
             console.log(data);
@@ -112,6 +113,7 @@ $(function () {
         data:{"homepage":pathname},
         success:function (data) {
             $("#uviews").text(data);
+
         }
     })
     $(".a").click(function () {

@@ -8,22 +8,19 @@ import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.bitcamp.devlog.dto.Category;
 import org.bitcamp.devlog.dto.Oauth2User;
+import org.bitcamp.devlog.service.AccountService;
 import org.bitcamp.devlog.service.CategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
 public class CategoryRestController {
 
     private final CategoryService categoryService;
+    private final AccountService accountService;
 
     //post로 보내는 카테고리
     @GetMapping("/postingForm")
@@ -79,14 +76,11 @@ public class CategoryRestController {
 
     //마이페이지 카테고리 리스트
     @GetMapping("/api/mypage/categories")
-    public ResponseEntity<List<Category>> mypageCategories(){
-        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
-            .getContext()
-            .getAuthentication()
-            .getPrincipal();
+    public ResponseEntity<List<Category>> mypageCategories(@RequestParam String homepage){
+        Long accountId=accountService.findByHomepage(homepage).getAccountId();
 
         List<Category> categories = categoryService
-            .findAllByAccountId(oauth2User.getAccountId());
+            .findAllByAccountId(accountId);
 
         return new ResponseEntity<>(categories, HttpStatus.OK);
     }
