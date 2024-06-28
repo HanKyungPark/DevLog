@@ -2,7 +2,7 @@ let postCurrentPage = 0;
 const postPageSize = 5;
 let posts = [];
 let commentCurrentPage = 0;
-const commentPageSize = 7;
+const commentPageSize = 6;
 let comments = [];
 let file;
 let homepage;
@@ -69,17 +69,19 @@ function displayPosts() {
                             <h3 class="firstpost_title" id="thirdpost_title">
                               ${formattedDate}
                             </h3>
-                            <p class="firstpost_content" id="third_content">
+                            <p class="firstpost_content" id="third_content" style="width: 120px; overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;">
                                 ${post.title}
                             </p>
                         </div>
                     </a>
                     <div >
                       <div>
-                        <a  href="/mypage/post/update/${post.postUrl}" class="btn btn-primary">수정</a>
+                        <a  href="/mypage/post/update/${post.postUrl}" class="btn" style="background-color: #bfd6d2;color: white">수정</a>
                       </div>
                       <div>
-                        <button onclick="postDelete(this)" class="btn btn-danger">
+                        <button onclick="postDelete(this)" class="btn btn" style="margin-top: 5px;background-color: #6f7574;color: white">
                         삭제
                         <p id="post_id" style="display: none">${post.postId}</p>
                         </button>
@@ -132,13 +134,13 @@ function postNextPage() {
 }
 
 //게시글 버튼 유무
-function postToggleButtons() {
-  $('#prev-btn').css('display', postCurrentPage <= 0 ? 'none' : 'block');
-  $('#next-btn').css('display',
-      (postCurrentPage + 1) * postPageSize >= posts.length ? 'none' : 'block');
-  // $('#prev-btn').prop('disabled', postCurrentPage <= 0);
-  // $('#next-btn').prop('disabled', (postCurrentPage + 1) * postPageSize >= posts.length);
-}
+// function postToggleButtons() {
+//   $('#prev-btn').css('display', postCurrentPage <= 0 ? 'none' : 'block');
+//   $('#next-btn').css('display',
+//       (postCurrentPage + 1) * postPageSize >= posts.length ? 'none' : 'block');
+//   // $('#prev-btn').prop('disabled', postCurrentPage <= 0);
+//   // $('#next-btn').prop('disabled', (postCurrentPage + 1) * postPageSize >= posts.length);
+// }
 
 //댓글 저장하기
 function loadComments() {
@@ -190,7 +192,7 @@ function displayComments() {
       < 10 ? '0' + day : day}일`;
 
       commentsHtml +=
-          `<div className="comments_frame" id="comments_frame3" style="display: flex; align-items: center; justify-content: space-between">
+          `<div className="comments_frame" id="comments_frame3" style="display: flex; align-items: center; justify-content: space-between;margin-bottom: 5px">
                     
                   <span className="user_img_frame" id="user_img_frame3">
                     <img className="user_img" 
@@ -207,16 +209,20 @@ function displayComments() {
                 <div className="comments_name" id="comments_name3"></div>
                 <div className="comments_time" id="comments_time3">${formattedDate}</div>
               </div>
-              <p className="comments_content" id="comments_content3">
+              <div style="width: 150px; overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;">
+              <span style="width: 100px !important;height: auto!important;" className="comments_content" id="comments_content3">
                 ${data.comment.ccontent}
-              </p>
+              </span>
+              </div>
             </div>
             <div>
                 <div>
-                  <a  href="/${data.homepage}/${data.postUrl}/detail" class="btn btn-primary">수정</a>
+                  <a  href="/${data.homepage}/${data.postUrl}/detail" class="btn" style="background-color: #bfd6d2;color: white">수정</a>
                 </div>
                 <div>
-                  <button onclick="commentDelete(this)" class="btn btn-danger">
+                  <button onclick="commentDelete(this)" class="btn" style="margin-top: 5px;background-color: #6f7574;color: white"">
                   삭제
                   <p id="comment_id" style="display: none">${data.comment.commentId}</p>
                   </button>
@@ -271,13 +277,7 @@ function commentNextPage() {
 }
 
 //댓글 버튼 유무
-function commentToggleButtons() {
-  $('#comment-prev-btn').css('display',
-      commentCurrentPage <= 0 ? 'none' : 'block');
-  $('#comment-next-btn').css('display',
-      (commentCurrentPage + 1) * commentPageSize >= comments.length ? 'none'
-          : 'block');
-}
+//
 
 
 //조회수 가져오기
@@ -414,7 +414,7 @@ function categoryDelete(button){
     success: function () {
       loadCategories();
       validationCategories();
-      alert('Success to delete post');
+      alert('카테고리가 삭제되었습니다');
     }, error: function (xhr, status, error) {
       alert('Failed to delete post');
     }
