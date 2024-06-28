@@ -53,7 +53,6 @@ public class PostRestController {
 
         //포스트 저장 void createPost
         Post post = Post.builder()
-
             .title((String) postData.get("title"))
             .pContent((String) postData.get("pContent"))
             .postUrl(String.valueOf(UUID.randomUUID()))
@@ -147,7 +146,6 @@ public class PostRestController {
 
 
     //마이페이지 -> 게시글수정페이지 데이터 요청
-    //제목, 내용, 카테고리, 공개여부, 해시태그, 사진
     @PostMapping("api/post/mypage/update")
     public ResponseEntity<Map<String, Object>> myPagePostUpdate(
         @RequestBody Map<String, String> requestPostUrl
@@ -222,22 +220,7 @@ public class PostRestController {
         return postService.findByCategoryIdAndAccountId(category, accountId);
     }
 
-
-
-    /**
-     * url로 해당 post를 가져온다.
-     * 해당 포스트의 제목, 내용, 공개여부 바꾼다
-     * 카테고리이름으로 카테고리 아이디를 찾는다
-     * 카테고리 아이디를 updatePost에 넣어준다.
-     * 포스트를 업데이트 한다.
-     * 포스트 태그 테이블의 태그 아
-     * 태그 이름으로 태그 아이디를 찾는다
-     * 태그 아이디가 없을 때 -> 태그이름 추가 -> 포스트 태그에 추가
-     * 태그 이름이 있을 때 -> postid과 tagid로 포스트 태그를 가져온다
-     * 포스트 태그가 null이면 -> 포스트 태그 추가
-     * 포스트 태그가 있으면 추가할 필요 없음
-     * 포스트를 업데이트 한다.
-     */
+    //마이포스트 수정사항 update
     @PostMapping("/api/post/mypage/update-post")
     public ResponseEntity<String> mypageUpdatePost(
         @RequestPart("updateData") Map<String, Object> updateData,
@@ -265,16 +248,12 @@ public class PostRestController {
                 + minioService.uploadFile("devlog", email, file));
         }
 
-        System.out.println("updatePost");
-        System.out.println(updatePost);
-        System.out.println("updatePost");
-
         postService.update(updatePost);
 
-        //포스트 삭제
+        //태그 삭제
         postTagService.deleteAllByPostId(updatePost.getPostId());
 
-        //포스트 저장
+        //태그 저장
         if(tags != null){
             for(String tag : tags){
                 Long tagId = tagService.findTagIdByTagName(tag);
