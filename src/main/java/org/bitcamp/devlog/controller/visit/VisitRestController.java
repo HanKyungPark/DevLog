@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class VisitRestController {
 
-    private final VisitService visitService;
+
 
 
 }
