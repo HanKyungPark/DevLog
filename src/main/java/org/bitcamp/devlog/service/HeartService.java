@@ -7,7 +7,9 @@ import org.bitcamp.devlog.mapper.HeartMapper;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @Service
@@ -20,18 +22,24 @@ public class HeartService {
     }
 
     //계정 좋아요 조회
-    public Long countHeartByAccountId(Long accountId) {
-        return heartMapper.countHeartByAccountId(accountId);
+    public Long countHeartByAccountId(Long accountId, Long postId) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("accountId", accountId);
+        map.put("postId", postId);
+        return heartMapper.countHeartByAccountId(map);
     }
 
     // 좋아요 조회
     public void clickHeart(Long postId){
         Oauth2User oauth2User = (Oauth2User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Long accountId = oauth2User.getAccountId();
-        if(countHeartByAccountId(accountId) == 0){
+        if(countHeartByAccountId(accountId,postId) == 0){
             heartMapper.save(new Heart().builder().accountId(accountId).postId(postId).build());
-        } else if(!(countHeartByAccountId(accountId) == 0)){
-            heartMapper.delete(accountId);
+        } else if(!(countHeartByAccountId(accountId,postId) == 0)){
+            Map<String, Object> map = new HashMap<>();
+            map.put("accountId", accountId);
+            map.put("postId", postId);
+            heartMapper.deleteByAccountId(map);
         }
     }
 
