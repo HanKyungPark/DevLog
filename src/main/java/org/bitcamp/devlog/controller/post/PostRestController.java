@@ -50,7 +50,9 @@ public class PostRestController {
             .getContext()
             .getAuthentication()
             .getPrincipal();
-
+        System.out.println(postData);
+        List<String> categoryType = (List)postData.get("category");
+        Long categoryId = categoryService.findCategoryIdByCategoryType(categoryType.get(0));
         //포스트 저장 void createPost
         Post post = Post.builder()
             .title((String) postData.get("title"))
@@ -58,9 +60,7 @@ public class PostRestController {
             .postUrl(String.valueOf(UUID.randomUUID()))
             .openType(Long.parseLong((String) postData.getOrDefault("openType", "0")))
             .accountId(oauth2User.getAccountId())
-            .categoryId(
-                categoryService.findCategoryIdByCategoryType(
-                    (String) postData.get("categoryType")))
+            .categoryId(categoryId)
             .file("https://minio.bmops.kro.kr/devlog/" + oauth2User.getEmail() + "/"
                 + minioService.uploadFile("devlog", oauth2User.getEmail(), file))
             .build();
