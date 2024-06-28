@@ -124,7 +124,7 @@ public class PostRestController {
         Map<String, Object> postMap = new HashMap<>();
         List<Post> posts = postService.findAllByAccountId();
         String homepage = "";
-        if (posts != null) {
+        if (posts.size() > 0) {
             homepage = accountService
                 .findHomepageByAccountId(
                     posts.get(0).getAccountId()
@@ -157,6 +157,8 @@ public class PostRestController {
         String postUrl = requestPostUrl.get("postUrl");
 
         Post post = postService.findByPostUrl(postUrl);
+        String homepage = accountService.findHomepageByAccountId(post.getAccountId());
+        postUpdateData.put("homepage", homepage);
         //게시글 내용
         if (post != null) {
             postUpdateData.put("post", post);
@@ -221,4 +223,75 @@ public class PostRestController {
     }
 
 
+
+    /**
+     * url로 해당 post를 가져온다.
+     * 해당 포스트의 제목, 내용, 공개여부 바꾼다
+     * 카테고리이름으로 카테고리 아이디를 찾는다
+     * 카테고리 아이디를 updatePost에 넣어준다.
+     * 포스트를 업데이트 한다.
+     * 포스트 태그 테이블의 태그 아
+     * 태그 이름으로 태그 아이디를 찾는다
+     * 태그 아이디가 없을 때 -> 태그이름 추가 -> 포스트 태그에 추가
+     * 태그 이름이 있을 때 -> postid과 tagid로 포스트 태그를 가져온다
+     * 포스트 태그가 null이면 -> 포스트 태그 추가
+     * 포스트 태그가 있으면 추가할 필요 없음
+     * 포스트를 업데이트 한다.
+     */
+    @PostMapping("/api/post/mypage/update-post")
+    public ResponseEntity<String> mypageUpdatePost(
+        @RequestPart("updateData") Map<String, Object> updateData,
+        @RequestPart(value = "file", required = false) MultipartFile file
+    ){
+        System.out.println(updateData);
+        System.out.println(file);
+        System.out.println(updateData.get("category"));
+        List<String> category = (List)updateData.get("category");
+        Post updatePost = postService.findByPostUrl((String)updateData.get("postUrl"));
+        if(category.size() > 0){
+            Long categoryId = categoryService.findCategoryIdByCategoryType(category.get(0).toString());
+            updatePost.setCategoryId(categoryId);
+        }
+        List<String> tags = (List<String>) updateData.get("updateTags");
+        String email = accountService.findEmailByAccountId(updatePost.getAccountId());
+
+
+        //해당 포스트의 제목, 내용, 공개여부, 사진을 바꾼다
+        updatePost.setTitle((String)updateData.get("title"));
+        updatePost.setPContent((String)updateData.get("pContent"));
+        updatePost.setOpenType(Long.parseLong((String)updateData.get("openType")));
+        if(file != null){
+            updatePost.setFile("https://minio.bmops.kro.kr/devlog/" + email + "/"
+                + minioService.uploadFile("devlog", email, file));
+        }
+
+        System.out.println("updatePost");
+        System.out.println(updatePost);
+        System.out.println("updatePost");
+
+        postService.update(updatePost);
+
+        //포스트 삭제
+        postTagService.deleteAllByPostId(updatePost.getPostId());
+
+        //포스트 저장
+        if(tags != null){
+            for(String tag : tags){
+                Long tagId = tagService.findTagIdByTagName(tag);
+                if(tagId == null){
+                    tagService.save(Tag.builder()
+                        .tagName(tag)
+                        .build());
+                    tagId = tagService.findTagIdByTagName(tag);
+                }
+                postTagService.save(PostTag.builder()
+                    .postId(updatePost.getPostId())
+                    .tagId(tagId)
+                    .build()
+                );
+            }
+        }
+
+        return new ResponseEntity<>("성공적으로 수정하였습니다.", HttpStatus.OK);
+    }
 }

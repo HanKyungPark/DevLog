@@ -5,9 +5,6 @@ $(function () {
     });
 
 
-    //tag 입력할때 꾸미기
-
-
     // 사진 미리보기
     $("#file").change(function () {
         let reg = /(.*?)\/(jpg|jpeg|png|gif)$/;
