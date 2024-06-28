@@ -157,7 +157,7 @@
         FROM post
         WHERE account_id = #{accountId}
         GROUP BY account_id
-
+    </select>
     <select id="findByCategoryIdAndAccountId" parameterType="long" resultType="Post">
         select * from post where category_id=#{categoryId} and account_id = #{accountId}
 
