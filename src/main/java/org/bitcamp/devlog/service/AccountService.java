@@ -7,11 +7,8 @@ import org.bitcamp.devlog.mapper.AccountMapper;
 import org.bitcamp.devlog.mapper.VisitMapper;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 @Service
@@ -88,8 +85,13 @@ public class AccountService {
         return accountMapper.findHomepageByAccountId(accountId);
     }
 
+
     public Account findByHomepage(String homepage) {
         return accountMapper.findByHomepage(homepage);
     }
 
+
+    public String findEmailByAccountId(Long accountId) {
+        return accountMapper.findEmailByAccountId(accountId);
+    }
 }
