@@ -88,6 +88,7 @@ public class AccountRestController {
         return accountService.countByHomePage(pathName);
     }
 
+
     @GetMapping("/new-blog/userdata")
     public ResponseEntity<Map<String, Object>> newblogAccounts(){
         List<Account> accounts =  accountService.findAllOrderByCreatedAt();
@@ -103,5 +104,12 @@ public class AccountRestController {
         }
 
         return new ResponseEntity(newBlogData, HttpStatus.OK);
+    }
+
+    @PostMapping("/user/info")
+    public Account findByHomepage(@RequestParam String homepage){
+
+
+     return accountService.findByHomepage(homepage);
     }
 }

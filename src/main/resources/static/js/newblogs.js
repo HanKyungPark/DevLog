@@ -50,10 +50,12 @@ function loadUserInformation(){
                              <input type="hidden" value="${post.postUrl}" class="postUrl">
                         <input type="hidden" value="${newBlogData.account.accountId}" class="accountId">
                         <input type="hidden" value="${newBlogData.account.homepage}" class="homepage">
+
                         <div class="user-posts" style="padding-top: 20px"><img class="posted_img" src="${post.file}" style="width: 130px;height: 130px; border: 1px solid #b8d6d2;border-radius: 20px;"></div>
                         <div style="height: 20px; font-size: 15px;width: 100px; overflow: hidden;
 text-overflow: ellipsis;
 white-space: nowrap;"><b>${post.title}</b></div>
+
                         </div>
                     `
                 });

@@ -5,12 +5,9 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.bitcamp.devlog.dto.Oauth2User;
 import org.bitcamp.devlog.dto.Post;
-import org.bitcamp.devlog.mapper.CategoryMapper;
-import org.bitcamp.devlog.mapper.PostMapper;
+import org.bitcamp.devlog.mapper.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import org.bitcamp.devlog.mapper.PostTagMapper;
-import org.bitcamp.devlog.mapper.TagMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -25,11 +22,12 @@ public class PostService {
     private final TagService tagService;
     private final PostTagMapper postTagMapper;
     private final TagMapper tagMapper;
-
+    private final AccountMapper accountMapper;
 
 
     public void save(Post post){
         postMapper.save(post);
+
     }
 
     public void update(Post post){
@@ -112,4 +110,15 @@ public class PostService {
     public String findPostUrlByPostId(Long postId) {
         return postMapper.findPostUrlByPostId(postId);
     }
+
+
+    public void updateHitsByPostid ( Long postId){postMapper.updateHitsByPostid(postId);};
+
+    public Long findHitsByPostid (Long accountId){return postMapper.findHitsByPostid(accountId);};
+
+    public Post findByCategoryIdAndAccountId(Long categoryId, Long accountId) {
+        return postMapper.findByCategoryIdAndAccountId(categoryId, accountId);
+    }
+
+
 }
