@@ -116,7 +116,7 @@ public class PostService {
 
     public Long findHitsByPostid (Long accountId){return postMapper.findHitsByPostid(accountId);};
 
-    public Post findByCategoryIdAndAccountId(Long categoryId, Long accountId) {
+    public List<Post> findByCategoryIdAndAccountId(Long categoryId, Long accountId) {
         return postMapper.findByCategoryIdAndAccountId(categoryId, accountId);
     }
 
