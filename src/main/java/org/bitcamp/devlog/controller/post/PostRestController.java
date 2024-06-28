@@ -5,10 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-
-
-import java.util.stream.DoubleStream;
-
 import lombok.RequiredArgsConstructor;
 import org.bitcamp.devlog.dto.Oauth2User;
 import org.bitcamp.devlog.dto.Post;
@@ -20,9 +16,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
-
-import org.springframework.ui.Model;
-
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -50,6 +43,7 @@ public class PostRestController {
             .getContext()
             .getAuthentication()
             .getPrincipal();
+
         System.out.println(postData);
         List<String> categoryType = (List)postData.get("category");
         Long categoryId = categoryService.findCategoryIdByCategoryType(categoryType.get(0));
@@ -106,7 +100,22 @@ public class PostRestController {
 
     @PostMapping("/api/post/myblog/list")
     public List<Post> findByHomePage(@RequestParam String homepage) {
-        return postService.findByHomePage(homepage);
+        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
+            .getContext()
+            .getAuthentication()
+            .getPrincipal();
+
+        Long pageAccountId = accountService.findByHomepage(homepage).getAccountId();
+        Long myAccountId = oauth2User.getAccountId();
+
+        List<Post> posts = new ArrayList<>();
+
+        if(pageAccountId == myAccountId){
+            posts = postService.findByHomePage(homepage);
+        } else {
+            posts = postService.findAllByAccountIdOpenOnly(pageAccountId);
+        }
+        return posts;
     }
 
     @PostMapping("/detail/comment")

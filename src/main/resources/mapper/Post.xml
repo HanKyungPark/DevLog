@@ -92,16 +92,16 @@
           and account_id = #{accountId}
     </select>
 
-    <!--랜덤포스트리스트    -->
+    <!--랜덤포스트리스트-->
     <select id="findRandomPosts" resultType="map">
         SELECT p.*, a.homepage
         FROM (
                  SELECT *
                  FROM post
+                 where open_type = 1
                  ORDER BY RAND()
                  LIMIT 20
-             ) p
-                 JOIN account a ON p.account_id = a.account_id;
+             ) p JOIN account a ON p.account_id = a.account_id
     </select>
 
     <select id="findByHomePage" parameterType="String" resultType="Post">
@@ -169,6 +169,12 @@
 
         select sum(hits) from post p join account a on p.account_id = a.account_id
         where a.homepage=#{homepage}
+    </select>
+
+    <select id="findAllByAccountIdOpenOnly" parameterType="long" resultType="Post">
+        select * from post
+        where account_id = #{accoutId}
+        and open_type = 1
     </select>
 </mapper>
 
