@@ -6,7 +6,7 @@
 
 
 }
-.post_container {
+.post{
     min-width: 80%; /* or any other value you prefer */
     display: flex;
     flex-wrap: wrap; /* 화면이 작을 경우 자동으로 다음 줄로 넘어감 */

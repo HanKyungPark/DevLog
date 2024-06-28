@@ -1,7 +1,12 @@
 $(function () {
+
+    $(".b").click(function () {
+        location.href=window.location.pathname;
+    })
+
     let pathname = window.location.pathname.split("/")[1];
     let accountId = 0;
-    let postElement = '<div class="post_container">'; // 포스트 컨테이너 시작
+    let postElement = '<div class="post">'; // 포스트 컨테이너 시작
 
     //url 따와서 인스타처럼 윗부분 만들기
     $.ajax({
@@ -60,12 +65,14 @@ $(function () {
             // 각 포스트 데이터를 HTML로 변환하여 추가
             data.forEach(function (post, idx) {
                 posttotal = data.length; // 전체 포스트 ��수
+
                 $("#utotalpost").text(posttotal);
                 postElement += `
+
                 <div class="blogpost_box" data-post-url="${post.postUrl}" data-v0-t="card" id="blogpost_box${idx + 1}">
                     <a href="#">
                         <img
-                            src="https://minio.bmops.kro.kr/devlog/${post.file}"
+                            src="${post.file}"
                             alt="Featured Post"
                             class="blog_photo"
                         />
@@ -87,7 +94,8 @@ $(function () {
                 </div>`;
             });
             postElement += '</div>'; // 포스트 컨테이너 닫기
-            $(".post_container").append(postElement); // HTML 추가
+            // $(".post").append("</div>"); // 컨��이�� 보이게 하
+            $(".post").append(postElement); // HTML 추가
 
             // 추가한 포스트에 CSS 적용
             $(".blogpost_box").each(function () {
@@ -97,8 +105,6 @@ $(function () {
         }
         //}
     });
-
-
     $(".a").click(function () {
         let categoryId = $(this).attr("value");
 
@@ -107,74 +113,68 @@ $(function () {
             data: {"categoryId": categoryId},
             type: "post",
             success: function (posts) {
-
-                $("#updatecontainer").empty();
+                $(".post").find(".post").empty(); // 컨테이너 초기화
+                console.log(posts);
                 posts.forEach(function (post, idx) {
-
-                    postElement += `
-                <div class="blogpost_box" data-post-url="${post.postUrl}" data-v0-t="card" id="blogpost_box${idx + 1}">
-                    <a href="#">
-                        <img
-                            src="https://minio.bmops.kro.kr/devlog/${post.file}"
-                            alt="Featured Post"
-                            class="blog_photo"
-                        />
-                    </a>
-                    <div class="post_content">
-                        <div class="post_header">
-                            <div class="category_inpost">${post.category}</div>
-                            <div class="icon-container">
-                                &nbsp;&nbsp;<i class="bi bi-chat-dots">2</i>
-                                &nbsp;<i class="bi bi-heart"></i>
+                    let postElement = `
+                        <div class="blogpost_box" data-post-url="${post.postUrl}" data-v0-t="card" id="blogpost_box${idx + 1}">
+                            <a href="#">
+                                <img
+                                    src="https://minio.bmops.kro.kr/devlog/${post.file}"
+                                    alt="Featured Post"
+                                    class="blog_photo"
+                                />
+                            </a>
+                            <div class="post_content">
+                                <div class="post_header">
+                                    <div class="category_inpost">${post.category}</div>
+                                    <div class="icon-container">
+                                        &nbsp;&nbsp;<i class="bi bi-chat-dots">2</i>
+                                        &nbsp;<i class="bi bi-heart"></i>
+                                    </div>
+                                </div>
+                                <a class="post_title_container" href="#">
+                                    <h2 class="post_title">${post.title}</h2>
+                                </a>
+                                <!--<p class="text-gray-600">${post.pcontent}</p> -->
+                                <div class="post_date">${formatDate(post.pcreatedAt)}</div> <!-- formatDate 함수를 적용 -->
                             </div>
-                        </div>
-                        <a class="post_title_container" href="#">
-                            <h2 class="post_title">${post.title}</h2>
-                        </a>
-                        <!--<p class="text-gray-600">${post.pcontent}</p> -->
-                        <div class="post_date">${formatDate(post.pcreatedAt)}</div> <!-- formatDate 함수를 적용 -->
-                    </div>
-                </div>`
+                        </div>`;
 
-
-                });
-                postElement += '</div>'; // 포스트 컨테이너 닫기
-                $(".post_container").append(postElement); // HTML 추가
-
-                // 추가한 포스트에 CSS 적용
-                $(".blogpost_box").each(function () {
-                    $(this).addClass("blogpost_box"); // 클래스 추가
+                    $(".post").find(".post").append(postElement); // HTML 추가
                 });
 
                 $(document).on("click", ".blogpost_box", function () {
-                    let homepage = pathname;
+                    let homepage = window.location.pathname.split("/")[1];
                     let postUrl = $(this).data("post-url"); // 클릭한 요소의 data-post-url 속성 값 가져오기
 
                     location.href = '/' + homepage + "/" + postUrl + "/detail";
                 });
             }
-        })
+        });
     });
 });
+
 // 날짜 포맷 변환 함수
-    function formatDate(dateString) {
-        const date = new Date(dateString);
-        const year = date.getFullYear();
-        let month = date.getMonth() + 1;
-        if (month < 10) {
-            month = '0' + month;
-        }
-        let day = date.getDate();
-        if (day < 10) {
-            day = '0' + day;
-        }
-        let hours = date.getHours();
-        if (hours < 10) {
-            hours = '0' + hours;
-        }
-        let minutes = date.getMinutes();
-        if (minutes < 10) {
-            minutes = '0' + minutes;
-        }
-        return `${year}-${month}-${day} ${hours}:${minutes}`;
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    if (month < 10) {
+        month = '0' + month;
     }
+    let day = date.getDate();
+    if (day < 10) {
+        day = '0' + day;
+    }
+    let hours = date.getHours();
+    if (hours < 10) {
+        hours = '0' + hours;
+    }
+    let minutes = date.getMinutes();
+    if (minutes < 10) {
+        minutes = '0' + minutes;
+    }
+    return `${year}-${month}-${day} ${hours}:${minutes}`;
+}
+
