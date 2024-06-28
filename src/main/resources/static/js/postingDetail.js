@@ -121,6 +121,7 @@ $(function () {
                 alert("댓글이 저장되었습니다.");
                 // 댓글 목록 다시 로드
                 loadComments(postId);
+                $("#cContent").val("");
             },
             error: function (xhr, status, error) {
                 console.error("Error:", error);
