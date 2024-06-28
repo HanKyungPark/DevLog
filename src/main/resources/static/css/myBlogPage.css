@@ -1,110 +1,249 @@
 /* 포스트 컨테이너 */
-
-.a:hover{
-    transform: translateY(-5px); /* 호버 시 약간 위로 이동 */
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* 그림자 더 강화 */
-
-
+.a:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
 }
-.post{
-    min-width: 80%; /* or any other value you prefer */
+
+.post {
+    min-width: 80%;
     display: flex;
-    flex-wrap: wrap; /* 화면이 작을 경우 자동으로 다음 줄로 넘어감 */
-    gap: 20px; /* 포스트 간 간격 */
+    flex-wrap: wrap;
+    gap: 20px;
     justify-content: flex-start;
     width: 100%;
-/* 포스트들을 왼쪽에서부터 정렬 */
-    padding: 20px; /* 전체 패딩 추가 */
+    padding: 20px;
+
+
+
 }
 
-/* 각 포스트 박스 */
 .blogpost_box {
-    width: calc(50% - 10px); /* 반응형으로 2개씩 나열되도록 너비 설정 */
-    max-width: 280px; /* 최대 너비 제한 */
-    background-color: #ffffff; /* 배경색 */
-    border-radius: 12px; /* 둥근 테두리 */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* 호버 효과 */
-    overflow: hidden; /* 넘치는 부분 숨김 */
+    width: calc(50% - 10px);
+    max-width: 280px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    overflow: hidden;
     margin: 0;
     flex-grow: 1;
 }
+.bookmark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #6c757d; /* 배경색 수정 */
+    color: white;
+    font-size: 18px; /* 글자 크기 키움 */
+    border-radius: 10px; /* 둥근 테두리 */
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    padding: 10px 0; /* 패딩 키움 */
+}
 
-/* 포스트 박스 호버 효과 */
+.bookmark:hover {
+    background-color: #5a6268; /* 호버 시 색상 수정 */
+    transform: translateY(-2px);
+}
+
+.ab {
+    text-align: center;
+}
+
+.all_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+}
+
+.all {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
 .blogpost_box:hover {
-    transform: translateY(-5px); /* 호버 시 약간 위로 이동 */
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* 그림자 더 강화 */
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* 포스트 이미지 */
 .blog_photo {
-    width: 100%; /* 이미지 너비 */
-    height: 160px; /* 이미지 높이 */
-    object-fit: cover; /* 이미지가 잘리지 않고 비율 유지 */
-    border-radius: 12px 12px 0 0; /* 이미지 위쪽은 둥글게 */
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
 }
 
-/* 포스트 내용 컨테이너 */
 .post_content {
-    padding: 20px; /* 내용 패딩 */
+    padding: 20px;
 }
 
-/* 포스트 헤더 */
 .post_header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px; /* 헤더와 내용 사이 간격 */
+    margin-bottom: 10px;
 }
 
-/* 카테고리 */
 .category_inpost {
-    background-color: #4a90e2; /* 배경색 */
-    color: white; /* 글자색 */
-    padding: 6px 12px; /* 안쪽 여백 */
-    border-radius: 20px; /* 둥근 테두리 */
-    font-size: 12px; /* 글자 크기 */
+    background-color: #4a90e2;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
 }
 
-/* 포스트 제목 */
 .post_title {
-    font-size: 16px; /* 제목 글자 크기 */
-    font-weight: bold; /* 제목 글자 두껍게 */
-    margin-bottom: 10px; /* 제목 아래 간격 */
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
-/* 포스트 내용 */
 .text-gray-600 {
-    font-size: 14px; /* 글자 크기 */
-    color: #4b5563; /* 글자색 */
-    line-height: 1.6; /* 줄 간격 */
-    overflow: hidden; /* 넘치는 부분 숨김 */
+    font-size: 14px;
+    color: #4b5563;
+    line-height: 1.6;
+    overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* 최대 줄 수 */
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 }
 
-/* 아이콘 컨테이너 */
 .icon-container {
     display: flex;
     align-items: center;
 }
-ㅌ
+
 .icon-container i {
-    margin-left: 8px; /* 아이콘 사이 간격 */
-    font-size: 18px; /* 아이콘 크기 */
-    color: #6b7280; /* 아이콘 색상 */
+    margin-left: 8px;
+    font-size: 18px;
+    color: #6b7280;
 }
+
 .post_date {
     font-size: 12px;
     color: #6b7280;
     margin-top: 10px;
 }
 
-/* 반응형 조정 */
 @media screen and (max-width: 768px) {
     .blogpost_box {
-        width: 100%; /* 작은 화면에서는 한 줄에 하나씩 표시 */
-        max-width: none; /* 최대 너비 제한 해제 */
+        width: 100%;
+        max-width: none;
+    }
+}
+
+/* 프로필 섹션 꾸미기 */
+.bg-background {
+    background-color: #ffffff;
+    padding: 60px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    flex-direction: row; /* 행 방향으로 정렬 */
+    align-items: center;
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+    gap: 30px; /* 요소 간 간격 */
+}
+
+/* 프로필 이미지 크기 조정 */
+.bg-background .relative {
+    width: 150px !important;
+    height: 150px !important;
+}
+
+#profile {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+}
+
+.bg-background .flex {
+    flex-direction: column;
+
+    gap: 10px; /* 아이템 간 간격 */
+}
+
+.bg-background .text-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.bg-background .text-container .text-xl {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.bg-background .text-container .text-muted-foreground {
+    color: #6c757d;
+}
+
+.bg-background .biography {
+    width: 100%;
+    margin-top: 20px;
+    text-align: left;
+    font-size: 1.2rem;
+}
+
+/* 팔로워, 팔로잉, 포스트 정보 꾸미기 */
+.bg-background .info-container {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.bg-background .info-container .grid {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.bg-background .info-container .grid div {
+    font-size: 1.5rem; /* 글자 크기 조정 */
+}
+
+/* 반응형 조정 */
+@media screen and (max-width: 768px) {
+    .bg-background {
+        flex-direction: column; /* 작은 화면에서는 세로 정렬 */
+        text-align: center; /* 텍스트 중앙 정렬 */
+    }
+
+    .bg-background .relative {
+        width: 200px !important;
+        height: 200px !important;
+    }
+
+    .bg-background .flex {
+        align-items: center; /* 아이템 중앙 정렬 */
+    }
+
+    .bg-background .text-container {
+        align-items: center; /* 텍스트 중앙 정렬 */
+    }
+
+    .bg-background .text-container .text-xl {
+        font-size: 1.5rem;
+    }
+
+    .bg-background .info-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .bg-background .biography {
+        text-align: center;
     }
 }
