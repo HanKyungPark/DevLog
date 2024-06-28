@@ -7,7 +7,7 @@ let hashTag=[];
 
 function loadPost() {
   $.ajax({
-    url: 'http://localhost:8080/api/post/mypage/update',
+    url: '/api/post/mypage/update',
     type: 'POST',
     contentType: 'application/json',
     data: JSON.stringify({postUrl: postUrl}),
