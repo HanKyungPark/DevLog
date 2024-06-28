@@ -5,10 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-
-
-import java.util.stream.DoubleStream;
-
 import lombok.RequiredArgsConstructor;
 import org.bitcamp.devlog.dto.Oauth2User;
 import org.bitcamp.devlog.dto.Post;
@@ -20,9 +16,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
-
-import org.springframework.ui.Model;
-
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
