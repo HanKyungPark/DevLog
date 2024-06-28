@@ -13,18 +13,18 @@
         where account_id = #{accountId}
     </select>
 
-    <select id="findByAccountId" parameterType="long" resultType="Heart">
+    <select id="findByAccountId" parameterType="long" resultType="Map">
         select count(*)
         from heart
-        where account_id = #{accountId}
+        where account_id = #{accountId} and post_id = #{postId}
     </select>
 
     <insert id="save" parameterType="Heart">
         insert into heart (h_created_at, h_updated_at, account_id, post_id) VALUES (now(),now(),#{accountId},#{postId})
     </insert>
 
-    <delete id="deleteByAccountId" parameterType="long">
-        delete from heart where account_id = #{accountId}
+    <delete id="deleteByAccountId" parameterType="Map">
+        delete from heart where account_id = #{accountId} and post_id = #{postId}
     </delete>
 
 </mapper>

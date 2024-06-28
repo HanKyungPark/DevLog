@@ -3,6 +3,7 @@ $(function () {
     let homepage = window.location.pathname.split("/")[1];
     let msg = "";
     let postId = "";
+    let heartCount = 0;
 
     // 페이지 정보들 불러오고 조회
     $.ajax({
@@ -12,6 +13,15 @@ $(function () {
         dataType: "json",
         success: function (data) {
             postId = data[0].postId;
+            $.ajax({
+                url:"/api/heart/count",
+                type:"get",
+                data:{"postId":postId},
+                success:function(data){
+                    heartCount = data;
+                }
+            })
+            console.log("heartCount: " + heartCount)
             console.log(postId);
             console.log(data);
             $("#title").text(data[0].title);
@@ -45,6 +55,17 @@ $(function () {
 
             // 댓글 목록 불러오기
             loadComments(postId);
+
+            // 좋아요 버튼 클릭
+            $("#heart").click(function (){
+                $.ajax({
+                    url: "/api/heart/click",
+                    type: "post",
+                    data: {"postId": postId},
+                    success: function (){
+                    }
+                })
+            })
         }
     });
 
