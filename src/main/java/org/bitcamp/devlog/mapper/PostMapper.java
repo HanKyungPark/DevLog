@@ -65,4 +65,6 @@ public interface PostMapper {
     List<Post> findByCategoryIdAndAccountId(Long categoryId, Long accountId);
 
     Long findHitsByHomepage(String homepage);
+
+    List<Post> findAllByAccountIdOpenOnly(Long pageAccountId);
 }
