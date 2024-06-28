@@ -31,7 +31,7 @@ $(function () {
             data.forEach(function (category, idx) {
                 let name = "category" + (idx + 1);
                 //갯수 구한만큼 div 보이게 하고 해당 카테고리 넣고 누르면 value 구하게 하기
-                $("#" + name).css("display", "block");
+                $("#" + name).css("display", "");
                 $("#" + name).text(category.categoryType);
                 $("#" + name).attr("value", category.categoryId);
             })
@@ -65,6 +65,7 @@ $(function () {
             // 각 포스트 데이터를 HTML로 변환하여 추가
             data.forEach(function (post, idx) {
                 posttotal = data.length; // 전체 포스트 ��수
+                accountId = post.accountId
 
                 $("#utotalpost").text(posttotal);
                 postElement += `
@@ -110,7 +111,7 @@ $(function () {
 
         $.ajax({
             url: "/api/search/category",
-            data: {"categoryId": categoryId},
+            data: {"categoryId": categoryId,"accountId":accountId},
             type: "post",
             success: function (posts) {
                 $(".post").find(".post").empty(); // 컨테이너 초기화
@@ -120,7 +121,7 @@ $(function () {
                         <div class="blogpost_box" data-post-url="${post.postUrl}" data-v0-t="card" id="blogpost_box${idx + 1}">
                             <a href="#">
                                 <img
-                                    src="https://minio.bmops.kro.kr/devlog/${post.file}"
+                                    src="${post.file}"
                                     alt="Featured Post"
                                     class="blog_photo"
                                 />
@@ -144,15 +145,15 @@ $(function () {
                     $(".post").find(".post").append(postElement); // HTML 추가
                 });
 
-                $(document).on("click", ".blogpost_box", function () {
-                    let homepage = window.location.pathname.split("/")[1];
-                    let postUrl = $(this).data("post-url"); // 클릭한 요소의 data-post-url 속성 값 가져오기
 
-                    location.href = '/' + homepage + "/" + postUrl + "/detail";
-                });
             }
         });
     });
+});    $(document).on("click", ".blogpost_box", function () {
+    let homepage = window.location.pathname.split("/")[1];
+    let postUrl = $(this).data("post-url"); // 클릭한 요소의 data-post-url 속성 값 가져오기
+
+    location.href = '/' + homepage + "/" + postUrl + "/detail";
 });
 
 // 날짜 포맷 변환 함수
