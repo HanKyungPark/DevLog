@@ -81,7 +81,7 @@ white-space: nowrap;">
                         <a  href="/mypage/post/update/${post.postUrl}" class="btn" style="background-color: #bfd6d2;color: white">수정</a>
                       </div>
                       <div>
-                        <button onclick="postDelete(this)" class="btn btn" style="margin-top: 5px;background-color: #6f7574;color: white">
+                        <button onclick="confirmPostDelete(this)" class="btn btn" style="margin-top: 5px;background-color: #6f7574;color: white">
                         삭제
                         <p id="post_id" style="display: none">${post.postId}</p>
                         </button>
@@ -222,7 +222,7 @@ white-space: nowrap;">
                   <a  href="/${data.homepage}/${data.postUrl}/detail" class="btn" style="background-color: #bfd6d2;color: white">수정</a>
                 </div>
                 <div>
-                  <button onclick="commentDelete(this)" class="btn" style="margin-top: 5px;background-color: #6f7574;color: white"">
+                  <button onclick="confirmCommentDelete(this)" class="btn" style="margin-top: 5px;background-color: #6f7574;color: white"">
                   삭제
                   <p id="comment_id" style="display: none">${data.comment.commentId}</p>
                   </button>
@@ -464,6 +464,21 @@ function closeCategoryUpdate(button){
   let categoryForm = $(button).closest('.category-form');
   categoryForm.css('display', 'none');
 }
+
+// 게시글 삭제 확인 및 삭제
+function confirmPostDelete(button) {
+  if (confirm("해당 게시글을 삭제 하시겠습니까?")) {
+    postDelete(button);
+  }
+}
+
+// 댓글 삭제 확인 및 삭제
+function confirmCommentDelete(button) {
+  if (confirm("해당 댓글을 삭제 하시겠습니까?")) {
+    commentDelete(button);
+  }
+}
+
 
 //페이지 로드
 $(document).ready(function () {
