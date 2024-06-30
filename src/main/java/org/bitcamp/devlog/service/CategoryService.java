@@ -21,9 +21,9 @@ public class CategoryService {
         categoryMapper.update(category);
     }
     public void delete (Category category){
-
         categoryMapper.delete(category.getCategoryId());
     }
+
     public List<Category> findAllByPostId(Long categoryId){
         return categoryMapper.findAllByPostId(categoryId);
     };

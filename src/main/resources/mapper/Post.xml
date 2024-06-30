@@ -176,5 +176,12 @@
         where account_id = #{accoutId}
         and open_type = 1
     </select>
+
+    <select id="findAllByCategoryId" parameterType="long" resultType="Post">
+        select *
+        from post
+        where category_id = #{categoryId}
+    </select>
+
 </mapper>
 
