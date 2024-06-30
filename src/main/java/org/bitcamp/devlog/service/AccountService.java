@@ -52,6 +52,8 @@ public class AccountService {
     public String accountCheck(){
         String sessionEmail = SecurityContextHolder.getContext().getAuthentication().getName();
 
+        System.out.println(sessionEmail);
+
         if (sessionEmail == null) {
             return null;
         }
