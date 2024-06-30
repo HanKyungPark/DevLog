@@ -27,6 +27,7 @@ public interface AccountMapper {
     Account findByBlogId(String blogId);
 
     List<Account> findAll();
+
     String findNameByAccountId(long accountId);
 
 

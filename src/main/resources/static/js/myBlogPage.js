@@ -24,9 +24,9 @@ $(function () {
     console.log(accountId);
     //해당 카테고리에 해당하는 카테고리들 불러오고 갯수 구하기
     $.ajax({
-        url: "/api/mypage/categories",
+        url: "/api/mypage/categorie",
         data:{"homepage":pathname},
-        type: "get",
+        type: "post",
         success: function (data) {
             console.log(data);
             data.forEach(function (category, idx) {
@@ -161,26 +161,26 @@ $(function () {
     });
 
 });
-  $(document).on("click", ".blogpost_box", function () {
+$(document).on("click", ".blogpost_box", function () {
     let homepage = window.location.pathname.split("/")[1];
     let postUrl = $(this).data("post-url"); // 클릭한 요소의 data-post-url 속성 값 가져오기
 
     location.href = '/' + homepage + "/" + postUrl + "/detail";});
 
 
-  function pathByAccountId(){
-      let pathname = window.location.pathname.split("/")[1];
-      $.ajax({
-          url: "/api/user/info",
-          type: "post",
-          data: {"homepage": pathname},
-          success: function (list) {
-              accountId = list.accountId;
-              return accountId
-          }
-      });
-      return accountId
-  }
+function pathByAccountId(){
+    let pathname = window.location.pathname.split("/")[1];
+    $.ajax({
+        url: "/api/user/info",
+        type: "post",
+        data: {"homepage": pathname},
+        success: function (list) {
+            accountId = list.accountId;
+            return accountId
+        }
+    });
+    return accountId
+}
 
 
 // 날짜 포맷 변환 함수
@@ -205,4 +205,3 @@ function formatDate(dateString) {
     }
     return `${year}-${month}-${day} ${hours}:${minutes}`;
 }
-
