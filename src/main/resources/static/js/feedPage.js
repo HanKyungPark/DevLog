@@ -1,6 +1,48 @@
 let homepage = window.location.pathname.split("/")[1]
+let hearts = [];
+let posts = [];
+
+// 좋아요 목록 가져오기
+function loadHerts() {
+    $.ajax({
+        url: '/api/heart/list',
+        method: 'GET',
+        success: function (data) {
+            hearts = data;
+            console.log(hearts);
+        }, error: function () {
+            console.log("응~ 좋아요 가져오는데 실패했죠!")
+        }
+    })
+}
+
+function heartClickSave(postId) {
+
+    $.ajax({
+        url: '/api/heart/click',
+        method: 'POST',
+        data: {postId},
+        success: function(){
+            console.log("좋아요가 변경되었습니다.")
+        },error: function(jqXHR, textStatus, errorThrown){
+            console.log("AJAX 요청 실패:");
+            console.log("상태:", textStatus);
+            console.log("에러:", errorThrown);
+            console.log("응답 텍스트:", jqXHR.responseText);
+            console.log("상태 코드:", jqXHR.status);
+        }
+    })
+}
+
+
 
 $(function () {
+
+    //좋아요 리스트 가져오기
+    loadHerts()
+
+    console.log(hearts);
+
     $.ajax({
         url: '/api/post/list',
         method: 'post',
@@ -8,10 +50,11 @@ $(function () {
         dataType: 'json',
         success: function (data) {
             let container = $('#container');
+            posts = data;
 
             // 데이터를 순회하며 처리
             $.each(data, function (index, item) {
-                console.log(data[0]);
+
                 // p_created_at을 yyyy-mm-dd 형식으로 변환
                 let date = new Date(item.p_created_at);
                 let formattedDate = date.toISOString().split('T')[0];
@@ -47,7 +90,12 @@ white-space: nowrap;">${titleHtml}</div>
                                     </p>
                                     
                                     <h5 class="blog-post-homepage-excerpt-font blog-post-homepage-hover-visible" data-hook="blog-excerpt" style="text-align: right; padding: 0; margin: 0">
-                                        <div><button id="likeButton" class="like-button" style="float: left;margin-top: 40px;margin-left: 20px;font-size: 30px"><i class="bi bi-heart"></i></button></div>
+                                        <div>
+                                        <button id="likeButton" class="like-button" style="float: left;margin-top: 40px;margin-left: 20px;font-size: 30px">
+                                          <i class="bi bi-heart"></i>
+                                           <p class="post-id"style="display: none">${item.post_id}</p>
+                                        </button>
+                                        </div>
                                         
                                         
                                         <div  class="blog-post-homepage-meta-font" style="display: flex; justify-content: right; margin-right: 20px">
@@ -59,7 +107,10 @@ white-space: nowrap;">${titleHtml}</div>
                                        
                                        <div style="margin-right: 20px">${formattedDate}</div> 
                                        
-                                        <a href="${item.homepage}" class="blog-post-homepage-meta-font" style="cursor: pointer;width: 50px"><p style="color: black; font-size: 30px;margin-right: 10px;margin-bottom: 20px"><i class="bi bi-house-check-fill"></i></p></a>
+                                        <a href="${item.homepage}" class="blog-post-homepage-meta-font" style="cursor: pointer;width: 50px">
+                                        <p style="color: black; font-size: 30px;margin-right: 10px;margin-bottom: 20px"><i class="bi bi-house-check-fill"></i></p>
+                                        <p>item.postId</p>
+                                        </a>
                                     </h5>
                                 </div>
                                 <div class="MyC1u blog-post-homepage-meta-font" style="display:flex;align-items:center;gap:12px">
@@ -95,20 +146,42 @@ white-space: nowrap;">${titleHtml}</div>
 
             // 각 버튼에 대해 클릭 이벤트 리스너를 추가합니다.
             likeButtons.forEach(button => {
+                let postId = $(button).find(".post-id").text();
+                console.log(postId)
+
+                hearts.forEach(heart => {
+                    const icon = button.querySelector('i');
+                    if(postId == heart.post_id){
+                        icon.classList.remove('bi-heart');
+                        icon.classList.add('bi-heart-fill');
+                        button.classList.add('liked')
+                    }
+                })
+
                 button.addEventListener('click', function() {
+                    let postId = $(button).find(".post-id").text();
+
                     const icon = this.querySelector('i');
                     if (icon.classList.contains('bi-heart')) {
                         icon.classList.remove('bi-heart');
                         icon.classList.add('bi-heart-fill');
                         this.classList.add('liked');
+                        heartClickSave(postId);
                     } else {
                         icon.classList.remove('bi-heart-fill');
                         icon.classList.add('bi-heart');
                         this.classList.remove('liked');
+                        heartClickSave(postId);
                     }
                 });
             });
 
+
+
         }
     });
+
 });
+// 좋아요 추가
+// 좋아요 삭제
+// 좋아요
