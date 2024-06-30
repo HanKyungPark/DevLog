@@ -99,8 +99,7 @@ h1, h2 {
 }
 
 .comment-textarea {
-    width: 90%;
-    margin-left: 20px;
+    width: 100%;
     padding: 10px;
     border: 1px solid #2c3e50;
     border-radius: 5px;
@@ -116,7 +115,6 @@ h1, h2 {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-right: 90px;
 }
 
 .btn:hover {
@@ -162,4 +160,8 @@ p.td1{
     margin-left: 20px;
     margin-top: 50px;
 
+}
+.content-container{
+    border: 0.5px solid gray;
+    padding: 20px;
 }
