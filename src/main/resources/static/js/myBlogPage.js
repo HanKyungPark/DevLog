@@ -71,7 +71,7 @@ $(function () {
                 $("#utotalpost").text(posttotal);
                 postElement += `
 
-                <div class="blogpost_box" data-post-url="${post.postUrl}" data-v0-t="card" id="blogpost_box${idx + 1}">
+                <div class="blogpost_box" data-post-url="${post.post_url}" data-v0-t="card" id="blogpost_box${idx + 1}">
                     <a href="#">
                         <img
                             src="${post.file}"
@@ -90,8 +90,8 @@ $(function () {
                         <a class="post_title_container" href="#">
                             <h2 class="post_title">${post.title}</h2>
                         </a>
-                        <!--<p class="text-gray-600">${post.pcontent}</p> -->
-                        <div class="post_date">${formatDate(post.pcreatedAt)}</div> <!-- formatDate 함수를 적용 -->
+                        <!--<p class="text-gray-600">${post.p_content}</p> -->
+                        <div class="post_date">${formatDate(post.p_created_at)}</div> <!-- formatDate 함수를 적용 -->
                     </div>
                 </div>`;
             });
@@ -129,7 +129,7 @@ $(function () {
                 console.log(posts);
                 posts.forEach(function (post, idx) {
                     let postElement = `
-                        <div class="blogpost_box" data-post-url="${post.postUrl}" data-v0-t="card" id="blogpost_box${idx + 1}">
+                        <div class="blogpost_box" data-post-url="${post.post_url}" data-v0-t="card" id="blogpost_box${idx + 1}">
                             <a href="#">
                                 <img
                                     src="${post.file}"
@@ -149,8 +149,8 @@ $(function () {
                                 <a class="post_title_container" href="#">
                                     <h2 class="post_title">${post.title}</h2>
                                 </a>
-                                <!--<p class="text-gray-600">${post.pcontent}</p> -->
-                                <div class="post_date">${formatDate(post.pcreatedAt)}</div> <!-- formatDate 함수를 적용 -->
+                                <!--<p class="text-gray-600">${post.p_content}</p> -->
+                                <div class="post_date">${formatDate(post.p_created_at)}</div> <!-- formatDate 함수를 적용 -->
                             </div>
                         </div>`;
 
