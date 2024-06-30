@@ -36,7 +36,7 @@ public interface PostMapper {
     List<Map<String,Object>> findRandomPosts();
 
     //마이블로그
-    List<Post> findByHomePage(String homepage);
+    List<Map<String, Object>> findByHomePage(String homepage);
 
     //posturl로 글 디테일 가져오기
     List<Object> findBypostUrl(String postUrl);
@@ -62,11 +62,11 @@ public interface PostMapper {
 
     Long findHitsByPostid(Long accountId);
 
-    List<Post> findByCategoryIdAndAccountId(Long categoryId, Long accountId);
+    List<Map<String, Object>> findByCategoryIdAndAccountId(Map<String, Object> map);
 
     Long findHitsByHomepage(String homepage);
 
-    List<Post> findAllByAccountIdOpenOnly(Long pageAccountId);
+    List<Map<String, Object>> findAllByAccountIdOpenOnly(Long pageAccountId);
 
     List<Post> findAllByCategoryId(Long categoryId);
 }
