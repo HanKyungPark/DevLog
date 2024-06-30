@@ -11,45 +11,45 @@
     <link rel="script" href="../js/header.js">
 </head>
 <body>
-<div th:fragment="header" class="header" style="position: fixed;margin-bottom: 250px;width: 100%">
+<div th:fragment="header" class="header" style="position: fixed;margin-bottom: 250px;width: 100%;margin-top: -30px;padding-top: 20px">
     <div class="container" style="display: flex;flex-wrap: wrap">
-    <header id="header" class="header d-flex align-items-center sticky-top">
-        <div style="width: 100%; text-align: center">
-        </div>
-        <div onclick="location.href='/home'" style="cursor:pointer; width: 120px;height: 70px"><br><img src="https://minio.bmops.kro.kr/devlog/logo/TitleLog.png" style="width: 100px; height: 50px;" href="/home"/></div>
+        <header id="header" class="header d-flex align-items-center sticky-top">
+            <div style="width: 100%; text-align: center">
+            </div>
+            <div onclick="location.href='/home'" style="cursor:pointer; width: 120px;height: 70px"><br><img src="https://minio.bmops.kro.kr/devlog/logo/TitleLog.png" style="width: 100px; height: 50px;" href="/home"/></div>
             <div class="container position-relative d-flex align-items-center justify-content-between">
 
-            <a href="/home" class="logo d-flex align-items-center me-auto me-xl-0">
-                <!-- Uncomment the line below if you also wish to use an image logo -->
-                <!-- <img src="assets/img/logo.png" alt=""> -->
+                <a href="/home" class="logo d-flex align-items-center me-auto me-xl-0">
+                    <!-- Uncomment the line below if you also wish to use an image logo -->
+                    <!-- <img src="assets/img/logo.png" alt=""> -->
 
-            </a>
-            <div style="width: 100%; text-align: center">
-            <nav id="navmenu" class="headermenu"  >
-                <th:block sec:authorize="isAnonymous()">
-                    <ul style="float: right"><a href="/"><b style="font-size: 17px; color: #505052">로그인</b></a>
-                    </ul>
-                </th:block>
-                <th:block sec:authorize="isAuthenticated()">
-                <ul class="dropdown" style="float: right;"><a style="font-size: 17px"><img style="width: 30px;height: 30px;border-radius: 30px" th:src="${#authentication.principal.KaKaoResponse.file}">&nbsp;<span style="font-family: 'Bodoni 72'" th:text="${#authentication.principal.KaKaoResponse.name}"></span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                    <ul>
-                        <li><a id="myBlog" style="cursor: pointer;">My Blog</a></li>
-                        <li><a href="/mypage">My Page</a></li>
-                        <li><button class="btnLogout" style="float: left;"><br><b><a href="/logout">Logout</a></b></button></li>
-                    </ul>
-                </ul>
-                <ul style="text-align: center;">
-                    <li><a href="/home" style="font-size: 20px">Home<br></a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <li><a href="/feed" style="font-size: 20px">Feed</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <li><a href="/newblogs" style="font-size: 20px">New Blogs</a></li>
-                </ul>
-                </th:block>
-            </nav>
+                </a>
+                <div style="width: 100%; text-align: center">
+                    <nav id="navmenu" class="headermenu"  >
+                        <th:block sec:authorize="isAnonymous()">
+                            <ul style="float: right"><a href="/"><b style="font-size: 17px; color: #505052">로그인</b></a>
+                            </ul>
+                        </th:block>
+                        <th:block sec:authorize="isAuthenticated()">
+                            <ul class="dropdown" style="float: right;"><a style="font-size: 17px"><img style="width: 30px;height: 30px;border-radius: 30px" th:src="${#authentication.principal.KaKaoResponse.file}">&nbsp;<span style="font-family: 'Bodoni 72'" th:text="${#authentication.principal.KaKaoResponse.name}"></span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                                <ul>
+                                    <li><a id="myBlog" style="cursor: pointer;">My Blog</a></li>
+                                    <li><a href="/mypage">My Page</a></li>
+                                    <li><button class="btnLogout" style="float: left;"><br><b><a href="/logout">Logout</a></b></button></li>
+                                </ul>
+                            </ul>
+                            <ul style="text-align: center;">
+                                <li><a href="/home" style="font-size: 20px">Home<br></a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <li><a href="/feed" style="font-size: 20px">Feed</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <li><a href="/newblogs" style="font-size: 20px">New Blogs</a></li>
+                            </ul>
+                        </th:block>
+                    </nav>
+                </div>
+
+
             </div>
-
-
-        </div>
-    </header>
+        </header>
     </div>
 </div>
 </body>
