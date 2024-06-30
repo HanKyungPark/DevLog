@@ -105,7 +105,7 @@
     </select>
 
     <select id="findByHomePage" parameterType="String" resultType="Map">
-        select * from post p join account a on p.account_id = a.account_id join
+        select * from post p join account a on p.account_id = a.account_id left join
                       category c on p.category_id =  c.category_id where a.homepage = #{homepage}
     </select>
 
@@ -172,7 +172,7 @@
     </select>
 
     <select id="findAllByAccountIdOpenOnly" parameterType="long" resultType="Map">
-        select * from post p join category c on p.category_id = c.category_id
+        select * from post p left join category c on p.category_id = c.category_id
         where p.account_id =#{accountId} and open_type = 1
     </select>
 
