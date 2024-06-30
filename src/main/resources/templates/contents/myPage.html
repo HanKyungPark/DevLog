@@ -106,12 +106,16 @@ font-size: 40px;font-family: Symbol">My Page</h4>&nbsp;&nbsp;&nbsp;<img style="w
                 <div class="category-container" style="min-width: 250px;width: 250px;height: 350px;border: 0.5px solid lightgrey;margin-top: 100px;padding-left: 20px;padding-right: 20px;border-radius: 5px">
                     <!--카테고리추가-->
                     <h3 class="visitor_count">카테고리 관리</h3>
-                    <form id="category-form" style="display: flex; visibility: visible">
-                        <div class="form-group"  style = "display: flex; justify-content: center">
+                    <form id="category-form" style="display: flex;">
+                        <div class="form-group"  id="category-add-button" style = "display: flex; justify-content: center">
                             <input type="text" class="form-control input-title-text-box category-input" placeholder="Enter a category">
                             <button type="button" onclick="addCategory(this)" class="btn add-category-btn">카테고리 추가</button>
                         </div>
+                        <div id="category-bound-notification" style="display: block">
+                            <h4>카테고리는 5개 까지 설정가능합니다.</h4>
+                        </div>
                     </form>
+
 
                     <!--카테고리이름-->
                     <div id="category-container">

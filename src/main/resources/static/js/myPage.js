@@ -385,9 +385,11 @@ function displayCategories(){
 //카테고리 크기마다 검증
 function validationCategories(){
   if(categories.length >= 5){
-    $('#category-form').css('visibility', 'hidden');
+    $('#category-add-button').css('display', 'none');
+    $('#category-bound-notification').css('display', 'block')
   } else {
-    $('#category-form').css('visibility', 'visible');
+    $('#category-add-button').css('display', 'flex');
+    $('#category-bound-notification').css('display', 'none')
   }
 }
 
