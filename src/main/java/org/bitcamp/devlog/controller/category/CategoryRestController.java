@@ -30,9 +30,9 @@ public class CategoryRestController {
     public Map<String, Object> categories() {
         Map<String, Object> map = new HashMap<>();
         Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
-            .getContext()
-            .getAuthentication()
-            .getPrincipal();
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
         List<Category> categories = categoryService.findAllByAccountId(oauth2User.getAccountId());
 
 
@@ -54,12 +54,12 @@ public class CategoryRestController {
     //mypage 카테고리추가
     @PostMapping("/api/mypage/category-post")
     public ResponseEntity<Category> mypageSaveCategory(
-        @RequestBody Map<String, String> categoryName
+            @RequestBody Map<String, String> categoryName
     ) {
         Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
-            .getContext()
-            .getAuthentication()
-            .getPrincipal();
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
 
         String categoryType = categoryName.get("categoryName");
         Category category = categoryService.findByCategoryType(categoryType);
@@ -67,10 +67,10 @@ public class CategoryRestController {
         if(category != null){
             return new ResponseEntity<>(new Category(), HttpStatus.OK);
         } else {
-             category = Category.builder()
-                .categoryType(categoryName.get("categoryName"))
-                .accountId(oauth2User.getAccountId())
-                .build();
+            category = Category.builder()
+                    .categoryType(categoryName.get("categoryName"))
+                    .accountId(oauth2User.getAccountId())
+                    .build();
 
             categoryService.save(category);
             return new ResponseEntity<>(category, HttpStatus.OK);
@@ -78,16 +78,26 @@ public class CategoryRestController {
     }
 
     //마이페이지 카테고리 리스트
+    @PostMapping("/api/mypage/categorie")
+    public ResponseEntity<List<Category>> mypageCategorie(@RequestParam String homepage){
+            Long accountId=accountService.findByHomepage(homepage).getAccountId();
+
+        List<Category> categories = categoryService
+                .findAllByAccountId(accountId);
+
+        return new ResponseEntity<>(categories, HttpStatus.OK);
+    }
+    //마이페이지 카테고리 리스트
     @GetMapping("/api/mypage/categories")
     public ResponseEntity<List<Category>> mypageCategories(){
         Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
-            .getContext()
-            .getAuthentication()
-            .getPrincipal();
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
         Long accountId = oauth2User.getAccountId();
 
         List<Category> categories = categoryService
-            .findAllByAccountId(accountId);
+                .findAllByAccountId(accountId);
 
         return new ResponseEntity<>(categories, HttpStatus.OK);
     }
@@ -95,7 +105,7 @@ public class CategoryRestController {
     //카테고리 삭제
     @PostMapping("/api/mypage/category/delete")
     public ResponseEntity<String> mypageCategoryDelete(
-        @RequestBody Map<String, Long> categoryIdData
+            @RequestBody Map<String, Long> categoryIdData
     ){
         Long categoryId = categoryIdData.get("categoryId");
         Category category = categoryService.findByCategoryId(categoryIdData.get("categoryId"));
@@ -111,7 +121,7 @@ public class CategoryRestController {
     //카테고리 수정
     @PostMapping("/api/mypage/category/update")
     public ResponseEntity<String> mypageCategoryUpdate(
-        @RequestBody Map<String, String> categoryUpdateData
+            @RequestBody Map<String, String> categoryUpdateData
     ){
         String categoryType = categoryUpdateData.get("categoryType");
         Long categoryId = Long.valueOf(categoryUpdateData.get("categoryId"));
@@ -120,9 +130,9 @@ public class CategoryRestController {
             return new ResponseEntity<>("600", HttpStatus.OK);
         } else {
             category = Category.builder()
-                .categoryType(categoryType)
-                .categoryId(categoryId)
-                .build();
+                    .categoryType(categoryType)
+                    .categoryId(categoryId)
+                    .build();
 
             categoryService.update(category);
 
