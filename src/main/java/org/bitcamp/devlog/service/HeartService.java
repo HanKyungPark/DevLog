@@ -46,13 +46,11 @@ public class HeartService {
                 .accountId(accountId)
                 .postId(postId)
                 .build());
-            System.out.println("저장되었습니다.");
         } else if (!(countHeartByAccountId(accountId, postId) == 0)) {
             Map<String, Object> map = new HashMap<>();
             map.put("accountId", accountId);
             map.put("postId", postId);
             heartMapper.deleteByAccountId(map);
-            System.out.println("삭제되었습니다.");
         }
     }
 
@@ -60,6 +58,7 @@ public class HeartService {
         Oauth2User oauth2User = (Oauth2User) SecurityContextHolder.getContext()
             .getAuthentication()
             .getPrincipal();
+
         Long accountId = oauth2User.getAccountId();
 
         return heartMapper.findByAccountId(accountId);

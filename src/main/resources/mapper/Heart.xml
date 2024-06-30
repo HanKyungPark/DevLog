@@ -7,15 +7,14 @@
         where post_id = #{postId}
     </select>
 
-    <select id="countHeartByAccountId" parameterType="long" resultType="Long">
+    <select id="countHeartByAccountId" parameterType="Map" resultType="Long">
         select count(*)
         from heart
-        where account_id = #{accountId}
+        where account_id = #{accountId} and post_id = #{postId}
     </select>
 
     <select id="findByAccountId" parameterType="long" resultType="Heart">
-        select *
-        from heart
+        select * from heart
         where account_id = #{accountId}
     </select>
 

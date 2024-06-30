@@ -146,14 +146,15 @@ white-space: nowrap;">${titleHtml}</div>
             //모든 like-button 요소를 선택합니다.
             const likeButtons = document.querySelectorAll('.like-button');
 
+            console.log(hearts);
+
             // 각 버튼에 대해 클릭 이벤트 리스너를 추가합니다.
             likeButtons.forEach(button => {
                 let postId = $(button).find(".post-id").text();
-                console.log(postId)
 
                 hearts.forEach(heart => {
                     const icon = button.querySelector('i');
-                    if(postId == heart.post_id){
+                    if(postId == heart.postId){
                         icon.classList.remove('bi-heart');
                         icon.classList.add('bi-heart-fill');
                         button.classList.add('liked')
@@ -177,9 +178,6 @@ white-space: nowrap;">${titleHtml}</div>
                     }
                 });
             });
-
-
-
         }
     });
 
