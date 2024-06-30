@@ -1,4 +1,20 @@
 $(function () {
+    $.ajax({
+        url: '/api/account/check',
+        type: 'GET',
+        success: function (response) {
+            if(response == null){
+                alert("로그인 해 주세요");
+                location.href="/";
+            }
+        },
+        error: function (error) {
+            alert("로그인 해 주세요");
+            location.href="/";
+            console.log(error);
+        }
+    })
+
     $("#myBlog").click(function (e) {
         e.preventDefault();
         $.ajax({
