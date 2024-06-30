@@ -10,6 +10,7 @@ import java.util.Map;
 public interface HeartMapper {
     // 좋아요 수 조회
     Long countHeartByPostId(Long postId);
+
     // 계정 좋아요 조회
     Long countHeartByAccountId(Map<String, Object> map);
 
