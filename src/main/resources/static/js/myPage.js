@@ -133,14 +133,6 @@ function postNextPage() {
   }
 }
 
-//게시글 버튼 유무
-// function postToggleButtons() {
-//   $('#prev-btn').css('display', postCurrentPage <= 0 ? 'none' : 'block');
-//   $('#next-btn').css('display',
-//       (postCurrentPage + 1) * postPageSize >= posts.length ? 'none' : 'block');
-//   // $('#prev-btn').prop('disabled', postCurrentPage <= 0);
-//   // $('#next-btn').prop('disabled', (postCurrentPage + 1) * postPageSize >= posts.length);
-// }
 
 //댓글 저장하기
 function loadComments() {
@@ -345,7 +337,7 @@ function loadCategories(){
       displayCategories();
     },
     error: function(){
-
+      console.log("카테고리를 불러오지 못했습니다.")
     }
   })
 }
@@ -359,9 +351,7 @@ function displayCategories(){
   categoryHtml = '';
 
   pageCategories.forEach(function(category){
-
-    categoryHtml +=
-        `
+    categoryHtml +=`
           <div class="category-name" style="display: flex; justify-content: space-between; ">
                             <div clas="category-type">${category.categoryType}</div>
                             <div>
@@ -386,8 +376,7 @@ function displayCategories(){
                             </button>
                             
                         </div>
-                    </form>
-        `
+                    </form>`
   })
 
   $('#category-container').html(categoryHtml);

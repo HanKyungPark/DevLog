@@ -8,8 +8,10 @@ import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.bitcamp.devlog.dto.Category;
 import org.bitcamp.devlog.dto.Oauth2User;
+import org.bitcamp.devlog.dto.Post;
 import org.bitcamp.devlog.service.AccountService;
 import org.bitcamp.devlog.service.CategoryService;
+import org.bitcamp.devlog.service.PostService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,6 +23,7 @@ public class CategoryRestController {
 
     private final CategoryService categoryService;
     private final AccountService accountService;
+    private final PostService postService;
 
     //post로 보내는 카테고리
     @GetMapping("/postingForm")
@@ -76,8 +79,12 @@ public class CategoryRestController {
 
     //마이페이지 카테고리 리스트
     @GetMapping("/api/mypage/categories")
-    public ResponseEntity<List<Category>> mypageCategories(@RequestParam String homepage){
-        Long accountId=accountService.findByHomepage(homepage).getAccountId();
+    public ResponseEntity<List<Category>> mypageCategories(){
+        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
+            .getContext()
+            .getAuthentication()
+            .getPrincipal();
+        Long accountId = oauth2User.getAccountId();
 
         List<Category> categories = categoryService
             .findAllByAccountId(accountId);
@@ -88,9 +95,15 @@ public class CategoryRestController {
     //카테고리 삭제
     @PostMapping("/api/mypage/category/delete")
     public ResponseEntity<String> mypageCategoryDelete(
-        @RequestBody Map<String, Long> categoryId
+        @RequestBody Map<String, Long> categoryIdData
     ){
-        Category category = categoryService.findByCategoryId(categoryId.get("categoryId"));
+        Long categoryId = categoryIdData.get("categoryId");
+        Category category = categoryService.findByCategoryId(categoryIdData.get("categoryId"));
+        List<Post> posts = postService.findAllByCategoryId(categoryId);
+        for(Post post : posts){
+            post.setCategoryId(null);
+            postService.update(post);
+        }
         categoryService.delete(category);
         return new ResponseEntity<>("카테고리가 성공적으로 삭제되었습니다.", HttpStatus.OK);
     }

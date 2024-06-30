@@ -13,8 +13,9 @@
         where category_id=#{categoryId}
     </update>
 
-    <delete id="delete" parameterType="Category">
-        delete from category where category_id=#{categoryId}
+    <delete id="delete" parameterType="long">
+        delete from category
+        where category_id=#{categoryId}
     </delete>
 
     <select id="findAllByPostId" parameterType="long" resultType="Post">
