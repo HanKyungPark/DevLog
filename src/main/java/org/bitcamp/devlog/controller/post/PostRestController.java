@@ -99,7 +99,7 @@ public class PostRestController {
 
 
     @PostMapping("/api/post/myblog/list")
-    public List<Post> findByHomePage(@RequestParam String homepage) {
+    public List<Map<String, Object>> findByHomePage(@RequestParam String homepage) {
         Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
             .getContext()
             .getAuthentication()
@@ -108,14 +108,20 @@ public class PostRestController {
         Long pageAccountId = accountService.findByHomepage(homepage).getAccountId();
         Long myAccountId = oauth2User.getAccountId();
 
-        List<Post> posts = new ArrayList<>();
+        List<Map<String, Object>> posts = new ArrayList<>();
 
         if(pageAccountId == myAccountId){
             posts = postService.findByHomePage(homepage);
         } else {
             posts = postService.findAllByAccountIdOpenOnly(pageAccountId);
         }
+
         return posts;
+    }
+
+    @PostMapping("/api/post/test")
+    public List<Map<String,Object>> test(@RequestParam String homepage) {
+        return postService.findByHomePage(homepage);
     }
 
     @PostMapping("/detail/comment")
@@ -218,11 +224,9 @@ public class PostRestController {
     }
 
     @PostMapping("/api/search/category")
-    public List <Post> findByCategoryIdAndAccountId(@RequestParam String categoryId,@RequestParam Long accountId) {
-        Long category=(Long.parseLong(categoryId));
-
-
-        return postService.findByCategoryIdAndAccountId(category, accountId);
+    public List <Map<String, Object>> findByCategoryIdAndAccountId(@RequestParam Long accountId,
+                                                                   @RequestParam Long categoryId) {
+        return postService.findByCategoryIdAndAccountId(accountId, categoryId);
     }
 
     //마이포스트 수정사항 update

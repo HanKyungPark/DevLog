@@ -66,7 +66,7 @@ public class PostService {
         return postMapper.findAllByAccountId(oauth2User.getAccountId());
     }
 
-    public List<Post> findByHomePage(String homepage){
+    public List<Map<String, Object>> findByHomePage(String homepage){
 
         return postMapper.findByHomePage(homepage);
     }
@@ -117,15 +117,20 @@ public class PostService {
 
     public Long findHitsByPostid (Long accountId){return postMapper.findHitsByPostid(accountId);};
 
-    public List<Post> findByCategoryIdAndAccountId(Long categoryId, Long accountId) {
-        return postMapper.findByCategoryIdAndAccountId(categoryId, accountId);
+    public List<Map<String, Object>> findByCategoryIdAndAccountId( Long accountId, Long categoryId) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("accountId",accountId);
+        map.put("categoryId",categoryId);
+
+
+        return postMapper.findByCategoryIdAndAccountId(map);
     }
     public Long findHitsByHomepage(String homepage) {
         return postMapper.findHitsByHomepage(homepage);
     }
 
 
-    public List<Post> findAllByAccountIdOpenOnly(Long pageAccountId) {
+    public List<Map<String, Object>> findAllByAccountIdOpenOnly(Long pageAccountId) {
         return postMapper.findAllByAccountIdOpenOnly(pageAccountId);
     }
 

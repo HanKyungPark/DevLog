@@ -3,9 +3,8 @@ $(function () {
     $(".b").click(function () {
         location.href=window.location.pathname;
     })
-
-    let pathname = window.location.pathname.split("/")[1];
     let accountId = 0;
+    let pathname = window.location.pathname.split("/")[1];
     let postElement = '<div class="post">'; // 포스트 컨테이너 시작
 
     //url 따와서 인스타처럼 윗부분 만들기
@@ -22,6 +21,7 @@ $(function () {
             accountId = list.accountId;
         }
     });
+    console.log(accountId);
     //해당 카테고리에 해당하는 카테고리들 불러오고 갯수 구하기
     $.ajax({
         url: "/api/mypage/categories",
@@ -81,7 +81,7 @@ $(function () {
                     </a>
                     <div class="post_content" id="updatecontainer">
                         <div class="post_header">
-                            <div class="category_inpost">${post.category}</div>
+                            <div class="category_inpost">${post.category_type}</div>
                             <div class="icon-container">
                                 &nbsp;&nbsp;<i class="bi bi-chat-dots">2</i>
                                 &nbsp;<i class="bi bi-heart"></i>
@@ -107,18 +107,19 @@ $(function () {
         }
         //}
     });
+
     $.ajax({
         url:"/api/post/view",
         type:"post",
         data:{"homepage":pathname},
         success:function (data) {
             $("#uviews").text(data);
-
         }
     })
+
     $(".a").click(function () {
         let categoryId = $(this).attr("value");
-
+        accountId = pathByAccountId();
         $.ajax({
             url: "/api/search/category",
             data: {"categoryId": categoryId,"accountId":accountId},
@@ -138,7 +139,8 @@ $(function () {
                             </a>
                             <div class="post_content">
                                 <div class="post_header">
-                                    <div class="category_inpost">${post.category}</div>
+                                    <div class="category_inpost">${post.category_type}</div>
+                             
                                     <div class="icon-container">
                                         &nbsp;&nbsp;<i class="bi bi-chat-dots">2</i>
                                         &nbsp;<i class="bi bi-heart"></i>
@@ -154,8 +156,6 @@ $(function () {
 
                     $(".post").find(".post").append(postElement); // HTML 추가
                 });
-
-
             }
         });
     });
@@ -166,6 +166,21 @@ $(function () {
     let postUrl = $(this).data("post-url"); // 클릭한 요소의 data-post-url 속성 값 가져오기
 
     location.href = '/' + homepage + "/" + postUrl + "/detail";});
+
+
+  function pathByAccountId(){
+      let pathname = window.location.pathname.split("/")[1];
+      $.ajax({
+          url: "/api/user/info",
+          type: "post",
+          data: {"homepage": pathname},
+          success: function (list) {
+              accountId = list.accountId;
+              return accountId
+          }
+      });
+      return accountId
+  }
 
 
 // 날짜 포맷 변환 함수
