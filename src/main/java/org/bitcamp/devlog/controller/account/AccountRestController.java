@@ -29,7 +29,7 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
-@Tag(name = "Account Controller", description = "계정 관련 API")
+@Tag(name = "계정 API", description = "Account 테이블에 있는 데이터를 저장 및 조회, 수정, 삭제 가능한 API Controller")
 public class AccountRestController {
     private final AccountService accountService;
     private final MinioService minioService;
@@ -90,6 +90,8 @@ public class AccountRestController {
 
 
     @GetMapping("/new-blog/userdata")
+    @Operation(summary = "블로그 조회 API", description = "계정 생성일을 기준으로 블로그 정보를 반환하는 로직 ")
+    @ApiResponse(responseCode = "200", description = "success")
     public ResponseEntity<Map<String, Object>> newblogAccounts(){
         List<Account> accounts =  accountService.findAllOrderByCreatedAt();
         List<Map<String, Object>> newBlogData = new ArrayList<>();
@@ -107,6 +109,11 @@ public class AccountRestController {
     }
 
     @PostMapping("/user/info")
+    @Operation(summary = "유저 정보 조회 API", description = "homepage(홈페이지 Url)를 입력 받아 유저 정보를 반환하는 로직",
+            parameters = {
+                    @Parameter(in = ParameterIn.QUERY, name = "homepage", description = "홈페이지 URL", required = true, example = "devlog")
+            })
+    @ApiResponse(responseCode = "200", description = "success")
     public Account findByHomepage(@RequestParam String homepage){
 
 
@@ -114,10 +121,14 @@ public class AccountRestController {
     }
 
     @PostMapping("/post/rankbyhits")
+    @Operation(summary = "계정 리스트 조회(조회수) API", description = "계정 리스트를 조회수 기준으로 정렬하여 반환하는 로직")
+    @ApiResponse(responseCode = "200", description = "success")
     public List<Account> rankbyHits(){
         return accountService.findbyhits();
     }
     @PostMapping("/post/rankbyposts")
+    @Operation(summary = "계정 리스트 조회(포스팅) API", description = "계정 리스트를 포스팅 수 기준으로 정렬하여 반환하는 로직")
+    @ApiResponse(responseCode = "200", description = "success")
     public List<Account> rankbyPosts(){
         return accountService.findbypost();
     }

@@ -5,6 +5,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.bitcamp.devlog.dto.Category;
 import org.bitcamp.devlog.dto.Oauth2User;
@@ -19,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@Tag(name = "카테고리 API", description = "Category 테이블에 데이터를 저장 및 조회, 수정, 삭제를 할 수 있는 API Controller")
 public class CategoryRestController {
 
     private final CategoryService categoryService;
@@ -27,6 +34,8 @@ public class CategoryRestController {
 
     //post로 보내는 카테고리
     @GetMapping("/postingForm")
+    @Operation(summary = "카테고리 리스트 조회 API", description = "로그인이 되어 있는 계정의 카테고리 리스트를 반환하는 로직")
+    @ApiResponse(responseCode = "200", description = "success")
     public Map<String, Object> categories() {
         Map<String, Object> map = new HashMap<>();
         Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
@@ -53,6 +62,11 @@ public class CategoryRestController {
 
     //mypage 카테고리추가
     @PostMapping("/api/mypage/category-post")
+    @Operation(summary = "카테고리 추가 API", description = "Map 타입을 카테고리 이름을 입력받아 카테고리 테이블 저장하는 로직",
+            parameters = {
+                    @Parameter(in = ParameterIn.QUERY, name = "categoryName", description = "카테고리 이름", required = true, example = "여행")
+            })
+    @ApiResponse(responseCode = "200", description = "success")
     public ResponseEntity<Category> mypageSaveCategory(
             @RequestBody Map<String, String> categoryName
     ) {
@@ -79,6 +93,11 @@ public class CategoryRestController {
 
     //마이페이지 카테고리 리스트
     @PostMapping("/api/mypage/categorie")
+    @Operation(summary = "카테고리 조회 API", description = "블로그 URL를 입력받아 카테고리 리스트를 반환하는 로직",
+            parameters = {
+                    @Parameter(in = ParameterIn.QUERY, name = "homepage", description = "블로그 URL", required = true, example = "devlog")
+            })
+    @ApiResponse(responseCode = "200", description = "success")
     public ResponseEntity<List<Category>> mypageCategorie(@RequestParam String homepage){
             Long accountId=accountService.findByHomepage(homepage).getAccountId();
 
@@ -89,6 +108,8 @@ public class CategoryRestController {
     }
     //마이페이지 카테고리 리스트
     @GetMapping("/api/mypage/categories")
+    @Operation(summary = "카테고리 조회 API", description = "로그인이 되어있는 계정의 카테고리 리스트를 반환하는 로직")
+    @ApiResponse(responseCode = "200", description = "success")
     public ResponseEntity<List<Category>> mypageCategories(){
         Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
                 .getContext()
