@@ -21,9 +21,8 @@ $(function () {
                     heartCount = data;
                 }
             })
-            console.log("heartCount: " + heartCount)
-            console.log(postId);
-            console.log(data);
+
+
             $("#title").text(data[0].title);
             $("#date").text(data[0].pcreatedAt);
             console.log(data[0].postTags.length);
