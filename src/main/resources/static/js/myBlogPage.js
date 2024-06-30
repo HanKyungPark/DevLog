@@ -5,7 +5,7 @@ $(function () {
     })
     let accountId = 0;
     let pathname = window.location.pathname.split("/")[1];
-    let postElement = '<div class="post">'; // 포스트 컨테이너 시작
+    let postElement = '<div class="post" style="margin-top: -50px;min-height: 300px;padding-left: 60px;background-color: #EBE5C1; background-size: cover;border-radius: 20px">'; // 포스트 컨테이너 시작
 
     //url 따와서 인스타처럼 윗부분 만들기
     $.ajax({
@@ -35,6 +35,17 @@ $(function () {
                 $("#" + name).css("display", "");
                 $("#" + name).text(category.categoryType);
                 $("#" + name).attr("value", category.categoryId);
+                // 클릭 이벤트 추가 및 배경색 변경
+                $("#" + name).click(function() {
+                    // 클릭된 버튼
+                    const clickedButton = $(this);
+
+                    // 다른 버튼들의 배경색 원래대로 돌리기
+                    $(this).siblings().css("background-color", "");
+
+                    // 클릭된 버튼 배경색 파란색으로 변경 및 selected 클래스 추가
+                    clickedButton.css("background-color", "#b4d4d6").addClass("selected");
+                });
             })
         }
     })
