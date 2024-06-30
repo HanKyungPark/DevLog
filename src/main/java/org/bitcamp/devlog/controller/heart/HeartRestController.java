@@ -21,9 +21,9 @@ public class HeartRestController {
     private final HeartService heartService;
 
     @GetMapping("/heart/count")
-    @Operation(summary = "", description = "",
+    @Operation(summary = "좋아요 수를 반환하는 API", description = "포스트 ID 값을 통해 좋아요 수를 반환하는 로직",
             parameters = {
-                    @Parameter(in = ParameterIn.QUERY, name = "", description = "", required = true, example = "devlog")
+                    @Parameter(in = ParameterIn.QUERY, name = "postId", description = "포스트 ID", required = true, example = "1")
             })
     @ApiResponse(responseCode = "200", description = "success")
     public Long countByPostId(@RequestParam("postId") Long postId) {
@@ -31,6 +31,11 @@ public class HeartRestController {
     }
 
     @PostMapping("/heart/click")
+    @Operation(summary = "좋아요 변경하는 API ", description = "포스트 ID을 가지고 요청할 경우 좋아요 변경하는 로직 ",
+            parameters = {
+                    @Parameter(in = ParameterIn.QUERY, name = "postId", description = "포스트 Id", required = true, example = "1")
+            })
+    @ApiResponse(responseCode = "200", description = "success")
     @ResponseStatus(HttpStatus.OK)
     public void clickHeart(
         @RequestParam("postId") Long postId
@@ -39,6 +44,8 @@ public class HeartRestController {
     }
 
     @GetMapping("/heart/list")
+    @Operation(summary = "좋아료 리스트 조회 API", description = "로그인 계정 정보를 이용하여 졸아요 리스트 출력하는 로직")
+    @ApiResponse(responseCode = "200", description = "success")
     public List<Heart> findByAccountId() {
         List<Heart> hearts = heartService.findByAccountId();
         System.out.println(hearts);
