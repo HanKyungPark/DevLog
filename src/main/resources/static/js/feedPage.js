@@ -11,7 +11,7 @@ function loadHerts() {
             hearts = data;
             console.log(hearts);
         }, error: function () {
-            console.log("응~ 좋아요 가져오는데 실패했죠!")
+            console.log("좋아요를 가져오는데 실패했습니다.")
         }
     })
 }
