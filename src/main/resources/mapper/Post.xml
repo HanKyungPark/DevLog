@@ -78,7 +78,7 @@
           and account_id = #{accountId}
     </select>
 
-    <select id="findAllByAccountId" parameterType="long" resultType="Map">
+    <select id="findAllByAccountId" parameterType="long" resultType="Post">
         select *
         from post
         where account_id = #{accountId}
@@ -128,7 +128,6 @@
 
 
     <select id="findAllByAccountIdLong" parameterType="long" resultType="Post">
-
         select * from post
         where account_id = #{accountId} order by p_created_at desc
         limit 4
