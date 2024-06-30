@@ -40,6 +40,10 @@ public interface AccountMapper {
     String findHomepageByAccountId(Long accountId);
 
     String findEmailByAccountId(Long accountId);
+
+    List<Account> findbyhits();
+
+    List<Account> findbypost();
 }
 
 

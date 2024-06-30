@@ -94,4 +94,11 @@ public class AccountService {
     public String findEmailByAccountId(Long accountId) {
         return accountMapper.findEmailByAccountId(accountId);
     }
+
+    public List<Account> findbyhits() {
+        return accountMapper.findbyhits();
+    }
+    public List<Account> findbypost() {
+        return accountMapper.findbypost();
+    }
 }
