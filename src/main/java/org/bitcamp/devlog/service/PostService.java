@@ -128,4 +128,8 @@ public class PostService {
     public List<Post> findAllByAccountIdOpenOnly(Long pageAccountId) {
         return postMapper.findAllByAccountIdOpenOnly(pageAccountId);
     }
+
+    public List<Post> findAllByCategoryId(Long categoryId) {
+        return postMapper.findAllByCategoryId(categoryId);
+    }
 }
