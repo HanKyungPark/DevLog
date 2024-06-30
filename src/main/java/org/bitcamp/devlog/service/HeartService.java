@@ -14,6 +14,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Service
 public class HeartService {
+
     private final HeartMapper heartMapper;
 
     //좋아요 조회
@@ -30,22 +31,37 @@ public class HeartService {
     }
 
     // 좋아요 조회
-    public void clickHeart(Long postId){
-        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public void clickHeart(Long postId) {
+        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
+            .getContext()
+            .getAuthentication()
+            .getPrincipal();
         Long accountId = oauth2User.getAccountId();
-        if(countHeartByAccountId(accountId,postId) == 0){
-            heartMapper.save(new Heart().builder().accountId(accountId).postId(postId).build());
-        } else if(!(countHeartByAccountId(accountId,postId) == 0)){
+        System.out.println(countHeartByAccountId(accountId, postId));
+
+        if (countHeartByAccountId(accountId, postId) == 0) {
+            heartMapper.save(
+                new Heart()
+                .builder()
+                .accountId(accountId)
+                .postId(postId)
+                .build());
+            System.out.println("저장되었습니다.");
+        } else if (!(countHeartByAccountId(accountId, postId) == 0)) {
             Map<String, Object> map = new HashMap<>();
             map.put("accountId", accountId);
             map.put("postId", postId);
             heartMapper.deleteByAccountId(map);
+            System.out.println("삭제되었습니다.");
         }
     }
 
-    public List<Heart> findByAccountId(){
-        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public List<Heart> findByAccountId() {
+        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder.getContext()
+            .getAuthentication()
+            .getPrincipal();
         Long accountId = oauth2User.getAccountId();
+
         return heartMapper.findByAccountId(accountId);
     }
 }
