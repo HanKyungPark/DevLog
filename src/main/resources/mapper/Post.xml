@@ -78,7 +78,7 @@
           and account_id = #{accountId}
     </select>
 
-    <select id="findAllByAccountId" parameterType="long" resultType="Post">
+    <select id="findAllByAccountId" parameterType="long" resultType="Map">
         select *
         from post
         where account_id = #{accountId}
@@ -104,9 +104,9 @@
              ) p JOIN account a ON p.account_id = a.account_id
     </select>
 
-    <select id="findByHomePage" parameterType="String" resultType="Post">
-        select * from post p join account a on p.account_id = a.account_id
-        where a.homepage = #{homepage}
+    <select id="findByHomePage" parameterType="String" resultType="Map">
+        select * from post p join account a on p.account_id = a.account_id join
+                      category c on p.category_id =  c.category_id where a.homepage = #{homepage}
     </select>
 
     <delete id="deleteByPostUrl" parameterType="String">
@@ -161,8 +161,9 @@
         GROUP BY account_id
     </select>
 
-    <select id="findByCategoryIdAndAccountId" parameterType="long" resultType="Post">
-        select * from post where category_id=#{categoryId} and account_id = #{accountId}
+    <select id="findByCategoryIdAndAccountId" parameterType="Map" resultType="Map">
+        select * from post p join category c on p.category_id = c.category_id where
+            p.account_id = #{accountId} and p.category_id = #{categoryId}
     </select>
 
     <select id="findHitsByHomepage" parameterType="String" resultType="long">
@@ -171,10 +172,9 @@
         where a.homepage=#{homepage}
     </select>
 
-    <select id="findAllByAccountIdOpenOnly" parameterType="long" resultType="Post">
-        select * from post
-        where account_id = #{accoutId}
-        and open_type = 1
+    <select id="findAllByAccountIdOpenOnly" parameterType="long" resultType="Map">
+        select * from post p join category c on p.category_id = c.category_id
+        where p.account_id =#{accountId} and open_type = 1
     </select>
 
     <select id="findAllByCategoryId" parameterType="long" resultType="Post">
