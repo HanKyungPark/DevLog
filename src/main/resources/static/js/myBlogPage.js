@@ -168,6 +168,7 @@ $(document).on("click", ".blogpost_box", function () {
     location.href = '/' + homepage + "/" + postUrl + "/detail";});
 
 
+
 function pathByAccountId(){
     let pathname = window.location.pathname.split("/")[1];
     $.ajax({
