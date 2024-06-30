@@ -115,6 +115,7 @@ public class PostRestController {
         } else {
             posts = postService.findAllByAccountIdOpenOnly(pageAccountId);
         }
+
         return posts;
     }
 
