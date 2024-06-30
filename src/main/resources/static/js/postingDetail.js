@@ -66,6 +66,21 @@ $(function () {
                     }
                 })
             })
+            const heart = document.getElementById('heart');
+            let isClicked = false; // 클릭 여부를 나타내는 변수
+
+            heart.addEventListener('click', function() {
+                if (isClicked) {
+                    // 현재 클릭된 상태면 원래대로 돌아감
+                    heart.innerHTML = '<i style="width: 25px;height: 25px;font-size: 25px" class="bi bi-heart"></i>';
+                    heart.style.color = 'currentColor';
+                } else {
+                    // 현재 클릭된 상태가 아니면 변경
+                    heart.innerHTML = '<i style="width: 25px;height: 25px;font-size: 25px" class="bi bi-heart-fill"></i>';
+                    heart.style.color = 'red';
+                }
+                isClicked = !isClicked; // 클릭마다 isClicked 값을 반전
+            });
         }
     });
 
@@ -83,10 +98,10 @@ $(function () {
                     let comment = item.comment;
                     let name = item.name;
 
-                    let row = $("<tr></tr>");
-                    row.append("<td>" + name + "</td>");
-                    row.append("<td>" + comment.ccontent + "</td>");
-                    row.append("<td>" + formatDate(comment.ccreatedAt) + "</td>");
+                    let row = $("<tr class='tr1'></tr>");
+                    row.append("<td class='td3'>" + name + "</td>");
+                    row.append("<td class='td1'><p class='detailcomment'>"+ comment.ccontent +"</p></td>");
+                    row.append("<td class='td2'>" + formatDate(comment.ccreatedAt) + "</td>");
 
                     commentTableBody.append(row);
                 });
