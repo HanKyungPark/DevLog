@@ -71,7 +71,9 @@ style="width: 300px;height: 430px; overflow: hidden; border-color: rgb(0, 0, 0);
          style="height: 500px; width: 100%; margin: -1px;">
             <div class="gallery-item-content item-content-regular image-item gallery-item-visible gallery-item gallery-item-preloaded   " data-hook="image-item"
             style="width: 100%; height: 100%; margin-top: 0; margin-left: 0;">
-                <img alt="FUN WAYS TO DRESS UP A T-SHIRT" id="7c0cd68a-821f-43e1-8a4d-0abc19887849" class="gallery-item-visible gallery-item gallery-item-preloaded" data-hook="gallery-item-image-img" data-idx="0" src="${item.file}" loading="eager" style="width: 300px; height: 280px;">
+                <div class="post-img">         <input type="hidden" value="${item.homepage}" id="homepage">
+                                            <input type="hidden" value="${item.post_url}" id="postURL">
+                                            <img alt="FUN WAYS TO DRESS UP A T-SHIRT" id="7c0cd68a-821f-43e1-8a4d-0abc19887849" class="gallery-item-visible gallery-item gallery-item-preloaded" data-hook="gallery-item-image-img" data-idx="0" src="${item.file}" loading="eager" style="width: 300px; height: 280px;"></div>
                 <div class="gallery-item-common-info-outer [object Object]"
                 style="box-sizing:content-box;background-color:white; padding: 0;margin: 0; height:150px;">
                 <div style="background-color: #040940;color: white; font-size: 20px;font-family: 'Bodoni 72';overflow: hidden;
@@ -135,13 +137,13 @@ white-space: nowrap;">${titleHtml}</div>
                 container.append(msg);
             });
 
-            // 이벤트 핸들러 추가
-            // $(".detail").click(function () {
-            //     let homepage=$(this).find("#homepage").val();
-            //     let postURL=$(this).find("#postURL").val();
-            //     location.href="/"+homepage+"/"+postURL+"/detail";
-            // });
-            // 모든 like-button 요소를 선택합니다.
+            //이벤트 핸들러 추가
+            $(".post-img").click(function () {
+                let homepage=$(this).find("#homepage").val();
+                let postURL=$(this).find("#postURL").val();
+                location.href="/"+homepage+"/"+postURL+"/detail";
+            });
+            //모든 like-button 요소를 선택합니다.
             const likeButtons = document.querySelectorAll('.like-button');
 
             // 각 버튼에 대해 클릭 이벤트 리스너를 추가합니다.

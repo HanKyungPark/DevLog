@@ -17,23 +17,24 @@ function loadUserInformation(){
            
                 <img src="${newBlogData.account.file}" style="width: 160px;min-width: 160px;height: 160px; border-radius: 100px; margin-right: 30px;border:2px solid black">
                 <div class="user-total" style="width: 200px;margin-right: 80px">
-                <div> 
-                <a style="color: black" href="${newBlogData.account.homepage}"><div class="blog_home" style="width: 200px"><button style="  font-size: 15px;
+                <div class="blog-box" style="width: 60px;height: 30px;margin-left: 100px"> 
+                <input type="hidden" value="${newBlogData.account.homepage}" class="homepage">
+               <button type="button" style="  font-size: 15px;
     border-radius: 30px ;
     width: 60px;
     height: 30px;
     background-color: #5dd2fc;
     float: right;
     margin-right: 30px;
-    cursor: pointer;"><b>블로그</b><input type="hidden" value="${newBlogData.account.homepage}" class="homepage"></button></div></a></div>
-               <div> <button class="follow-button" style="    font-size: 15px;
-    border-radius: 30px ;
-    width: 60px;
-    height: 30px;
-    background-color: #90f5dd;
-    margin-right: 10px;
-    margin-left: 40px;
-    cursor: pointer;"><b class="follow-p">팔로우</b></button></div>
+    cursor: pointer;"><b>블로그</b></button></div>
+<!--               <div> <button class="follow-button" style="    font-size: 15px;-->
+<!--    border-radius: 30px ;-->
+<!--    width: 60px;-->
+<!--    height: 30px;-->
+<!--    background-color: #90f5dd;-->
+<!--    margin-right: 10px;-->
+<!--    margin-left: 40px;-->
+<!--    cursor: pointer;"><b class="follow-p">팔로우</b></button></div>-->
                 <div><p class="blink" style="color: red;font-size: 15px">New!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></div>
                 <div>${newBlogData.account.blogId}</div>
                 <div>${newBlogData.account.biography}</div>
@@ -74,6 +75,11 @@ white-space: nowrap;"><b>${post.title}</b></div>
                 let accountId = $(this).find(".accountId").val();
 
                 location.href = '/' + homepage + "/" + postUrl + "/detail";
+            });
+            //블로그 클릭시 해당 블로그로 이동
+            $(".blog-box").click(function(){
+                let homepage = $(this).find(".homepage").val();
+                location.href = '/' + homepage ;
             });
 
             // 버튼 클릭 이벤트 핸들러 설정
