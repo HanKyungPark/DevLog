@@ -112,4 +112,13 @@ public class AccountRestController {
 
      return accountService.findByHomepage(homepage);
     }
+
+    @PostMapping("/post/rankbyhits")
+    public List<Account> rankbyHits(){
+        return accountService.findbyhits();
+    }
+    @PostMapping("/post/rankbyposts")
+    public List<Account> rankbyPosts(){
+        return accountService.findbypost();
+    }
 }

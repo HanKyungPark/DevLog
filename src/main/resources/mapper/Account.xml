@@ -82,5 +82,27 @@
         where account_id = #{accountId}
     </select>
 
+    <select id="findbyhits" resultType="Account">
+        SELECT a.*
+        FROM account a
+                 JOIN (
+            SELECT account_id
+            FROM post
+            ORDER BY hits DESC
+                LIMIT 1
+        ) p ON a.account_id = p.account_id;
+    </select>
+
+    <select id="findbypost" resultType="Account">
+        SELECT a.*
+        FROM account a
+                 JOIN (
+            SELECT account_id
+            FROM post
+            GROUP BY account_id
+            ORDER BY count(*) DESC
+                LIMIT 1
+        ) p ON a.account_id = p.account_id;
+    </select>
 
 </mapper>
