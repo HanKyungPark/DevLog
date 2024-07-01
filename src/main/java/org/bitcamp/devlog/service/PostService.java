@@ -19,6 +19,7 @@ import java.util.Map;
 public class PostService {
     private final PostMapper postMapper;
     private final CategoryMapper categoryMapper;
+    private final CommentMapper commentMapper;
     private final PostTagService postTagService;
     private final TagService tagService;
     private final PostTagMapper postTagMapper;
@@ -67,7 +68,6 @@ public class PostService {
     }
 
     public List<Map<String, Object>> findByHomePage(String homepage){
-
         return postMapper.findByHomePage(homepage);
     }
 
@@ -121,8 +121,6 @@ public class PostService {
         Map<String, Object> map = new HashMap<>();
         map.put("accountId",accountId);
         map.put("categoryId",categoryId);
-
-
         return postMapper.findByCategoryIdAndAccountId(map);
     }
     public Long findHitsByHomepage(String homepage) {
