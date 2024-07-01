@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.bitcamp.devlog.dto.Comment;
 import org.bitcamp.devlog.dto.Oauth2User;
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@Tag(name = "마이블로그 페이지 댓글", description = "마이블로그 페이지에서 댓글 작성, 삭제 가능한 API Controller")
 public class CommentRestController {
 
     private final CommentService commentService;
@@ -27,6 +32,8 @@ public class CommentRestController {
 
     //마이페이지 댓글리스트
     @GetMapping("/api/mypage/comment")
+    @Operation(summary = "마이페이지 댓글리스트", description = "마이페이지 댓글리스트를 반환하는 로직")
+    @ApiResponse(responseCode = "200", description = "success")
     public ResponseEntity<List<Map<String, Object>>> mypageComments(){
 
         List<Comment> comments = commentService.findAllByAccountId();
@@ -67,6 +74,13 @@ public class CommentRestController {
     }
     //    작성 댓글 저장
     @PostMapping("/api/comment/write")
+    @Operation(summary = "댓글 저장", description = "댓글를 저장하는 로직")
+    @ApiResponse(responseCode = "200", description = "success")
+    @ApiResponse(responseCode = "400", description = "bad request")
+    @ApiResponse(responseCode = "405", description = "no information")
+    @ApiResponse(responseCode = "403", description = "forbidden")
+    @ApiResponse(responseCode = "404", description = "not found")
+    @ApiResponse(responseCode = "500", description = "server error")
     public void saveComment(@RequestBody Map<String, Object> commentData) {
 //        현재 로그인된 아이디 가져오기
         Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
@@ -84,7 +98,10 @@ public class CommentRestController {
         commentService.save(comment);
     }
 
+    //마이페이지 댓글리스트
     @PostMapping("/api/comment/list")
+    @Operation(summary = "마이페이지 댓글리스트", description = "마이페이지 댓글리스트를 반환하는 로직")
+    @ApiResponse(responseCode = "200", description = "success")
     public ResponseEntity<List<Map<String, Object>>> listComments(@RequestParam Long postId) {
         List<Map<String, Object>> list = new ArrayList<>();
         List<Comment> comments = commentService.findAllByPostId(postId);
@@ -102,6 +119,13 @@ public class CommentRestController {
 
     //마이페이지 댓글 삭제
     @PostMapping("/api/mypage/comment/delete")
+    @Operation(summary = "마이페이지 댓글 삭제", description = "마이페이지 댓글를 삭제하는 로직")
+    @ApiResponse(responseCode = "200", description = "success")
+    @ApiResponse(responseCode = "400", description = "bad request")
+    @ApiResponse(responseCode = "405", description = "no information")
+    @ApiResponse(responseCode = "403", description = "forbidden")
+    @ApiResponse(responseCode = "404", description = "not found")
+    @ApiResponse(responseCode = "500", description = "server error")
     public ResponseEntity<String> mypageCommentDelete(
             @RequestBody Map<String, Long> commentIdMap
     ) {

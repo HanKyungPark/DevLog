@@ -44,7 +44,7 @@ public class HeartRestController {
     }
 
     @GetMapping("/heart/list")
-    @Operation(summary = "좋아료 리스트 조회 API", description = "로그인 계정 정보를 이용하여 졸아요 리스트 출력하는 로직")
+    @Operation(summary = "좋아요 리스트 조회 API", description = "로그인 계정 정보를 이용하여 졸아요 리스트 출력하는 로직")
     @ApiResponse(responseCode = "200", description = "success")
     public List<Heart> findByAccountId() {
         List<Heart> hearts = heartService.findByAccountId();
