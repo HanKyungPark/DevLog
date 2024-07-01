@@ -17,4 +17,5 @@ public class Heart {
   private java.sql.Timestamp hUpdatedAt;
   private Long accountId;
   private Long postId;
+  private Long count;
 }

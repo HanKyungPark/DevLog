@@ -27,6 +27,26 @@ public interface AccountMapper {
     Account findByBlogId(String blogId);
 
     List<Account> findAll();
+
+    String findNameByAccountId(long accountId);
+
+
+    String findFileByAccountId(Long accountId);
+
+    List<Account> findAllOrderByCreatedAt();
+
+    String findnameByAccountId(Long accountId);
+
+
+    String findHomepageByAccountId(Long accountId);
+
+    String findEmailByAccountId(Long accountId);
+
+    List<Account> findbyhits();
+
+    List<Account> findbypost();
+
+    Account findByAccountId(Long accountId);
 }
 
 

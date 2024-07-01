@@ -9,7 +9,5 @@ import java.util.Map;
 @Mapper
 public interface VisitMapper {
 
-    int findByAccountIdAndVisitDate(Map<String, Object> map);
 
-    List<Visit> findAllByAccountId(String account_id);
 }

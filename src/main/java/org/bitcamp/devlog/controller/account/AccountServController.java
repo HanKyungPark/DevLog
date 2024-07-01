@@ -14,6 +14,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -32,7 +36,9 @@ public class AccountServController {
      */
 
     @GetMapping("/mypage")
-    public String mypage() {
+    public String mypage(
+            Model model
+    ) {
         return "contents/myPage";
     }
 
@@ -69,4 +75,39 @@ public class AccountServController {
     public String mypage(@PathVariable String homepage) {
         return "contents/myBlogPage";
     }
+
+    @GetMapping("/loginUpdateForm")
+    public String loginUpdateForm(Model model) {
+        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("name", oauth2User.getUsername());
+        model.addAttribute("email", oauth2User.getEmail());
+
+
+        return "contents/loginForm";
+    }
+
+    @GetMapping("/account/update")
+    public String accountUpdate(Model model) {
+        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+        Long accountId = oauth2User.getAccountId();
+
+        List<Account> list = new ArrayList<>();
+        list.add(accountService.findByAccountId(accountId));
+
+        model.addAttribute("name", oauth2User.getUsername());
+        model.addAttribute("email", oauth2User.getEmail());
+        model.addAttribute("accountId", accountId);
+        model.addAttribute("biography", list.get(0).getBiography());
+        model.addAttribute("homepage", list.get(0).getHomepage());
+        model.addAttribute("file", list.get(0).getFile());
+        model.addAttribute("blog_id", list.get(0).getBlogId());
+
+        return "contents/loginUpdateForm";
+
+    }
+
+    ;
 }

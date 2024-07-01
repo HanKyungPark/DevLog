@@ -6,354 +6,356 @@
 <head>
     <meta charset="UTF-8">
     <title>Devlog</title>
-    <link rel="shortcut icon" th:href="@{/im/DL.png}"/>
-    <!--부트스트랩 아이콘-->
-    <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css}" rel="stylesheet">
-    <!--부트스트랩 css-->
-    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" href="/css/postingForm.css">
-
+    <!--제이쿼리-->
+    <script th:src="@{https://code.jquery.com/jquery-3.7.1.min.js}"
+            integrity="sha256-3b0TG3WDl5gQ/5cNB9QW8opF8N91cQ2xlF5VYtqXHTs=" crossorigin="anonymous"></script>
     <!--제이쿼리-->
     <script th:src="@{https://code.jquery.com/jquery-3.7.1.js}"
             integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <script src="/js/postingForm.js">
-
-    </script>
-<style>
-    #container {
-    width: 1000px;
-    margin: 20px auto;
-    }
-    .ck-editor__editable[role="textbox"] {
-    min-height: 200px;
-    }
-    .ck-content .image {
-    max-width: 80%;
-    margin: 20px auto;
-    }
+    <script src="/js/postingForm.js"></script>
+    <!--부트스트랩 css-->
+    <link rel="stylesheet" href="/css/postingForm.css">
+    <style>
+        #container {
+            width: 1000px;
+            margin: 20px auto;
+        }
+        .ck-editor__editable[role="textbox"] {
+            min-height: 200px;
+        }
+        .ck-content .image {
+            max-width: 80%;
+            margin: 20px auto;
+        }
     </style>
+
 </head>
 <body>
-<div layout:fragment="content">
-
+<div layout:fragment="content" style="padding-top: 200px">
     <div class="bigcontainer">
         <div class="marginofcontainer">
-            <div class="form_container">
-                <div class="title_container">
-                    <h1 class="title" style="font-size: 25px">글 쓰기</h1>
+            <div class="speaker"></div>
+            <div class="phone-shade"></div>
+            <div class="form_container" style="margin-top: 30px">
+                <div class="lines" style="float: right;padding-right: 5px;padding-top: 10px">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
                 </div>
-                <form class="form" id="post" method="post" enctype="multipart/form-data">
-                    <div>
-                        <label for="title" class="form_title" th:id="input_title" >
-                            <b style="font-size: 17px"><br>제목</b>
-                        </label>
-                        <div class="input_title_text">
-                            <input id="title" name="title" type="text" class="input_title_text_box" placeholder="게시글의 제목을 입력해주세요"/>
-                        </div>
-                    </div>
-                    <div>
-
-                        <div class="mt-1">
-                            <div class="wigiwig" style="display: flex; width: 100%" >
-                            <div id="container" >
-                                <textarea id="editor" placeholder="내용을 입력해주세요"></textarea>
+                <div class="title_container" style="margin-top: 50px">
+                    <p class="title" style="font-size: 25px;color: white;background-color: black;height: 40px;padding-top: 5px;padding-left: 50px">New Post</p>
+                </div>
+                <div class="form_content">
+                    <form class="form" id="post" method="post" enctype="multipart/form-data">
+                        <div>
+                            <label for="title" class="form_title" th:id="input_title">
+                                <b style="font-size: 17px"><br>제목</b>
+                            </label>
+                            <div class="input_title_text">
+                                <input required="required" id="title" name="title" type="text" class="input_title_text_box" placeholder="게시글의 제목을 입력해주세요"/>
                             </div>
-                            <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/super-build/ckeditor.js"></script>
-                            <script>
-                                CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
-                                    toolbar: {
-                                        items: [
-                                            "findAndReplace",
-                                            "selectAll",
-                                            "|",
-                                            "heading",
-                                            "|",
-                                            "bold",
-                                            "italic",
-                                            "strikethrough",
-                                            "underline",
-                                            "code",
-                                            "subscript",
-                                            "superscript",
-                                            "removeFormat",
-                                            "|",
-                                            "bulletedList",
-                                            "numberedList",
-                                            "todoList",
-                                            "|",
-                                            "outdent",
-                                            "indent",
-                                            "|",
-                                            "undo",
-                                            "redo",
-                                            "-",
-                                            "fontSize",
-                                            "fontFamily",
-                                            "fontColor",
-                                            "fontBackgroundColor",
-                                            "highlight",
-                                            "|",
-                                            "alignment",
-                                            "|",
-                                            "link",
-                                            "uploadImage",
-                                            "blockQuote",
-                                            "insertTable",
-                                            "mediaEmbed",
-                                            "codeBlock",
-                                            "htmlEmbed",
-                                            "|",
-                                            "specialCharacters",
-                                            "horizontalLine",
-                                            "pageBreak",
-                                            "|",
-                                            "textPartLanguage",
-                                            "|",
-                                            "sourceEditing",
-                                        ],
-                                        shouldNotGroupWhenFull: true,
-                                    },
-                                    list: {
-                                        properties: {
-                                            styles: true,
-                                            startIndex: true,
-                                            reversed: true,
-                                        },
-                                    },
-                                    heading: {
-                                        options: [
-                                            {
-                                                model: "paragraph",
-                                                title: "Paragraph",
-                                                class: "ck-heading_paragraph",
+                        </div>
+                        <div>
+                            <div class="mt-1">
+                                <div class="wigiwig" style="display: flex; width: 100%;max-width: 1285px">
+                                    <div id="container">
+                                        <textarea id="editor" placeholder="내용을 입력해주세요"></textarea>
+                                    </div>
+                                    <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/super-build/ckeditor.js"></script>
+                                    <script>
+                                        CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
+                                            toolbar: {
+                                                items: [
+                                                    "findAndReplace",
+                                                    "selectAll",
+                                                    "|",
+                                                    "heading",
+                                                    "|",
+                                                    "bold",
+                                                    "italic",
+                                                    "strikethrough",
+                                                    "underline",
+                                                    "code",
+                                                    "subscript",
+                                                    "superscript",
+                                                    "removeFormat",
+                                                    "|",
+                                                    "bulletedList",
+                                                    "numberedList",
+                                                    "todoList",
+                                                    "|",
+                                                    "outdent",
+                                                    "indent",
+                                                    "|",
+                                                    "undo",
+                                                    "redo",
+                                                    "-",
+                                                    "fontSize",
+                                                    "fontFamily",
+                                                    "fontColor",
+                                                    "fontBackgroundColor",
+                                                    "highlight",
+                                                    "|",
+                                                    "alignment",
+                                                    "|",
+                                                    "link",
+                                                    "uploadImage",
+                                                    "blockQuote",
+                                                    "insertTable",
+                                                    "mediaEmbed",
+                                                    "codeBlock",
+                                                    "htmlEmbed",
+                                                    "|",
+                                                    "specialCharacters",
+                                                    "horizontalLine",
+                                                    "pageBreak",
+                                                    "|",
+                                                    "textPartLanguage",
+                                                    "|",
+                                                    "sourceEditing",
+                                                ],
+                                                shouldNotGroupWhenFull: true,
                                             },
-                                            {
-                                                model: "heading1",
-                                                view: "h1",
-                                                title: "Heading 1",
-                                                class: "ck-heading_heading1",
-                                            },
-                                            {
-                                                model: "heading2",
-                                                view: "h2",
-                                                title: "Heading 2",
-                                                class: "ck-heading_heading2",
-                                            },
-                                            {
-                                                model: "heading3",
-                                                view: "h3",
-                                                title: "Heading 3",
-                                                class: "ck-heading_heading3",
-                                            },
-                                            {
-                                                model: "heading4",
-                                                view: "h4",
-                                                title: "Heading 4",
-                                                class: "ck-heading_heading4",
-                                            },
-                                            {
-                                                model: "heading5",
-                                                view: "h5",
-                                                title: "Heading 5",
-                                                class: "ck-heading_heading5",
-                                            },
-                                            {
-                                                model: "heading6",
-                                                view: "h6",
-                                                title: "Heading 6",
-                                                class: "ck-heading_heading6",
-                                            },
-                                        ],
-                                    },
-                                    fontFamily: {
-                                        options: [
-                                            "default",
-                                            "Arial, Helvetica, sans-serif",
-                                            "Courier New, Courier, monospace",
-                                            "Georgia, serif",
-                                            "Lucida Sans Unicode, Lucida Grande, sans-serif",
-                                            "Tahoma, Geneva, sans-serif",
-                                            "Times New Roman, Times, serif",
-                                            "Trebuchet MS, Helvetica, sans-serif",
-                                            "Verdana, Geneva, sans-serif",
-                                        ],
-                                        supportAllValues: true,
-                                    },
-                                    // https://ckeditor.com/docs/ckeditor5/latest/features/font.html#configuring-the-font-size-feature
-                                    fontSize: {
-                                        options: [10, 12, 14, "default", 18, 20, 22],
-                                        supportAllValues: true,
-                                    },
-                                    // Be careful with the setting below. It instructs CKEditor to accept ALL HTML markup.
-                                    // https://ckeditor.com/docs/ckeditor5/latest/features/general-html-support.html#enabling-all-html-features
-                                    htmlSupport: {
-                                        allow: [
-                                            {
-                                                name: /.*/,
-                                                attributes: true,
-                                                classes: true,
-                                                styles: true,
-                                            },
-                                        ],
-                                    },
-                                    htmlEmbed: {
-                                        showPreviews: false,
-                                    },
-                                    link: {
-                                        decorators: {
-                                            addTargetToExternalLinks: true,
-                                            defaultProtocol: "https://",
-                                            toggleDownloadable: {
-                                                mode: "manual",
-                                                label: "Downloadable",
-                                                attributes: {
-                                                    download: "file",
+                                            list: {
+                                                properties: {
+                                                    styles: true,
+                                                    startIndex: true,
+                                                    reversed: true,
                                                 },
                                             },
-                                        },
-                                    },
-                                    mention: {
-                                        feeds: [
-                                            {
-                                                marker: "@",
-                                                feed: [
-                                                    "@apple",
-                                                    "@bears",
-                                                    "@brownie",
-                                                    "@cake",
-                                                    "@cake",
-                                                    "@candy",
-                                                    "@canes",
-                                                    "@chocolate",
-                                                    "@cookie",
-                                                    "@cotton",
-                                                    "@cream",
-                                                    "@cupcake",
-                                                    "@danish",
-                                                    "@donut",
-                                                    "@dragée",
-                                                    "@fruitcake",
-                                                    "@gingerbread",
-                                                    "@gummi",
-                                                    "@ice",
-                                                    "@jelly-o",
-                                                    "@liquorice",
-                                                    "@macaroon",
-                                                    "@marzipan",
-                                                    "@oat",
-                                                    "@pie",
-                                                    "@plum",
-                                                    "@pudding",
-                                                    "@sesame",
-                                                    "@snaps",
-                                                    "@soufflé",
-                                                    "@sugar",
-                                                    "@sweet",
-                                                    "@topping",
-                                                    "@wafer",
+                                            heading: {
+                                                options: [
+                                                    {
+                                                        model: "paragraph",
+                                                        title: "Paragraph",
+                                                        class: "ck-heading_paragraph",
+                                                    },
+                                                    {
+                                                        model: "heading1",
+                                                        view: "h1",
+                                                        title: "Heading 1",
+                                                        class: "ck-heading_heading1",
+                                                    },
+                                                    {
+                                                        model: "heading2",
+                                                        view: "h2",
+                                                        title: "Heading 2",
+                                                        class: "ck-heading_heading2",
+                                                    },
+                                                    {
+                                                        model: "heading3",
+                                                        view: "h3",
+                                                        title: "Heading 3",
+                                                        class: "ck-heading_heading3",
+                                                    },
+                                                    {
+                                                        model: "heading4",
+                                                        view: "h4",
+                                                        title: "Heading 4",
+                                                        class: "ck-heading_heading4",
+                                                    },
+                                                    {
+                                                        model: "heading5",
+                                                        view: "h5",
+                                                        title: "Heading 5",
+                                                        class: "ck-heading_heading5",
+                                                    },
+                                                    {
+                                                        model: "heading6",
+                                                        view: "h6",
+                                                        title: "Heading 6",
+                                                        class: "ck-heading_heading6",
+                                                    },
                                                 ],
-                                                minimumCharacters: 1,
                                             },
-                                        ],
-                                    },
-                                    removePlugins: [
-                                        "AIAssistant",
-                                        "CKBox",
-                                        "CKFinder",
-                                        "EasyImage",
-                                        "MultiLevelList",
-                                        "RealTimeCollaborativeComments",
-                                        "RealTimeCollaborativeTrackChanges",
-                                        "RealTimeCollaborativeRevisionHistory",
-                                        "PresenceList",
-                                        "Comments",
-                                        "TrackChanges",
-                                        "TrackChangesData",
-                                        "RevisionHistory",
-                                        "Pagination",
-                                        "WProofreader",
-                                        "MathType",
-                                        "SlashCommand",
-                                        "Template",
-                                        "DocumentOutline",
-                                        "FormatPainter",
-                                        "TableOfContents",
-                                        "PasteFromOfficeEnhanced",
-                                        "CaseChange",
-                                    ],
-                                });
-                            </script>
-                        </div>
-                    </div>
-                    </div>
-                    <div>
-                        <label for="category" class="form_title">
-                            <b style="font-size: 17px"><br>카테고리 선택</b>
-                        </label>
-                        <div class="category_container">
-                            <select multiple=""  id="category"  name="category"  class="category_option_container"></select>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="form_title" ><b style="font-size: 17px"><br>공개여부</b></label>
-                        <div class="opentype_container">
-                            <div class="opentype_radio_container">
-                                <input id="public" type="radio" name="open_type" class="opentype_radio" value=1>
-                                <label for="public" class="opentype_radio_label">
-                                    <b style="font-size: 13px"><br>전체공개</b>
-                                </label>
-                            </div>
-                            <div class="opentype_radio_container">
-                                <input id="private" type="radio" value=0 name="open_type" class="opentype_radio"/>
-                                <label for="private" class="opentype_radio_label">
-                                    <b style="font-size: 13px"><br>비공개</b>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div>  <input id="file" type="file" name="file" class="file"  >
-                        <label for="hashtag" class="block text-sm font-medium text-gray-700">
-                            <b style="font-size: 17px"><br>#hashtag</b>
-                        </label>
-                        <div class="upload-form-hashtag" align="center">
-                            <input type="text" placeholder="해시태그를 추가해보세요!" id="hashtag" name="hashtag">
-                            <button type="button" class="cta blue" onclick="addHashtag()">추가</button>
-                        </div>
-                        <div class="hashtagList" id="hashtagList">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="form_title"><b style="font-size: 17px"><br>Attach</b></label>
-                        <div class="thumbnail_container">
-                            <div class="thumbnail_box_inner_text_small_container">
-
-                                <div class="thumbnail_box_inner_text_container">
-                                    <img src="" id="showimg1" style="width: 200px">
-
-                                    <labels for="file" class="thumbnail_input_file_container">
-                                        <span ><b style="font-size: 15px">이 글의 대표사진을 설정할 수 있습니다</b></span>
-                                        <p class="thumbnail_input_box_text2">PNG, JPG, GIF up to 10MB</p>
-                                    </labels>
+                                            fontFamily: {
+                                                options: [
+                                                    "default",
+                                                    "Arial, Helvetica, sans-serif",
+                                                    "Courier New, Courier, monospace",
+                                                    "Georgia, serif",
+                                                    "Lucida Sans Unicode, Lucida Grande, sans-serif",
+                                                    "Tahoma, Geneva, sans-serif",
+                                                    "Times New Roman, Times, serif",
+                                                    "Trebuchet MS, Helvetica, sans-serif",
+                                                    "Verdana, Geneva, sans-serif",
+                                                ],
+                                                supportAllValues: true,
+                                            },
+                                            fontSize: {
+                                                options: [10, 12, 14, "default", 18, 20, 22],
+                                                supportAllValues: true,
+                                            },
+                                            htmlSupport: {
+                                                allow: [
+                                                    {
+                                                        name: /.*/,
+                                                        attributes: true,
+                                                        classes: true,
+                                                        styles: true,
+                                                    },
+                                                ],
+                                            },
+                                            htmlEmbed: {
+                                                showPreviews: false,
+                                            },
+                                            link: {
+                                                decorators: {
+                                                    addTargetToExternalLinks: true,
+                                                    defaultProtocol: "https://",
+                                                    toggleDownloadable: {
+                                                        mode: "manual",
+                                                        label: "Downloadable",
+                                                        attributes: {
+                                                            download: "file",
+                                                        },
+                                                    },
+                                                },
+                                            },
+                                            mention: {
+                                                feeds: [
+                                                    {
+                                                        marker: "@",
+                                                        feed: [
+                                                            "@apple",
+                                                            "@bears",
+                                                            "@brownie",
+                                                            "@cake",
+                                                            "@cake",
+                                                            "@candy",
+                                                            "@canes",
+                                                            "@chocolate",
+                                                            "@cookie",
+                                                            "@cotton",
+                                                            "@cream",
+                                                            "@cupcake",
+                                                            "@danish",
+                                                            "@donut",
+                                                            "@dragée",
+                                                            "@fruitcake",
+                                                            "@gingerbread",
+                                                            "@gummi",
+                                                            "@ice",
+                                                            "@jelly-o",
+                                                            "@liquorice",
+                                                            "@macaroon",
+                                                            "@marzipan",
+                                                            "@oat",
+                                                            "@pie",
+                                                            "@plum",
+                                                            "@pudding",
+                                                            "@sesame",
+                                                            "@snaps",
+                                                            "@soufflé",
+                                                            "@sugar",
+                                                            "@sweet",
+                                                            "@topping",
+                                                            "@wafer",
+                                                        ],
+                                                        minimumCharacters: 1,
+                                                    },
+                                                ],
+                                            },
+                                            removePlugins: [
+                                                "AIAssistant",
+                                                "CKBox",
+                                                "CKFinder",
+                                                "EasyImage",
+                                                "MultiLevelList",
+                                                "RealTimeCollaborativeComments",
+                                                "RealTimeCollaborativeTrackChanges",
+                                                "RealTimeCollaborativeRevisionHistory",
+                                                "PresenceList",
+                                                "Comments",
+                                                "TrackChanges",
+                                                "TrackChangesData",
+                                                "RevisionHistory",
+                                                "Pagination",
+                                                "WProofreader",
+                                                "MathType",
+                                                "SlashCommand",
+                                                "Template",
+                                                "DocumentOutline",
+                                                "FormatPainter",
+                                                "TableOfContents",
+                                                "PasteFromOfficeEnhanced",
+                                                "CaseChange",
+                                            ],
+                                        });
+                                    </script>
                                 </div>
-
                             </div>
                         </div>
-                    </div>
-                    <div class="btn_submit_container">
-                        <button type="submit" class="btn"  style="background-color: #c2c0ab"><b>Post</b></button>
-                    </div>
-                </form>
+                        <div>
+                            <label for="category" class="form_title">
+                                <b style="font-size: 17px"><br>카테고리 선택</b>
+                            </label>
+                            <div class="category_container">
+                                <select required="required" multiple="" id="category" name="category" class="category_option_container"></select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="form_title"><b style="font-size: 17px"><br>공개여부</b></label>
+                            <div class="opentype_container">
+                                <div class="opentype_radio_container">
+                                    <input required="required" id="public" type="radio" name="open_type" class="opentype_radio" value=1>
+                                    <label for="public" class="opentype_radio_label">
+                                        <b style="font-size: 13px"><br>전체공개</b>
+                                    </label>
+                                </div>
+                                <div class="opentype_radio_container">
+                                    <input required="required" id="private" type="radio" value=0 name="open_type" class="opentype_radio"/>
+                                    <label for="private" class="opentype_radio_label">
+                                        <b style="font-size: 13px"><br>비공개</b>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="hashtag" class="block text-sm font-medium text-gray-700">
+                                <b style="font-size: 17px"><br>#hashtag</b>
+                            </label>
+                            <div class="upload-form-hashtag" align="center">
+                                <input type="text" placeholder="해시태그를 추가해보세요!" id="hashtag" name="hashtag">
+                                <button type="button" class="cta blue" onclick="addHashtag()">추가</button>
+                            </div>
+                            <div class="hashtagList" id="hashtagList" style="display: flex"></div>
+                        </div>
+                        <div>
+                            <label class="form_title"><b style="font-size: 17px"><br>Attach</b></label>
+                            <div class="thumbnail_container">
+                                <div class="thumbnail_box_inner_text_small_container">
+                                    <div class="thumbnail_box_inner_text_container">
+                                        <img src="" id="showimg1" style="width: 200px">
+                                        <label for="file" class="thumbnail_input_file_container">
+                                            <input id="file" type="file" name="file" class="file">
+                                            <span><b style="font-size: 15px">이 글의 대표사진을 설정할 수 있습니다</b></span>
+                                            <p class="thumbnail_input_box_text2">PNG, JPG, GIF up to 10MB</p>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="phone-button">
+                            <button type="submit" style="height: 20px;padding-top: 20px;">
+                                <b style="color: white;font-size: 20px;background-color: transparent">Post</b>
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-</body>
-<!--부트스트랩-->
+<!-- 부트스트랩 -->
 <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js}"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-
-<!--태일윈즈-->
+<!-- 부트스트랩 아이콘 -->
+<link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css}" rel="stylesheet">
+<link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}"/>
+<!-- 태일윈즈 -->
 <script th:src="@{https://cdn.tailwindcss.com}"></script>
+
+</body>
 </html>

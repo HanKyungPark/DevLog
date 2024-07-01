@@ -3,7 +3,7 @@
 <mapper namespace="org.bitcamp.devlog.mapper.CommentMapper">
 
     <insert id="save" parameterType="Comment">
-        insert into comment (c_Created_at, c_updated_at, c_content, parent_id, post_id, account_id)
+        insert into comment (c_created_at, c_updated_at, c_content, parent_id, post_id, account_id)
         values (now(), null, #{cContent}, #{parentId}, #{postId}, #{accountId})
     </insert>
 
@@ -23,6 +23,31 @@
     <select id="findAllByPostId" parameterType="long" resultType="Comment">
         select * from comment
             where post_id = #{postId}
+    </select>
+
+    <select id="findAllByAccountId" parameterType="long" resultType="Comment">
+        select * from comment
+        where account_id = #{accountId}
+    </select>
+
+
+    <select id="findPostIdByCommentId" parameterType="long" resultType="long">
+        select post_id from comment
+        where comment_id = #{commentId}
+    </select>
+
+
+    <select id="findByCommentId" parameterType="long" resultType="Comment">
+        select * from comment
+        where comment_id = ${commentId};
+    </select>
+
+
+
+    <select id="countByPostIdAndHomepage" parameterType="Map" resultType="long">
+        select count(*)
+        from comment
+        where post_id = #{post_id};
     </select>
 
 </mapper>

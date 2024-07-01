@@ -33,13 +33,15 @@
 
     <update id="update" parameterType="Post">
         update post
-        set category_id = #{categoryId},
+        set
+            category_id = #{categoryId},
             p_updated_at = now(),
             p_content = #{pContent},
             open_type = #{openType},
             title = #{title},
-            file = #{file},
-        where post_id = #{postId}
+            file = #{file}
+        where
+            post_id = #{postId}
     </update>
 
     <delete id="delete" parameterType="Post">
@@ -47,7 +49,7 @@
         where post_id = #{postId}
     </delete>
 
-    <select id="findById" parameterType="Post" resultMap="postMap">
+    <select id="findBypostUrl" parameterType="String" resultMap="postMap">
         select
             p.post_id as post_id,
             category_id,
@@ -58,13 +60,14 @@
             open_type,
             post_url,
             title,
-            account_id,
-            file,
-            post_tag_id,
+            p.account_id as account_id,
+            p.file as file,
             tag_id,
-            tag_name
+            tag_name,
+            a.homepage as homepage
         from post p left outer join post_tag_join ptj on p.post_id = ptj.post_id
-        where p.post_id = #{postId}
+        join account a on a.account_id = p.account_id
+        where p.post_url = #{postUrl}
     </select>
 
     <!--태그검색-->
@@ -75,6 +78,12 @@
           and account_id = #{accountId}
     </select>
 
+    <select id="findAllByAccountId" parameterType="long" resultType="Post">
+        select *
+        from post
+        where account_id = #{accountId}
+    </select>
+
     <!--제목검색-->
     <select id="findAllByTitleAndAccountId" parameterType="Post">
         select *
@@ -83,12 +92,95 @@
           and account_id = #{accountId}
     </select>
 
-    <!--랜덤포스트리스트    -->
-    <select id="findRandomPosts" resultType="Post">
+    <!--랜덤포스트리스트-->
+    <select id="findRandomPosts" resultType="map">
+        SELECT p.*, a.homepage
+        FROM (
+                 SELECT *
+                 FROM post
+                 where open_type = 1
+                 ORDER BY RAND()
+                 LIMIT 20
+             ) p JOIN account a ON p.account_id = a.account_id
+    </select>
+
+    <select id="findByHomePage" parameterType="String" resultType="Map">
+        select *, (select count(*) from comment c where c.post_id = p.post_id) as comment_count
+        from post p join account a on p.account_id = a.account_id left join
+             category c on p.category_id =  c.category_id where a.homepage = #{homepage}
+    </select>
+
+    <delete id="deleteByPostUrl" parameterType="String">
+        delete from post
+        where post_url=#{postUrl}
+
+    </delete>
+    <!--수정페이지 포스트 가져오기-->
+    <select id="findByPostUrl" parameterType="String" >
+        select * from post
+        where post_url = #{postUrl}
+    </select>
+
+
+    <select id="findPostIdByPostUrl" parameterType="String" resultType="long">
+        select post_id from post
+        where post_url = #{postUrl}
+    </select>
+
+
+    <select id="findAllByAccountIdLong" parameterType="long" resultType="Post">
+        select * from post
+        where account_id = #{accountId} order by p_created_at desc
+        limit 4
+    </select>
+
+    <select id="findAccountIdByPostId" parameterType="long" resultType="long">
+        select account_id from post
+        where post_id = #{postId}
+    </select>
+
+    <select id="deleteByPostId" parameterType="long">
+        delete from post
+        where post_id = #{postId};
+    </select>
+
+    <select id="findPostUrlByPostId" parameterType="long" resultType="String">
+        select post_url from post
+        where post_id = #{postId}
+    </select>
+
+
+    <update id="updateHitsByPostid" parameterType="Long">
+        update post set hits=hits+1 where post_id=#{postId}
+    </update>
+
+    <select id="findHitsByPostid" parameterType="Long" resultType="Long">
+        SELECT SUM(hits) as total_hits
+        FROM post
+        WHERE account_id = #{accountId}
+        GROUP BY account_id
+    </select>
+
+    <select id="findByCategoryIdAndAccountId" parameterType="Map" resultType="Map">
+        select * from post p join category c on p.category_id = c.category_id where
+            p.account_id = #{accountId} and p.category_id = #{categoryId}
+    </select>
+
+    <select id="findHitsByHomepage" parameterType="String" resultType="long">
+        select sum(hits) from post p join account a on p.account_id = a.account_id
+        where a.homepage=#{homepage}
+    </select>
+
+    <select id="findAllByAccountIdOpenOnly" parameterType="long" resultType="Map">
+        select *, (select count(*) from comment c where c.post_id = p.post_id) as comment_count
+        from post p left join category c on p.category_id = c.category_id
+        where p.account_id =#{accountId} and open_type = 1
+    </select>
+
+    <select id="findAllByCategoryId" parameterType="long" resultType="Post">
         select *
         from post
-        order by rand()
-        limit 20
+        where category_id = #{categoryId}
     </select>
 
 </mapper>

@@ -5,45 +5,113 @@
       layout:decorate="~{layout/layout_main/layout1_hmenu}">
 
 <head>
+
     <meta charset="UTF-8">
     <title>Devlog</title>
     <link rel="shortcut icon" th:href="@{/im/DL.png}"/>
-    <!--부트스트랩 아이콘-->
-    <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css}" rel="stylesheet">
-    <!--부트스트랩 css-->
-    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}"/>
-    <!--해당 파일의 css 와 javascript 추가-->
-    <link rel="stylesheet" href="/css/feedPage.css">
+
     <!--제이쿼리-->
     <script th:src="@{https://code.jquery.com/jquery-3.7.1.js}"
             integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-    <script src="/js/feedPage.js"></script>
 
+    <script src="/js/feedPage.js"></script>
+    <!--해당 파일의 css 와 javascript 추가-->
+    <link rel="stylesheet" href="/css/feedPage.css">
+    <style>
+
+        body{
+
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+        /* 기존 스타일 유지 */
+
+        #pro-gallery-margin-container-pro-blog {
+            width: 100%;
+        }
+
+        #container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+
+
+        .gallery-item-container {
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        .post-list-pro-gallery-pg-grid {
+            margin: 30px; /* 페이지 주변 여백 추가 */
+            padding: 30px; /* 페이지 내부 여백 추가 */
+        }
+
+        .gallery-item-container {
+            margin-bottom: 20px; /* 갤러리 아이템 간 여백 추가 */
+            padding: 10px; /* 갤러리 아이템 내부 여백 추가 */
+            border: 1px solid #ccc; /* 갤러리 아이템 테두리 추가 */
+            width: calc(33.33% - 20px); /* 갤러리 아이템 너비 계산 */
+            float: left; /* 왼쪽 정렬 */
+            box-sizing: border-box; /* 상자 크기 및 여백 포함 */
+        }
+
+        .gallery-item-common-info-outer {
+            margin-top: 10px; /* 갤러리 아이템 상단 여백 추가 */
+            padding: 10px; /* 갤러리 아이템 내부 여백 추가 */
+        }
+
+        .detail:hover {
+            transform: translateY(-1px); /* 호버 시 약간 위로 이동 */
+            transform: scale(1.05); /* 크기 확대 비율 조정 */
+            box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.2); /* 그림자 더 강화 */
+        }
+
+    </style>
 </head>
 <body>
-
 <div layout:fragment="content">
-    <div id="dataContainer"></div>
-    <section class="section">
-        <div class="container">
-            <table style="width: 100%;height: 100%" class="table">
 
-
-            </table>
+    <div>
+        <div data-hook="post-list-pro-gallery-container"
+             style="--blog-pl-common-padding-top:28px;--blog-pl-common-padding-bottom:25px;padding-top: 200px;--blog-pl-slider-padding-top:16px;--blog-pl-slider-padding-bottom:24px;--blog-pl-header-height:34px;--blog-pl-header-margin-bottom:18px;--blog-pl-footer-content-height:18px;--blog-pl-footer-separator-margin:15px;--blog-pl-footer-padding-top:8px;--blog-pl-common-title-margin:11px;--blog-pl-default-title-margin:10px;--blog-pl-slider-title-margin-top:10px;--blog-pl-category-label-margin-bottom:12px;--blog-pl-slider-category-label-margin-bottom:2px;margin-top:20px;margin-bottom:20px;margin-left:20px;margin-right:20px;overflow: auto" class="post-list-pro-gallery-pg-grid homepage gallery-right-align _SIYmI" >
+            <div id="content-filter-button" style="display: flex;">
+                <p id="content-all" class="content-button" onclick="allPost()">전체보기</p>
+                <p id="content-heart" class="content-button" onclick="heartOnly()">좋아요보기</p>
+            </div>
+            <div id="pro-gallery-pro-blog" class="pro-gallery">
+                <div data-key="pro-gallery-inner-container" class="" tabindex="-1">
+                    <div data-hook="css-scroll-indicator" data-scroll-base="0" data-scroll-top="1553" class="pgscl-1553 pgscl_problog_0-40960 pgscl_problog_0-20480 pgscl_problog_0-10240 pgscl_problog_0-5120 pgscl_problog_0-2560 pgscl_problog_1280-2560 pgscl_problog_1280-1920 pgscl_problog_1280-1600 pgscl_problog_1440-1600 pgscl_problog_1520-1600 pgscl_problog_1520-1560 pgscl_problog_1540-1560 pgscl_problog_1550-1560" style="display:none"></div>
+                    <div class="pro-gallery-parent-container" role="region" aria-label="Blog feed. Select a post to read.">
+                        <div id="pro-gallery-container-pro-blog" class="pro-gallery inline-styles ltr " style="height: 1653.33px; overflow-x: hidden;">
+                            <div id="pro-gallery-margin-container-pro-blog" class="pro-gallery-margin-container" style="margin: 0px; height: 1653.33px; width: 100%; overflow: visible; position: relative;">
+                                <div data-id="7c0cd68a-821f-43e1-8a4d-0abc19887849" class="item-link-wrapper" data-idx="0" data-hook="item-link-wrapper" tabindex="-1" id="container" style="text-align: center">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-key="items-styles" style="display:none"></div>
+                </div>
+            </div>
         </div>
-        <div class=".div">
-
-        </div>
-    </section>
-
+    </div>
 </div>
-
 </body>
 <!--부트스트랩-->
 <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js}"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        integrity="sha384-MrcW6ZMFyUyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-
+<!--부트스트랩 css-->
+<!--<link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}"/>-->
 <!--태일윈즈-->
 <script th:src="@{https://cdn.tailwindcss.com}"></script>
+<!--부트스트랩 아이콘-->
+<link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css}" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 </html>

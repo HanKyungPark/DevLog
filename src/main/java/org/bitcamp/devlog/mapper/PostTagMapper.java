@@ -17,4 +17,10 @@ public interface PostTagMapper {
     List<Long> findAllPostIdByTagId(Long tagId);
 
     PostTag findPostTagId(Long postTagId);
+
+    List<Long> findAllTagIdByPostId(Long postId);
+
+    PostTag findByPostIdAndTagId(Long tagId, Long postId);
+
+    void deleteAllByPostId(Long postId);
 }

@@ -26,9 +26,10 @@
     <script src="https://t1.daumcdn.net/tistory_admin/lib/fingerprint2-1.4.2.min.js"></script>
     <script type="text/javascript" src="//m1.daumcdn.net/svc/original/U03/cssjs/jquery/plugin/jquery.cookie-1.4.0.min.js"></script>
     <script type="text/javascript" src="//s1.daumcdn.net/svc/original/U03/cssjs/userAgent/userAgent-1.0.14.min.js"></script>
+    <script src="/js/homePage.js"></script>
 </head>
 <body>
-<div layout:fragment="content">
+<div layout:fragment="content" style="padding-top: 100px">
     <div id="mFeature" class="feture_main feture_top">
         <h2 class="screen_out">PRPMOTION</h2>
         <div class="swiper-container">
@@ -62,10 +63,10 @@
                     <div class="scene_content">
                         <div class="inner_scene">
                             <div class="scene_tistory scene_tistory_type2">
-                                <strong class="tit_scene">DevLog의 첫 이벤트<br>
-                                    <b>게시글 선플 달기</b></strong>
-                                <p class="desc_scene">선플달고  선물도 받아가세요</p>
-                                <div class="wrap_btn"><a href="" class="btn_tistory ">자세히 보기</a></div>
+                                <strong class="tit_scene">누가누가 잘꾸미나<br>
+                                    <b>새로운 데블로그 구경하기</b></strong>
+                                <p class="desc_scene"></p>
+                                <div class="wrap_btn"><a href="/newblogs" class="btn_tistory ">새 블로그</a></div>
                             </div>
                         </div>
                     </div>
@@ -108,29 +109,85 @@
             </button>
         </div>
     </div>
-    <script type="text/javascript" src="//t1.daumcdn.net/tistory_admin/assets/tistory-web-top/1718669381/static/js/ext/underscore-1.9.0.min.js"></script>
-    <script src="//t1.daumcdn.net/tistory_admin/assets/tistory-web-top/1718669381/static/js/ext/swiper.min.js"></script>
-    <script src="//t1.daumcdn.net/tistory_admin/assets/tistory-web-top/1718669381/static/js/T.js"></script>
-    <script src="//t1.daumcdn.net/tistory_admin/assets/tistory-web-top/1718669381/static/js/T.util.js"></script>
-    <script src="//t1.daumcdn.net/tistory_admin/assets/tistory-web-top/1718669381/static/js/T.auth.js"></script>
-    <script src="//t1.daumcdn.net/tistory_admin/assets/tistory-web-top/1718669381/static/js/pc/T.p.top.js"></script>
-    <!--    <script type="text/javascript" src="//t1.daumcdn.net/tiara/js/v1/tiara.min.js"></script>-->
-    <!--    <script type="text/javascript">-->
-    <!--        window.addEventListener('load', function (){-->
-    <!--            TiaraTracker.getInstance()-->
-    <!--                .setSvcDomain('user.tistory.com')-->
-    <!--                .trackPage('user')-->
-    <!--                .setSection('top')-->
-    <!--                .setPage('user')-->
-    <!--                .setKakaoAppKey('3e6ddd834b023f24221217e370daed18')-->
-    <!--                .setAppUserId('3205532518')-->
-    <!--                .setAutoClick(true)-->
-    <!--                .setDisableSendLegacy(true)-->
-    <!--                .track();-->
-    <!--        });-->
-    <!--    </script>-->
-    <script src="//t1.daumcdn.net/tistory_admin/assets/tistory-web-top/1718669381/static/js/pc/T.p.top.home.js"></script>
+    <div id="mArticle" >
+        <div style="height: 500px;max-width: 650px; width: 650px">
+            <h2 class="screen_out">SHOWCASE</h2>
+            <div>
+                <strong class="tit_section" style="margin-left: 15%;margin-top: 40px">데블로그에서<br><em>여러분의 기록을 </em>남겨주세요</strong>
+                <p class="desc_section" style="margin-left: 15%">이달의 블로그</p>
+            </div>
+            <div class="case_list" style="margin-left: 6%">
+                <div>
+                    <div class="slide_case" style="width:1500px;">
+                        <a style="margin-left: 300px" class="site_exam" target="_blank"  id="linkbyhits">
+                            <div>
+                                <img width="500px" style="height: 400px;" class="thumb_g" id="filebyhits" alt="" />
+                            </div>
+                            <div class="info_exam" style="width: 500px;height: 400px">
+                                <strong class="tit_exam" id="homepagebyhits"></strong>
+                                <p class="txt_exam" id="biographybyhits"></p>
+                                <p class="txt_exam">조회수가 가장 많은 블로그</p>
+                            </div>
+                        </a>
+                        <a  style="margin-left: 180px" class="site_exam" target="_blank" id="linkbyposts">
+                            <div>
+                                <img width="500px"style="margin-right: 300px; height: 400px"  class="thumb_g" id="filebyposts" alt="" />
+                            </div>
+                            <div class="info_exam" style="width: 500px;height: 400px">
+                                <strong class="tit_exam" id="homepagebyposts"></strong>
+                                <p class="txt_exam" id="biographybyposts"></p>
+                                <p class="txt_exam">포스팅이 가장 많은 블로그</p>
+                            </div>
+                        </a>
+                        <a>
 
+                            <div class="info_exam" style="width: 500px">
+                                <strong class="tit_exam">HYGPHOTO</strong>
+                                <p class="txt_exam">아름다운 일상의 한 컷</p>
+                                <span class="link_exam">https://hygphoto.tistory.com/<span class="img_top ico_view"></span></span>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section_content section_skin" style="margin-top: 60px">
+            <h2 class="screen_out">스킨고르기</h2>
+            <div class="wrap_tit wrap_tit_type1">
+                <strong class="tit_section">마음에 드는 이미지를 골라보세요</strong>
+            </div>
+            <div class="icon_tistory icon_expression"></div>
+            <div class="wrap_tit">
+                <strong class="tit_section tit_section_type2">마음대로<br><em>조립하는</em><br>내 콘텐츠</strong>
+                <p class="desc_section">내 마음대로 위치를 바꿔<br>데블로그를<br> 만들 수 있어요.</p>
+            </div>
+            <div class="box_skin">
+                <div class="wrap_thumb_skin_01">
+                    <span class="" style="background-image:url(https://minio.bmops.kro.kr/devlog/logo/book6.png); background-size: cover"></span>
+                    <span class="" style="background-image:url(https://minio.bmops.kro.kr/devlog/logo/laptop6.png); background-size: cover;"></span>
+                    <span class="" style="background-image:url(https://minio.bmops.kro.kr/devlog/logo/book7.png);background-size: cover"></span>
+                    <span class="" style="background-image:url(https://minio.bmops.kro.kr/devlog/logo/book5.png);background-size: cover"></span>
+                    <span class="" style="background-image:url(https://minio.bmops.kro.kr/devlog/logo/laptop7.png);background-size: cover"></span>
+                    <span class="" style="background-image:url(https://minio.bmops.kro.kr/devlog/logo/laptop8.png);background-size: cover"></span>
+                </div>
+                <div class="wrap_thumb_skin_02">
+                    <div class="inner_thumb">
+                        <span class=" _left" style="background-image:url(https://minio.bmops.kro.kr/devlog/logo/book1.png);height:432px;margin-left: 20px;background-repeat: no-repeat" data-index="1"></span>
+                        <span class=" _left" style="background-image:url(https://minio.bmops.kro.kr/devlog/logo/pen.gif);height:432px;margin-left: 20px;background-repeat: no-repeat" data-index="2"></span>
+                        <span class=" _left" style="background-image:url(https://minio.bmops.kro.kr/devlog/logo/book3.png);height:432px;margin-left: 20px;background-repeat: no-repeat" data-index="3"></span>
+                        <span class=" _right" style="background-image:url(https://minio.bmops.kro.kr/devlog/logo/keyboard.gif);height:432px;margin-left: 20px;background-repeat: no-repeat" data-index="1"></span>
+                        <span class=" _right" style="background-image:url(https://minio.bmops.kro.kr/devlog/logo/book1.png);height:432px;margin-left: 20px;background-repeat: no-repeat" data-index="2"></span>
+                        <span class=" _right" style="background-image:url(https://minio.bmops.kro.kr/devlog/logo/family.gif);height:432px;margin-left: 20px;background-repeat: no-repeat" data-index="3"></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="//t1.daumcdn.net/tistory_admin/assets/tistory-web-top/1718669381/static/js/ext/swiper.min.js"></script>
+
+    <script src="//t1.daumcdn.net/tistory_admin/assets/tistory-web-top/1718669381/static/js/pc/T.p.top.home.js"></script>
 </div>
 </body>
 </html>

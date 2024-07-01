@@ -3,8 +3,8 @@
 <mapper namespace="org.bitcamp.devlog.mapper.CategoryMapper">
 
     <insert id="save" parameterType="Category">
-        insert into category (category_id,category_type,account_id)
-        values (#{categoryId},#{categoryType},#{accountId})
+        insert into category (category_type, account_id)
+        values (#{categoryType}, #{accountId})
     </insert>
 
     <update id="update" parameterType="Category">
@@ -13,8 +13,9 @@
         where category_id=#{categoryId}
     </update>
 
-    <delete id="delete" parameterType="Category">
-        delete from category where category_id=#{categoryId}
+    <delete id="delete" parameterType="long">
+        delete from category
+        where category_id=#{categoryId}
     </delete>
 
     <select id="findAllByPostId" parameterType="long" resultType="Post">
@@ -42,6 +43,23 @@
         from category
         where category_type = #{categoryType}
     </select>
+
+    <select id="findCategoryTypeByCategoryId" parameterType="long" resultType="String">
+        select category_id
+        from category
+        where category_type = #{categoryType}
+    </select>
+
+    <select id="findByCategoryId" parameterType="long" resultType="Category">
+        select * from category
+        where category_id = #{categoryId}
+    </select>
+
+    <select id="findByCategoryType" parameterType="String" resultType="Category">
+        select * from category
+        where category_type = #{categoryType}
+    </select>
+
 
 
 </mapper>

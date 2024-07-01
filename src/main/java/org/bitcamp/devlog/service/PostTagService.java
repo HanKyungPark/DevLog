@@ -31,4 +31,16 @@ public class PostTagService {
     public PostTag findPostTagId(Long postTagId) {
         return postTagMapper.findPostTagId(postTagId);
     }
+
+    public List<Long> findAllTagIdByPostId (Long postId){
+        return postTagMapper.findAllTagIdByPostId(postId);
+    }
+
+    public PostTag findByPostIdAndTagId(Long tagId, Long postId) {
+        return postTagMapper.findByPostIdAndTagId(tagId, postId);
+    }
+
+    public void deleteAllByPostId(Long postId) {
+        postTagMapper.deleteAllByPostId(postId);
+    }
 }
