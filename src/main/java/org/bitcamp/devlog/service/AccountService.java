@@ -17,18 +17,21 @@ public class AccountService {
 
     private final AccountMapper accountMapper;
     private final VisitMapper visitMapper ;
+
     public void save(Account account) {
         accountMapper.save(account);
 
     }
+
     public void update(Account account) {
-        System.out.println("AccountServiceUpdate:" + account);
+
         accountMapper.update(account);
         // visit 초기화 및 생성 (default value=0)
         Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
                 .getContext()
                 .getAuthentication()
                 .getPrincipal();
+        ;
     }
 
     public String findByEmail(){
@@ -103,4 +106,6 @@ public class AccountService {
     public List<Account> findbypost() {
         return accountMapper.findbypost();
     }
+
+    public Account findByAccountId(Long accountId){ return accountMapper.findByAccountId(accountId);};
 }
