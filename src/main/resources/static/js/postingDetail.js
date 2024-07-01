@@ -93,8 +93,10 @@ function heartCountNumber(postId){
         data: {postId},
         success: function (data) {
             $("#heart-count").html(data);
+            console.log("성공했습니다.")
         },error: function(){
             console.log('좋아요개수를 가져오지 못했습니다.')
+
         }
     })
 }
