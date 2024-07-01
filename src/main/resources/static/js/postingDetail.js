@@ -1,8 +1,6 @@
 let isClicked = false; // 클릭 여부를 나타내는 변수
 let postId;
 
-
-
 //좋아요 버튼 추가
 function addHeatButton(){
     let heart = document.getElementById('heart');
@@ -116,6 +114,7 @@ function heartButton(postId){
     })
 }
 
+//좋아요 클릭됐나?
 function isHeartClicked() {
     let hearts;
     $.ajax({
@@ -136,6 +135,7 @@ function isHeartClicked() {
     })
 }
 
+//페이지 로딩되면
 $(function () {
     let info = window.location.pathname.split("/")[2];
     let homepage = window.location.pathname.split("/")[1];
@@ -199,8 +199,7 @@ $(function () {
         }
     });
 
-
-
+    //
     $(".btn").click(function (e) {
         e.preventDefault();
         // console.log("Button clicked"); // 디버깅을 위해 추가
@@ -235,14 +234,6 @@ $(function () {
     });
 
 });
-
-//좋아요 버튼 추가
-// 좋아요 클릭
-
-
-
-
-
 
 
 

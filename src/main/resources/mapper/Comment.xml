@@ -36,4 +36,10 @@
         where comment_id = #{commentId}
     </select>
 
+    <select id="findByCommentId" parameterType="long" resultType="Comment">
+        select * from comment
+        where comment_id = ${commentId};
+    </select>
+
+
 </mapper>

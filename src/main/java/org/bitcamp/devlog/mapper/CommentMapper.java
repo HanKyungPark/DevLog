@@ -17,4 +17,5 @@ public interface CommentMapper {
 
     Long findPostIdByCommentId(Long commentId);
 
+    Comment findByCommentId(Long commentId);
 }
