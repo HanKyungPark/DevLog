@@ -1,6 +1,6 @@
 let isClicked = false; // 클릭 여부를 나타내는 변수
 let postId;
-
+let ccontent;
 //좋아요 버튼 추가
 function addHeatButton(){
     let heart = document.getElementById('heart');
@@ -40,6 +40,26 @@ $.ajax({
 })
 }
 
+//댓글 수정
+function detailPageCommentUpdate(ccontent,commentId) {
+
+    $("#cContent").val(ccontent);
+
+    let data = {
+        "commentId":commentId
+    }
+    let json = JSON.stringify(data)
+    $.ajax({
+        url:"/api/mypage/comment/delete",
+        type:"post",
+        data:json,
+        contentType: "application/json",
+        success:function(){
+
+        }
+    })
+}
+
 //댓글 불러오기
 function loadComments(postId) {
     // console.log("댓글")
@@ -54,6 +74,8 @@ function loadComments(postId) {
                 let commentTableBody = $("#tbody");
                 commentTableBody.empty(); // 기존 내용을 초기화
                 data.forEach(function (item) {
+                    ccontent=item.comment.ccontent;
+                    console.log(item.delete)
                     let comment = item.comment;
                     let name = item.name;
                     console.log(comment.commentId);
@@ -61,7 +83,14 @@ function loadComments(postId) {
                     row.append("<td class='td3'>" + name + "</td>");
                     row.append("<td class='td1'><p class='detailcomment'>" + comment.ccontent + "</p></td>");
                     row.append("<td class='td2'>" + formatDate(comment.ccreatedAt) + "</td>");
-                    row.append(`<td class='td4'><button type='button' class='btn btn-success' onclick='mypageCommentDelete(${comment.commentId})'>삭제</button></td>`);
+                    if(item.delete===true) {
+                        console.log(ccontent)
+                        row.append(`<td class='td4'><button type='button' class='btn btn-success' onclick='mypageCommentDelete(${comment.commentId})'>삭제</button></td>`);
+                        row.append(`<td class='td4'><button type='button' class='btn btn-success'  onclick="detailPageCommentUpdate(ccontent,${comment.commentId}) ">수정</button></td>`);
+                    }else
+                    {  row.append(`<td class='td4'></td>`);
+                        row.append(`<td class='td4'></td>`);
+                    }
                     commentTableBody.append(row);
                 });
             } else if (data.length == 0) {
@@ -252,7 +281,6 @@ $(function () {
         });
     });
 
-    //댓글 삭제
 
 
 });
