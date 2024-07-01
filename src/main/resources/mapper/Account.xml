@@ -7,6 +7,7 @@
         values (#{name}, #{email}, '0', now(), now(), #{file})
     </insert>
 
+
     <update id="update" parameterType="Account">
         update account
         set a_updated_at=now(),
@@ -77,6 +78,7 @@
     <select id="findHomepageByAccountId" parameterType="long" resultType="String">
         select homepage
         from account
+
         where account_id = #{accountId}
     </select>
 
@@ -103,13 +105,12 @@
         ) p ON a.account_id = p.account_id;
     </select>
 
-
     <select id="findByAccountId" parameterType="Long" resultType="Account">
         select * from account where account_id=#{accountId}
     </select>
 
 
-    <select id="findEmailByAccountId" parameterType="long" resultType="Stirng">
+    <select id="findEmailByAccountId" parameterType="Long" resultType="String">
         select email from account
         where account_id = #{accountId}
     </select>
