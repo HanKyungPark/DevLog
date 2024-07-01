@@ -23,6 +23,9 @@ $(function () {
     });
     console.log(accountId);
     //해당 카테고리에 해당하는 카테고리들 불러오고 갯수 구하기
+    $(document).ready(function() {
+        $("#all").css("background-color", "#b4d4d6");
+    }); //페이지 로드시 all카테고리 색상변경
     $.ajax({
         url: "/api/mypage/categorie",
         data:{"homepage":pathname},
@@ -45,6 +48,9 @@ $(function () {
 
                     // 클릭된 버튼 배경색 파란색으로 변경 및 selected 클래스 추가
                     clickedButton.css("background-color", "#b4d4d6").addClass("selected");
+                    if(clickedButton.attr("id") !== "all") {
+                        $("#all").css("background-color", "");
+                    }
                 });
             })
         }
