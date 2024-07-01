@@ -105,8 +105,9 @@
     </select>
 
     <select id="findByHomePage" parameterType="String" resultType="Map">
-        select * from post p join account a on p.account_id = a.account_id left join
-                      category c on p.category_id =  c.category_id where a.homepage = #{homepage}
+        select *, (select count(*) from comment c where c.post_id = p.post_id) as comment_count
+        from post p join account a on p.account_id = a.account_id left join
+             category c on p.category_id =  c.category_id where a.homepage = #{homepage}
     </select>
 
     <delete id="deleteByPostUrl" parameterType="String">
@@ -166,13 +167,13 @@
     </select>
 
     <select id="findHitsByHomepage" parameterType="String" resultType="long">
-
         select sum(hits) from post p join account a on p.account_id = a.account_id
         where a.homepage=#{homepage}
     </select>
 
     <select id="findAllByAccountIdOpenOnly" parameterType="long" resultType="Map">
-        select * from post p left join category c on p.category_id = c.category_id
+        select *, (select count(*) from comment c where c.post_id = p.post_id) as comment_count
+        from post p left join category c on p.category_id = c.category_id
         where p.account_id =#{accountId} and open_type = 1
     </select>
 

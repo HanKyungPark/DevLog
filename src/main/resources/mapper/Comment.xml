@@ -36,4 +36,10 @@
         where comment_id = #{commentId}
     </select>
 
+    <select id="countByPostIdAndHomepage" parameterType="Map" resultType="long">
+        select count(*)
+        from comment
+        where post_id = #{post_id};
+    </select>
+
 </mapper>

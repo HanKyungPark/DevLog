@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.bitcamp.devlog.dto.Comment;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface CommentMapper {
@@ -16,5 +17,7 @@ public interface CommentMapper {
     List<Comment> findAllByAccountId(Long accountId);
 
     Long findPostIdByCommentId(Long commentId);
+
+    Long countByPostIdAndHomepage(Map<String, Object> map);
 
 }
