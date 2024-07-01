@@ -7,8 +7,8 @@ body {
     padding: 0;
 }
 img{
-    width: 150px;
-    height: 150px;
+    width: 60%;
+    height: 60%;
 }
 .container {
     max-width: 800px;
