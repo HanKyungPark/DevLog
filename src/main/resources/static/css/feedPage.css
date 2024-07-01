@@ -59,3 +59,38 @@ a{
 .liked {
     color: red;
 }
+
+.content-button{
+    cursor:pointer;
+}
+#content-filter-button{
+    margin: 0 0 20px 100px;
+}
+.content-button {
+    font-size: 16px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    opacity: 0.6;
+    font-weight: normal;
+    background-color: #f0f0f0; /* 기본 배경색 */
+    padding: 8px 16px; /* 버튼 내부 여백 */
+    border-radius: 20px; /* 둥근 모서리 */
+    margin-right: 10px; /* 버튼 사이 간격 */
+}
+
+.content-button:hover {
+    font-size: 18px;
+    opacity: 1;
+    background-color: #e0e0e0; /* 호버 시 배경색 */
+}
+
+.content-button.active {
+    font-weight: bold;
+    opacity: 1;
+    background-color: #007bff; /* 활성화 시 배경색 */
+    color: white; /* 활성화 시 글자색 */
+}
+#content-heart{
+    margin-left: 20px;
+}
+

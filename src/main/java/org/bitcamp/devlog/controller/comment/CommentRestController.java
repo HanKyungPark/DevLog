@@ -40,7 +40,7 @@ public class CommentRestController {
         String file = accountService.findFileByAccountId();
         List<String> homepages = new ArrayList<>();
         List<String> postUrls = new ArrayList<>();
-        for(Comment comment : comments){
+        for (Comment comment : comments) {
             Long postId = 0L;
             //나의 홈페이지 주소넣기
             homepages.add(
@@ -53,15 +53,15 @@ public class CommentRestController {
             //postUrl넣기
             postUrls.add(
                 postService.findPostUrlByPostId(
-                        commentService.findPostIdByCommentId(
-                                comment.getCommentId()
-                        )
+                    commentService.findPostIdByCommentId(
+                        comment.getCommentId()
+                    )
                 )
             );
 
         }
         List<Map<String, Object>> commentData = new ArrayList<>();
-        for(int index = 0; index < comments.size(); index++){
+        for (int index = 0; index < comments.size(); index++) {
             Map<String, Object> commentMap = new HashMap<>();
             commentMap.put("comment", comments.get(index));
             commentMap.put("homepage", homepages.get(index));
@@ -72,7 +72,8 @@ public class CommentRestController {
 
         return new ResponseEntity<>(commentData, HttpStatus.OK);
     }
-    //    작성 댓글 저장
+
+    //작성 댓글 저장
     @PostMapping("/api/comment/write")
     @Operation(summary = "댓글 저장", description = "댓글를 저장하는 로직")
     @ApiResponse(responseCode = "200", description = "success")
@@ -84,16 +85,16 @@ public class CommentRestController {
     public void saveComment(@RequestBody Map<String, Object> commentData) {
 //        현재 로그인된 아이디 가져오기
         Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
-                .getContext()
-                .getAuthentication()
-                .getPrincipal();
+            .getContext()
+            .getAuthentication()
+            .getPrincipal();
 //      받은 데이터를  dto에 넣기
         Comment comment = Comment.builder()
-                .postId(Long.valueOf(commentData.get("postId").toString()))
-                .parentId(Long.valueOf(commentData.get("parentId").toString()))
-                .accountId(oauth2User.getAccountId())
-                .cContent(commentData.get("cContent").toString())
-                .build();
+            .postId(Long.valueOf(commentData.get("postId").toString()))
+            .parentId(Long.valueOf(commentData.get("parentId").toString()))
+            .accountId(oauth2User.getAccountId())
+            .cContent(commentData.get("cContent").toString())
+            .build();
 //        저장
         commentService.save(comment);
     }
@@ -127,13 +128,22 @@ public class CommentRestController {
     @ApiResponse(responseCode = "404", description = "not found")
     @ApiResponse(responseCode = "500", description = "server error")
     public ResponseEntity<String> mypageCommentDelete(
-            @RequestBody Map<String, Long> commentIdMap
+        @RequestBody Map<String, Long> commentIdMap
     ) {
         Long commentId = commentIdMap.get("commentId");
 
         commentService.delete(commentId);
-        return new ResponseEntity<>("댓글이 성공적으로 삭제 되었습니다.",HttpStatus.OK);
+        return new ResponseEntity<>("댓글이 성공적으로 삭제 되었습니다.", HttpStatus.OK);
     }
 
+    //상세페이지 수정
+    @PostMapping("/api/detail/comment/update")
+    public ResponseEntity<String> detailPageCommentUpdate(
+        @RequestParam Long commentId
+    ) {
+        Comment comment = commentService.findByCommentId(commentId);
+        commentService.update(comment);
+        return new ResponseEntity<>("댓글이 성공적으로 수정 되었습니다.", HttpStatus.OK);
+    }
 
 }
