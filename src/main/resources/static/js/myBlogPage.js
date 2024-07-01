@@ -136,7 +136,7 @@ $(function () {
 
     $(".a").click(function () {
         let categoryId = $(this).attr("value");
-        accountId = pathByAccountId();
+        accountId = pathByAccountId(pathname);
         $.ajax({
             url: "/api/search/category",
             data: {"categoryId": categoryId,"accountId":accountId},
@@ -186,9 +186,8 @@ $(document).on("click", ".blogpost_box", function () {
 
 
 
-function pathByAccountId(){
-    let pathname = window.location.pathname.split("/")[1];
-    let accountId;
+function pathByAccountId(pathname){
+    console.log(pathname)
     $.ajax({
         url: "/api/user/info",
         type: "post",
@@ -198,7 +197,7 @@ function pathByAccountId(){
             return accountId
         }
     });
-    return accountId
+    return accountId;
 }
 
 
