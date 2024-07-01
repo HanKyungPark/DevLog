@@ -82,6 +82,7 @@
         select *
         from post
         where account_id = #{accountId}
+        order by p_created_at desc
     </select>
 
     <!--제목검색-->
