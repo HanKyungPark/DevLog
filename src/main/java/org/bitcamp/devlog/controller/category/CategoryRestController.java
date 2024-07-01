@@ -125,6 +125,11 @@ public class CategoryRestController {
 
     //카테고리 삭제
     @PostMapping("/api/mypage/category/delete")
+    @Operation(summary = "카테고리 삭제 API", description = "카테고리 ID를 입력받아 카테고리를 삭제하는 로직",
+            parameters = {
+                    @Parameter(in = ParameterIn.QUERY, name = "categoryId", description = "카테고리 ID", required = true, example = "1")
+            })
+    @ApiResponse(responseCode = "200", description = "success")
     public ResponseEntity<String> mypageCategoryDelete(
             @RequestBody Map<String, Long> categoryIdData
     ){
@@ -141,6 +146,12 @@ public class CategoryRestController {
 
     //카테고리 수정
     @PostMapping("/api/mypage/category/update")
+    @Operation(summary = "카테고리 변경 API", description = "카테고리 ID 받아 카테고리 이름를 변경하는 로직",
+            parameters = {
+                    @Parameter(in = ParameterIn.QUERY, name = "categoryId", description = "카테고리 ID", required = true, example = "1"),
+                    @Parameter(in = ParameterIn.QUERY, name = "categoryName", description = "카테고리 이름", required = true, example = "여행")
+            })
+    @ApiResponse(responseCode = "200", description = "success")
     public ResponseEntity<String> mypageCategoryUpdate(
             @RequestBody Map<String, String> categoryUpdateData
     ){
