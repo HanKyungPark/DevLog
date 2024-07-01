@@ -9,13 +9,29 @@ function loadHerts() {
         method: 'GET',
         success: function (data) {
             hearts = data;
-            console.log(hearts);
         }, error: function () {
             console.log("좋아요를 가져오는데 실패했습니다.")
         }
     })
 }
 
+//좋아요만 보여주기
+function heartOnly() {
+    let posts = $(".detail");
+    posts.each(function() {
+        let post = $(this);
+        if (post.find('.bi-heart-fill').length === 0) {
+            post.css('display', 'none');
+        }
+    });
+}
+
+//모두 보여주기
+function allPost(){
+    $(".detail").css('display', '');
+}
+
+//좋아요클릭
 function heartClickSave(postId) {
 
     $.ajax({
@@ -25,11 +41,7 @@ function heartClickSave(postId) {
         success: function(){
             console.log("좋아요가 변경되었습니다.")
         },error: function(jqXHR, textStatus, errorThrown){
-            console.log("AJAX 요청 실패:");
-            console.log("상태:", textStatus);
-            console.log("에러:", errorThrown);
-            console.log("응답 텍스트:", jqXHR.responseText);
-            console.log("상태 코드:", jqXHR.status);
+            console.log("좋아요가 변경되지 못했습니다.")
         }
     })
 }
