@@ -23,6 +23,25 @@ function addHeatButton(){
     });
 }
 
+//댓글 삭제
+function mypageCommentDelete(commentId) {
+    let data = {
+        "commentId":commentId
+    }
+    let json = JSON.stringify(data)
+$.ajax({
+    url:"/api/mypage/comment/delete",
+    type:"post",
+    data:json,
+    contentType: "application/json",
+    success:function(){
+        alert("댓글을 성공적으로 삭제했습니다.");
+        location.reload();
+    }
+
+})
+}
+
 //댓글 불러오기
 function loadComments(postId) {
     // console.log("댓글")
@@ -39,12 +58,12 @@ function loadComments(postId) {
                 data.forEach(function (item) {
                     let comment = item.comment;
                     let name = item.name;
-
+                    console.log(comment.commentId);
                     let row = $("<tr class='tr1'></tr>");
                     row.append("<td class='td3'>" + name + "</td>");
                     row.append("<td class='td1'><p class='detailcomment'>" + comment.ccontent + "</p></td>");
                     row.append("<td class='td2'>" + formatDate(comment.ccreatedAt) + "</td>");
-
+                    row.append(`<td class='td4'><button type='button' class='btn btn-success' onclick='mypageCommentDelete(${comment.commentId})'>삭제</button></td>`);
                     commentTableBody.append(row);
                 });
             } else if (data.length == 0) {
@@ -233,6 +252,9 @@ $(function () {
             }
         });
     });
+
+    //댓글 삭제
+
 
 });
 
