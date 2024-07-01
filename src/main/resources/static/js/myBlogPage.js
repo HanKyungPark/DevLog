@@ -5,7 +5,7 @@ $(function () {
     })
     let accountId = 0;
     let pathname = window.location.pathname.split("/")[1];
-    let postElement = '<div class="post" style="margin-top: -50px;min-height: 300px;padding-left: 60px;background-color: #EBE5C1; background-size: cover;border-radius: 20px">'; // 포스트 컨테이너 시작
+    let postElement = '<div class="post" style="margin-top: -10px;min-height: 350px; background-size: cover;border-radius: 20px">'; // 포스트 컨테이너 시작
 
     //url 따와서 인스타처럼 윗부분 만들기
     $.ajax({
@@ -217,3 +217,5 @@ function formatDate(dateString) {
     }
     return `${year}-${month}-${day} ${hours}:${minutes}`;
 }
+
+
