@@ -45,6 +45,8 @@ public interface AccountMapper {
     List<Account> findbyhits();
 
     List<Account> findbypost();
+
+    Account findByAccountId(Long accountId);
 }
 
 

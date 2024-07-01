@@ -1,6 +1,5 @@
 package org.bitcamp.devlog.controller.account;
 
-import com.nimbusds.oauth2.sdk.util.OrderedJSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,7 +7,6 @@ import java.util.List;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
-import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +15,6 @@ import org.bitcamp.devlog.dto.Oauth2User;
 import org.bitcamp.devlog.service.AccountService;
 import org.bitcamp.devlog.service.PostService;
 import org.bitcamp.devlog.service.minio.MinioService;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -44,6 +41,7 @@ public class AccountRestController {
             @Parameter(in = ParameterIn.QUERY, name = "homepage", description = "홈페이지 Url", required = true, example = "devlog"),
             @Parameter(in = ParameterIn.QUERY, name = "file", description = "사진", required = false)
         })
+
     @ApiResponse(responseCode = "200", description = "success")
     public boolean saveBlog(@RequestParam String blogId,
         @RequestParam String biography,
@@ -132,4 +130,35 @@ public class AccountRestController {
     public List<Account> rankbyPosts(){
         return accountService.findbypost();
     }
+
+    @PostMapping("/account/updateinfo")
+    public ResponseEntity<String> accountUpdate(
+            @RequestParam String blogId,
+            @RequestParam String biography,
+            @RequestParam(required = false) MultipartFile file) {
+
+        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+
+        // 디버깅 로그 추가
+        System.out.println("biography: " + biography);
+        System.out.println("file: " + (file != null ? file.getOriginalFilename() : "No file uploaded"));
+
+
+        Long accountId = oauth2User.getAccountId();
+        String fileName = minioService.uploadFile("devlog", oauth2User.getName(), file);
+        fileName = "https://minio.bmops.kro.kr/devlog/"+oauth2User.getName()+"/"+fileName;
+        Account account = accountService.findByAccountId(accountId);
+        account.setBiography(biography);
+        account.setFile(fileName);
+        account.setBlogId(blogId);
+
+        accountService.update(account);
+        return ResponseEntity.ok("Success");
+    }
+
+
+
 }
