@@ -60,6 +60,7 @@ public class AccountRestController {
             .build();
         if(!file.isEmpty()){
             String fileName = minioService.uploadFile("devlog", oauth2User.getName(), file);
+            fileName = "https://minio.bmops.kro.kr/devlog/"+oauth2User.getName()+"/"+fileName;
             account.setFile((fileName));
         }
         if(accountService.countByHomePage(homepage)){
