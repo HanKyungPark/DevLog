@@ -11,7 +11,7 @@ function loadHerts() {
             hearts = data;
             console.log(hearts);
         }, error: function () {
-            console.log("응~ 좋아요 가져오는데 실패했죠!")
+            console.log("좋아요를 가져오는데 실패했습니다.")
         }
     })
 }
@@ -68,12 +68,17 @@ style="width: 300px;height: 430px; overflow: hidden; border-color: rgb(0, 0, 0);
     <div>
     <div style="background-color: #fffeed;"><a style="color: black;font-size: 18px; font-family: Verdana" href="${item.homepage}">${item.homepage}</a></div>
         <div data-hook="item-wrapper" class="gallery-item-wrapper visible cube-type-fill [object Object]" id="item-wrapper-7c0cd68a-821f-43e1-8a4d-0abc19887849"
-         style="height: 500px; width: 100%; margin: -1px;">
+         style="height: 500px; width: 100%; margin: -1px; cursor: pointer">
             <div class="gallery-item-content item-content-regular image-item gallery-item-visible gallery-item gallery-item-preloaded   " data-hook="image-item"
             style="width: 100%; height: 100%; margin-top: 0; margin-left: 0;">
                 <div class="post-img">         <input type="hidden" value="${item.homepage}" id="homepage">
                                             <input type="hidden" value="${item.post_url}" id="postURL">
-                                            <img alt="FUN WAYS TO DRESS UP A T-SHIRT" id="7c0cd68a-821f-43e1-8a4d-0abc19887849" class="gallery-item-visible gallery-item gallery-item-preloaded" data-hook="gallery-item-image-img" data-idx="0" src="${item.file}" loading="eager" style="width: 300px; height: 280px;"></div>
+                                            <img alt="FUN WAYS TO DRESS UP A T-SHIRT" 
+                                            id="7c0cd68a-821f-43e1-8a4d-0abc19887849" 
+                                            class="gallery-item-visible gallery-item gallery-item-preloaded"
+                                             data-hook="gallery-item-image-img" 
+                                             data-idx="0" src="${item.file}" loading="eager" 
+                                            style="width: 300px; height: 280px;"></div>
                 <div class="gallery-item-common-info-outer [object Object]"
                 style="box-sizing:content-box;background-color:white; padding: 0;margin: 0; height:150px;">
                 <div style="background-color: #040940;color: white; font-size: 20px;font-family: 'Bodoni 72';overflow: hidden;
@@ -182,6 +187,3 @@ white-space: nowrap;">${titleHtml}</div>
     });
 
 });
-// 좋아요 추가
-// 좋아요 삭제
-// 좋아요
