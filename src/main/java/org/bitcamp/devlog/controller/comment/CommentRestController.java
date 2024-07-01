@@ -107,14 +107,22 @@ public class CommentRestController {
         List<Map<String, Object>> list = new ArrayList<>();
         List<Comment> comments = commentService.findAllByPostId(postId);
 
+        Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
         for (Comment comment : comments) {
             Map<String, Object> commentData = new HashMap<>();
+            if (comment.getAccountId()==oauth2User.getAccountId()){
+                commentData.put("delete", true);
+            }
+
             commentData.put("comment", comment);
             String name = commentService.findnameByAccountId(comment.getAccountId());
             commentData.put("name", name);
             list.add(commentData);
         }
-
+        System.out.println(list);
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
