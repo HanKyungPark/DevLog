@@ -40,6 +40,7 @@
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
     padding: 10px 0; /* 패딩 키움 */
+    z-index: 3;
 }
 
 .bookmark:hover {
@@ -162,6 +163,7 @@
     height: 100% !important;
     border-radius: 50% !important;
     object-fit: cover !important;
+    border: 1px solid black;
 }
 
 .bg-background .flex {
@@ -246,4 +248,7 @@
     .bg-background .biography {
         text-align: center;
     }
+}
+.new-post:hover{
+    color: red;
 }
