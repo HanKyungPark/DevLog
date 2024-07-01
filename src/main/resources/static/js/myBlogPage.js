@@ -94,7 +94,7 @@ $(function () {
                         <div class="post_header">
                             <div class="category_inpost">${post.category_type}</div>
                             <div class="icon-container">
-                                &nbsp;&nbsp;<i class="bi bi-chat-dots">2</i>
+                                &nbsp;&nbsp;<i class="bi bi-chat-dots">${post.comment_count}</i>
                                 &nbsp;<i class="bi bi-heart"></i>
                             </div>
                         </div>
@@ -153,7 +153,7 @@ $(function () {
                                     <div class="category_inpost">${post.category_type}</div>
                              
                                     <div class="icon-container">
-                                        &nbsp;&nbsp;<i class="bi bi-chat-dots">2</i>
+                                        &nbsp;&nbsp;<i class="bi bi-chat-dots">${post.comment_count}</i>
                                         &nbsp;<i class="bi bi-heart"></i>
                                     </div>
                                 </div>
