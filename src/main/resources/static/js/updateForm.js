@@ -21,7 +21,6 @@ function loadPost() {
       const tags = data.tags
       homepage = data.homepage;
 
-
       let titleHtml = `${title}`;
       contentHtml = `${content}`;
       let fileHtml = `${file}`;
@@ -70,7 +69,6 @@ $(function () {
     let reg = /(.*?)\/(jpg|jpeg|png|gif)$/;
     let f = $(this)[0].files[0]
     if (!f.type.match(reg)) {
-      alert("이미지파일만 가능합니다")
       return;
     }
     if (f) {
@@ -133,7 +131,6 @@ $(function () {
       processData: false, // 데이터 처리를 하지 않음
       contentType: false, // 기본 폼 데이터로 전송
       success: function (response) {
-
         location.href = "/"+homepage+"/"+postUrl+"/"+"detail";
       },
       error: function (xhr, status, error) {
