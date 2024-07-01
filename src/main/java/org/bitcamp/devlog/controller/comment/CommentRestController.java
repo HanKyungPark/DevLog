@@ -66,7 +66,7 @@ public class CommentRestController {
         return new ResponseEntity<>(commentData, HttpStatus.OK);
     }
 
-    //    작성 댓글 저장
+    //작성 댓글 저장
     @PostMapping("/api/comment/write")
     public void saveComment(@RequestBody Map<String, Object> commentData) {
 //        현재 로그인된 아이디 가져오기
@@ -112,7 +112,7 @@ public class CommentRestController {
         return new ResponseEntity<>("댓글이 성공적으로 삭제 되었습니다.", HttpStatus.OK);
     }
 
-    //마이페이지 수정
+    //상세페이지 수정
     @PostMapping("/api/detail/comment/update")
     public ResponseEntity<String> detailPageCommentUpdate(
         @RequestParam Long commentId
