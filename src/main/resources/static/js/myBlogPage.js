@@ -188,6 +188,7 @@ $(document).on("click", ".blogpost_box", function () {
 
 function pathByAccountId(){
     let pathname = window.location.pathname.split("/")[1];
+    let accountId;
     $.ajax({
         url: "/api/user/info",
         type: "post",
