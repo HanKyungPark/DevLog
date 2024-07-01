@@ -19,10 +19,27 @@
 </head>
 <body>
 <div layout:fragment="content" style="text-align: left;padding-top: 200px">
-    <div class="all_container">
-        <div style="width: 100%; height: 350px" id="user">
-            <div class="bg-background p-6 sm:p-8 rounded-lg shadow-lg" style="height: 100%; width: 70%;margin-left: 15%">
-                <div style="display: flex;">
+    <div style="float: right;margin-right: 5%;width: 300px" id="user">
+        <div class="bg-background p-6 sm:p-8 rounded-lg shadow-lg" style="width: 280px;border-radius: 20px;margin-left: 20px;position: absolute;top: 160px;right:15px;transition: top 0.3s ease-in-out;" id="sidebanner">
+            <script>
+                const sidebanner = document.getElementById('sidebanner');
+                window.addEventListener('scroll', () => {
+                    // 현재 스크롤 위치에 따라 새로운 top 값을 설정합니다.
+                    const offset = window.pageYOffset + 160; // 150은 초기 위치
+                    sidebanner.style.top = `${offset}px`;
+                });
+            </script>
+            <div style="display: flex; border-radius: 20px;height: 80px;width:200px;margin-top: 7%;background-color: #d4ebd1;padding-left: 20px;padding-top: 15px;margin-bottom: 20px;margin-left: 20px;padding-bottom: 0;">
+                <div style="margin-right: 50px; height: 50px">
+                    <div style="font-size: 20px">&nbsp;Posts</div>
+                    <div  id="utotalpost" style="font-size: 20px;text-align: center">100</div>
+                </div>
+                <div style="margin-right: 20px;height: 50px">
+                    <div style="font-size: 20px">Views</div>
+                    <div  id="uviews" style="font-size: 20px ;text-align: center">1.2K</div>
+                </div>
+            </div>
+            <div>
 
                 <div class="flex items-center gap-4">
 
@@ -31,30 +48,21 @@
         </span>
                     <div class="text-container">
                         <h2 class="text-xl font-bold" id="uname" style="font-size: 25px">John Doe</h2>
-                        <div class="text-muted-foreground" id="uhomepage" style="font-size: 25px">@johndoe</div>
+                        <div class="text-muted-foreground" id="uhomepage" style="font-size: 20px">@johndoe</div>
                     </div>
 
                 </div>
-                <div style="display: flex;margin-left: 10%; border-radius: 20px;height: 100px;margin-top: 7%;background-color: #d4ebd1;padding-left: 20px;padding-top: 15px">
-                    <div style="margin-right: 50px; height: 50px">
-                        <div style="font-size: 25px">Posts</div>
-                        <div  id="utotalpost" style="font-size: 25px">100</div>
-                    </div>
-                    <div style="margin-right: 20px;height: 50px">
-                        <div style="font-size: 25px">Views</div>
-                        <div  id="uviews" style="font-size: 25px">1.2K</div>
-                    </div>
-                </div>
-                    <div style="margin-left: 25%;margin-top: 100px;float: right" class="new-post"><button class="new-post" type="button" id="posting"onclick="location.href='/post'" ><b style="background-color: black;font-size: 20px;border-radius: 20px;padding: 10px;color: white;:hover{text-decoration: underline;color: red}">New Post</b></button></div>
-                </div>
-                <div class="mt-6 text-muted-foreground">
-                    <p id="ubiography" style="text-align: center;font-size: 15px">
-                        John Doe is a passionate photographer and traveler. He loves capturing the beauty of the world through his lens.
-                    </p>
 
-                </div>
+            </div>
+            <div class="mt-6 text-muted-foreground">
+                <p id="ubiography" style="text-align: center;font-size: 15px">
+                    John Doe is a passionate photographer and traveler. He loves capturing the beauty of the world through his lens.
+                </p>
+
             </div>
         </div>
+    </div>
+    <div class="all_container" style="max-width: 1500px;margin-right: 15%;margin-left: 20px;min-height: 450px;padding-left: -30px">
 
 <!--        <div style="display: flex; width: 100%">-->
 
