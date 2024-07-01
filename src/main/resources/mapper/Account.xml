@@ -105,4 +105,9 @@
         ) p ON a.account_id = p.account_id;
     </select>
 
+    <select id="findByAccountId" parameterType="Long" resultType="Account">
+        select * from account where account_id=#{accountId}
+    </select>
+
+
 </mapper>

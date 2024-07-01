@@ -34,30 +34,30 @@ public class PostRestController {
 
     @PostMapping(value = "/api/post/posting", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> posting(
-        @RequestPart("postData") Map<String, Object> postData,
-        @RequestPart(value = "file", required = false) MultipartFile file
+            @RequestPart("postData") Map<String, Object> postData,
+            @RequestPart(value = "file", required = false) MultipartFile file
     ) {
 
         // accountId 생성
         Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
-            .getContext()
-            .getAuthentication()
-            .getPrincipal();
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
 
         System.out.println(postData);
         List<String> categoryType = (List)postData.get("category");
         Long categoryId = categoryService.findCategoryIdByCategoryType(categoryType.get(0));
         //포스트 저장 void createPost
         Post post = Post.builder()
-            .title((String) postData.get("title"))
-            .pContent((String) postData.get("pContent"))
-            .postUrl(String.valueOf(UUID.randomUUID()))
-            .openType(Long.parseLong((String) postData.getOrDefault("openType", "0")))
-            .accountId(oauth2User.getAccountId())
-            .categoryId(categoryId)
-            .file("https://minio.bmops.kro.kr/devlog/" + oauth2User.getEmail() + "/"
-                + minioService.uploadFile("devlog", oauth2User.getEmail(), file))
-            .build();
+                .title((String) postData.get("title"))
+                .pContent((String) postData.get("pContent"))
+                .postUrl(String.valueOf(UUID.randomUUID()))
+                .openType(Long.parseLong((String) postData.getOrDefault("openType", "0")))
+                .accountId(oauth2User.getAccountId())
+                .categoryId(categoryId)
+                .file("https://minio.bmops.kro.kr/devlog/" + oauth2User.getEmail() + "/"
+                        + minioService.uploadFile("devlog", oauth2User.getEmail(), file))
+                .build();
 
         // post 내용 저장
         postService.save(post);
@@ -68,9 +68,9 @@ public class PostRestController {
                 Long tagId = tagService.findTagIdByTagName(tagName);
                 if (tagId == null) {
                     tagService.save(
-                        Tag.builder()
-                            .tagName(tagName)
-                            .build()
+                            Tag.builder()
+                                    .tagName(tagName)
+                                    .build()
                     );
                     tagId = tagService.findTagIdByTagName(tagName);
                     if (tagId == null) {
@@ -79,10 +79,10 @@ public class PostRestController {
                 }
 
                 postTagService.save(
-                    PostTag.builder()
-                        .postId(post.getPostId())
-                        .tagId(tagId)
-                        .build()
+                        PostTag.builder()
+                                .postId(post.getPostId())
+                                .tagId(tagId)
+                                .build()
                 );
             }
         }
@@ -101,9 +101,9 @@ public class PostRestController {
     @PostMapping("/api/post/myblog/list")
     public List<Map<String, Object>> findByHomePage(@RequestParam String homepage) {
         Oauth2User oauth2User = (Oauth2User) SecurityContextHolder
-            .getContext()
-            .getAuthentication()
-            .getPrincipal();
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
 
         Long pageAccountId = accountService.findByHomepage(homepage).getAccountId();
         Long myAccountId = oauth2User.getAccountId();
@@ -140,9 +140,9 @@ public class PostRestController {
         String homepage = "";
         if (posts.size() > 0) {
             homepage = accountService
-                .findHomepageByAccountId(
-                    posts.get(0).getAccountId()
-                );
+                    .findHomepageByAccountId(
+                            posts.get(0).getAccountId()
+                    );
         }
         postMap.put("posts", posts);
         postMap.put("homepage", homepage);
@@ -153,7 +153,7 @@ public class PostRestController {
     //마이페이지 포스트 삭제
     @PostMapping("/api/mypage/post/delete")
     public ResponseEntity<String> myPagePostDelete(
-        @RequestBody Map<String, Long> postId
+            @RequestBody Map<String, Long> postId
     ) {
         postService.deleteByPostId(postId.get("postId"));
         return new ResponseEntity<>("성공적으로 삭제되었습니다.", HttpStatus.OK);
@@ -163,7 +163,7 @@ public class PostRestController {
     //마이페이지 -> 게시글수정페이지 데이터 요청
     @PostMapping("api/post/mypage/update")
     public ResponseEntity<Map<String, Object>> myPagePostUpdate(
-        @RequestBody Map<String, String> requestPostUrl
+            @RequestBody Map<String, String> requestPostUrl
     ) {
 
         Map<String, Object> postUpdateData = new HashMap<>();
@@ -180,13 +180,13 @@ public class PostRestController {
         }
 
         List<String> tags =
-            tagService.findAllTagNameByTagId(
-                postTagService.findAllTagIdByPostId(
-                    postService.findPostIdByPostUrl(
-                        postUrl
-                    )
-                )
-            );
+                tagService.findAllTagNameByTagId(
+                        postTagService.findAllTagIdByPostId(
+                                postService.findPostIdByPostUrl(
+                                        postUrl
+                                )
+                        )
+                );
 
         if (tags.size() != 0) {
             postUpdateData.put("tags", tags);
@@ -194,8 +194,8 @@ public class PostRestController {
 
         if (post.getCategoryId() != null) {
             String categoryType =
-                categoryService
-                    .findCategoryTypeByCategoryId(post.getCategoryId());
+                    categoryService
+                            .findCategoryTypeByCategoryId(post.getCategoryId());
             postUpdateData.put("categoryType", categoryType);
         }
 
@@ -232,8 +232,8 @@ public class PostRestController {
     //마이포스트 수정사항 update
     @PostMapping("/api/post/mypage/update-post")
     public ResponseEntity<String> mypageUpdatePost(
-        @RequestPart("updateData") Map<String, Object> updateData,
-        @RequestPart(value = "file", required = false) MultipartFile file
+            @RequestPart("updateData") Map<String, Object> updateData,
+            @RequestPart(value = "file", required = false) MultipartFile file
     ){
         System.out.println(updateData);
         System.out.println(file);
@@ -254,7 +254,7 @@ public class PostRestController {
         updatePost.setOpenType(Long.parseLong((String)updateData.get("openType")));
         if(file != null){
             updatePost.setFile("https://minio.bmops.kro.kr/devlog/" + email + "/"
-                + minioService.uploadFile("devlog", email, file));
+                    + minioService.uploadFile("devlog", email, file));
         }
 
         postService.update(updatePost);
@@ -268,14 +268,14 @@ public class PostRestController {
                 Long tagId = tagService.findTagIdByTagName(tag);
                 if(tagId == null){
                     tagService.save(Tag.builder()
-                        .tagName(tag)
-                        .build());
+                            .tagName(tag)
+                            .build());
                     tagId = tagService.findTagIdByTagName(tag);
                 }
                 postTagService.save(PostTag.builder()
-                    .postId(updatePost.getPostId())
-                    .tagId(tagId)
-                    .build()
+                        .postId(updatePost.getPostId())
+                        .tagId(tagId)
+                        .build()
                 );
             }
         }
