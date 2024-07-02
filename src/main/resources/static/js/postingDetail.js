@@ -261,6 +261,7 @@ $(function () {
 
         // console.log("Comment Data:", commentData); // 디버깅을 위해 추가
 
+
         //댓글 작성 후 제출
         $.ajax({
             url: "/api/comment/write",
