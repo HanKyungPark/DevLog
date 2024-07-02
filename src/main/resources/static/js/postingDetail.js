@@ -85,8 +85,8 @@ function loadComments(postId) {
                     row.append("<td class='td2'>" + formatDate(comment.ccreatedAt) + "</td>");
                     if(item.delete===true) {
                         console.log(ccontent)
-                        row.append(`<td class='td4'><button type='button' class='btn btn-success' onclick='mypageCommentDelete(${comment.commentId})'>삭제</button></td>`);
-                        row.append(`<td class='td4'><button type='button' class='btn btn-success'  onclick="detailPageCommentUpdate(ccontent,${comment.commentId}) ">수정</button></td>`);
+                        row.append(`<td class='td4'><button type='button' class='btn' style="background-color: #6f7574; color: white; " onclick='mypageCommentDelete(${comment.commentId})'>삭제</button></td>`);
+                        row.append(`<td class='td4'><button type='button' class='btn ' style="background-color: #bfd6d2; color: white; "  onclick="detailPageCommentUpdate(ccontent,${comment.commentId}) ">수정</button></td>`);
                     }else
                     {  row.append(`<td class='td4'></td>`);
                         row.append(`<td class='td4'></td>`);

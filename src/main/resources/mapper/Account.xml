@@ -110,4 +110,9 @@
     </select>
 
 
+    <select id="findEmailByAccountId" parameterType="Long" resultType="String">
+        select email from account
+        where account_id = #{accountId}
+    </select>
+
 </mapper>
