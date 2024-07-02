@@ -14,7 +14,7 @@ $(function () {
         data: {"homepage": pathname},
         success: function (list) {
             $("#profile").attr("src", list.file);
-            $("#uname").text(list.name);
+            $("#uname").text(list.blogId);
             $("#uhomepage").text(list.homepage);
             $("#ubiography").text(list.biography);
 
