@@ -1,13 +1,33 @@
+<h1>🥇 Devlog 서비스 소개</h1>
+<h3>블로그 플랫폼</h3>
+<ul>
+<li> <h4>게시물 생성 (Create)</h4>
+사용자는 새로운 블로그 게시물을 작성하고 게시할 수 있습니다. 게시물 작성 시 제목과 내용을 입력할 수 있으며, 필요에 따라 이미지나 태그를 추가할 수도 있습니다.</li>
 
-### 팀원소개
-<h2> 🙋</h2>
-<h2>🙋‍♀️</h2>
+
+<li><h4>게시물 조회 (Read)</h4>
+사용자는 작성된 블로그 게시물을 목록 형태로 볼 수 있으며, 각 게시물의 제목을 클릭하여 상세 내용을 확인할 수 있습니다. 게시물 목록은 최신 게시물이 상단에 오도록 정렬되어 있습니다.</li>
 
 
+<li> <h4>게시물 수정 (Update)</h4>
+사용자는 이미 작성된 게시물을 수정할 수 있습니다. 게시물의 제목, 내용, 이미지, 태그 등을 변경할 수 있으며, 수정된 내용은 저장됩니다.</li>
 
 
-    
+<li><h4>게시물 삭제 (Delete)</h4>
+사용자는 작성된 게시물을 삭제할 수 있습니다. 삭제된 게시물은 블로그에서 영구적으로 제거됩니다.</li>
+</ul>
+
+<h2> 💻팀원소개</h2>
+
+<img src="https://github.com/HanKyungPark/DevLog/blob/main/src/main/resources/static/image/TeamInt.png">
+
 <h2> 👨‍🏫  주제선정</h2>
+Dev:개발 , Log:기록-->개발기록지
+
+De(접두사):역행하다, Vlog:블로그-->역발상 블로그
+
+<h2> ⏰개발일정</h2>
+<img src="https://github.com/HanKyungPark/DevLog/blob/main/src/main/resources/static/image/timeline.png" style="width:800px">
 
  <h2> 🔥 협업도구</h2>
  
@@ -29,8 +49,44 @@
 #### storage
 <img src="https://img.shields.io/badge/MinIO-C72E49.svg?style=for-the-badge&logo=MinIO&logoColor=white" widht=80 height=20>
 
+<h2>👨‍🏫발표자료</h2>
 
-### 개발상세
+
+ - <a href="https://drive.google.com/file/d/1_OtBebINyO7CNj0VS1HSGTTTQH1ELT8s/view?usp=sharing">시연영상</a>
 
 
-### 개선점
+ - <a href="https://github.com/HanKyungPark/DevLog/blob/main/src/main/resources/static/image/Devlog.pdf">발표ppt</a>
+
+<h2>🏀Architecture & ERD</h2>
+<img src="https://github.com/HanKyungPark/DevLog/blob/main/src/main/resources/static/image/ACH.png" style="width:400px">
+<img src="https://github.com/HanKyungPark/DevLog/blob/main/src/main/resources/static/image/ERD.png" style="width:600px">
+
+
+
+
+<h2> 💫개선점</h2>
+
+#### 로그인 다양성 
+
+
+소셜로그인이 카카오만
+가능하여
+로그인 방법의
+다양성 부족
+
+#### 컨텐츠 부족
+타 블로그
+플랫폼과
+다른 차이점을
+주는 구별점이 부족
+
+#### 소통부족
+네이버의 서로이웃
+인스타의 팔로우 처럼
+사용자들 사이의
+소통 컨텐츠
+부족
+
+#### 일관성 부족
+페이지의 디자인 자체는
+좋지만 페이지별 디자인
